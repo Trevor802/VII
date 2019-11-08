@@ -45,6 +45,9 @@ public class Player : MonoBehaviour
     }
     #endregion
 
+    [Header("Debug")]
+    public bool invulnerable;
+
     #region PlayerData
     [Header("Audio Clips")]
     public AudioClip footStep;
@@ -75,8 +78,8 @@ public class Player : MonoBehaviour
         // Player can't move to that direction even 1 grid
 
         if (bodyHitResult &&
-            Mathf.Abs(Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
-            - VII.GameData.STEP_SIZE) < float.Epsilon)
+            Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
+            < VII.GameData.STEP_SIZE)
             return false;
         groundHits = Physics.RaycastAll(GroundDetector.transform.position,
             i_dir, m_maxCastDistance, (int)VII.HitLayer.Ice);
@@ -92,9 +95,10 @@ public class Player : MonoBehaviour
                 - expectationStep * VII.GameData.STEP_SIZE > float.Epsilon)
                 break;
             // That position is blocked by wall
+            Debug.Log(bodyHit.distance + VII.GameData.WALL_WIDTH * 0.5f - item.distance - VII.GameData.STEP_SIZE);
             if (bodyHitResult &&
-                Mathf.Abs(bodyHit.distance - item.distance - VII.GameData.STEP_SIZE)
-                < float.Epsilon)
+                Mathf.Abs(bodyHit.distance + VII.GameData.WALL_WIDTH * 0.5f - item.distance - VII.GameData.STEP_SIZE)
+                < VII.GameData.EQUAL_DEVIATION)
                 break;
             // Player can move 1 more step
             expectationStep++;
@@ -129,7 +133,8 @@ public class Player : MonoBehaviour
         //Vector3 deathPos = transform.position;
         //Quaternion deathRot = transform.rotation;
         //ObjectPooler.Instance.SpawnFromPool("Body", deathPos, deathRot);
-        transform.position = m_playerData.respawnPosition;
+        if (invulnerable)
+            transform.position = m_playerData.respawnPosition;
         m_playerData.steps = initLives;
         // Respawn Animation
         //animator.Play("Respawn");
