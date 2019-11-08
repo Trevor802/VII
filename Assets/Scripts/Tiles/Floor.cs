@@ -63,7 +63,7 @@ public class Floor : Tile
         base.OnPlayerEnter(player);
         if (m_floorState == FloorState.DOWN)
         {
-            Debug.Log("player died");
+            player.Respawn();
         }
     }
 

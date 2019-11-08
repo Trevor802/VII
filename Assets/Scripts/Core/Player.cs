@@ -7,13 +7,6 @@ using UnityEngine.SceneManagement;
 
 namespace VII
 {
-    public enum PlayerState
-    {
-        IDLE = 0,
-        MOVING = 1,
-        RESPAWNING = 2,
-        ENDING = 3
-    }
 
     [System.Flags]
     public enum HitLayer
@@ -41,6 +34,8 @@ public class Player : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            // Initialization
+            m_playerData = new VII.PlayerData(initLives, initSteps, transform.position);
             m_inverseMoveTime = 1 / moveTime;
         }
         else if (Instance != this)
@@ -64,13 +59,11 @@ public class Player : MonoBehaviour
     public GameObject BodyDetector;
     #endregion PlayerData
 
-    private Vector3 m_respawnPos;
-    private int m_steps;
-    private int m_lives;
+    
     private float m_inverseMoveTime;
-    private VII.PlayerState m_playerState;
     private const float m_maxCastDistance = 10f;
     private Vector3 m_destination;
+    private VII.PlayerData m_playerData;
 
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
     {
@@ -110,13 +103,13 @@ public class Player : MonoBehaviour
         Vector3 end = transform.position + i_dir * expectationStep * VII.GameData.STEP_SIZE;
         if (i_costStep)
         {
-            m_steps--;
+            m_playerData.steps--;
         }
         if (i_smoothMove)
         {
             // Movement starts
             m_destination = end;
-            m_playerState = VII.PlayerState.MOVING;
+            m_playerData.playerState = VII.PlayerState.MOVING;
             VII.VIIEvents.TickStart.Invoke();
         }
         else
@@ -133,20 +126,18 @@ public class Player : MonoBehaviour
             //animator.Play("Death");
         }
         yield return null;
-        // yield return new WaitForSeconds(spawnDur);
-
         // EVENT: Respawing Ends
-        Vector3 deathPos = transform.position;
-        Quaternion deathRot = transform.rotation;
+        //Vector3 deathPos = transform.position;
+        //Quaternion deathRot = transform.rotation;
         //ObjectPooler.Instance.SpawnFromPool("Body", deathPos, deathRot);
-        transform.position = m_respawnPos;
-        m_steps = initSteps;
+        transform.position = m_playerData.respawnPosition;
+        m_playerData.steps = initLives;
         // Respawn Animation
         //animator.Play("Respawn");
         // Respawning Ends
-        m_playerState = VII.PlayerState.IDLE;
+        m_playerData.playerState = VII.PlayerState.IDLE;
         // Broadcast with Event System
-        //VII.VIIEvents.PlayerRespawnEnd.Invoke(this);
+        VII.VIIEvents.PlayerRespawnEnd.Invoke(this);
         //animator.Play("WalkDown");
     }
 
@@ -180,7 +171,7 @@ public class Player : MonoBehaviour
         #endregion
         if (horizontal != 0 || vertical != 0)
         {
-            if (m_playerState == VII.PlayerState.IDLE)
+            if (m_playerData.playerState == VII.PlayerState.IDLE)
             {
                 if (horizontal != 0)
                 {
@@ -208,7 +199,7 @@ public class Player : MonoBehaviour
             }
         }
         #region Moving
-        if (m_playerState == VII.PlayerState.MOVING)
+        if (m_playerData.playerState == VII.PlayerState.MOVING)
         {
             if (Vector3.Distance(transform.position, m_destination) > float.Epsilon)
             {
@@ -219,35 +210,30 @@ public class Player : MonoBehaviour
             {
                 // Movement ends
                 VII.VIIEvents.TickEnd.Invoke();
-                m_playerState = VII.PlayerState.IDLE;
+                m_playerData.playerState = VII.PlayerState.IDLE;
             }
         }
         #endregion
     }
 
-    public void ResetRespawnPos(Vector3 pos)
-    {
-        m_respawnPos = pos;
-    }
-
     public void Respawn(bool costLife = true)
     {
         // Respawn Start
-        if (m_playerState == VII.PlayerState.RESPAWNING)
+        if (m_playerData.playerState == VII.PlayerState.RESPAWNING)
         {
             return;
         }
-        m_playerState = VII.PlayerState.RESPAWNING;
+        m_playerData.playerState = VII.PlayerState.RESPAWNING;
         if (costLife)
         {
-            m_lives--;
+            m_playerData.lives--;
         }
         else
         {
-            m_lives = initLives;
+            m_playerData.lives = initLives;
         }
-        //VII.VIIEvents.PlayerRespawnStart.Invoke(this);
-        if (m_lives <= 0)
+        VII.VIIEvents.PlayerRespawnStart.Invoke(this);
+        if (m_playerData.lives <= 0)
         {
             return;
         }
@@ -256,17 +242,17 @@ public class Player : MonoBehaviour
 
     public void AddStep(int step)
     {
-        m_steps += step;
+        m_playerData.steps += step;
     }
 
     public void GameWin()
     {
-        m_playerState = VII.PlayerState.ENDING;
+        m_playerData.playerState = VII.PlayerState.ENDING;
     }
 
     // Getter
-
-    public VII.PlayerState GetPlayerState() { return m_playerState; }
-    public int GetSteps() { return m_steps; }
-    public int GetLives() { return m_lives; }
+    public VII.PlayerData GetPlayerData() { return m_playerData; }
+    public VII.PlayerState GetPlayerState() { return m_playerData.playerState; }
+    public int GetSteps() { return m_playerData.steps; }
+    public int GetLives() { return m_playerData.lives; }
 }
