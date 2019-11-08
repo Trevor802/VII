@@ -59,7 +59,6 @@ public class Player : MonoBehaviour
     public GameObject BodyDetector;
     #endregion PlayerData
 
-    
     private float m_inverseMoveTime;
     private const float m_maxCastDistance = 10f;
     private Vector3 m_destination;
@@ -209,8 +208,10 @@ public class Player : MonoBehaviour
             else
             {
                 // Movement ends
-                VII.VIIEvents.TickEnd.Invoke();
                 m_playerData.playerState = VII.PlayerState.IDLE;
+                VII.VIIEvents.TickEnd.Invoke();
+                if (m_playerData.steps <= 0)
+                    Respawn();
             }
         }
         #endregion
@@ -243,11 +244,6 @@ public class Player : MonoBehaviour
     public void AddStep(int step)
     {
         m_playerData.steps += step;
-    }
-
-    public void GameWin()
-    {
-        m_playerData.playerState = VII.PlayerState.ENDING;
     }
 
     // Getter
