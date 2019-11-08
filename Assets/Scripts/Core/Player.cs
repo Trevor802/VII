@@ -68,11 +68,9 @@ public class Player : MonoBehaviour
     private int m_steps;
     private int m_lives;
     private float m_inverseMoveTime;
-    private Coroutine m_movingCoroutine;
     private VII.PlayerState m_playerState;
     private const float m_maxCastDistance = 10f;
     private Vector3 m_destination;
-    private float m_stepSize = 1f;
 
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
     {
@@ -86,7 +84,7 @@ public class Player : MonoBehaviour
 
         if (bodyHitResult &&
             Mathf.Abs(Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
-            - m_stepSize) < float.Epsilon)
+            - VII.GameData.STEP_SIZE) < float.Epsilon)
             return false;
         groundHits = Physics.RaycastAll(GroundDetector.transform.position,
             i_dir, m_maxCastDistance, (int)VII.HitLayer.Ice);
@@ -99,17 +97,17 @@ public class Player : MonoBehaviour
         {
             // Player can't move that far
             if (Vector3.Distance(GroundDetector.transform.position, item.transform.position)
-                - expectationStep * m_stepSize > float.Epsilon)
+                - expectationStep * VII.GameData.STEP_SIZE > float.Epsilon)
                 break;
             // That position is blocked by wall
             if (bodyHitResult &&
-                Mathf.Abs(bodyHit.distance - item.distance - m_stepSize)
+                Mathf.Abs(bodyHit.distance - item.distance - VII.GameData.STEP_SIZE)
                 < float.Epsilon)
                 break;
             // Player can move 1 more step
             expectationStep++;
         }
-        Vector3 end = transform.position + i_dir * expectationStep * m_stepSize;
+        Vector3 end = transform.position + i_dir * expectationStep * VII.GameData.STEP_SIZE;
         if (i_costStep)
         {
             m_steps--;
@@ -206,7 +204,7 @@ public class Player : MonoBehaviour
                         //animator.Play("WalkDown");
                     }
                 }
-                Move(new Vector3(horizontal * m_stepSize, 0, vertical * m_stepSize));
+                Move(new Vector3(horizontal * VII.GameData.STEP_SIZE, 0, vertical * VII.GameData.STEP_SIZE));
             }
         }
         #region Moving
@@ -247,10 +245,6 @@ public class Player : MonoBehaviour
         else
         {
             m_lives = initLives;
-        }
-        if (m_movingCoroutine != null)
-        {
-            StopCoroutine(m_movingCoroutine);
         }
         //VII.VIIEvents.PlayerRespawnStart.Invoke(this);
         if (m_lives <= 0)
