@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            m_collider = GetComponent<Collider>();
             m_inverseMoveTime = 1 / moveTime;
         }
         else if (Instance != this)
@@ -70,9 +69,7 @@ public class Player : MonoBehaviour
     private int m_lives;
     private float m_inverseMoveTime;
     private Coroutine m_movingCoroutine;
-    private Animator m_animator;
     private VII.PlayerState m_playerState;
-    private Collider m_collider;
     private const float m_maxCastDistance = 10f;
     private Vector3 m_destination;
     private float m_stepSize = 1f;
@@ -119,8 +116,10 @@ public class Player : MonoBehaviour
         }
         if (i_smoothMove)
         {
+            // Movement starts
             m_destination = end;
             m_playerState = VII.PlayerState.MOVING;
+            VII.VIIEvents.TickStart.Invoke();
         }
         else
         {
@@ -220,7 +219,8 @@ public class Player : MonoBehaviour
             }
             else
             {
-                // Move ends
+                // Movement ends
+                VII.VIIEvents.TickEnd.Invoke();
                 m_playerState = VII.PlayerState.IDLE;
             }
         }
