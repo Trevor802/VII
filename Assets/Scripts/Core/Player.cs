@@ -36,7 +36,8 @@ public class Player : MonoBehaviour
             Instance = this;
             // Initialization
             m_playerData = new VII.PlayerData(initLives, initSteps, transform.position);
-            m_inverseMoveTime = 1 / moveTime;
+            m_inverseMoveTime = 1 / moveTime;      
+            UIManager.instance.initUI();
         }
         else if (Instance != this)
         {
@@ -212,6 +213,9 @@ public class Player : MonoBehaviour
             }
             else
             {
+                //UI UPDATE
+                UIManager.instance.UpdateUI();
+
                 // Movement ends
                 m_playerData.playerState = VII.PlayerState.IDLE;
                 VII.VIIEvents.TickEnd.Invoke();
@@ -233,6 +237,8 @@ public class Player : MonoBehaviour
         if (costLife)
         {
             m_playerData.lives--;
+            //UI Update
+            UIManager.instance.UpdateUI();
         }
         else
         {
