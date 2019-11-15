@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnObject: {fileID: 6969371139324435871}
+  requiredItem: {fileID: 11400000, guid: 60eec252b9c3b438cb854306806a057a, type: 2}
 --- !u!1 &6969371139324435871
 GameObject:
   m_ObjectHideFlags: 0
