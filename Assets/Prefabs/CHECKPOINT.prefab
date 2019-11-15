@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 2107566566651462035}
   - component: {fileID: 2107566566651462034}
   m_Layer: 0
-  m_Name: CHECKPOINT
+  m_Name: Checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ GameObject:
   m_Component:
   - component: {fileID: 796907738685732041}
   m_Layer: 0
-  m_Name: RESPAWN_POINT
+  m_Name: RespawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

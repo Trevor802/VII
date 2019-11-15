@@ -45,9 +45,6 @@ public class Player : MonoBehaviour
     }
     #endregion
 
-    [Header("Debug")]
-    public bool invulnerable;
-
     #region PlayerData
     [Header("Audio Clips")]
     public AudioClip footStep;
@@ -95,7 +92,7 @@ public class Player : MonoBehaviour
                 - expectationStep * VII.GameData.STEP_SIZE > float.Epsilon)
                 break;
             // That position is blocked by wall
-            Debug.Log(bodyHit.distance + VII.GameData.WALL_WIDTH * 0.5f - item.distance - VII.GameData.STEP_SIZE);
+            //Debug.Log(bodyHit.distance + VII.GameData.WALL_WIDTH * 0.5f - item.distance - VII.GameData.STEP_SIZE);
             if (bodyHitResult &&
                 Mathf.Abs(bodyHit.distance + VII.GameData.WALL_WIDTH * 0.5f - item.distance - VII.GameData.STEP_SIZE)
                 < VII.GameData.EQUAL_DEVIATION)
@@ -133,8 +130,7 @@ public class Player : MonoBehaviour
         //Vector3 deathPos = transform.position;
         //Quaternion deathRot = transform.rotation;
         //ObjectPooler.Instance.SpawnFromPool("Body", deathPos, deathRot);
-        if (invulnerable)
-            transform.position = m_playerData.respawnPosition;
+        transform.position = m_playerData.respawnPosition;
         m_playerData.steps = initLives;
         // Respawn Animation
         //animator.Play("Respawn");

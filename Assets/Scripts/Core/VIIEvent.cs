@@ -13,5 +13,8 @@ namespace VII
         public static PlayerEvent PlayerRespawnEnd = new PlayerEvent();
     }
 
+    [System.Serializable]
     public class PlayerEvent : UnityEvent<Player> { }
+    [System.Serializable]
+    public class VectorEvent : UnityEvent<Vector3> { }
 }

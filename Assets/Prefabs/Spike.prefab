@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 211040896105725654}
   - component: {fileID: 211040896105725655}
   m_Layer: 0
-  m_Name: Trap
+  m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,6 +58,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c960237677914371aac3ec8b2398421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnPlayerEnterEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerExitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTickStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTickEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerRespawnStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerRespawnEndEvent:
+    m_PersistentCalls:
+      m_Calls: []
   m_spikeUp: 0
   model: {fileID: 211040896418546131}
 --- !u!1 &211040896418546131
