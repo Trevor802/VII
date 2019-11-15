@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 358277883}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334f6287b577b42e19f0de2da403d47f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  invulnerable: 0
   footStep: {fileID: 0}
   death: {fileID: 0}
   respawn: {fileID: 0}
