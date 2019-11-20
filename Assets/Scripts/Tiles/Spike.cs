@@ -32,11 +32,11 @@ public class Spike : Tile
         }
     }
 
-    protected override void OnTickEnd()
+    protected override void OnTickStart()
     {
+        base.OnTickStart();
         m_spikeUp = !m_spikeUp;
         UpdateSpike();
-        base.OnTickEnd();
     }
 
     protected override void OnPlayerEnter(Player player)
