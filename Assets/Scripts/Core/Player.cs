@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+
 namespace VII
 {
 
@@ -29,20 +30,28 @@ public class Player : MonoBehaviour
     #region Singleton
     public static Player Instance = null;
 
+    private void Start()
+    {
+        //UI Initialization 
+        if (UIManager.UIInstance.gameOver)
+        {
+            transform.position = UIManager.UIInstance.restartPos;
+        }
+        UIManager.UIInstance.initUI();
+    }
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            // Initialization
+           
             m_playerData = new VII.PlayerData(initLives, initSteps, transform.position);
-            m_inverseMoveTime = 1 / moveTime;      
-            UIManager.instance.initUI();
+            m_inverseMoveTime = 1 / moveTime;                
         }
         else if (Instance != this)
         {
             Destroy(gameObject);
-        }
+        }    
     }
     #endregion
 
@@ -214,7 +223,7 @@ public class Player : MonoBehaviour
             else
             {
                 //UI UPDATE
-                UIManager.instance.UpdateUI();
+                UIManager.UIInstance.UpdateUI();
 
                 // Movement ends
                 m_playerData.playerState = VII.PlayerState.IDLE;
@@ -238,7 +247,7 @@ public class Player : MonoBehaviour
         {
             m_playerData.lives--;
             //UI Update
-            UIManager.instance.UpdateUI();
+            UIManager.UIInstance.UpdateUI();
         }
         else
         {

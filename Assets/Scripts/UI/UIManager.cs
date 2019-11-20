@@ -7,15 +7,15 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     #region Singleton
-    public static UIManager instance = null;
+    public static UIManager UIInstance = null;
 
     private void Awake()
     {
-        if (instance == null)
+        if (UIInstance == null)
         {
-            instance = this;
+            UIInstance = this;
         }
-        else if (instance != this)
+        else if (UIInstance != this)
         {
             Destroy(gameObject);
         }
