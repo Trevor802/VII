@@ -78,4 +78,9 @@ public class Floor : Tile
                 new Vector3(0, VII.GameData.STEP_SIZE, 0);
         }
     }
+
+    public FloorState GetFloorState()
+    {
+        return m_floorState;
+    }
 }
