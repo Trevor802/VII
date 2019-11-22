@@ -102,10 +102,10 @@ public class Player : MonoBehaviour
                 break;
             // That position is blocked by wall
             //Debug.Log(bodyHit.distance + VII.GameData.WALL_WIDTH * 0.5f - item.distance - VII.GameData.STEP_SIZE);
-            if (bodyHitResult &&
+            /*if (bodyHitResult &&
                 Mathf.Abs(bodyHit.distance + VII.GameData.WALL_WIDTH * 0.5f - item.distance - VII.GameData.STEP_SIZE)
                 < VII.GameData.EQUAL_DEVIATION)
-                break;
+                break;*/
             // Player can move 1 more step
             expectationStep++;
         }
