@@ -54,7 +54,7 @@ public class Lava : Tile
         bool wallHitResult;
         bool groundHitResult;
         
-        wallHitResult = Physics.Raycast(wall_detector.transform.position, i_dir, out wallHit, m_maxCastDistance, (int)VII.HitLayer.Block);
+        wallHitResult = Physics.Raycast(ground_detector.transform.position, i_dir, out wallHit, m_maxCastDistance, (int)VII.HitLayer.Block);
         if(wallHitResult)
         {
             return false;
