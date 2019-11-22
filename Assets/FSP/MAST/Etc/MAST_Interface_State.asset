@@ -15,11 +15,12 @@ MonoBehaviour:
   gridExists: 1
   selectedDrawToolIndex: -1
   selectedItemIndex: -1
-  lastPrefabPath: /Users/pascerveau/VII/Assets/Prefabs/Tiles
+  lastPrefabPath: C:/Users/u1202476/Desktop/VII/Assets/Prefabs/Tiles
   prefabs:
   - {fileID: 2318947331025577726, guid: 49dc31d8ef8334f17b3451567743481e, type: 3}
   - {fileID: 6857349775925842100, guid: 25399a8663513438abe48fcceca3e09e, type: 3}
   - {fileID: 7883152431963655670, guid: 08c6a9191fe224a179b16832b8d4ff63, type: 3}
+  - {fileID: 7883152431963655670, guid: e1858a08e2538704fbb588752fee4e3e, type: 3}
   - {fileID: 211040896105725648, guid: c5ca291e14223427ca02c6e1181c1d5e, type: 3}
   - {fileID: 5931189074081645205, guid: 9a04efca5190044af8c9cb52b1da8944, type: 3}
   - {fileID: 5931189074081645205, guid: 6cfeb0107473b4df588127baf9804cd5, type: 3}
@@ -29,6 +30,7 @@ MonoBehaviour:
   - Checkpoint
   - Floor
   - Ice
+  - Lava
   - Spike
   - Trap
   - TriggerBoard
