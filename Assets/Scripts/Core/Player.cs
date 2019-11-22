@@ -37,7 +37,8 @@ public class Player : MonoBehaviour
         {
             Instance = this;
             // Initialization
-            m_playerData = new VII.PlayerData(initLives, initSteps, transform.position);
+            m_playerData = new VII.PlayerData(initLives, initSteps,
+                RespawnPositions[m_RespawnPosIndex].transform.position);
             m_inverseMoveTime = 1 / moveTime;
         }
         else if (Instance != this)
@@ -61,6 +62,7 @@ public class Player : MonoBehaviour
     public GameObject BodyDetector;
     public GameObject InteractableSpawnPoint;
     public Collider InteractiveCollider;
+    public List<GameObject> RespawnPositions; 
     [Header("Prefabs")]
     public GameObject TombstonePrefab;
     #endregion PlayerData
@@ -68,7 +70,9 @@ public class Player : MonoBehaviour
     private float m_inverseMoveTime;
     private const float m_maxCastDistance = 10f;
     private Vector3 m_destination;
+    private int m_RespawnPosIndex = 0;
     private VII.PlayerData m_playerData;
+    private Vector3 moveDir;
 
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
     {
@@ -98,11 +102,10 @@ public class Player : MonoBehaviour
                 - expectationStep * VII.GameData.STEP_SIZE > float.Epsilon)
                 break;
             // That position is blocked by wall
-            //Debug.Log(bodyHit.distance + VII.GameData.WALL_WIDTH * 0.5f - item.distance - VII.GameData.STEP_SIZE);
-            if (bodyHitResult &&
+            /*if (bodyHitResult &&
                 Mathf.Abs(bodyHit.distance + VII.GameData.WALL_WIDTH * 0.5f - item.distance - VII.GameData.STEP_SIZE)
                 < VII.GameData.EQUAL_DEVIATION)
-                break;
+                break;*/
             // Player can move 1 more step
             expectationStep++;
         }
@@ -179,20 +182,43 @@ public class Player : MonoBehaviour
                         //animator.Play("WalkDown");
                     }
                 }
-                Move(new Vector3(horizontal * VII.GameData.STEP_SIZE, 0, vertical * VII.GameData.STEP_SIZE));
+                moveDir = new Vector3(horizontal, 0, vertical);
+                Move(moveDir * VII.GameData.STEP_SIZE);
             }
         }
         #region Moving
         if (m_playerData.playerState == VII.PlayerState.MOVING)
         {
+            /*if (Vector3.Distance(transform.position, m_destination) > float.Epsilon && !hitWall)
+            {
+                transform.position = Vector3.MoveTowards(transform.position,
+                    m_destination, Time.deltaTime * m_inverseMoveTime);
+            }
+            else*/
+            RaycastHit bodyHit;
+            bool bodyHitResult;
+            bodyHitResult = Physics.Raycast(BodyDetector.transform.position,
+           moveDir * VII.GameData.STEP_SIZE, out bodyHit, m_maxCastDistance, (int)VII.HitLayer.Block);
+            if (bodyHitResult &&
+                Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
+                < VII.GameData.STEP_SIZE * 0.5f)
+            {
+                transform.position = new Vector3(bodyHit.transform.position.x - (moveDir * 0.5f).x, 0, bodyHit.transform.position.z - (moveDir * 0.5f).z);
+                m_playerData.playerState = VII.PlayerState.IDLE;
+                VII.VIIEvents.TickEnd.Invoke();
+                if (m_playerData.steps <= 0)
+                    Respawn();
+                return;
+            }
             if (Vector3.Distance(transform.position, m_destination) > float.Epsilon)
             {
                 transform.position = Vector3.MoveTowards(transform.position,
                     m_destination, Time.deltaTime * m_inverseMoveTime);
             }
-            else
+            if (Vector3.Distance(transform.position, m_destination) < float.Epsilon)
             {
                 // Movement ends
+                transform.position = m_destination;
                 m_playerData.playerState = VII.PlayerState.IDLE;
                 VII.VIIEvents.TickEnd.Invoke();
                 if (m_playerData.steps <= 0)
@@ -242,7 +268,7 @@ public class Player : MonoBehaviour
         DropItems();
         transform.position = m_playerData.respawnPosition;
         InteractiveCollider.enabled = true;
-        m_playerData.steps = initLives;
+        m_playerData.steps = initSteps;
         // Respawn Animation
         //animator.Play("Respawn");
         // Respawning Ends
@@ -270,7 +296,13 @@ public class Player : MonoBehaviour
         m_playerData.steps += step;
     }
 
-    // Getter
+    public void SetRespawnPosition(int i_Next)
+    {
+        m_RespawnPosIndex = Mathf.Abs((m_RespawnPosIndex + i_Next) % RespawnPositions.Count);
+        PlayerData.respawnPosition = RespawnPositions[m_RespawnPosIndex].transform.position;
+    }
+
+     // Getter
     public VII.PlayerData PlayerData { get { return m_playerData; } }
     public VII.PlayerState PlayerState { get { return m_playerData.playerState; } }
     public VII.Inventory Inventory { get { return m_playerData.Inventory; } }
