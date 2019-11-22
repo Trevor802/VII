@@ -10,6 +10,38 @@ public class TriggerBoard : Tile
     private bool m_PlayerOn;
     private bool m_TombstoneOn;
 
+    protected override void OnTickEnd()
+    {
+        if (playerOutTemp)
+        {
+            playerInside = false;
+            playerOutTemp = false;
+        }
+        if (playerInTemp)
+        {
+            playerInside = true;
+            playerInTemp = false;
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        collidedPlayer = other.GetComponentInParent<Player>();
+        if (collidedPlayer && !playerInside)
+        {
+            OnPlayerEnter(collidedPlayer);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (collidedPlayer && collidedPlayer == other.GetComponentInParent<Player>())
+        {
+            OnPlayerExit(collidedPlayer);
+        }
+    }
+
     protected override void OnPlayerEnter(Player player)
     {
         base.OnPlayerEnter(player);

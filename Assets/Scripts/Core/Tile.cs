@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class Tile : MonoBehaviour
 {
-    private bool playerInTemp;
-    private bool playerOutTemp;
+    protected bool playerInTemp;
+    protected bool playerOutTemp;
     protected bool playerInside;
     protected Player collidedPlayer;
 
@@ -32,13 +32,13 @@ public class Tile : MonoBehaviour
         if (playerOutTemp)
         {
             playerInside = false;
-            //OnPlayerExit(collidedPlayer);
+            OnPlayerExit(collidedPlayer);
             playerOutTemp = false;
         }
         if (playerInTemp)
         {
             playerInside = true;
-            //OnPlayerEnter(collidedPlayer);
+            OnPlayerEnter(collidedPlayer);
             playerInTemp = false;
         }
         
@@ -71,7 +71,7 @@ public class Tile : MonoBehaviour
         {
             playerInTemp = true;
             playerOutTemp = false;
-            OnPlayerEnter(collidedPlayer);
+            //OnPlayerEnter(collidedPlayer);
         }
     }
 
@@ -81,7 +81,7 @@ public class Tile : MonoBehaviour
         {
             playerOutTemp = true;
             playerInTemp = false;
-            OnPlayerExit(collidedPlayer);
+            //OnPlayerExit(collidedPlayer);
         }
     }
     #endregion Virtual Functions
