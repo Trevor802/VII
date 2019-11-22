@@ -32,13 +32,13 @@ public class Tile : MonoBehaviour
         if (playerOutTemp)
         {
             playerInside = false;
-            OnPlayerExit(collidedPlayer);
+            //OnPlayerExit(collidedPlayer);
             playerOutTemp = false;
         }
         if (playerInTemp)
         {
             playerInside = true;
-            OnPlayerEnter(collidedPlayer);
+            //OnPlayerEnter(collidedPlayer);
             playerInTemp = false;
         }
         
@@ -71,6 +71,7 @@ public class Tile : MonoBehaviour
         {
             playerInTemp = true;
             playerOutTemp = false;
+            OnPlayerEnter(collidedPlayer);
         }
     }
 
@@ -80,6 +81,7 @@ public class Tile : MonoBehaviour
         {
             playerOutTemp = true;
             playerInTemp = false;
+            OnPlayerExit(collidedPlayer);
         }
     }
     #endregion Virtual Functions
