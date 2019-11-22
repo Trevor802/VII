@@ -20,7 +20,9 @@ namespace VII
         UI = 1 << 5,
 
         Block = 1 << 8,
-        Ice = 1 << 9
+        Ice = 1 << 9,
+        Player = 1 << 10,
+        Interactable = 1 << 11
     }
 }
 
@@ -35,7 +37,8 @@ public class Player : MonoBehaviour
         {
             Instance = this;
             // Initialization
-            m_playerData = new VII.PlayerData(initLives, initSteps, transform.position);
+            m_playerData = new VII.PlayerData(initLives, initSteps,
+                RespawnPositions[m_RespawnPosIndex].transform.position);
             m_inverseMoveTime = 1 / moveTime;
         }
         else if (Instance != this)
@@ -57,13 +60,19 @@ public class Player : MonoBehaviour
     [Header("Game Objects")]
     public GameObject GroundDetector;
     public GameObject BodyDetector;
+    public GameObject InteractableSpawnPoint;
+    public Collider InteractiveCollider;
+    public List<GameObject> RespawnPositions; 
+    [Header("Prefabs")]
+    public GameObject TombstonePrefab;
     #endregion PlayerData
 
-    
     private float m_inverseMoveTime;
     private const float m_maxCastDistance = 10f;
     private Vector3 m_destination;
+    private int m_RespawnPosIndex = 0;
     private VII.PlayerData m_playerData;
+    private Vector3 moveDir;
 
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
     {
@@ -76,8 +85,8 @@ public class Player : MonoBehaviour
         // Player can't move to that direction even 1 grid
 
         if (bodyHitResult &&
-            Mathf.Abs(Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
-            - VII.GameData.STEP_SIZE) < float.Epsilon)
+            Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
+            < VII.GameData.STEP_SIZE)
             return false;
         groundHits = Physics.RaycastAll(GroundDetector.transform.position,
             i_dir, m_maxCastDistance, (int)VII.HitLayer.Ice);
@@ -93,10 +102,10 @@ public class Player : MonoBehaviour
                 - expectationStep * VII.GameData.STEP_SIZE > float.Epsilon)
                 break;
             // That position is blocked by wall
-            if (bodyHitResult &&
-                Mathf.Abs(bodyHit.distance - item.distance - VII.GameData.STEP_SIZE)
-                < float.Epsilon)
-                break;
+            /*if (bodyHitResult &&
+                Mathf.Abs(bodyHit.distance + VII.GameData.WALL_WIDTH * 0.5f - item.distance - VII.GameData.STEP_SIZE)
+                < VII.GameData.EQUAL_DEVIATION)
+                break;*/
             // Player can move 1 more step
             expectationStep++;
         }
@@ -117,28 +126,6 @@ public class Player : MonoBehaviour
             transform.position = end;
         }
         return true;
-    }
-
-    private IEnumerator Respawning(bool costLife)
-    {
-        if (costLife)
-        {
-            //animator.Play("Death");
-        }
-        yield return null;
-        // EVENT: Respawing Ends
-        //Vector3 deathPos = transform.position;
-        //Quaternion deathRot = transform.rotation;
-        //ObjectPooler.Instance.SpawnFromPool("Body", deathPos, deathRot);
-        transform.position = m_playerData.respawnPosition;
-        m_playerData.steps = initLives;
-        // Respawn Animation
-        //animator.Play("Respawn");
-        // Respawning Ends
-        m_playerData.playerState = VII.PlayerState.IDLE;
-        // Broadcast with Event System
-        VII.VIIEvents.PlayerRespawnEnd.Invoke(this);
-        //animator.Play("WalkDown");
     }
 
     private void Update()
@@ -195,22 +182,47 @@ public class Player : MonoBehaviour
                         //animator.Play("WalkDown");
                     }
                 }
-                Move(new Vector3(horizontal * VII.GameData.STEP_SIZE, 0, vertical * VII.GameData.STEP_SIZE));
+                moveDir = new Vector3(horizontal, 0, vertical);
+                Move(moveDir * VII.GameData.STEP_SIZE);
             }
         }
         #region Moving
         if (m_playerData.playerState == VII.PlayerState.MOVING)
         {
+            /*if (Vector3.Distance(transform.position, m_destination) > float.Epsilon && !hitWall)
+            {
+                transform.position = Vector3.MoveTowards(transform.position,
+                    m_destination, Time.deltaTime * m_inverseMoveTime);
+            }
+            else*/
+            RaycastHit bodyHit;
+            bool bodyHitResult;
+            bodyHitResult = Physics.Raycast(BodyDetector.transform.position,
+           moveDir * VII.GameData.STEP_SIZE, out bodyHit, m_maxCastDistance, (int)VII.HitLayer.Block);
+            if (bodyHitResult &&
+                Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
+                < VII.GameData.STEP_SIZE * 0.5f)
+            {
+                transform.position = new Vector3(bodyHit.transform.position.x - (moveDir * 0.5f).x, 0, bodyHit.transform.position.z - (moveDir * 0.5f).z);
+                m_playerData.playerState = VII.PlayerState.IDLE;
+                VII.VIIEvents.TickEnd.Invoke();
+                if (m_playerData.steps <= 0)
+                    Respawn();
+                return;
+            }
             if (Vector3.Distance(transform.position, m_destination) > float.Epsilon)
             {
                 transform.position = Vector3.MoveTowards(transform.position,
                     m_destination, Time.deltaTime * m_inverseMoveTime);
             }
-            else
+            if (Vector3.Distance(transform.position, m_destination) < float.Epsilon)
             {
                 // Movement ends
-                VII.VIIEvents.TickEnd.Invoke();
+                transform.position = m_destination;
                 m_playerData.playerState = VII.PlayerState.IDLE;
+                VII.VIIEvents.TickEnd.Invoke();
+                if (m_playerData.steps <= 0)
+                    Respawn();
             }
         }
         #endregion
@@ -240,19 +252,60 @@ public class Player : MonoBehaviour
         StartCoroutine(Respawning(costLife));
     }
 
+    private IEnumerator Respawning(bool costLife)
+    {
+        if (costLife)
+        {
+            //animator.Play("Death");
+        }
+        yield return null;
+        // EVENT: Respawing Ends
+        //Vector3 deathPos = transform.position;
+        //Quaternion deathRot = transform.rotation;
+        //ObjectPooler.Instance.SpawnFromPool("Body", deathPos, deathRot);
+        InteractiveCollider.enabled = false;
+        // Drop Items
+        DropItems();
+        transform.position = m_playerData.respawnPosition;
+        InteractiveCollider.enabled = true;
+        m_playerData.steps = initSteps;
+        // Respawn Animation
+        //animator.Play("Respawn");
+        // Respawning Ends
+        m_playerData.playerState = VII.PlayerState.IDLE;
+        // Broadcast with Event System
+        VII.VIIEvents.PlayerRespawnEnd.Invoke(this);
+        //animator.Play("WalkDown");
+    }
+
+    private void DropItems()
+    {
+        foreach (var item in Inventory.items)
+        {
+            if (item.droppable)
+                Instantiate(item.prefab, InteractableSpawnPoint.transform.position,
+                    Quaternion.identity);
+        }
+        Inventory.RemoveDroppableItems();
+        Instantiate(TombstonePrefab, InteractableSpawnPoint.transform.position,
+                    Quaternion.identity);
+    }
+
     public void AddStep(int step)
     {
         m_playerData.steps += step;
     }
 
-    public void GameWin()
+    public void SetRespawnPosition(int i_Next)
     {
-        m_playerData.playerState = VII.PlayerState.ENDING;
+        m_RespawnPosIndex = Mathf.Abs((m_RespawnPosIndex + i_Next) % RespawnPositions.Count);
+        PlayerData.respawnPosition = RespawnPositions[m_RespawnPosIndex].transform.position;
     }
 
-    // Getter
-    public VII.PlayerData GetPlayerData() { return m_playerData; }
-    public VII.PlayerState GetPlayerState() { return m_playerData.playerState; }
+     // Getter
+    public VII.PlayerData PlayerData { get { return m_playerData; } }
+    public VII.PlayerState PlayerState { get { return m_playerData.playerState; } }
+    public VII.Inventory Inventory { get { return m_playerData.Inventory; } }
     public int GetSteps() { return m_playerData.steps; }
     public int GetLives() { return m_playerData.lives; }
 }

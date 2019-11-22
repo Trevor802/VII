@@ -13,19 +13,19 @@ namespace VII
 
     public class PlayerData
     {
-        private bool m_hasKey;
+        public Inventory Inventory;
         public PlayerState playerState;
         public Vector3 respawnPosition;
         public int steps;
         public int lives;
 
-        public PlayerData(int i_initLifes, int i_initSteps, Vector3 i_initRespawnPosition) =>
-            (lives, steps, respawnPosition) =
-            (i_initLifes, i_initSteps, i_initRespawnPosition);
-
-        #region Setter
-        public bool HasKey() { return true; }
-        #endregion
+        public PlayerData(int i_initLifes, int i_initSteps, Vector3 i_initRespawnPosition)
+        {
+            lives = i_initLifes;
+            steps = i_initSteps;
+            respawnPosition = i_initRespawnPosition;
+            Inventory = new Inventory();
+        }
     }
 }
 

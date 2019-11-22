@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Tile : MonoBehaviour
 {
@@ -22,24 +23,31 @@ public class Tile : MonoBehaviour
     #endregion
 
     #region Virtual Functions
-    protected virtual void OnTickStart() { }
+    protected virtual void OnTickStart()
+    {
+        
+    }
     protected virtual void OnTickEnd()
     {
         if (playerOutTemp)
         {
             playerInside = false;
-            OnPlayerExit(collidedPlayer);
+            //OnPlayerExit(collidedPlayer);
             playerOutTemp = false;
         }
         if (playerInTemp)
         {
             playerInside = true;
-            OnPlayerEnter(collidedPlayer);
+            //OnPlayerEnter(collidedPlayer);
             playerInTemp = false;
         }
+        
     }
 
-    protected virtual void OnPlayerRespawnStart(Player player) { }
+    protected virtual void OnPlayerRespawnStart(Player player)
+    {
+        
+    }
     protected virtual void OnPlayerRespawnEnd(Player player)
     {
         playerInTemp = false;
@@ -47,8 +55,14 @@ public class Tile : MonoBehaviour
         playerInside = false;
     }
 
-    protected virtual void OnPlayerEnter(Player player) { }
-    protected virtual void OnPlayerExit(Player player) { }
+    protected virtual void OnPlayerEnter(Player player)
+    {
+        
+    }
+    protected virtual void OnPlayerExit(Player player)
+    {
+        
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -57,6 +71,7 @@ public class Tile : MonoBehaviour
         {
             playerInTemp = true;
             playerOutTemp = false;
+            OnPlayerEnter(collidedPlayer);
         }
     }
 
@@ -66,6 +81,7 @@ public class Tile : MonoBehaviour
         {
             playerOutTemp = true;
             playerInTemp = false;
+            OnPlayerExit(collidedPlayer);
         }
     }
     #endregion Virtual Functions
