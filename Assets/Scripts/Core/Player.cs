@@ -57,7 +57,6 @@ public class Player : MonoBehaviour
     public float moveTime = 0.5f;
     public int initLives = 7;
     public int initSteps = 7;
-    public float moveSpeed = 0.2f;
     [Header("Game Objects")]
     public GameObject GroundDetector;
     public GameObject BodyDetector;
