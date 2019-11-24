@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
             m_playerData = new VII.PlayerData(initLives, initSteps,
                 RespawnPositions[m_RespawnPosIndex].transform.position);
             m_inverseMoveTime = 1 / moveTime;
+            RespawnPositions[m_RespawnPosIndex].transform.parent.parent.gameObject.SetActive(true);
         }
         else if (Instance != this)
         {
@@ -73,6 +74,8 @@ public class Player : MonoBehaviour
     private int m_RespawnPosIndex = 0;
     private VII.PlayerData m_playerData;
     private Vector3 moveDir;
+    private Vector3 currentGridPos;
+    private Vector3 nextGridPos;
 
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
     {
@@ -182,32 +185,37 @@ public class Player : MonoBehaviour
                         //animator.Play("WalkDown");
                     }
                 }
+                currentGridPos = transform.position;
                 moveDir = new Vector3(horizontal, 0, vertical);
                 Move(moveDir * VII.GameData.STEP_SIZE);
+                nextGridPos = transform.position + moveDir * VII.GameData.STEP_SIZE;
             }
         }
         #region Moving
         if (m_playerData.playerState == VII.PlayerState.MOVING)
         {
-            /*if (Vector3.Distance(transform.position, m_destination) > float.Epsilon && !hitWall)
-            {
-                transform.position = Vector3.MoveTowards(transform.position,
-                    m_destination, Time.deltaTime * m_inverseMoveTime);
-            }
-            else*/
             RaycastHit bodyHit;
             bool bodyHitResult;
             bodyHitResult = Physics.Raycast(BodyDetector.transform.position,
            moveDir * VII.GameData.STEP_SIZE, out bodyHit, m_maxCastDistance, (int)VII.HitLayer.Block);
+            if (Vector3.Distance(transform.position, nextGridPos) < 0.2f)
+            {
+                currentGridPos = nextGridPos;
+                nextGridPos += moveDir * VII.GameData.STEP_SIZE;
+            }
             if (bodyHitResult &&
                 Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
                 < VII.GameData.STEP_SIZE * 0.5f)
             {
                 transform.position = new Vector3(bodyHit.transform.position.x - (moveDir * 0.5f).x, 0, bodyHit.transform.position.z - (moveDir * 0.5f).z);
+                currentGridPos = transform.position;
+                nextGridPos = currentGridPos;
                 m_playerData.playerState = VII.PlayerState.IDLE;
                 VII.VIIEvents.TickEnd.Invoke();
                 if (m_playerData.steps <= 0)
+                {
                     Respawn();
+                }
                 return;
             }
             if (Vector3.Distance(transform.position, m_destination) > float.Epsilon)
@@ -219,10 +227,14 @@ public class Player : MonoBehaviour
             {
                 // Movement ends
                 transform.position = m_destination;
+                currentGridPos = transform.position;
+                nextGridPos = currentGridPos;
                 m_playerData.playerState = VII.PlayerState.IDLE;
                 VII.VIIEvents.TickEnd.Invoke();
                 if (m_playerData.steps <= 0)
+                {
                     Respawn();
+                }
             }
         }
         #endregion
@@ -247,13 +259,15 @@ public class Player : MonoBehaviour
         VII.VIIEvents.PlayerRespawnStart.Invoke(this);
         if (m_playerData.lives <= 0)
         {
-            return;
+            //return;
+            m_playerData.lives = initLives;
         }
         StartCoroutine(Respawning(costLife));
     }
 
     private IEnumerator Respawning(bool costLife)
     {
+        Debug.Log("respawning");
         if (costLife)
         {
             //animator.Play("Death");
@@ -283,12 +297,18 @@ public class Player : MonoBehaviour
         foreach (var item in Inventory.items)
         {
             if (item.droppable)
-                Instantiate(item.prefab, InteractableSpawnPoint.transform.position,
-                    Quaternion.identity);
+            {
+                //Instantiate(item.prefab, InteractableSpawnPoint.transform.position,
+                //Quaternion.identity);
+                Instantiate(item.prefab, nextGridPos + new Vector3(0, 0.5f, 0),
+                Quaternion.identity);
+            }
         }
         Inventory.RemoveDroppableItems();
-        Instantiate(TombstonePrefab, InteractableSpawnPoint.transform.position,
-                    Quaternion.identity);
+        //Instantiate(TombstonePrefab, InteractableSpawnPoint.transform.position,
+                    //Quaternion.identity);
+        Instantiate(TombstonePrefab, nextGridPos + new Vector3(0, 0.5f, 0),
+                Quaternion.identity);
     }
 
     public void AddStep(int step)
@@ -300,6 +320,7 @@ public class Player : MonoBehaviour
     {
         m_RespawnPosIndex = Mathf.Abs((m_RespawnPosIndex + i_Next) % RespawnPositions.Count);
         PlayerData.respawnPosition = RespawnPositions[m_RespawnPosIndex].transform.position;
+        RespawnPositions[m_RespawnPosIndex].transform.parent.parent.gameObject.SetActive(true);
     }
 
      // Getter

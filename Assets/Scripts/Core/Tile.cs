@@ -71,7 +71,6 @@ public class Tile : MonoBehaviour
         {
             playerInTemp = true;
             playerOutTemp = false;
-            //OnPlayerEnter(collidedPlayer);
         }
     }
 
@@ -81,7 +80,6 @@ public class Tile : MonoBehaviour
         {
             playerOutTemp = true;
             playerInTemp = false;
-            //OnPlayerExit(collidedPlayer);
         }
     }
     #endregion Virtual Functions

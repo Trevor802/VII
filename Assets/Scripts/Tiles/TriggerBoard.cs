@@ -30,6 +30,8 @@ public class TriggerBoard : Tile
         collidedPlayer = other.GetComponentInParent<Player>();
         if (collidedPlayer && !playerInside)
         {
+            playerInTemp = true;
+            playerOutTemp = false;
             OnPlayerEnter(collidedPlayer);
         }
     }
@@ -38,6 +40,8 @@ public class TriggerBoard : Tile
     {
         if (collidedPlayer && collidedPlayer == other.GetComponentInParent<Player>())
         {
+            playerOutTemp = true;
+            playerInTemp = false;
             OnPlayerExit(collidedPlayer);
         }
     }
