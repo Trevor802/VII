@@ -267,7 +267,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator Respawning(bool costLife)
     {
-        Debug.Log("respawning");
+        transform.position = nextGridPos;
         if (costLife)
         {
             //animator.Play("Death");
@@ -298,17 +298,13 @@ public class Player : MonoBehaviour
         {
             if (item.droppable)
             {
-                //Instantiate(item.prefab, InteractableSpawnPoint.transform.position,
-                //Quaternion.identity);
-                Instantiate(item.prefab, nextGridPos + new Vector3(0, 0.5f, 0),
+                Instantiate(item.prefab, InteractableSpawnPoint.transform.position,
                 Quaternion.identity);
             }
         }
         Inventory.RemoveDroppableItems();
-        //Instantiate(TombstonePrefab, InteractableSpawnPoint.transform.position,
-                    //Quaternion.identity);
-        Instantiate(TombstonePrefab, nextGridPos + new Vector3(0, 0.5f, 0),
-                Quaternion.identity);
+        Instantiate(TombstonePrefab, InteractableSpawnPoint.transform.position,
+                    Quaternion.identity);
     }
 
     public void AddStep(int step)
