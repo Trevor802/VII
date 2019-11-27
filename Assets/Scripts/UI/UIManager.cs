@@ -32,7 +32,7 @@ public class UIManager : MonoBehaviour
     public void UpdateUI()
     {
         Player player = FindObjectOfType<Player>();
-        VII.PlayerData playerData = player.GetComponent<Player>().GetPlayerData();
+        VII.PlayerData playerData = player.GetComponent<Player>().PlayerData;
         for (int i = 0; i < player.initLives; i++)
         {
             if (i <= playerData.lives - 1)

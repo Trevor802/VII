@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Trap : Tile
 {
-    private bool m_open = true;
+    private bool m_Open = true;
     public GameObject model;
 
     protected override void Awake()
@@ -14,9 +14,9 @@ public class Trap : Tile
     protected override void OnPlayerEnter(Player player)
     {
         base.OnPlayerEnter(player);
-        if (m_open)
+        if (m_Open)
         {
-            m_open = false;
+            m_Open = false;
             player.Respawn();
         }
     }

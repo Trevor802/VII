@@ -1,55 +1,1 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Spike : Tile
-{
-    [SerializeField]
-    private bool m_spikeUp;
-    public GameObject model;
-
-
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
-    private void OnValidate()
-    {
-        UpdateSpike();
-    }
-
-    private void UpdateSpike()
-    {
-        if (m_spikeUp)
-        {
-            model.transform.position = transform.position;
-        }
-        else
-        {
-            model.transform.position = transform.position -
-                new Vector3(0, VII.GameData.STEP_SIZE / 2, 0);
-        }
-    }
-
-    protected override void OnTickEnd()
-    {
-        m_spikeUp = !m_spikeUp;
-        UpdateSpike();
-        base.OnTickEnd();
-    }
-
-    protected override void OnPlayerEnter(Player player)
-    {
-        base.OnPlayerEnter(player);
-        if (m_spikeUp)
-        {
-            player.Respawn();
-        }
-    }
-
-    protected override void OnPlayerExit(Player player)
-    {
-        base.OnPlayerExit(player);
-    }
-}
+﻿using System.Collections;using System.Collections.Generic;using UnityEngine;public class Spike : Tile{    [SerializeField]    private bool m_spikeUp;    public GameObject model;    protected override void Awake()    {        base.Awake();    }    private void OnValidate()    {        UpdateSpike();    }    private void UpdateSpike()    {        if (m_spikeUp)        {            model.transform.position = transform.position;        }        else        {            model.transform.position = transform.position -                new Vector3(0, VII.GameData.STEP_SIZE / 2, 0);        }    }    protected override void OnTickStart()    {        base.OnTickStart();        m_spikeUp = !m_spikeUp;        UpdateSpike();    }    protected override void OnTickEnd()    {        if (playerOutTemp)        {            playerInside = false;            playerOutTemp = false;        }        if (playerInTemp)        {            playerInside = true;            playerInTemp = false;        }    }    private void OnTriggerEnter(Collider other)    {        collidedPlayer = other.GetComponentInParent<Player>();        if (collidedPlayer && !playerInside)        {            playerInTemp = true;            playerOutTemp = false;            OnPlayerEnter(collidedPlayer);        }    }    private void OnTriggerExit(Collider other)    {        if (collidedPlayer && collidedPlayer == other.GetComponentInParent<Player>())        {            playerOutTemp = true;            playerInTemp = false;            OnPlayerExit(collidedPlayer);        }    }    protected override void OnPlayerEnter(Player player)    {        base.OnPlayerEnter(player);        if (m_spikeUp)        {            player.Respawn();        }    }    protected override void OnPlayerExit(Player player)    {        base.OnPlayerExit(player);    }}
