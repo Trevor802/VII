@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MAST_Interface_State
   m_EditorClassIdentifier: 
   gridExists: 1
-  selectedDrawToolIndex: 0
+  selectedDrawToolIndex: -1
   selectedItemIndex: -1
   lastPrefabPath: /Users/pascerveau/VII/Assets/Prefabs/Tiles
   prefabs:

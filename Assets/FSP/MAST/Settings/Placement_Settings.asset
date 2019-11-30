@@ -16,7 +16,7 @@ MonoBehaviour:
   snapToGrid: 1
   offset:
     overridePrefab: 0
-    pos: {x: 0.5, y: 1.5, z: 0.5}
+    pos: {x: 0.5, y: 0.5, z: 0.5}
   rotation:
     overridePrefab: 0
     factor: {x: 0, y: 90, z: 0}
