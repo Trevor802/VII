@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridExists: 1
   selectedDrawToolIndex: 0
-  selectedItemIndex: 8
-  lastPrefabPath: C:/Users/u1272395/Desktop/VII/Assets/Prefabs/Tiles
+  selectedItemIndex: -1
+  lastPrefabPath: /Users/pascerveau/VII/Assets/Prefabs/Tiles
   prefabs:
   - {fileID: 2318947331025577726, guid: 49dc31d8ef8334f17b3451567743481e, type: 3}
   - {fileID: 6857349775925842100, guid: 25399a8663513438abe48fcceca3e09e, type: 3}
