@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Diary
   m_EditorClassIdentifier: 
   prefab: {fileID: 4724196134806115980, guid: a3902e393578743769fbb23ea940f159, type: 3}
+  droppable: 0
