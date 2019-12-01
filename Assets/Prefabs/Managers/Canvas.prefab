@@ -112,11 +112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89253c7a53e669943b37256c8894a289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeIcons: []
-  crossIcons: []
-  gameOver: 0
-  restartPos: {x: 0, y: 0, z: 0}
-  levelIndex: 0
+  lifeIcon: {fileID: 8369262557817107706, guid: a990a82c3baaa284890278dceead1951,
+    type: 3}
+  lifeIconHolder: {fileID: 6629616113427393231}
 --- !u!1 &6629616113427393230
 GameObject:
   m_ObjectHideFlags: 0

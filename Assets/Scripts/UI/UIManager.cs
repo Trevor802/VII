@@ -26,8 +26,8 @@ public class UIManager : MonoBehaviour
     public GameObject lifeIcon;
     public RectTransform lifeIconHolder;
 
-    public List<RawImage> m_lifeIcons;
-    public List<RawImage> m_crossIcons;
+    private List<RawImage> m_lifeIcons;
+    private List<RawImage> m_crossIcons;
 
     public void UpdateUI()
     {
