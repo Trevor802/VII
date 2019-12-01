@@ -260,7 +260,7 @@ public class Player : MonoBehaviour
         if (m_playerData.lives <= 0)
         {
             //return;
-            //m_playerData.lives = initLives;
+            Debug.Log("Game Over");
         }
         StartCoroutine(Respawning(costLife));
     }

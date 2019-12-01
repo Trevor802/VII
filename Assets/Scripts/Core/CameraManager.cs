@@ -39,8 +39,6 @@ public class CameraManager : MonoBehaviour
             if (i == level_index)
             {
                 cinema_list[i].SetActive(true);
-                Debug.Log(cinema_list[i].transform.name);
-                Debug.Log("Set level" + i + ": true");
             }
 
             else
