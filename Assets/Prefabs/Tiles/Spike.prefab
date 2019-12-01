@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 211040896105725653}
   - component: {fileID: 211040896105725654}
   - component: {fileID: 211040896105725655}
+  - component: {fileID: 5807159353522819187}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Untagged
@@ -60,6 +61,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_spikeUp: 0
   model: {fileID: 7585314440500396135}
+--- !u!95 &5807159353522819187
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211040896105725648}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8e0c89efd1b570f448bb1d24975a1108, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &7121512815062052545
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67,11 +87,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 211040896105725653}
     m_Modifications:
-    - target: {fileID: 833378583392071334, guid: 258aabb715e6b6a41895fe53b9317254,
-        type: 3}
-      propertyPath: m_Name
-      value: Trap_Spike1
-      objectReference: {fileID: 0}
     - target: {fileID: 4452820603045829813, guid: 258aabb715e6b6a41895fe53b9317254,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -126,6 +141,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 833378583392071334, guid: 258aabb715e6b6a41895fe53b9317254,
+        type: 3}
+      propertyPath: m_Name
+      value: Trap_Spike1
       objectReference: {fileID: 0}
     - target: {fileID: 8696781221764528041, guid: 258aabb715e6b6a41895fe53b9317254,
         type: 3}
