@@ -34,12 +34,11 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        //UpdateStepUI();
         //UI Initialization 
-        if (UIManager.UIInstance.gameOver)
-        {
-            transform.position = UIManager.UIInstance.restartPos;
-        }
-        UIManager.UIInstance.initUI();
+        UIManager.UIInstance.InitUI();
+        UIManager.UIInstance.UpdateUI();
+
     }
     private void Awake()
     {
@@ -233,12 +232,9 @@ public class Player : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position,
                     m_destination, Time.deltaTime * m_inverseMoveTime);
             }
-                //UI UPDATE
-                UIManager.UIInstance.UpdateUI();
+
             if (Vector3.Distance(transform.position, m_destination) < float.Epsilon)
             {
-                //UI Update
-                UIManager.UIInstance.UpdateUI();
                 // Movement ends
                 transform.position = m_destination;
                 currentGridPos = transform.position;
@@ -249,7 +245,9 @@ public class Player : MonoBehaviour
                 {
                     Respawn();
                 }
-        }
+                //UI Update
+                UIManager.UIInstance.UpdateUI();
+            }
     }
         #endregion
     }
@@ -265,8 +263,6 @@ public class Player : MonoBehaviour
         if (costLife)
         {
             m_playerData.lives--;
-            //UI Update
-            UIManager.UIInstance.UpdateUI();
         }
         else
         {
@@ -278,6 +274,8 @@ public class Player : MonoBehaviour
             //return;
             m_playerData.lives = initLives;
         }
+        //UI Update
+        UIManager.UIInstance.UpdateUI();
         StartCoroutine(Respawning(costLife));
     }
 
@@ -327,6 +325,7 @@ public class Player : MonoBehaviour
     {
         m_playerData.steps += step;
     }
+
 
     public void SetRespawnPosition(int i_Next)
     {
