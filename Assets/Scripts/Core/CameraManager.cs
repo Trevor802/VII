@@ -27,10 +27,22 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
+        GameObject[] all_Virtual_Cameras = GameObject.FindGameObjectsWithTag("VirtualCamera");
+        foreach(var vc in all_Virtual_Cameras)
+        {
+            vc.SetActive(false);
+        }
+
+        level_index = 0;
         for (int i = 0; i < cinema_list.Count; i++)
         {
             if (i == level_index)
+            {
                 cinema_list[i].SetActive(true);
+                Debug.Log(cinema_list[i].transform.name);
+                Debug.Log("Set level" + i + ": true");
+            }
+
             else
                 cinema_list[i].SetActive(false);
         }

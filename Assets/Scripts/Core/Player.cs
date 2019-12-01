@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
         {
             Instance = this;
             // Initialization
-            m_playerData = new VII.PlayerData(initLives, initSteps,
+            m_playerData = new VII.PlayerData(initLives[m_InitLivesIndex], initSteps,
                 RespawnPositions[m_RespawnPosIndex].transform.position);
             m_inverseMoveTime = 1 / moveTime;
             RespawnPositions[m_RespawnPosIndex].transform.parent.parent.gameObject.SetActive(true);
@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
     public AudioClip respawn;
     [Header("Configuration")]
     public float moveTime = 0.5f;
-    public int initLives = 7;
+    public List<int> initLives;
     public int initSteps = 7;
     [Header("Game Objects")]
     public GameObject GroundDetector;
@@ -81,6 +81,7 @@ public class Player : MonoBehaviour
     private const float m_maxCastDistance = 10f;
     private Vector3 m_destination;
     private int m_RespawnPosIndex = 0;
+    private int m_InitLivesIndex = 0;
     private VII.PlayerData m_playerData;
     private Vector3 moveDir;
     private Vector3 currentGridPos;
@@ -266,13 +267,13 @@ public class Player : MonoBehaviour
         }
         else
         {
-            m_playerData.lives = initLives;
+            m_playerData.lives = initLives[m_InitLivesIndex];
         }
         VII.VIIEvents.PlayerRespawnStart.Invoke(this);
         if (m_playerData.lives <= 0)
         {
             //return;
-            m_playerData.lives = initLives;
+            m_playerData.lives = initLives[m_InitLivesIndex];
         }
         //UI Update
         UIManager.UIInstance.UpdateUI();
@@ -332,6 +333,11 @@ public class Player : MonoBehaviour
         m_RespawnPosIndex = Mathf.Abs((m_RespawnPosIndex + i_Next) % RespawnPositions.Count);
         PlayerData.respawnPosition = RespawnPositions[m_RespawnPosIndex].transform.position;
         RespawnPositions[m_RespawnPosIndex].transform.parent.parent.gameObject.SetActive(true);
+    }
+
+    public void SetInitLives()
+    {
+        m_InitLivesIndex = Mathf.Abs((m_InitLivesIndex + 1) % initLives.Count);
     }
 
      // Getter

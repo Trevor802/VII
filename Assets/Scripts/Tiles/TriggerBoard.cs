@@ -4,11 +4,20 @@ using UnityEngine.Events;
 
 public class TriggerBoard : Tile
 {
-    public ByteSheep.Events.QuickEvent OnPlayerEnterEvent;
-    public ByteSheep.Events.QuickEvent OnPlayerExitEvent;
+    public ByteSheep.Events.AdvancedEvent OnPlayerEnterEvent;
+    public ByteSheep.Events.AdvancedEvent OnPlayerExitEvent;
+
+    public GameObject model;
 
     private bool m_PlayerOn;
     private bool m_TombstoneOn;
+    private Animator m_animator;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        m_animator = model.GetComponent<Animator>();
+    }
 
     protected override void OnTickEnd()
     {

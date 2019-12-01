@@ -7,7 +7,7 @@ public class Checkpoint : Tile
     // TODO Remove respawnObject reference
     public GameObject respawnObject;
     public Item requiredItem;
-    public ByteSheep.Events.QuickEvent OnPlayerEnterEvent;
+    public ByteSheep.Events.AdvancedEvent OnPlayerEnterEvent;
 
     protected override void OnPlayerEnter(Player player)
     {
@@ -17,6 +17,7 @@ public class Checkpoint : Tile
             // Reset respawn position and respawn player
             player.PlayerData.Inventory.RemoveItem(requiredItem);
             player.SetRespawnPosition(1);
+            player.SetInitLives();
             player.Respawn(false);
             OnPlayerEnterEvent.Invoke();
         }

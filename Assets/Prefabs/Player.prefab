@@ -192,7 +192,6 @@ MonoBehaviour:
   moveTime: 0.5
   initLives: 7
   initSteps: 7
-  moveSpeed: 0.2
   GroundDetector: {fileID: 495575058121285873}
   BodyDetector: {fileID: 6856558870743893840}
   InteractableSpawnPoint: {fileID: 8439769570966933305}
