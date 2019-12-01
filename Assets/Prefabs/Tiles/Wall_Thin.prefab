@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1936402778260479692}
   - component: {fileID: 112282109980969497}
-  - component: {fileID: 7028095462427841951}
   m_Layer: 8
   m_Name: Wall_Thin
   m_TagString: Untagged
@@ -46,19 +45,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 1944761106280865927}
---- !u!65 &7028095462427841951
+--- !u!65 &4214013545537973892
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139295598995481407}
+  m_GameObject: {fileID: 6118923485014745085}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0.5}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1001 &144619601992704102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -147,6 +146,12 @@ GameObject:
 --- !u!4 &3217386753967723156 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3361865618329334514, guid: bc0fef9027fea6c42aff10f5e8a48828,
+    type: 3}
+  m_PrefabInstance: {fileID: 144619601992704102}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6118923485014745085 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6263102723874111387, guid: bc0fef9027fea6c42aff10f5e8a48828,
     type: 3}
   m_PrefabInstance: {fileID: 144619601992704102}
   m_PrefabAsset: {fileID: 0}
