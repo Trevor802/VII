@@ -122,7 +122,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wall_detector: {fileID: 7544679215110174287}
   ground_detector: {fileID: 1190853640907776760}
-  floor_tile: {fileID: 6823461151293102002}
+  floor_tile: {fileID: 6857349775925842100, guid: 25399a8663513438abe48fcceca3e09e,
+    type: 3}
   lava_tile: {fileID: 7883152431963655670}
   m_Life: 0
   b_DestroyedInFuture: 0
@@ -200,12 +201,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5896ef4f05c57a43b6391a2ed2ce6f5, type: 3}
---- !u!1 &6823461151293102002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8638386372246495472, guid: c5896ef4f05c57a43b6391a2ed2ce6f5,
-    type: 3}
-  m_PrefabInstance: {fileID: 2977015009761244994}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7560017768751703457 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4736361272944431843, guid: c5896ef4f05c57a43b6391a2ed2ce6f5,

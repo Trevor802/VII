@@ -10,7 +10,7 @@ public class Wall : MonoBehaviour
 
     private void Awake()
     {
-        m_InitPos = transform.position;
+        m_InitPos = model.transform.position;
     }
 
     public void Move(Vector3 i_Direction)
