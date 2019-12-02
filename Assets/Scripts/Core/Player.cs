@@ -89,25 +89,27 @@ public class Player : MonoBehaviour
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
     {
         // Ground detection
+        bool groundHit = Physics.Raycast(GroundDetector.transform.position, i_dir, VII.GameData.STEP_SIZE);
+        // Player can't move to that direction even 1 grid
+        if (!groundHit)
+            return false;
         RaycastHit bodyHit;
         bool bodyHitResult;
-        RaycastHit[] groundHits;
         bodyHitResult = Physics.Raycast(BodyDetector.transform.position,
             i_dir, out bodyHit, m_maxCastDistance, (int)VII.HitLayer.Block);
-        // Player can't move to that direction even 1 grid
-
         if (bodyHitResult &&
             Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
             < VII.GameData.STEP_SIZE)
             return false;
-        groundHits = Physics.RaycastAll(GroundDetector.transform.position,
+        RaycastHit[] iceHits;
+        iceHits = Physics.RaycastAll(GroundDetector.transform.position,
             i_dir, m_maxCastDistance, (int)VII.HitLayer.Ice);
         // Sorting the hit results by distance, since RaycastAll doesn't guarantee the order of hit results.
         // More Info: https://docs.unity3d.com/ScriptReference/Physics.RaycastAll.html
         // More Info: https://forum.unity.com/threads/are-raycasthit-arrays-returned-from-raycastall-in-proper-order.385131/
-        System.Array.Sort(groundHits, (x, y) => x.distance.CompareTo(y.distance));
+        System.Array.Sort(iceHits, (x, y) => x.distance.CompareTo(y.distance));
         int expectationStep = 1;
-        foreach (var item in groundHits)
+        foreach (var item in iceHits)
         {
             // Player can't move that far
             if (Vector3.Distance(GroundDetector.transform.position, item.transform.position)
