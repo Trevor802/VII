@@ -8,13 +8,15 @@ public class Checkpoint : Tile
     public GameObject respawnObject;
     public Item requiredItem;
     public ByteSheep.Events.AdvancedEvent OnPlayerEnterEvent;
+    private bool activated = false;
 
     protected override void OnPlayerEnter(Player player)
     {
         base.OnPlayerEnter(player);
-        if (player.PlayerData.Inventory.ContainItem(requiredItem))
+        if (player.PlayerData.Inventory.ContainItem(requiredItem) && !activated)
         {
             // Reset respawn position and respawn player
+            activated = true;
             player.PlayerData.Inventory.RemoveItem(requiredItem);
             player.SetRespawnPosition(1);
             OnPlayerEnterEvent.Invoke();
