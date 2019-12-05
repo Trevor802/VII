@@ -65,11 +65,13 @@ public class Lava : Tile
         {
             //Debug.Log(hit.transform.gameObject.layer);
             GameObject hit_tile = groundHit.transform.gameObject;
+            //Is the abut tile ice? - turn it into normal floor tile
             if(hit_tile.layer == ice_layer)
             {
                 Instantiate(floor_tile, groundHit.transform.position, groundHit.transform.rotation);
                 Destroy(groundHit.transform.gameObject);
             }
+            //Is the abut tile floor? - fill it with lava 
             else if(hit_tile.layer == default_layer)
             {
                 Floor hit_floor = hit_tile.GetComponent<Floor>();
@@ -81,7 +83,7 @@ public class Lava : Tile
                         if(lava_instant.GetComponent<Lava>())
                         {
                             
-                            lava_instant.GetComponent<Lava>().m_Life = hit_floor.stepsBeforeIncline;
+                            lava_instant.GetComponent<Lava>().m_Life = hit_floor.stepsBeforeIncline - 1;    
                             lava_instant.GetComponent<Lava>().b_DestroyedInFuture = true;
                             Debug.Log(lava_instant.GetComponent<Lava>().m_Life);
                             Debug.Log(lava_instant.GetComponent<Lava>().b_DestroyedInFuture);
