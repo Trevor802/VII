@@ -248,7 +248,7 @@ public class Player : MonoBehaviour
                     Respawn();
                 }
                 //UI Update
-                UIManager.UIInstance.UpdateUI();
+               // UIManager.UIInstance.UpdateUI();
             }
     }
         #endregion
@@ -271,13 +271,16 @@ public class Player : MonoBehaviour
             m_playerData.lives = initLives;
         }
         VII.VIIEvents.PlayerRespawnStart.Invoke(this);
+        //UI Update
+        UIManager.UIInstance.UpdateUI();
         if (m_playerData.lives <= 0)
         {
             //return;
             Debug.Log("Game Over");
+            //Clear UI manager
+            UIManager.UIInstance.ClearUI();
         }
-        //UI Update
-        UIManager.UIInstance.UpdateUI();
+        
         StartCoroutine(Respawning(costLife));
     }
 
