@@ -13,14 +13,14 @@ public class Checkpoint : Tile
     protected override void OnPlayerEnter(Player player)
     {
         base.OnPlayerEnter(player);
-        if (player.PlayerData.Inventory.ContainItem(requiredItem) && !activated)
-        {
+        if (player.PlayerData.Inventory.ContainItem(requiredItem))
+        {    
             // Reset respawn position and respawn player
             activated = true;
             player.PlayerData.Inventory.RemoveItem(requiredItem);
             player.SetRespawnPosition(1);
             OnPlayerEnterEvent.Invoke();
-            player.Respawn(false);
+            player.Respawn(false);        
         }
     }
 
