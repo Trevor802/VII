@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
+
 namespace VII
 {
 
@@ -31,6 +32,14 @@ public class Player : MonoBehaviour
     #region Singleton
     public static Player Instance = null;
 
+    private void Start()
+    {
+        //UpdateStepUI();
+        //UI Initialization 
+        UIManager.UIInstance.InitUI();
+        UIManager.UIInstance.UpdateUI();
+
+    }
     private void Awake()
     {
         if (Instance == null)
@@ -45,7 +54,7 @@ public class Player : MonoBehaviour
         else if (Instance != this)
         {
             Destroy(gameObject);
-        }
+        }    
     }
     #endregion
 
@@ -226,6 +235,7 @@ public class Player : MonoBehaviour
                 transform.position = Vector3.MoveTowards(transform.position,
                     m_destination, Time.deltaTime * m_inverseMoveTime);
             }
+
             if (Vector3.Distance(transform.position, m_destination) < float.Epsilon)
             {
                 // Movement ends
@@ -238,8 +248,10 @@ public class Player : MonoBehaviour
                 {
                     Respawn();
                 }
+                //UI Update
+               // UIManager.UIInstance.UpdateUI();
             }
-        }
+    }
         #endregion
     }
 
@@ -260,11 +272,16 @@ public class Player : MonoBehaviour
             m_playerData.lives = initLives;
         }
         VII.VIIEvents.PlayerRespawnStart.Invoke(this);
+        //UI Update
+        UIManager.UIInstance.UpdateUI();
         if (m_playerData.lives <= 0)
         {
             //return;
             Debug.Log("Game Over");
+            //Clear UI manager
+            UIManager.UIInstance.ClearUI();
         }
+        
         StartCoroutine(Respawning(costLife));
     }
 
@@ -314,6 +331,7 @@ public class Player : MonoBehaviour
     {
         m_playerData.steps += step;
     }
+
 
     public void SetRespawnPosition(int i_Next)
     {
