@@ -83,7 +83,9 @@ public class Player : MonoBehaviour
         bool groundHit = Physics.Raycast(GroundDetector.transform.position, i_dir, VII.GameData.STEP_SIZE);
         // Player can't move to that direction even 1 grid
         if (!groundHit)
+        {
             return false;
+        }
         RaycastHit bodyHit;
         bool bodyHitResult;
         bodyHitResult = Physics.Raycast(BodyDetector.transform.position,
@@ -91,7 +93,9 @@ public class Player : MonoBehaviour
         if (bodyHitResult &&
             Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
             < VII.GameData.STEP_SIZE)
+        {
             return false;
+        }
         RaycastHit[] iceHits;
         iceHits = Physics.RaycastAll(GroundDetector.transform.position,
             i_dir, m_maxCastDistance, (int)VII.HitLayer.Ice);
@@ -102,15 +106,11 @@ public class Player : MonoBehaviour
         int expectationStep = 1;
         foreach (var item in iceHits)
         {
+            Debug.Log(Vector3.Distance(GroundDetector.transform.position, item.transform.position));
             // Player can't move that far
             if (Vector3.Distance(GroundDetector.transform.position, item.transform.position)
-                - expectationStep * VII.GameData.STEP_SIZE > float.Epsilon)
+                - expectationStep * VII.GameData.STEP_SIZE > 0.2f * VII.GameData.STEP_SIZE)
                 break;
-            // That position is blocked by wall
-            /*if (bodyHitResult &&
-                Mathf.Abs(bodyHit.distance + VII.GameData.WALL_WIDTH * 0.5f - item.distance - VII.GameData.STEP_SIZE)
-                < VII.GameData.EQUAL_DEVIATION)
-                break;*/
             // Player can move 1 more step
             expectationStep++;
         }
@@ -196,15 +196,16 @@ public class Player : MonoBehaviour
         #region Moving
         if (m_playerData.playerState == VII.PlayerState.MOVING)
         {
-            RaycastHit bodyHit;
-            bool bodyHitResult;
-            bodyHitResult = Physics.Raycast(BodyDetector.transform.position,
-           moveDir * VII.GameData.STEP_SIZE, out bodyHit, m_maxCastDistance, (int)VII.HitLayer.Block);
             if (Vector3.Distance(transform.position, nextGridPos) < 0.2f)
             {
                 currentGridPos = nextGridPos;
                 nextGridPos += moveDir * VII.GameData.STEP_SIZE;
             }
+            // If there is wall on ice
+            RaycastHit bodyHit;
+            bool bodyHitResult;
+            bodyHitResult = Physics.Raycast(BodyDetector.transform.position,
+           moveDir * VII.GameData.STEP_SIZE, out bodyHit, m_maxCastDistance, (int)VII.HitLayer.Block);
             if (bodyHitResult &&
                 Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
                 < VII.GameData.STEP_SIZE * 0.5f)
