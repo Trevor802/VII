@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject lifeIcon;
     public RectTransform lifeIconHolder;
+    public int maxLives = 10;
 
     private List<RawImage> m_lifeIcons;
     private List<RawImage> m_crossIcons;
@@ -35,7 +36,13 @@ public class UIManager : MonoBehaviour
         //VII.PlayerData playerData = player.GetComponent<Player>().PlayerData;
         for (int i = 0; i < Player.Instance.initLives; i++)
         {
+            m_lifeIcons[i].enabled = true;
             m_crossIcons[i].enabled = i >= Player.Instance.GetLives();
+        }
+        for (int i = Player.Instance.initLives; i < maxLives; i++)
+        {
+            m_crossIcons[i].enabled = false;
+            m_lifeIcons[i].enabled = false;
         }
     }
 
@@ -49,7 +56,9 @@ public class UIManager : MonoBehaviour
     {
         m_lifeIcons = new List<RawImage>();
         m_crossIcons = new List<RawImage>();
-        for (int i = 0; i < Player.Instance.initLives; i++)
+
+        //for (int i = 0; i < Player.Instance.initLives; i++)
+        for (int i = 0; i < maxLives; i++)
         {
             var life = Instantiate(lifeIcon, lifeIconHolder);
             m_lifeIcons.Add(life.GetComponent<RawImage>());
