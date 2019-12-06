@@ -53,7 +53,9 @@ public class MapLogger : MonoBehaviour
         m_endTime = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
         m_levelDataJson = JsonHelper.ToJson(m_levelData.ToArray());
         string data = JsonUtility.ToJson(this);
-        //data = data.Replace("\\", "");
+        data = data.Replace("\\", "");
+        data = data.Replace("\"{\"Items\":", "");
+        data = data.Replace("}\"", "");
         LogData(data);
     }
 
