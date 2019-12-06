@@ -49,18 +49,6 @@ public class CameraManager : MonoBehaviour
             Debug.LogError("CameraManager: Player not found!");
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            SwitchLevelCamera(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.Q))
-        {
-            SwitchLevelCamera(-1);
-        }
-    }
-
     public void SwitchLevelCamera(int index)
     {
         level_index += index;

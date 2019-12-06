@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
         int expectationStep = 1;
         foreach (var item in iceHits)
         {
-            Debug.Log(Vector3.Distance(GroundDetector.transform.position, item.transform.position));
+            //Debug.Log(Vector3.Distance(GroundDetector.transform.position, item.transform.position));
             // Player can't move that far
             if (Vector3.Distance(GroundDetector.transform.position, item.transform.position)
                 - expectationStep * VII.GameData.STEP_SIZE > 0.2f * VII.GameData.STEP_SIZE)
