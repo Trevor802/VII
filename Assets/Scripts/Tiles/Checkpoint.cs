@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class Checkpoint : Tile
 {
+    // TODO Remove respawnObject reference
     public GameObject respawnObject;
     public Item requiredItem;
+    public ByteSheep.Events.AdvancedEvent OnPlayerEnterEvent;
+    private bool activated = false;
 
     protected override void OnPlayerEnter(Player player)
     {
         base.OnPlayerEnter(player);
-        if (player.PlayerData.Inventory.ContainItem(requiredItem))
+        if (player.PlayerData.Inventory.ContainItem(requiredItem) && !activated)
         {
             // Reset respawn position and respawn player
+            activated = true;
+            VII.VIIEvents.LevelFinish.Invoke(player);
             player.PlayerData.Inventory.RemoveItem(requiredItem);
-            var value = player.PlayerData.Inventory.items;
-            player.PlayerData.respawnPosition = respawnObject.transform.position;
+            player.SetRespawnPosition(1);
+            OnPlayerEnterEvent.Invoke();
             player.Respawn(false);
         }
     }

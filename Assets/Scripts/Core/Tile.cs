@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class Tile : MonoBehaviour
 {
-    private bool playerInTemp;
-    private bool playerOutTemp;
+    protected bool playerInTemp;
+    protected bool playerOutTemp;
     protected bool playerInside;
     protected Player collidedPlayer;
 

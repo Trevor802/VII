@@ -7,4 +7,5 @@ public class Item : ScriptableObject
 {
     public GameObject prefab;
     public bool droppable;
+    public bool stackable;
 }

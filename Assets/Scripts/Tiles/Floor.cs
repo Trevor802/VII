@@ -50,6 +50,7 @@ public class Floor : Tile
             m_stepsAfterDecline++;
             if (m_stepsAfterDecline > stepsBeforeIncline)
             {
+                //Debug.Log(m_stepsAfterDecline);
                 m_stepsAfterDecline = 0;
                 // Incline
                 m_floorState = FloorState.UP;
@@ -77,5 +78,10 @@ public class Floor : Tile
             model.transform.position = transform.position -
                 new Vector3(0, VII.GameData.STEP_SIZE, 0);
         }
+    }
+
+    public FloorState GetFloorState()
+    {
+        return m_floorState;
     }
 }

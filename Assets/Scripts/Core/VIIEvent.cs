@@ -9,6 +9,7 @@ namespace VII
     {
         public static UnityEvent TickStart = new UnityEvent();
         public static UnityEvent TickEnd = new UnityEvent();
+        public static PlayerEvent LevelFinish = new PlayerEvent();
         public static PlayerEvent PlayerRespawnStart = new PlayerEvent();
         public static PlayerEvent PlayerRespawnEnd = new PlayerEvent();
     }

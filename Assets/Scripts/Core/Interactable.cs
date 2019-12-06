@@ -17,9 +17,12 @@ public class Interactable : MonoBehaviour
         Player player = i_Other.GetComponentInParent<Player>();
         if (player)
         {
-            player.PlayerData.Inventory.AddItem(item);
-            // Destroy gameobject
-            Destroy(gameObject);
+            if (!player.PlayerData.Inventory.ContainItem(item) || item.stackable)
+            {
+                player.PlayerData.Inventory.AddItem(item);
+                // Destroy gameobject
+                Destroy(gameObject);
+            }
         }
     }
 }
