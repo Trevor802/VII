@@ -58,7 +58,7 @@ namespace VII
                     UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
                     break;
                 case SceneType.GameScene:
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("All_Levels(Draft 1)"); //should be GameScene 
                     break;
                 case SceneType.RestartScene:
                     UnityEngine.SceneManagement.SceneManager.LoadScene("RestartScene");
