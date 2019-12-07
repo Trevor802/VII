@@ -5,11 +5,14 @@ using UnityEngine;
 [System.Serializable]
 public class SavePlayerData
 {
-    public Vector3 respawnPoint;
+    public float[] position;
     //public string playerName;
     
     public SavePlayerData(Player player)
     {
-        respawnPoint = player.PlayerData.respawnPosition;
+        position = new float[3];
+        position[0] = player.PlayerData.respawnPosition.x;
+        position[1] = player.PlayerData.respawnPosition.y;
+        position[2] = player.PlayerData.respawnPosition.z;
     }
 }

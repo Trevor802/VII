@@ -252,6 +252,17 @@ public class Player : MonoBehaviour
                // UIManager.UIInstance.UpdateUI();
             }
     }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            print("Save Player");
+            SavePlayer();
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            print("Load Player");
+            LoadPlayer();
+
+        }
         #endregion
     }
 
@@ -344,8 +355,24 @@ public class Player : MonoBehaviour
     {
         initLives = newLife;
     }
+    public void SavePlayer()
+    {
 
-     // Getter
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void LoadPlayer()
+    {
+        SavePlayerData data = SaveSystem.LoadPlayer();
+        Vector3 position;
+        position.x = data.position[0];
+        position.y = data.position[1];
+        position.z = data.position[2];
+        PlayerData.respawnPosition = position;
+
+    }
+
+    // Getter
     public VII.PlayerData PlayerData { get { return m_playerData; } }
     public VII.PlayerState PlayerState { get { return m_playerData.playerState; } }
     public VII.Inventory Inventory { get { return m_playerData.Inventory; } }
