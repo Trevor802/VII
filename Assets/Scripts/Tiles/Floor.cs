@@ -17,11 +17,15 @@ public class Floor : Tile
 
     private int m_stepsAfterDecline;
     private FloorState m_floorState;
+    private bool m_lavaFillsIn = false; 
+    private int m_lavaFillCounter = 1;
 
     protected override void Awake()
     {
         base.Awake();
         m_floorState = initFloorState;
+        if (!declineAfterExit)
+            m_lavaFillsIn = true;
     }
 
     private void OnValidate()
@@ -45,8 +49,17 @@ public class Floor : Tile
     protected override void OnTickEnd()
     {
         base.OnTickEnd();
-        if (declineAfterExit && m_floorState == FloorState.DOWN)
+        if (declineAfterExit && m_floorState == FloorState.DOWN) 
         {
+            //Debug.Log("Change state!");
+            if (m_lavaFillCounter == 0)
+            {
+                m_lavaFillsIn = true;
+                m_lavaFillCounter = 1;
+            }
+            else if(m_lavaFillCounter - 1 >= 0 && !m_lavaFillsIn)
+                m_lavaFillCounter--;
+
             m_stepsAfterDecline++;
             if (m_stepsAfterDecline > stepsBeforeIncline)
             {
@@ -55,6 +68,7 @@ public class Floor : Tile
                 // Incline
                 m_floorState = FloorState.UP;
                 model.transform.position = transform.position;
+                m_lavaFillsIn = false;
             }
         }
     }
@@ -80,8 +94,9 @@ public class Floor : Tile
         }
     }
 
-    public FloorState GetFloorState()
+    public bool GetFloorState()
     {
-        return m_floorState;
+        return m_lavaFillsIn;
     }
+
 }

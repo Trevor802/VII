@@ -75,7 +75,7 @@ public class Lava : Tile
             else if(hit_tile.layer == default_layer)
             {
                 Floor hit_floor = hit_tile.GetComponent<Floor>();
-                if(hit_floor && hit_floor.GetFloorState() == Floor.FloorState.DOWN)
+                if(hit_floor && hit_floor.GetFloorState())
                 {
                     GameObject lava_instant = Instantiate(lava_tile, groundHit.transform.position, groundHit.transform.rotation) as GameObject;
                     lava_instant.GetComponent<Lava>().b_DestroyedInFuture = false;
@@ -86,7 +86,7 @@ public class Lava : Tile
                             
                             lava_instant.GetComponent<Lava>().m_Life = hit_floor.stepsBeforeIncline - 1;    
                             lava_instant.GetComponent<Lava>().b_DestroyedInFuture = true;
-                            Debug.Log(i_dir);
+                            //Debug.Log(i_dir);
                             Debug.Log(lava_instant.GetComponent<Lava>().m_Life);
                             Debug.Log(lava_instant.GetComponent<Lava>().b_DestroyedInFuture);
                         }
