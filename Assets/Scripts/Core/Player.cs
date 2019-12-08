@@ -335,7 +335,7 @@ public class Player : MonoBehaviour
 
     public void SetRespawnPosition(int i_Next)
     {
-        m_RespawnPosIndex = Mathf.Abs((m_RespawnPosIndex + i_Next) % RespawnPositions.Count);
+        m_RespawnPosIndex = Mathf.Abs((RespawnPositions.Count + m_RespawnPosIndex + i_Next) % RespawnPositions.Count);
         PlayerData.respawnPosition = RespawnPositions[m_RespawnPosIndex].transform.position;
         RespawnPositions[m_RespawnPosIndex].transform.parent.parent.gameObject.SetActive(true);
     }
