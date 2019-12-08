@@ -1822,7 +1822,7 @@ PrefabInstance:
     - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
         type: 3}
       propertyPath: sentences.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
         type: 3}

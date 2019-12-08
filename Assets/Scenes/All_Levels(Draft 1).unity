@@ -8120,24 +8120,12 @@ MonoBehaviour:
         isCallEnabled: 1
       - genericMenuData:
           selectedComponent: 2
-          selectedMember: 14
+          selectedMember: 20
           isDynamic: 0
         target: {fileID: 212273177}
-        memberName: LoadNextLevel
+        memberName: Win
         memberType: 8
-        arguments:
-        - typeName: VII.SceneType, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-            PublicKeyToken=null
-          supportedType: 9
-          objectArgument: {fileID: 0}
-          stringArgument: Press
-          intArgument: 1
-          floatArgument: 0
-          boolArgument: 0
-          colorArgument: {r: 0, g: 0, b: 0, a: 0}
-          vector2Argument: {x: 0, y: 0}
-          vector3Argument: {x: 0, y: 0, z: 0}
-          enumArgument: WinScene
+        arguments: []
         isDynamic: 0
         isCallEnabled: 1
 --- !u!1001 &212805347

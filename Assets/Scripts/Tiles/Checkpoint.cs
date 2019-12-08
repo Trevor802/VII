@@ -30,8 +30,9 @@ public class Checkpoint : Tile
         base.OnPlayerExit(player);
     }
 
-    public void LoadNextLevel(VII.SceneType i_sceneType)
+    public void Win()
     {
-        VII.SceneManager.instance.LoadScene(i_sceneType);
+        UIManager.UIInstance.gameObject.SetActive(false);
+        VII.SceneManager.instance.LoadScene(VII.SceneType.WinScene);
     }
 }
