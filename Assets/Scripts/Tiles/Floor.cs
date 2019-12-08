@@ -17,14 +17,14 @@ public class Floor : Tile
 
     private int m_stepsAfterDecline;
     private FloorState m_floorState;
-    private bool m_lavaFillsIn = false; 
+    [SerializeField] private bool m_lavaFillsIn = false; 
     private int m_lavaFillCounter = 1;
 
     protected override void Awake()
     {
         base.Awake();
         m_floorState = initFloorState;
-        if (!declineAfterExit)
+        if (!declineAfterExit && m_floorState == FloorState.DOWN)
             m_lavaFillsIn = true;
     }
 
