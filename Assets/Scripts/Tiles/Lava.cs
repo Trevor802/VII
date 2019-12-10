@@ -43,6 +43,7 @@ public class Lava : Tile
     protected override void OnPlayerEnter(Player player)
     {
         base.OnPlayerEnter(player);
+        Debug.Log("Player steps on Lava");
         player.Respawn();
     }
 

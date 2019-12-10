@@ -81,6 +81,11 @@ public class Floor : Tile
     protected override void OnPlayerEnter(Player player)
     {
         base.OnPlayerEnter(player);
+        if(declineAfterExit)
+        {
+            Debug.Log("Player steps on floor");
+        }
+        
         if (m_floorState == FloorState.DOWN)
         {
             player.Respawn();
@@ -93,6 +98,7 @@ public class Floor : Tile
         if (declineAfterExit && m_floorState == FloorState.UP)
         {
             // Decline
+            Debug.Log("Player exits floor");
             m_floorState = FloorState.DOWN;
             model.transform.position = transform.position -
                 new Vector3(0, VII.GameData.STEP_SIZE, 0);

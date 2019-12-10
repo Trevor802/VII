@@ -298,10 +298,12 @@ public class Player : MonoBehaviour
         //Quaternion deathRot = transform.rotation;
         //ObjectPooler.Instance.SpawnFromPool("Body", deathPos, deathRot);
         InteractiveCollider.enabled = false;
+        GroundDetector.SetActive(false);
         // Drop Items
         DropItems();
         transform.position = m_playerData.respawnPosition;
         InteractiveCollider.enabled = true;
+        GroundDetector.SetActive(true);
         m_playerData.steps = initSteps;
         // Respawn Animation
         //animator.Play("Respawn");
