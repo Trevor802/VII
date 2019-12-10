@@ -22,14 +22,16 @@ public class Spike : Tile
         #endregion
     }
 
-#if UNITY_EDITOR
     private void OnEnable()
     {
         if (!m_animator) m_animator = model.GetComponent<Animator>();
         UpdateSpike();
+#if UNITY_EDITOR
         EditorApplication.update += EditorUpdate;
+#endif
     }
 
+#if UNITY_EDITOR
     private void OnDisable()
     {
         if (!m_animator) m_animator = model.GetComponent<Animator>();
