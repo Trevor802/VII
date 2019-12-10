@@ -22,17 +22,14 @@ public class Spike : Tile
         #endregion
     }
 
-    #region Editor Mode
+#if UNITY_EDITOR
     private void OnEnable()
     {
         if (!m_animator) m_animator = model.GetComponent<Animator>();
         UpdateSpike();
-#if UNITY_EDITOR
         EditorApplication.update += EditorUpdate;
-#endif
     }
 
-#if UNITY_EDITOR
     private void OnDisable()
     {
         if (!m_animator) m_animator = model.GetComponent<Animator>();
@@ -50,13 +47,12 @@ public class Spike : Tile
         if (gameObject.activeSelf)
             m_animator.Update(Time.deltaTime);
     }
-#endif
 
     private void OnValidate()
     {
         UpdateSpike();
     }
-    #endregion
+#endif
 
     private void UpdateSpike()
     {

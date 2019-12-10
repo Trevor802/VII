@@ -351,4 +351,5 @@ public class Player : MonoBehaviour
     public VII.Inventory Inventory { get { return m_playerData.Inventory; } }
     public int GetSteps() { return m_playerData.steps; }
     public int GetLives() { return m_playerData.lives; }
+    public int GetRespawnPosIndex() { return m_RespawnPosIndex; }
 }

@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     public GameObject lifeIcon;
     public RectTransform lifeIconHolder;
     public int maxLives = 10;
+    public Text levelIndexText;
 
     private List<RawImage> m_lifeIcons;
     private List<RawImage> m_crossIcons;
@@ -44,12 +45,14 @@ public class UIManager : MonoBehaviour
             m_crossIcons[i].enabled = false;
             m_lifeIcons[i].enabled = false;
         }
+        levelIndexText.text = "level_" + Player.Instance.GetRespawnPosIndex();
     }
 
     public void ClearUI()
     {
         m_lifeIcons.ForEach(x => x.enabled = false);
         m_crossIcons.ForEach(x => x.enabled = false);
+        levelIndexText.enabled = false;
     }
 
     public void InitUI()
@@ -66,5 +69,6 @@ public class UIManager : MonoBehaviour
         }
         m_lifeIcons.ForEach(x => x.enabled = true);
         m_crossIcons.ForEach(x => x.enabled = true);
+        levelIndexText.text = (Player.Instance.GetRespawnPosIndex() + 1).ToString();
     }
 }
