@@ -87,6 +87,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 211040896105725653}
     m_Modifications:
+    - target: {fileID: 833378583392071334, guid: 258aabb715e6b6a41895fe53b9317254,
+        type: 3}
+      propertyPath: m_Name
+      value: Trap_Spike1
+      objectReference: {fileID: 0}
     - target: {fileID: 4452820603045829813, guid: 258aabb715e6b6a41895fe53b9317254,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -142,16 +147,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 833378583392071334, guid: 258aabb715e6b6a41895fe53b9317254,
-        type: 3}
-      propertyPath: m_Name
-      value: Trap_Spike1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8696781221764528041, guid: 258aabb715e6b6a41895fe53b9317254,
-        type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7599276764596758296, guid: 258aabb715e6b6a41895fe53b9317254,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -160,6 +155,11 @@ PrefabInstance:
     - target: {fileID: 7599276764596758296, guid: 258aabb715e6b6a41895fe53b9317254,
         type: 3}
       propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8696781221764528041, guid: 258aabb715e6b6a41895fe53b9317254,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
