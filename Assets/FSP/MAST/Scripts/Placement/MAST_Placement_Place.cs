@@ -29,7 +29,7 @@ public static class MAST_Placement_Place
                 return null;
             
             // Instantiate the prefab
-            GameObject newPrefab = GameObject.Instantiate(MAST_Palette.GetSelectedPrefab());
+            GameObject newPrefab = (GameObject)PrefabUtility.InstantiatePrefab(MAST_Palette.GetSelectedPrefab());
             
             // Correct GameObject transform and name "to remove (clone)"
             newPrefab.transform.rotation = MAST_Placement_Visualizer.GetGameObject().transform.rotation;
