@@ -17,11 +17,18 @@ public class Floor : Tile
 
     private int m_stepsAfterDecline;
     private FloorState m_floorState;
-
+    private int m_lavaFillCounter = 0;
+    private bool m_lavaFlows = false;
     protected override void Awake()
     {
         base.Awake();
         m_floorState = initFloorState;
+        if (!declineAfterExit && m_floorState == FloorState.DOWN)
+        {
+            m_lavaFlows = true;
+            m_lavaFillCounter = 0;
+        }
+            
     }
 
     private void OnValidate()
@@ -42,18 +49,31 @@ public class Floor : Tile
         }
     }
 
+    protected override void OnTickStart()
+    {
+        base.OnTickStart();
+        if(m_lavaFillCounter == 1)
+        {
+            Debug.Log("Lava can flow in");
+            m_lavaFlows = true;
+            m_lavaFillCounter--;
+        }
+    }
     protected override void OnTickEnd()
     {
         base.OnTickEnd();
-        if (declineAfterExit && m_floorState == FloorState.DOWN)
+        if (declineAfterExit && m_floorState == FloorState.DOWN) 
         {
+            //step counter
             m_stepsAfterDecline++;
             if (m_stepsAfterDecline > stepsBeforeIncline)
             {
+                //Debug.Log(m_stepsAfterDecline);
                 m_stepsAfterDecline = 0;
                 // Incline
                 m_floorState = FloorState.UP;
                 model.transform.position = transform.position;
+                m_lavaFlows = false;
             }
         }
     }
@@ -76,6 +96,17 @@ public class Floor : Tile
             m_floorState = FloorState.DOWN;
             model.transform.position = transform.position -
                 new Vector3(0, VII.GameData.STEP_SIZE, 0);
+            m_lavaFillCounter = 1;
         }
+    }
+
+    public FloorState GetFloorState()
+    {
+        return m_floorState;
+    }
+
+    public bool GetLavaFlowState()
+    {
+        return m_lavaFlows;
     }
 }
