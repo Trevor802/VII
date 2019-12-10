@@ -27,9 +27,12 @@ public class Spike : Tile
     {
         if (!m_animator) m_animator = model.GetComponent<Animator>();
         UpdateSpike();
+#if UNITY_EDITOR
         EditorApplication.update += EditorUpdate;
+#endif
     }
 
+#if UNITY_EDITOR
     private void OnDisable()
     {
         if (!m_animator) m_animator = model.GetComponent<Animator>();
@@ -47,6 +50,7 @@ public class Spike : Tile
         if (gameObject.activeSelf)
             m_animator.Update(Time.deltaTime);
     }
+#endif
 
     private void OnValidate()
     {
