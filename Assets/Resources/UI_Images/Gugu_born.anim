@@ -3858,7 +3858,7 @@ AnimationClip:
   m_Events:
   - time: 3
     functionName: OnAnimationCallback
-    data: Callback
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
