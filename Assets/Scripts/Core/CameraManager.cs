@@ -68,6 +68,15 @@ public class CameraManager : MonoBehaviour
         }
         
     }
+
+    public int ReturnLevelIndex()
+    {
+        return level_index;
+    }
+    public void SetLevelIndex(int getNewLevelIndex)
+    {
+        level_index = getNewLevelIndex;
+    }
 }
 
 

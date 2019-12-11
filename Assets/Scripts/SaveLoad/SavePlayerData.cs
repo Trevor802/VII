@@ -6,6 +6,9 @@ using UnityEngine;
 public class SavePlayerData
 {
     public float[] position;
+    public int savelives;
+    public int cameraIndex;
+    //public int cameraIndex;
     //public string playerName;
     
     public SavePlayerData(Player player)
@@ -14,5 +17,9 @@ public class SavePlayerData
         position[0] = player.PlayerData.respawnPosition.x;
         position[1] = player.PlayerData.respawnPosition.y;
         position[2] = player.PlayerData.respawnPosition.z;
+        savelives = player.initLives;
+        cameraIndex = player.saveCameraIndex;
+        
+        
     }
 }

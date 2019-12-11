@@ -67,6 +67,7 @@ public class Player : MonoBehaviour
     public float moveTime = 0.5f;
     public int initLives = 7;
     public int initSteps = 7;
+    public int saveCameraIndex = 0;
     [Header("Game Objects")]
     public GameObject GroundDetector;
     public GameObject BodyDetector;
@@ -349,6 +350,7 @@ public class Player : MonoBehaviour
         m_RespawnPosIndex = Mathf.Abs((m_RespawnPosIndex + i_Next) % RespawnPositions.Count);
         PlayerData.respawnPosition = RespawnPositions[m_RespawnPosIndex].transform.position;
         RespawnPositions[m_RespawnPosIndex].transform.parent.parent.gameObject.SetActive(true);
+        saveCameraIndex = m_RespawnPosIndex;
     }
 
     public void SetInitLives(int newLife)
@@ -369,7 +371,15 @@ public class Player : MonoBehaviour
         position.y = data.position[1];
         position.z = data.position[2];
         PlayerData.respawnPosition = position;
-
+        initLives = data.savelives;
+        Respawn(false);
+        m_RespawnPosIndex = data.cameraIndex;
+        print(data.cameraIndex);
+        CameraManager.Instance.cinema_list.ForEach(cam => cam.SetActive(false));
+        CameraManager.Instance.cinema_list[data.cameraIndex].SetActive(true);
+        CameraManager.Instance.SetLevelIndex(data.cameraIndex);
+        print(data.savelives);
+        // UIManager.UIInstance.UpdateUI();
     }
 
     // Getter
