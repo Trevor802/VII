@@ -75,12 +75,21 @@ public class Player : MonoBehaviour
     public List<GameObject> RespawnPositions; 
     [Header("Prefabs")]
     public GameObject TombstonePrefab;
+    [Header("Data for Achievements")]
+    public int m_RespawnPosIndex = 0;
+    //level0
+    public bool DiedInLevel0;
+    //level5
+    public bool DiedInLevel5;
+    public bool DiedInTrapInLevel5;
+    //level7
+    public bool FinishLevel7;
+    public bool DiedInTrapInLevel7;
     #endregion PlayerData
 
     private float m_inverseMoveTime;
     private const float m_maxCastDistance = 10f;
     private Vector3 m_destination;
-    private int m_RespawnPosIndex = 0;
     private VII.PlayerData m_playerData;
     private Vector3 moveDir;
     private Vector3 currentGridPos;
@@ -144,6 +153,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        //print("level index" + m_RespawnPosIndex);
+        //print(DiedInLevel0);
         // Input
         // TODO Support multiple device
         #region Input
@@ -255,6 +266,7 @@ public class Player : MonoBehaviour
         #endregion
     }
 
+
     public void Respawn(bool costLife = true)
     {
         // Respawn Start
@@ -281,7 +293,17 @@ public class Player : MonoBehaviour
             //Clear UI manager
             UIManager.UIInstance.ClearUI();
         }
-        
+
+        //Data for Achievements
+        if (m_RespawnPosIndex == 0 && costLife == true)
+        {
+            DiedInLevel0 = true;
+        }
+        if (m_RespawnPosIndex == 5 && !DiedInTrapInLevel5 && costLife == true)
+        {
+            DiedInLevel5 = true;
+        }
+
         StartCoroutine(Respawning(costLife));
     }
 
