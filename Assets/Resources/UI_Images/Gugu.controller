@@ -147,3 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e50e30f320015447941f947fbc205dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnStateExitEvent:
+    inspectorListHeight: 83
+    persistentCalls:
+      calls: []
