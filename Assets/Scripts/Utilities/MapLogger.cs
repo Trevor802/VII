@@ -68,7 +68,7 @@ public class MapLogger : MonoBehaviour
 
     private void LogData(string i_data)
     {
-        string logPath = Application.dataPath + "/MapLog.json";
+        string logPath = Application.dataPath + "/Resources/MapLog.json";
         if (!File.Exists(logPath))
         {
             File.WriteAllText(logPath, "[");
