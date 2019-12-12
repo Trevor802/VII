@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
             m_playerData = new VII.PlayerData(initLives, initSteps,
                 RespawnPositions[m_RespawnPosIndex].transform.position);
             m_inverseMoveTime = 1 / moveTime;
+            m_playerAnimationController = GetComponent<VII.PlayerAnimationController>();
             RespawnPositions[m_RespawnPosIndex].transform.parent.parent.gameObject.SetActive(true);
         }
         else if (Instance != this)
@@ -82,6 +83,7 @@ public class Player : MonoBehaviour
     private Vector3 m_destination;
     private int m_RespawnPosIndex = 0;
     private VII.PlayerData m_playerData;
+    private VII.PlayerAnimationController m_playerAnimationController;
     private Vector3 moveDir;
     private Vector3 currentGridPos;
     private Vector3 nextGridPos;
@@ -288,11 +290,19 @@ public class Player : MonoBehaviour
     private IEnumerator Respawning(bool costLife)
     {
         transform.position = nextGridPos;
-        if (costLife)
+        if (!m_playerAnimationController)
+            yield return null;
+        else
         {
-            //animator.Play("Death");
+            if (costLife)
+            {
+                m_playerAnimationController.PlaySpawnAnimation();
+                while (!m_playerAnimationController.IsRespawning)
+                {
+                    yield return null;
+                }
+            }
         }
-        yield return null;
         // EVENT: Respawing Ends
         //Vector3 deathPos = transform.position;
         //Quaternion deathRot = transform.rotation;
@@ -306,7 +316,10 @@ public class Player : MonoBehaviour
         GroundDetector.SetActive(true);
         m_playerData.steps = initSteps;
         // Respawn Animation
-        //animator.Play("Respawn");
+        while (m_playerAnimationController && !m_playerAnimationController.IsLocomotion)
+        {
+            yield return null;
+        }
         // Respawning Ends
         m_playerData.playerState = VII.PlayerState.IDLE;
         // Broadcast with Event System
