@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
+[ExecuteAlways]
 public class Floor : Tile
 {
     public enum FloorState
@@ -12,41 +14,79 @@ public class Floor : Tile
 
     public bool declineAfterExit;
     public int stepsBeforeIncline;
-    public FloorState initFloorState;
     public GameObject model;
 
     private int m_stepsAfterDecline;
+    [SerializeField]
     private FloorState m_floorState;
     private int m_lavaFillCounter = 0;
     private bool m_lavaFlows = false;
+    private Animator m_animator;
     protected override void Awake()
     {
         base.Awake();
-        m_floorState = initFloorState;
         if (!declineAfterExit && m_floorState == FloorState.DOWN)
         {
             m_lavaFlows = true;
             m_lavaFillCounter = 0;
         }
-            
+        #region Presentation Layer
+        m_animator = model.GetComponent<Animator>();
+        #endregion
+    }
+
+    private void OnEnable()
+    {
+        if (!m_animator) m_animator = model.GetComponent<Animator>();
+        UpdateFloor();
+#if UNITY_EDITOR
+        EditorApplication.update += EditorUpdate;
+#endif
+    }
+#if UNITY_EDITOR
+    private void OnDisable()
+    {
+        if (!m_animator) m_animator = model.GetComponent<Animator>();
+        EditorApplication.update -= EditorUpdate;
+    }
+
+    private void OnDestroy()
+    {
+        if (!m_animator) m_animator = model.GetComponent<Animator>();
+        EditorApplication.update -= EditorUpdate;
+    }
+
+    private void EditorUpdate()
+    {
+        if (gameObject.activeSelf)
+            m_animator.Update(Time.deltaTime);
     }
 
     private void OnValidate()
     {
-        switch (initFloorState)
+        UpdateFloor();
+    }
+#endif
+
+    private void UpdateFloor()
+    {
+        #region Presentation Layer
+        if (!m_animator) m_animator = model.GetComponent<Animator>();
+        if (m_animator.isActiveAndEnabled)
         {
-            case FloorState.UP:
-                if (model)
-                    model.transform.position = transform.position;
-                break;
-            case FloorState.DOWN:
-                if (model)
-                    model.transform.position = transform.position -
-                        new Vector3(0, VII.GameData.STEP_SIZE, 0);
-                break;
-            default:
-                break;
+            switch (m_floorState)
+            {
+                case FloorState.UP:
+                    m_animator.SetBool("Decline", true);
+                    break;
+                case FloorState.DOWN:
+                    m_animator.SetBool("Decline", false);
+                    break;
+                default:
+                    break;
+            }
         }
+        #endregion
     }
 
     protected override void OnTickStart()
