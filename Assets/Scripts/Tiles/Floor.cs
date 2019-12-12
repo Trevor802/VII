@@ -18,7 +18,7 @@ public class Floor : Tile
 
     private int m_stepsAfterDecline;
     [SerializeField]
-    private FloorState m_floorState;
+    private FloorState m_floorState = FloorState.UP;
     private int m_lavaFillCounter = 0;
     private bool m_lavaFlows = false;
     private Animator m_animator;
@@ -77,10 +77,12 @@ public class Floor : Tile
             switch (m_floorState)
             {
                 case FloorState.UP:
-                    m_animator.SetBool("Decline", true);
+                    if (m_animator.GetBool("Decline") == true)
+                        m_animator.SetBool("Decline", false);
                     break;
                 case FloorState.DOWN:
-                    m_animator.SetBool("Decline", false);
+                    if (m_animator.GetBool("Decline") == false)
+                        m_animator.SetBool("Decline", true);
                     break;
                 default:
                     break;
