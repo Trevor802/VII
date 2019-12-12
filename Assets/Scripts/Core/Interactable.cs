@@ -19,6 +19,10 @@ public class Interactable : MonoBehaviour
         {
             if (!player.PlayerData.Inventory.ContainItem(item) || item.stackable)
             {
+                if(player.m_RespawnPosIndex == 8)
+                {
+                    player.HasKeyInLevel8 = true;
+                }
                 player.PlayerData.Inventory.AddItem(item);
                 // Destroy gameobject
                 Destroy(gameObject);

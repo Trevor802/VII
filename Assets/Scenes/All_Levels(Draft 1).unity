@@ -32309,6 +32309,7 @@ MonoBehaviour:
         isDynamic: 0
         isCallEnabled: 1
   model: {fileID: 1574697664}
+  Level8TriggerBoard: {fileID: 0}
 --- !u!65 &788327632
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39722,6 +39723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   achievementUnlocked: 0
   player: {fileID: 1920266904}
+  Level8TriggerBoard: {fileID: 1880972774}
 --- !u!114 &966803942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74710,6 +74712,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1880077578}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1880972771 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5931189074081645205, guid: 6cfeb0107473b4df588127baf9804cd5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1018714415}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1880972774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880972771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8de218c37f6abe41935644561a48597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerBoardDown: 0
 --- !u!1001 &1883314599
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -85,6 +85,8 @@ public class Player : MonoBehaviour
     //level7
     public bool FinishLevel7;
     public bool DiedInTrapInLevel7;
+    //level8
+    public bool HasKeyInLevel8;
     #endregion PlayerData
 
     private float m_inverseMoveTime;

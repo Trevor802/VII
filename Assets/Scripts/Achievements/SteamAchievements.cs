@@ -7,6 +7,7 @@ public class SteamAchievements : MonoBehaviour
 {
     public bool achievementUnlocked;
     public Player player;
+    public Level8TriggerBoard Level8TriggerBoard;
     private void Start()
     {
         //unlockAchievement("achievement_00");
@@ -27,6 +28,7 @@ public class SteamAchievements : MonoBehaviour
             lockAchievement("achievement_01");
             lockAchievement("achievement_02");
             lockAchievement("achievement_03");
+            lockAchievement("achievement_04");
             print("locked");
         }
 
@@ -58,7 +60,13 @@ public class SteamAchievements : MonoBehaviour
 
             if(player.m_RespawnPosIndex == 8)
             {
-
+                if (Level8TriggerBoard)
+                {
+                    if (player.HasKeyInLevel8 == true && Level8TriggerBoard.TriggerBoardDown == false)
+                    {
+                        unlockAchievement("achievement_04");
+                    }
+                }
             }
 
             if(player.m_RespawnPosIndex == 17)
