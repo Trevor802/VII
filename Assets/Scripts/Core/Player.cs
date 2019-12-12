@@ -105,6 +105,19 @@ public class Player : MonoBehaviour
         {
             return false;
         }
+        RaycastHit unreachableTileHit;
+        bool unreachableTileHitResult;
+        unreachableTileHitResult = Physics.Raycast(GroundDetector.transform.position,
+            i_dir, out unreachableTileHit, m_maxCastDistance, (int)VII.HitLayer.Block);
+        if(unreachableTileHitResult )
+        {
+            Debug.Log(unreachableTileHitResult);
+            Debug.Log(unreachableTileHit);
+            if(Vector3.Distance(BodyDetector.transform.position, unreachableTileHit.transform.position)
+            < VII.GameData.STEP_SIZE)
+                return false;
+        }
+
         RaycastHit[] iceHits;
         iceHits = Physics.RaycastAll(GroundDetector.transform.position,
             i_dir, m_maxCastDistance, (int)VII.HitLayer.Ice);

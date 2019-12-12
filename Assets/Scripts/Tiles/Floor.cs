@@ -27,6 +27,7 @@ public class Floor : Tile
         {
             m_lavaFlows = true;
             m_lavaFillCounter = 0;
+            this.gameObject.layer = 8;
         }
             
     }
@@ -54,7 +55,7 @@ public class Floor : Tile
         base.OnTickStart();
         if(m_lavaFillCounter == 1)
         {
-            Debug.Log("Lava can flow in");
+            //Debug.Log("Lava can flow in");
             m_lavaFlows = true;
             m_lavaFillCounter--;
         }
@@ -74,6 +75,7 @@ public class Floor : Tile
                 m_floorState = FloorState.UP;
                 model.transform.position = transform.position;
                 m_lavaFlows = false;
+                //this.gameObject.layer = 0;
             }
         }
     }
@@ -103,6 +105,8 @@ public class Floor : Tile
             model.transform.position = transform.position -
                 new Vector3(0, VII.GameData.STEP_SIZE, 0);
             m_lavaFillCounter = 1;
+            //set this floor to block layer
+            //this.gameObject.layer = 8;
         }
     }
 
