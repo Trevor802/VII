@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.InputSystem;
 
 namespace VII
 {
@@ -23,7 +23,8 @@ namespace VII
         Block = 1 << 8,
         Ice = 1 << 9,
         Player = 1 << 10,
-        Interactable = 1 << 11
+        Interactable = 1 << 11,
+        Unreachable = 1 << 12
     }
 }
 
@@ -50,6 +51,9 @@ public class Player : MonoBehaviour
                 RespawnPositions[m_RespawnPosIndex].transform.position);
             m_inverseMoveTime = 1 / moveTime;
             RespawnPositions[m_RespawnPosIndex].transform.parent.parent.gameObject.SetActive(true);
+            //Binding Input
+            playerInput = new InputActions();
+            playerInput.Player.Move.performed += ctx => PerformMove();
         }
         else if (Instance != this)
         {
@@ -96,6 +100,7 @@ public class Player : MonoBehaviour
     private Vector3 moveDir;
     private Vector3 currentGridPos;
     private Vector3 nextGridPos;
+    private InputActions playerInput;
 
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
     {
@@ -106,6 +111,7 @@ public class Player : MonoBehaviour
         {
             return false;
         }
+
         RaycastHit bodyHit;
         bool bodyHitResult;
         bodyHitResult = Physics.Raycast(BodyDetector.transform.position,
@@ -116,16 +122,18 @@ public class Player : MonoBehaviour
         {
             return false;
         }
+
         RaycastHit unreachableTileHit;
         bool unreachableTileHitResult;
         unreachableTileHitResult = Physics.Raycast(GroundDetector.transform.position,
-            i_dir, out unreachableTileHit, m_maxCastDistance, (int)VII.HitLayer.Block);
-        if(unreachableTileHitResult )
+            i_dir, out unreachableTileHit, m_maxCastDistance, (int)VII.HitLayer.Unreachable);
+        Debug.Log(unreachableTileHitResult);
+        if (unreachableTileHitResult)
         {
-            Debug.Log(unreachableTileHitResult);
-            Debug.Log(unreachableTileHit);
-            if(Vector3.Distance(BodyDetector.transform.position, unreachableTileHit.transform.position)
-            < VII.GameData.STEP_SIZE)
+            Debug.Log(unreachableTileHit.collider.transform.name);
+            Debug.Log(Vector3.Distance(GroundDetector.transform.position, unreachableTileHit.transform.position));
+            if(Vector3.Distance(GroundDetector.transform.position, unreachableTileHit.transform.position)
+            <= VII.GameData.STEP_SIZE)
                 return false;
         }
 
@@ -173,21 +181,23 @@ public class Player : MonoBehaviour
         // Input
         // TODO Support multiple device
         #region Input
+        if (Input.inputString != "")
+            Debug.Log(Input.inputString);
         int horizontal = 0;
         int vertical = 0;
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             horizontal = -1;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             horizontal = 1;
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
         {
             vertical = 1;
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
             vertical = -1;
         }
@@ -382,6 +392,12 @@ public class Player : MonoBehaviour
     public void SetInitLives(int newLife)
     {
         initLives = newLife;
+    }
+
+    public void PerformMove()
+    {
+        Debug.Log("Use controller");
+        //Debug.Log(playerInput.Player.Move.interactions);
     }
 
      // Getter
