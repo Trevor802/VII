@@ -347,7 +347,7 @@ public class Player : MonoBehaviour
         InteractiveCollider.enabled = false;
         GroundDetector.SetActive(false);
         // Drop Items
-        DropItems();
+        DropItems(costLife);
         transform.position = m_playerData.respawnPosition;
         InteractiveCollider.enabled = true;
         GroundDetector.SetActive(true);
@@ -361,7 +361,7 @@ public class Player : MonoBehaviour
         //animator.Play("WalkDown");
     }
 
-    private void DropItems()
+    private void DropItems(bool dropTombstone = true)
     {
         foreach (var item in Inventory.items)
         {
@@ -372,7 +372,8 @@ public class Player : MonoBehaviour
             }
         }
         Inventory.RemoveDroppableItems();
-        Instantiate(TombstonePrefab, InteractableSpawnPoint.transform.position,
+        if (dropTombstone)
+            Instantiate(TombstonePrefab, InteractableSpawnPoint.transform.position,
                     Quaternion.identity);
     }
 
