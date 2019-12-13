@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &7944158402581216876
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029772140912600660}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f5c9b503265fefd43acbf463505d33ae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6857349775925842100
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,8 +66,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   declineAfterExit: 0
   stepsBeforeIncline: 0
-  initFloorState: 0
   model: {fileID: 2029772140912600660}
+  m_floorState: 0
 --- !u!65 &6857349775925842103
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -73,6 +92,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Block_Base1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578236121916375317, guid: 28572de1e8b5d474eafaca71f147aa18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6877018908609147654, guid: 28572de1e8b5d474eafaca71f147aa18,
         type: 3}
@@ -132,7 +156,12 @@ PrefabInstance:
     - target: {fileID: 3971835725619961918, guid: 28572de1e8b5d474eafaca71f147aa18,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971835725619961918, guid: 28572de1e8b5d474eafaca71f147aa18,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28572de1e8b5d474eafaca71f147aa18, type: 3}

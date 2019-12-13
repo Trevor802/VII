@@ -8,7 +8,6 @@ public class Trap : Tile
     public GameObject model;
     private Animator m_animator;
 
-
     protected override void Awake()
     {
         base.Awake();
@@ -20,8 +19,15 @@ public class Trap : Tile
         if (!m_close)
         {
             m_close = true;
+            if (player.m_RespawnPosIndex == 5)
+            {
+                player.DiedInTrapInLevel5 = true;
+            }
+            if (player.m_RespawnPosIndex == 7)
+            {
+                player.DiedInTrapInLevel7 = true;
+            }
             player.Respawn();
-
             #region Presentation Layer
             m_animator.SetTrigger("Close");
             #endregion

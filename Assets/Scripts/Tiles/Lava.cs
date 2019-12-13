@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VII;
 
 public class Lava : Tile
 {
@@ -80,8 +81,8 @@ public class Lava : Tile
                 Instantiate(floor_tile, groundHit.transform.position, groundHit.transform.rotation);
                 Destroy(groundHit.transform.gameObject);
             }
-            //Is the abut tile floor? - fill it with lava 
-            else if(hit_tile.layer == default_layer)
+            //Is the abut tile unreachable floor? - fill it with lava 
+            else if(hit_tile.layer == 12)
             {
                 Floor hit_floor = hit_tile.GetComponent<Floor>();
                 if(hit_floor && hit_floor.GetFloorState() == Floor.FloorState.DOWN && hit_floor.GetLavaFlowState())

@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VII;
+using UnityEditor;
 
+[ExecuteAlways]
 public class Floor : Tile
 {
     public enum FloorState
@@ -12,41 +15,83 @@ public class Floor : Tile
 
     public bool declineAfterExit;
     public int stepsBeforeIncline;
-    public FloorState initFloorState;
     public GameObject model;
 
     private int m_stepsAfterDecline;
-    private FloorState m_floorState;
+    [SerializeField]
+    private FloorState m_floorState = FloorState.UP;
     private int m_lavaFillCounter = 0;
     private bool m_lavaFlows = false;
+    private int unreachable_layer = (int)VII.HitLayer.Unreachable;
+    private Animator m_animator;
     protected override void Awake()
     {
         base.Awake();
-        m_floorState = initFloorState;
         if (!declineAfterExit && m_floorState == FloorState.DOWN)
         {
             m_lavaFlows = true;
             m_lavaFillCounter = 0;
+            this.gameObject.layer = 12;
         }
-            
+        #region Presentation Layer
+        m_animator = model.GetComponent<Animator>();
+        #endregion
+    }
+
+    private void OnEnable()
+    {
+        if (!m_animator) m_animator = model.GetComponent<Animator>();
+        UpdateFloor();
+#if UNITY_EDITOR
+        EditorApplication.update += EditorUpdate;
+#endif
+    }
+#if UNITY_EDITOR
+    private void OnDisable()
+    {
+        if (!m_animator) m_animator = model.GetComponent<Animator>();
+        EditorApplication.update -= EditorUpdate;
+    }
+
+    private void OnDestroy()
+    {
+        if (!m_animator) m_animator = model.GetComponent<Animator>();
+        EditorApplication.update -= EditorUpdate;
+    }
+
+    private void EditorUpdate()
+    {
+        if (gameObject.activeSelf)
+            m_animator.Update(Time.deltaTime);
     }
 
     private void OnValidate()
     {
-        switch (initFloorState)
+        UpdateFloor();
+    }
+#endif
+
+    private void UpdateFloor()
+    {
+        #region Presentation Layer
+        if (!m_animator) m_animator = model.GetComponent<Animator>();
+        if (m_animator.isActiveAndEnabled)
         {
-            case FloorState.UP:
-                if (model)
-                    model.transform.position = transform.position;
-                break;
-            case FloorState.DOWN:
-                if (model)
-                    model.transform.position = transform.position -
-                        new Vector3(0, VII.GameData.STEP_SIZE, 0);
-                break;
-            default:
-                break;
+            switch (m_floorState)
+            {
+                case FloorState.UP:
+                    if (m_animator.GetBool("Decline") == true)
+                        m_animator.SetBool("Decline", false);
+                    break;
+                case FloorState.DOWN:
+                    if (m_animator.GetBool("Decline") == false)
+                        m_animator.SetBool("Decline", true);
+                    break;
+                default:
+                    break;
+            }
         }
+        #endregion
     }
 
     protected override void OnTickStart()
@@ -54,7 +99,7 @@ public class Floor : Tile
         base.OnTickStart();
         if(m_lavaFillCounter == 1)
         {
-            Debug.Log("Lava can flow in");
+            //Debug.Log("Lava can flow in");
             m_lavaFlows = true;
             m_lavaFillCounter--;
         }
@@ -74,6 +119,7 @@ public class Floor : Tile
                 m_floorState = FloorState.UP;
                 model.transform.position = transform.position;
                 m_lavaFlows = false;
+                this.gameObject.layer = (int)VII.HitLayer.Default;
             }
         }
     }
@@ -103,6 +149,8 @@ public class Floor : Tile
             model.transform.position = transform.position -
                 new Vector3(0, VII.GameData.STEP_SIZE, 0);
             m_lavaFillCounter = 1;
+            //set this floor to unreachable layer
+            this.gameObject.layer = 12;
         }
     }
 

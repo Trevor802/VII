@@ -9,6 +9,8 @@ public class TriggerBoard : Tile
 
     public GameObject model;
 
+    public Level8TriggerBoard Level8TriggerBoard;
+
     private bool m_PlayerOn;
     private bool m_TombstoneOn;
     private Animator m_animator;
@@ -25,11 +27,21 @@ public class TriggerBoard : Tile
         {
             playerInside = false;
             playerOutTemp = false;
+
+            if (Level8TriggerBoard)
+            {
+                Level8TriggerBoard.TriggerBoardDown = false;
+            }
         }
         if (playerInTemp)
         {
             playerInside = true;
             playerInTemp = false;
+
+            if (Level8TriggerBoard)
+            {
+                Level8TriggerBoard.TriggerBoardDown = true;
+            }
         }
 
     }

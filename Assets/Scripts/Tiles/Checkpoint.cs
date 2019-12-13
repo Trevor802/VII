@@ -15,6 +15,10 @@ public class Checkpoint : Tile
         base.OnPlayerEnter(player);
         if (player.PlayerData.Inventory.ContainItem(requiredItem) && !activated)
         {
+            if (player.m_RespawnPosIndex == 7)
+            {
+                player.FinishLevel7 = true;
+            }
             // Reset respawn position and respawn player
             activated = true;
             VII.VIIEvents.LevelFinish.Invoke(player);
