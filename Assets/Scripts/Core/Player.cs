@@ -23,7 +23,8 @@ namespace VII
         Block = 1 << 8,
         Ice = 1 << 9,
         Player = 1 << 10,
-        Interactable = 1 << 11
+        Interactable = 1 << 11,
+        Unreachable = 1 << 12
     }
 }
 
@@ -106,6 +107,7 @@ public class Player : MonoBehaviour
         {
             return false;
         }
+
         RaycastHit bodyHit;
         bool bodyHitResult;
         bodyHitResult = Physics.Raycast(BodyDetector.transform.position,
@@ -116,16 +118,18 @@ public class Player : MonoBehaviour
         {
             return false;
         }
+
         RaycastHit unreachableTileHit;
         bool unreachableTileHitResult;
         unreachableTileHitResult = Physics.Raycast(GroundDetector.transform.position,
-            i_dir, out unreachableTileHit, m_maxCastDistance, (int)VII.HitLayer.Block);
-        if(unreachableTileHitResult )
+            i_dir, out unreachableTileHit, m_maxCastDistance, (int)VII.HitLayer.Unreachable);
+        Debug.Log(unreachableTileHitResult);
+        if (unreachableTileHitResult)
         {
-            Debug.Log(unreachableTileHitResult);
-            Debug.Log(unreachableTileHit);
-            if(Vector3.Distance(BodyDetector.transform.position, unreachableTileHit.transform.position)
-            < VII.GameData.STEP_SIZE)
+            Debug.Log(unreachableTileHit.collider.transform.name);
+            Debug.Log(Vector3.Distance(GroundDetector.transform.position, unreachableTileHit.transform.position));
+            if(Vector3.Distance(GroundDetector.transform.position, unreachableTileHit.transform.position)
+            <= VII.GameData.STEP_SIZE)
                 return false;
         }
 
