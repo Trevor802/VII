@@ -127,7 +127,6 @@ public class Player : MonoBehaviour
         bool unreachableTileHitResult;
         unreachableTileHitResult = Physics.Raycast(GroundDetector.transform.position,
             i_dir, out unreachableTileHit, m_maxCastDistance, (int)VII.HitLayer.Unreachable);
-        Debug.Log(unreachableTileHitResult);
         if (unreachableTileHitResult)
         {
             Debug.Log(unreachableTileHit.collider.transform.name);

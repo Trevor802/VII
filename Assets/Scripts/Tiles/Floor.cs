@@ -41,10 +41,10 @@ public class Floor : Tile
     private void OnEnable()
     {
         if (!m_animator) m_animator = model.GetComponent<Animator>();
-        UpdateFloor();
 #if UNITY_EDITOR
         EditorApplication.update += EditorUpdate;
 #endif
+        UpdateFloor();
     }
 #if UNITY_EDITOR
     private void OnDisable()
@@ -90,6 +90,9 @@ public class Floor : Tile
                 default:
                     break;
             }
+            gameObject.layer = (!declineAfterExit && m_floorState == FloorState.DOWN) ?
+                LayerMask.NameToLayer(VII.HitLayer.Unreachable.ToString()) :
+                LayerMask.NameToLayer(VII.HitLayer.Default.ToString());
         }
         #endregion
     }
@@ -117,9 +120,8 @@ public class Floor : Tile
                 m_stepsAfterDecline = 0;
                 // Incline
                 m_floorState = FloorState.UP;
-                model.transform.position = transform.position;
                 m_lavaFlows = false;
-                this.gameObject.layer = (int)VII.HitLayer.Default;
+                UpdateFloor();
             }
         }
     }
@@ -146,11 +148,8 @@ public class Floor : Tile
             // Decline
             Debug.Log("Player exits floor");
             m_floorState = FloorState.DOWN;
-            model.transform.position = transform.position -
-                new Vector3(0, VII.GameData.STEP_SIZE, 0);
             m_lavaFillCounter = 1;
-            //set this floor to unreachable layer
-            this.gameObject.layer = 12;
+            UpdateFloor();
         }
     }
 

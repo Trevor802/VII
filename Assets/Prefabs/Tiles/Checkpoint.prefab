@@ -93,7 +93,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2318947331025577726}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -138,7 +138,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6969371139324435871}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -374,3 +374,93 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8659447991688883489}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &5706695824363048223 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3971835725619961918, guid: 28572de1e8b5d474eafaca71f147aa18,
+    type: 3}
+  m_PrefabInstance: {fileID: 8659447991688883489}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9203798647763819234
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5706695824363048223}
+    m_Modifications:
+    - target: {fileID: 659379621055755136, guid: 0a505cbed5946480ba12163ab6dfa771,
+        type: 3}
+      propertyPath: m_Name
+      value: nodeCircle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8139490813957214202, guid: 0a505cbed5946480ba12163ab6dfa771,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8139490813957214202, guid: 0a505cbed5946480ba12163ab6dfa771,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.100000024
+      objectReference: {fileID: 0}
+    - target: {fileID: 8139490813957214202, guid: 0a505cbed5946480ba12163ab6dfa771,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8139490813957214202, guid: 0a505cbed5946480ba12163ab6dfa771,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8139490813957214202, guid: 0a505cbed5946480ba12163ab6dfa771,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8139490813957214202, guid: 0a505cbed5946480ba12163ab6dfa771,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8139490813957214202, guid: 0a505cbed5946480ba12163ab6dfa771,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8139490813957214202, guid: 0a505cbed5946480ba12163ab6dfa771,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8139490813957214202, guid: 0a505cbed5946480ba12163ab6dfa771,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8139490813957214202, guid: 0a505cbed5946480ba12163ab6dfa771,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8139490813957214202, guid: 0a505cbed5946480ba12163ab6dfa771,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8139490813957214202, guid: 0a505cbed5946480ba12163ab6dfa771,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.10749006
+      objectReference: {fileID: 0}
+    - target: {fileID: 8139490813957214202, guid: 0a505cbed5946480ba12163ab6dfa771,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.10749006
+      objectReference: {fileID: 0}
+    - target: {fileID: 638596971856518763, guid: 0a505cbed5946480ba12163ab6dfa771,
+        type: 3}
+      propertyPath: m_Root
+      value: 
+      objectReference: {fileID: 6969371139324435871}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0a505cbed5946480ba12163ab6dfa771, type: 3}
