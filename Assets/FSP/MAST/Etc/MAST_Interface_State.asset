@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d5fd28d118e3f54681cbd57341ebc04, type: 3}
+  m_Name: MAST_Interface_State
+  m_EditorClassIdentifier: 
+  gridExists: 0
+  selectedDrawToolIndex: -1
+  selectedItemIndex: -1
+  lastPrefabPath: /Users/pascerveau/VII/Assets/Prefabs/Tiles
+  prefabs:
+  - {fileID: 2318947331025577726, guid: 49dc31d8ef8334f17b3451567743481e, type: 3}
+  - {fileID: 1270321430709221447, guid: ac57bdd24b4c040218eb99c8a6b95be9, type: 3}
+  - {fileID: 6857349775925842100, guid: 25399a8663513438abe48fcceca3e09e, type: 3}
+  - {fileID: 6857349775925842100, guid: 3b68c9bc9bd2648e8852d4d2b19e4673, type: 3}
+  - {fileID: 7883152431963655670, guid: 08c6a9191fe224a179b16832b8d4ff63, type: 3}
+  - {fileID: 7883152431963655670, guid: 311bfe237ebcc4c2085daad068a2412b, type: 3}
+  - {fileID: 7883152431963655670, guid: e1858a08e2538704fbb588752fee4e3e, type: 3}
+  - {fileID: 211040896105725648, guid: c5ca291e14223427ca02c6e1181c1d5e, type: 3}
+  - {fileID: 5931189074081645205, guid: 9a04efca5190044af8c9cb52b1da8944, type: 3}
+  - {fileID: 5931189074081645205, guid: 6cfeb0107473b4df588127baf9804cd5, type: 3}
+  - {fileID: 8487219726462522245, guid: dbfa38834c17242ba971579fed9d67db, type: 3}
+  - {fileID: 139295598995481407, guid: e3a352e5e460640c99199adbd07d7925, type: 3}
+  paletteItemTooltip:
+  - Checkpoint
+  - Door
+  - Floor
+  - FloorConcave
+  - Ice
+  - IceConcave
+  - Lava
+  - Spike
+  - Trap
+  - TriggerBoard
+  - Wall
+  - 'Wall
+
+    Thin'
+  columnCount: 3
