@@ -12,11 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5fd28d118e3f54681cbd57341ebc04, type: 3}
   m_Name: MAST_Interface_State
   m_EditorClassIdentifier: 
-  gridExists: 0
+  gridExists: 1
   selectedDrawToolIndex: -1
   selectedItemIndex: -1
-  lastPrefabPath: /Users/pascerveau/VII/Assets/Prefabs/Tiles
+  lastPrefabPath: D:/Unity/Project/VII/Assets/Prefabs
   prefabs:
+  - {fileID: 2140638503950379751, guid: 2b5290384c65a4b0a8d64d3074756242, type: 3}
+  - {fileID: 4724196134806115980, guid: a3902e393578743769fbb23ea940f159, type: 3}
+  - {fileID: 7159006428129363625, guid: 0486a14bed340498198f55a4b88bc859, type: 3}
+  - {fileID: 7585793158539555725, guid: 821c8d460c3281941ace02b519c60692, type: 3}
+  - {fileID: 5457619071700864510, guid: b51397dda2b58fc4b8dc9a1ba2619e3e, type: 3}
+  - {fileID: 6629616112368012813, guid: 9d455b23e8e313241bb1fee08d3980fa, type: 3}
+  - {fileID: 1979023709606153069, guid: 6c22a6b21e20a154ea704bc7ed3db007, type: 3}
+  - {fileID: 1005370305856678517, guid: b2a5a04204bac694091e24249a54326d, type: 3}
+  - {fileID: 8369262557817107706, guid: a990a82c3baaa284890278dceead1951, type: 3}
+  - {fileID: 659379621055755136, guid: 0a505cbed5946480ba12163ab6dfa771, type: 3}
+  - {fileID: 5636654175404877947, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
   - {fileID: 2318947331025577726, guid: 49dc31d8ef8334f17b3451567743481e, type: 3}
   - {fileID: 1270321430709221447, guid: ac57bdd24b4c040218eb99c8a6b95be9, type: 3}
   - {fileID: 6857349775925842100, guid: 25399a8663513438abe48fcceca3e09e, type: 3}
@@ -29,7 +40,22 @@ MonoBehaviour:
   - {fileID: 5931189074081645205, guid: 6cfeb0107473b4df588127baf9804cd5, type: 3}
   - {fileID: 8487219726462522245, guid: dbfa38834c17242ba971579fed9d67db, type: 3}
   - {fileID: 139295598995481407, guid: e3a352e5e460640c99199adbd07d7925, type: 3}
+  - {fileID: 8834474582008673876, guid: 83ea007d65a814b17ad3d2d14472d376, type: 3}
+  - {fileID: 8730513351939630493, guid: f7383e28ee1bc3e4fa49e13478cae7d5, type: 3}
   paletteItemTooltip:
+  - DataLogger
+  - Diary
+  - Key
+  - 'Main
+
+    Camera'
+  - AudioManager
+  - Canvas
+  - DialogueManager
+  - SceneManager
+  - Head
+  - nodeCircle
+  - Player
   - Checkpoint
   - Door
   - Floor
@@ -44,4 +70,6 @@ MonoBehaviour:
   - 'Wall
 
     Thin'
+  - Tombstone
+  - VirtualCam
   columnCount: 3
