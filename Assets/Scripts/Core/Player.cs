@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
                 RespawnPositions[m_RespawnPosIndex].transform.position);
             m_inverseMoveTime = 1 / moveTime;
             RespawnPositions[m_RespawnPosIndex].transform.parent.parent.gameObject.SetActive(true);
+            Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
             //Binding Input
             playerInput = new InputActions();
             playerInput.Player.Move.performed += ctx => PerformMove();
@@ -77,8 +78,8 @@ public class Player : MonoBehaviour
     public GameObject InteractableSpawnPoint;
     public Collider InteractiveCollider;
     public List<GameObject> RespawnPositions; 
-    [Header("Prefabs")]
-    public GameObject TombstonePrefab;
+    /*[Header("Prefabs")]
+    public GameObject TombstonePrefab;*/
     [Header("Data for Achievements")]
     public int m_RespawnPosIndex = 0;
     //level0
@@ -101,6 +102,7 @@ public class Player : MonoBehaviour
     private Vector3 currentGridPos;
     private Vector3 nextGridPos;
     private InputActions playerInput;
+    private ObjectPooler Pools;
 
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
     {
@@ -372,8 +374,9 @@ public class Player : MonoBehaviour
         }
         Inventory.RemoveDroppableItems();
         if (dropTombstone)
-            Instantiate(TombstonePrefab, InteractableSpawnPoint.transform.position,
-                    Quaternion.identity);
+            /*Instantiate(TombstonePrefab, InteractableSpawnPoint.transform.position,
+                    Quaternion.identity);*/
+            Pools.SpawnFromPool("Tomb", InteractableSpawnPoint.transform.position, Quaternion.identity);
     }
 
     public void AddStep(int step)
