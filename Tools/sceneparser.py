@@ -61,50 +61,61 @@ for data in yaml.load_all(UnityStreamNoTags):
 
 filtered = filter(lambda x: 'PrefabInstance' in x, ListOfNodes)
 
+def setKey(dataDict, *names):
+    for name in names:
+        if name not in dataDict:
+            dataDict[name] = None
+
 for node in filtered:
     modifications = node['PrefabInstance']['m_Modification']['m_Modifications']
     dataDict = {}
     for data in modifications:
-        dataDict[data['propertyPath']] = data['value']
-    dataDict['m_Guid'] = getPrefabGuid(node['PrefabInstance'])
+        if data['value'] != None:
+            dataDict[data['propertyPath']] = data['value']
+        else:
+            dataDict[data['propertyPath']] = data['objectReference']['fileID']
+    dataDict['m_SourcePrefab'] = getPrefabGuid(node['PrefabInstance'])
     dataDict['m_InstanceID'] = node['PrefabInstance']['instanceID']
     print(dataDict)
     # floor logic
-    if dataDict['m_Guid'] == SupportedPrefabGuid.floor.value:
+    if dataDict['m_SourcePrefab'] == SupportedPrefabGuid.floor.value:
         numberOfPrefabs[SupportedPrefabGuid.floor] = numberOfPrefabs[SupportedPrefabGuid.floor] + 1
+        setKey(dataDict, 'm_floorState', 'declineAfterExit', 'stepsBeforeIncline')
     # floorConcave logic
-    elif dataDict['m_Guid'] == SupportedPrefabGuid.floorConcave.value:
+    elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.floorConcave.value:
         numberOfPrefabs[SupportedPrefabGuid.floorConcave] = numberOfPrefabs[SupportedPrefabGuid.floorConcave] + 1
     # ice logic
-    elif dataDict['m_Guid'] == SupportedPrefabGuid.ice.value:
+    elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.ice.value:
         numberOfPrefabs[SupportedPrefabGuid.ice] = numberOfPrefabs[SupportedPrefabGuid.ice] + 1
     # iceConcave logic
-    elif dataDict['m_Guid'] == SupportedPrefabGuid.iceConcave.value:
+    elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.iceConcave.value:
         numberOfPrefabs[SupportedPrefabGuid.iceConcave] = numberOfPrefabs[SupportedPrefabGuid.iceConcave] + 1
     # wall logic
-    elif dataDict['m_Guid'] == SupportedPrefabGuid.wall.value:
+    elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.wall.value:
         numberOfPrefabs[SupportedPrefabGuid.wall] = numberOfPrefabs[SupportedPrefabGuid.wall] + 1
     # trap logic
-    elif dataDict['m_Guid'] == SupportedPrefabGuid.trap.value:
+    elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.trap.value:
         numberOfPrefabs[SupportedPrefabGuid.trap] = numberOfPrefabs[SupportedPrefabGuid.trap] + 1
     # checkpoint logic
-    elif dataDict['m_Guid'] == SupportedPrefabGuid.checkpoint.value:
+    elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.checkpoint.value:
         numberOfPrefabs[SupportedPrefabGuid.checkpoint] = numberOfPrefabs[SupportedPrefabGuid.checkpoint] + 1
     # lava logic
-    elif dataDict['m_Guid'] == SupportedPrefabGuid.lava.value:
+    elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.lava.value:
         numberOfPrefabs[SupportedPrefabGuid.lava] = numberOfPrefabs[SupportedPrefabGuid.lava] + 1
     # spike logic
-    elif dataDict['m_Guid'] == SupportedPrefabGuid.spike.value:
+    elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.spike.value:
         numberOfPrefabs[SupportedPrefabGuid.spike] = numberOfPrefabs[SupportedPrefabGuid.spike] + 1
+        setKey(dataDict, 'spikeUp')
     # door logic
-    elif dataDict['m_Guid'] == SupportedPrefabGuid.door.value:
+    elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.door.value:
         numberOfPrefabs[SupportedPrefabGuid.door] = numberOfPrefabs[SupportedPrefabGuid.door] + 1
     # triggerBoard logic
-    elif dataDict['m_Guid'] == SupportedPrefabGuid.triggerBoard.value:
+    elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.triggerBoard.value:
         numberOfPrefabs[SupportedPrefabGuid.triggerBoard] = numberOfPrefabs[SupportedPrefabGuid.triggerBoard] + 1
     # other logic
     else:
         numberOfPrefabs['other'] = numberOfPrefabs['other'] + 1
+    #print(dataDict)
 # Example, print each object's name and type
 # for node in ListOfNodes:
 #     print(node)
