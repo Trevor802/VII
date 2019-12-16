@@ -40,7 +40,7 @@ class SupportedPrefabGuid(Enum):
     iceConcave = '311bfe237ebcc4c2085daad068a2412b'
     wall = 'e3a352e5e460640c99199adbd07d7925'
     trap = '9a04efca5190044af8c9cb52b1da8944'
-    checkpoint = '49dc31d8ef8334f17b3451567743481e'
+    checkpoint = '57b4cb67c63b54e09ab4f8a32995c2ef'
     lava = 'e1858a08e2538704fbb588752fee4e3e'
     spike = 'c5ca291e14223427ca02c6e1181c1d5e'
     door = 'ac57bdd24b4c040218eb99c8a6b95be9'
@@ -59,21 +59,28 @@ ListOfNodes = list()
 for data in yaml.load_all(UnityStreamNoTags):
     ListOfNodes.append( data )
 
-filtered = filter(lambda x: 'PrefabInstance' in x, ListOfNodes)
+prefabInstances = filter(lambda x: 'PrefabInstance' in x, ListOfNodes)
+gameObjectInstances = filter(lambda x: 'GameObject' in x, ListOfNodes)
 
 def setKey(dataDict, *names):
     for name in names:
         if name not in dataDict:
             dataDict[name] = None
 
-for node in filtered:
+def findPrefabInstance(content, objectInstance):
+    for item in content:
+        target = list(item.values())[0]
+        if target['instanceID'] == objectInstance:
+            return target['m_PrefabInstance']['fileID']
+
+for node in prefabInstances:
     modifications = node['PrefabInstance']['m_Modification']['m_Modifications']
     dataDict = {}
     for data in modifications:
         if data['value'] != None:
             dataDict[data['propertyPath']] = data['value']
         else:
-            dataDict[data['propertyPath']] = data['objectReference']['fileID']
+            dataDict[data['propertyPath']] = findPrefabInstance(gameObjectInstances, data['objectReference']['fileID'])
     dataDict['m_SourcePrefab'] = getPrefabGuid(node['PrefabInstance'])
     dataDict['m_InstanceID'] = node['PrefabInstance']['instanceID']
     print(dataDict)
