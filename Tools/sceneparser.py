@@ -48,7 +48,25 @@ class SupportedPrefabGuid(Enum):
 
 class TriggerAction(Enum):
     move = 'Move'
-    active = 'SetActive'
+    resetPosition = 'ResetPosition'
+
+def tryGetValueFromDict(dict, name, defaultValue = None):
+    if name in dict:
+        return dict[name]
+    else:
+        return defaultValue
+
+def moveActionHandler(data, actionName):
+    params = {
+        'x':tryGetValueFromDict(data, actionName + '.arguments.Array.data[0].vector3Argument.x'),
+        'y':tryGetValueFromDict(data, actionName + '.arguments.Array.data[0].vector3Argument.y'),
+        'z':tryGetValueFromDict(data, actionName + '.arguments.Array.data[0].vector3Argument.z')
+    }
+    return params
+
+class EventName(Enum):
+    onPlayerEnterEvent = 'OnPlayerEnterEvent'
+    onPlayerExitEvent = 'OnPlayerExitEvent'
 
 print(list(map(lambda x: x.value, TriggerAction)))
 
@@ -89,7 +107,6 @@ for node in prefabInstances:
             dataDict[data['propertyPath']] = findPrefabInstance(ListOfNodes, data['objectReference']['fileID'])
     dataDict['m_SourcePrefab'] = getPrefabGuid(node['PrefabInstance'])
     dataDict['m_InstanceID'] = node['PrefabInstance']['instanceID']
-    print(dataDict)
     # floor logic
     if dataDict['m_SourcePrefab'] == SupportedPrefabGuid.floor.value:
         numberOfPrefabs[SupportedPrefabGuid.floor] = numberOfPrefabs[SupportedPrefabGuid.floor] + 1
@@ -126,19 +143,24 @@ for node in prefabInstances:
     # triggerBoard logic
     elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.triggerBoard.value:
         numberOfPrefabs[SupportedPrefabGuid.triggerBoard] = numberOfPrefabs[SupportedPrefabGuid.triggerBoard] + 1
-        actionList = []
-        actionIndex = 0
+        actionList = list()
         for x in range(dataDict['OnPlayerEnterEvent.persistentCalls.calls.Array.size']):
-            actionName = 'OnPlayerEnterEvent.persistentCalls.calls.Array.data[{}].memberName'.format(x)
-            if actionName in dataDict and dataDict[actionName] in list(map(lambda c: c.value, TriggerAction)):
+            actionName = 'OnPlayerEnterEvent.persistentCalls.calls.Array.data[{}]'.format(x)
+            if actionName + '.memberName' in dataDict:
                 action = {}
-                action['memberName'] = dataDict[actionName]
-                actionList[actionIndex] = action
+                action['target'] = dataDict[actionName + '.target']
+                action['memberName'] = dataDict[actionName + '.memberName']
+                if action['memberName'] == TriggerAction.move.value:
+                    action['params'] = moveActionHandler(dataDict, actionName)
+                elif action['memberName'] == TriggerAction.resetPosition:
+                    pass
+                actionList.append(action)
                 pass
+        dataDict['m_Actions'] = actionList
     # other logic
     else:
         numberOfPrefabs['other'] = numberOfPrefabs['other'] + 1
-    #print(dataDict)
+    print(dataDict)
 # Example, print each object's name and type
 # for node in ListOfNodes:
 #     print(node)
