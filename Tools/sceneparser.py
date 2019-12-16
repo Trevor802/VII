@@ -46,6 +46,12 @@ class SupportedPrefabGuid(Enum):
     door = 'ac57bdd24b4c040218eb99c8a6b95be9'
     triggerBoard = '6cfeb0107473b4df588127baf9804cd5'
 
+class TriggerAction(Enum):
+    move = 'Move'
+    active = 'SetActive'
+
+print(list(map(lambda x: x.value, TriggerAction)))
+
 numberOfPrefabs = {}
 for item in SupportedPrefabGuid:
     numberOfPrefabs[item] = 0
@@ -56,7 +62,7 @@ UnityStreamNoTags = removeUnityTagAlias(document)
 
 ListOfNodes = list()
 
-for data in yaml.load_all(UnityStreamNoTags):
+for data in yaml.safe_load_all(UnityStreamNoTags):
     ListOfNodes.append( data )
 
 prefabInstances = filter(lambda x: 'PrefabInstance' in x, ListOfNodes)
@@ -80,7 +86,7 @@ for node in prefabInstances:
         if data['value'] != None:
             dataDict[data['propertyPath']] = data['value']
         else:
-            dataDict[data['propertyPath']] = findPrefabInstance(gameObjectInstances, data['objectReference']['fileID'])
+            dataDict[data['propertyPath']] = findPrefabInstance(ListOfNodes, data['objectReference']['fileID'])
     dataDict['m_SourcePrefab'] = getPrefabGuid(node['PrefabInstance'])
     dataDict['m_InstanceID'] = node['PrefabInstance']['instanceID']
     print(dataDict)
@@ -106,6 +112,7 @@ for node in prefabInstances:
     # checkpoint logic
     elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.checkpoint.value:
         numberOfPrefabs[SupportedPrefabGuid.checkpoint] = numberOfPrefabs[SupportedPrefabGuid.checkpoint] + 1
+        setKey(dataDict, 'respawnObject')
     # lava logic
     elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.lava.value:
         numberOfPrefabs[SupportedPrefabGuid.lava] = numberOfPrefabs[SupportedPrefabGuid.lava] + 1
@@ -119,6 +126,15 @@ for node in prefabInstances:
     # triggerBoard logic
     elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.triggerBoard.value:
         numberOfPrefabs[SupportedPrefabGuid.triggerBoard] = numberOfPrefabs[SupportedPrefabGuid.triggerBoard] + 1
+        actionList = []
+        actionIndex = 0
+        for x in range(dataDict['OnPlayerEnterEvent.persistentCalls.calls.Array.size']):
+            actionName = 'OnPlayerEnterEvent.persistentCalls.calls.Array.data[{}].memberName'.format(x)
+            if actionName in dataDict and dataDict[actionName] in list(map(lambda c: c.value, TriggerAction)):
+                action = {}
+                action['memberName'] = dataDict[actionName]
+                actionList[actionIndex] = action
+                pass
     # other logic
     else:
         numberOfPrefabs['other'] = numberOfPrefabs['other'] + 1
