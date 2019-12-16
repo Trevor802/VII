@@ -97,6 +97,22 @@ def findPrefabInstance(content, objectInstance):
         if target['instanceID'] == objectInstance:
             return target['m_PrefabInstance']['fileID']
 
+def eventListHandler(content, sEventName, actionList):
+    if sEventName + '.persistentCalls.calls.Array.size' not in content:
+        return
+    for x in range(content[sEventName + '.persistentCalls.calls.Array.size']):
+            actionName = sEventName + '.persistentCalls.calls.Array.data[{}]'.format(x)
+            if actionName + '.memberName' in content:
+                action = {}
+                action['event'] = sEventName
+                action['target'] = content[actionName + '.target']
+                action['memberName'] = content[actionName + '.memberName']
+                if action['memberName'] == TriggerAction.move.value:
+                    action['params'] = moveActionHandler(content, actionName)
+                elif action['memberName'] == TriggerAction.resetPosition:
+                    pass
+                actionList.append(action)
+
 for node in prefabInstances:
     modifications = node['PrefabInstance']['m_Modification']['m_Modifications']
     dataDict = {}
@@ -144,18 +160,8 @@ for node in prefabInstances:
     elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.triggerBoard.value:
         numberOfPrefabs[SupportedPrefabGuid.triggerBoard] = numberOfPrefabs[SupportedPrefabGuid.triggerBoard] + 1
         actionList = list()
-        for x in range(dataDict['OnPlayerEnterEvent.persistentCalls.calls.Array.size']):
-            actionName = 'OnPlayerEnterEvent.persistentCalls.calls.Array.data[{}]'.format(x)
-            if actionName + '.memberName' in dataDict:
-                action = {}
-                action['target'] = dataDict[actionName + '.target']
-                action['memberName'] = dataDict[actionName + '.memberName']
-                if action['memberName'] == TriggerAction.move.value:
-                    action['params'] = moveActionHandler(dataDict, actionName)
-                elif action['memberName'] == TriggerAction.resetPosition:
-                    pass
-                actionList.append(action)
-                pass
+        eventListHandler(dataDict, EventName.onPlayerEnterEvent.value, actionList)
+        eventListHandler(dataDict, EventName.onPlayerExitEvent.value, actionList)
         dataDict['m_Actions'] = actionList
     # other logic
     else:

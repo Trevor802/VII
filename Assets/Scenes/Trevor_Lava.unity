@@ -204,6 +204,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2170061643165533417, guid: 6cfeb0107473b4df588127baf9804cd5,
         type: 3}
+      propertyPath: OnPlayerExitEvent.persistentCalls.calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170061643165533417, guid: 6cfeb0107473b4df588127baf9804cd5,
+        type: 3}
+      propertyPath: OnPlayerExitEvent.persistentCalls.calls.Array.data[1].arguments.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170061643165533417, guid: 6cfeb0107473b4df588127baf9804cd5,
+        type: 3}
       propertyPath: OnPlayerEnterEvent.inspectorListHeight
       value: 173
       objectReference: {fileID: 0}
@@ -322,6 +332,66 @@ PrefabInstance:
     - target: {fileID: 2170061643165533417, guid: 6cfeb0107473b4df588127baf9804cd5,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[2].isCallEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170061643165533417, guid: 6cfeb0107473b4df588127baf9804cd5,
+        type: 3}
+      propertyPath: OnPlayerExitEvent.inspectorListHeight
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170061643165533417, guid: 6cfeb0107473b4df588127baf9804cd5,
+        type: 3}
+      propertyPath: OnPlayerExitEvent.persistentCalls.calls.Array.data[1].genericMenuData.selectedComponent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170061643165533417, guid: 6cfeb0107473b4df588127baf9804cd5,
+        type: 3}
+      propertyPath: OnPlayerExitEvent.persistentCalls.calls.Array.data[1].genericMenuData.selectedMember
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170061643165533417, guid: 6cfeb0107473b4df588127baf9804cd5,
+        type: 3}
+      propertyPath: OnPlayerExitEvent.persistentCalls.calls.Array.data[1].target
+      value: 
+      objectReference: {fileID: 397866379}
+    - target: {fileID: 2170061643165533417, guid: 6cfeb0107473b4df588127baf9804cd5,
+        type: 3}
+      propertyPath: OnPlayerExitEvent.persistentCalls.calls.Array.data[1].memberName
+      value: ResetPosition
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170061643165533417, guid: 6cfeb0107473b4df588127baf9804cd5,
+        type: 3}
+      propertyPath: OnPlayerExitEvent.persistentCalls.calls.Array.data[1].memberType
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170061643165533417, guid: 6cfeb0107473b4df588127baf9804cd5,
+        type: 3}
+      propertyPath: OnPlayerExitEvent.persistentCalls.calls.Array.data[1].arguments.Array.data[0].typeName
+      value: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170061643165533417, guid: 6cfeb0107473b4df588127baf9804cd5,
+        type: 3}
+      propertyPath: OnPlayerExitEvent.persistentCalls.calls.Array.data[1].arguments.Array.data[0].supportedType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170061643165533417, guid: 6cfeb0107473b4df588127baf9804cd5,
+        type: 3}
+      propertyPath: OnPlayerExitEvent.persistentCalls.calls.Array.data[1].arguments.Array.data[0].stringArgument
+      value: Press
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170061643165533417, guid: 6cfeb0107473b4df588127baf9804cd5,
+        type: 3}
+      propertyPath: OnPlayerExitEvent.persistentCalls.calls.Array.data[1].arguments.Array.data[1].typeName
+      value: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170061643165533417, guid: 6cfeb0107473b4df588127baf9804cd5,
+        type: 3}
+      propertyPath: OnPlayerExitEvent.persistentCalls.calls.Array.data[1].arguments.Array.data[1].supportedType
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2170061643165533417, guid: 6cfeb0107473b4df588127baf9804cd5,
+        type: 3}
+      propertyPath: OnPlayerExitEvent.persistentCalls.calls.Array.data[1].isCallEnabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
