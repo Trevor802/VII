@@ -2,6 +2,7 @@ from unityparser import UnityDocument
 from enum import Enum
 import yaml
 import json
+import os
 
 def removeUnityTagAlias(filepath):
     """
@@ -74,7 +75,7 @@ for item in SupportedPrefabGuid:
     numberOfPrefabs[item] = 0
 numberOfPrefabs['other'] = 0
 
-document = '/Users/pascerveau/VII/Assets/Scenes/Trevor_Lava.unity'
+document = os.getcwd() + '/Assets/Scenes/Trevor_Lava.unity'
 UnityStreamNoTags = removeUnityTagAlias(document)
 
 ListOfNodes = list()
@@ -178,6 +179,6 @@ for node in prefabInstances:
     print(result)
     prefabs.append(result)
 
-outfile = open('./prefabs.json', 'w')
+outfile = open(os.getcwd() + '/Tools/prefabs.json', 'w')
 json.dump(prefabs, outfile)
 outfile.close()
