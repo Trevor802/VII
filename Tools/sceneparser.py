@@ -89,10 +89,6 @@ prefabInstances = list(filter(lambda x: 'PrefabInstance' in x, ListOfNodes))
 gameObjectInstances = list(filter(lambda x: 'GameObject' in x, ListOfNodes))
 transformInstances = list(filter(lambda x: 'Transform' in x, ListOfNodes))
 
-def printInstances(instances=ListOfNodes):
-    for item in instances:
-        print(item)
-
 def setKey(content, defaultValue=None, *names):
     for name in names:
         if name not in content:
@@ -129,19 +125,27 @@ municipalTiles = []
 for node in prefabInstances:
     dataDict = {}
     result = {}
+    municipality = False
     levelTransformID = node['PrefabInstance']['m_Modification']['m_TransformParent']['fileID']
     levelTransform = findNodeByID(levelTransformID, transformInstances)
-    levelGameObject = findNodeByID(levelTransform['m_GameObject']['fileID'], gameObjectInstances)
-    mapTransform = findNodeByID(levelTransform['m_Father']['fileID'], transformInstances)
-    mapGameObject = findNodeByID(mapTransform['m_GameObject']['fileID'], gameObjectInstances)
-
-
-    if mapGameObject['m_Name'] not in maps:
-        maps[mapGameObject['m_Name']] = {}
-        maps[mapGameObject['m_Name']][levelGameObject['m_Name']] = []
-    elif levelGameObject['m_Name'] not in maps[mapGameObject['m_Name']]:
-        maps[mapGameObject['m_Name']][levelGameObject['m_Name']] = []
-    maps[mapGameObject['m_Name']][levelGameObject['m_Name']].append(result)
+    if not levelTransform:
+        municipality = True
+    else:
+        levelGameObject = findNodeByID(levelTransform['m_GameObject']['fileID'], gameObjectInstances)
+        mapTransform = findNodeByID(levelTransform['m_Father']['fileID'], transformInstances)
+        if not mapTransform:
+            municipality = True
+        else:
+            mapGameObject = findNodeByID(mapTransform['m_GameObject']['fileID'], gameObjectInstances)
+    if not municipality:
+        if mapGameObject['m_Name'] not in maps:
+            maps[mapGameObject['m_Name']] = {}
+            maps[mapGameObject['m_Name']][levelGameObject['m_Name']] = []
+        elif levelGameObject['m_Name'] not in maps[mapGameObject['m_Name']]:
+            maps[mapGameObject['m_Name']][levelGameObject['m_Name']] = []
+        maps[mapGameObject['m_Name']][levelGameObject['m_Name']].append(result)
+    else:
+        municipalTiles.append(result)
 
     modifications = node['PrefabInstance']['m_Modification']['m_Modifications']
     for data in modifications:
