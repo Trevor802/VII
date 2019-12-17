@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CartoonMat_Block3
-  m_Shader: {fileID: 4800000, guid: 9555be942fd7fad47bc3dd609b1b5a72, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: f6c50973e5048624c9040950c70d78c4,
+    type: 3}
   m_ShaderKeywords: _DYNAMICEMISSIONLM_ON _EMISSION
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -55,7 +56,15 @@ Material:
         m_Texture: {fileID: 2800000, guid: 427be6c9cf4803342bcbcab68e8ad4c0, type: 3}
         m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -72,6 +81,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_4BC69502: 0.5
+    - Vector1_5EC04BB4: 8
+    - Vector1_7B784AB2: 0
+    - Vector1_7D4050A1: 2
+    - Vector1_7E1016A7: 0.5
+    - Vector1_A5A16A97: 0.2
+    - Vector1_F2DD2B65: 1
     - _AlphaClip: 0
     - _AtmosphereThickness: 1
     - _Blend: 0
@@ -119,9 +135,18 @@ Material:
     - _SunSizeConvergence: 5
     - _Surface: 0
     - _UVSec: 0
+    - _UseAoMap: 0
+    - _UseColorMap: 0
+    - _UseEmissiveMap: 0
+    - _UseMetallicMap: 0
+    - _UseNormalMap: 0
+    - _UseRoughnessMap: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_41214D6B: {r: 0, g: 0, b: 0, a: 0}
+    - Color_55F40C85: {r: 0.9811321, g: 0.34044746, b: 0.1527234, a: 1}
+    - Color_BDCE2477: {r: 1, g: 0.39937475, b: 0, a: 0}
     - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 0}
     - _Emission: {r: 1, g: 1, b: 1, a: 0}
@@ -135,3 +160,5 @@ Material:
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _SkyTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _UvOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _UvTiling: {r: 1, g: 1, b: 0, a: 0}
