@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5fd28d118e3f54681cbd57341ebc04, type: 3}
   m_Name: MAST_Interface_State
   m_EditorClassIdentifier: 
-  gridExists: 1
-  selectedDrawToolIndex: -1
+  gridExists: 0
+  selectedDrawToolIndex: 0
   selectedItemIndex: -1
   lastPrefabPath: /Users/pascerveau/VII/Assets/Prefabs/Tiles
   prefabs:

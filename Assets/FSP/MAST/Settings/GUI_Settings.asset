@@ -26,6 +26,6 @@ MonoBehaviour:
     snapshotCameraPitch: 60
     snapshotCameraYaw: 40
   toolbar:
-    selectedDrawToolIndex: -1
+    selectedDrawToolIndex: 0
     position: 0
     scale: 1
