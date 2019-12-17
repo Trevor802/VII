@@ -96,7 +96,10 @@ def setKey(content, defaultValue=None, *names):
 
 def copyItems(target, source, *names):
     for name in names:
-        target[name] = source[name]
+        if source and name in source:
+            target[name] = source[name]
+        else:
+            target[name] = None
 
 def findNodeByID(instanceID, content=ListOfNodes):
     for item in content:
@@ -121,8 +124,8 @@ def eventListHandler(content, sEventName, actionList):
                     pass
                 actionList.append(action)
 
-filterKeys = ['m_InstanceID', 'm_Name', 'm_IsActive', 'm_LocalPosition', 'm_LocalRotation',
-     'm_SourcePrefab', 'm_Attributes', 'm_Actions']
+tileFilterKeys = ('m_InstanceID', 'm_Name', 'm_IsActive', 'm_LocalPosition', 'm_LocalRotation',
+     'm_SourcePrefab', 'm_Attributes', 'm_Actions')
 
 maps = {}
 municipalTiles = []
@@ -143,13 +146,19 @@ for node in prefabInstances:
         else:
             mapGameObject = findNodeByID(mapTransform['m_GameObject']['fileID'], gameObjectInstances)
     if not municipality:
+        mapNode = levelNode = None
         if mapGameObject['m_Name'] not in maps:
             maps[mapGameObject['m_Name']] = {}
-            maps[mapGameObject['m_Name']][levelGameObject['m_Name']] = {}
-        elif levelGameObject['m_Name'] not in maps[mapGameObject['m_Name']]:
-            maps[mapGameObject['m_Name']][levelGameObject['m_Name']] = {}
+            mapNode = maps[mapGameObject['m_Name']]
+            mapNode['m_InstanceID'] = mapTransform['instanceID']
+            copyItems(mapNode, mapGameObject, 'm_Name', 'm_IsActive')
+            copyItems(mapNode, mapTransform, 'm_LocalPosition', 'm_LocalRotation')
+            mapNode['m_Levels'] = {}
+            mapNode['m_Levels'][levelGameObject['m_Name']] = {}
+        elif levelGameObject['m_Name'] not in maps[mapGameObject['m_Name']]['m_Levels']:
+            maps[mapGameObject['m_Name']]['m_Levels'][levelGameObject['m_Name']] = {}
         mapNode = maps[mapGameObject['m_Name']]
-        levelNode = mapNode[levelGameObject['m_Name']]
+        levelNode = mapNode['m_Levels'][levelGameObject['m_Name']]
         levelNode['m_InstanceID'] = levelTransform['instanceID']
         copyItems(levelNode, levelGameObject, 'm_Name', 'm_IsActive')
         copyItems(levelNode, levelTransform,'m_LocalPosition', 'm_LocalRotation')
@@ -215,7 +224,7 @@ for node in prefabInstances:
     # other logic
     else:
         numberOfPrefabs['other'] = numberOfPrefabs['other'] + 1
-    for k in filterKeys:
+    for k in tileFilterKeys:
         if k in dataDict:
             result[k] = dataDict[k]
     #print(result)
