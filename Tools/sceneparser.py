@@ -94,6 +94,10 @@ def setKey(content, defaultValue=None, *names):
         if name not in content:
             content[name] = defaultValue
 
+def copyItems(target, source, *names):
+    for name in names:
+        target[name] = source[name]
+
 def findNodeByID(instanceID, content=ListOfNodes):
     for item in content:
         target = list(item.values())[0]
@@ -128,6 +132,7 @@ for node in prefabInstances:
     municipality = False
     levelTransformID = node['PrefabInstance']['m_Modification']['m_TransformParent']['fileID']
     levelTransform = findNodeByID(levelTransformID, transformInstances)
+    levelGameObject = mapTransform = mapGameObject = None
     if not levelTransform:
         municipality = True
     else:
@@ -140,10 +145,17 @@ for node in prefabInstances:
     if not municipality:
         if mapGameObject['m_Name'] not in maps:
             maps[mapGameObject['m_Name']] = {}
-            maps[mapGameObject['m_Name']][levelGameObject['m_Name']] = []
+            maps[mapGameObject['m_Name']][levelGameObject['m_Name']] = {}
         elif levelGameObject['m_Name'] not in maps[mapGameObject['m_Name']]:
-            maps[mapGameObject['m_Name']][levelGameObject['m_Name']] = []
-        maps[mapGameObject['m_Name']][levelGameObject['m_Name']].append(result)
+            maps[mapGameObject['m_Name']][levelGameObject['m_Name']] = {}
+        mapNode = maps[mapGameObject['m_Name']]
+        levelNode = mapNode[levelGameObject['m_Name']]
+        levelNode['m_InstanceID'] = levelTransform['instanceID']
+        copyItems(levelNode, levelGameObject, 'm_Name', 'm_IsActive')
+        copyItems(levelNode, levelTransform,'m_LocalPosition', 'm_LocalRotation')
+        if 'm_Tiles' not in levelNode:
+            levelNode['m_Tiles'] = []
+        levelNode['m_Tiles'].append(result)
     else:
         municipalTiles.append(result)
 
