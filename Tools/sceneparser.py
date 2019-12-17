@@ -1,6 +1,7 @@
 from unityparser import UnityDocument
 from enum import Enum
 import yaml
+import json
 
 def removeUnityTagAlias(filepath):
     """
@@ -68,8 +69,6 @@ class EventName(Enum):
     onPlayerEnterEvent = 'OnPlayerEnterEvent'
     onPlayerExitEvent = 'OnPlayerExitEvent'
 
-print(list(map(lambda x: x.value, TriggerAction)))
-
 numberOfPrefabs = {}
 for item in SupportedPrefabGuid:
     numberOfPrefabs[item] = 0
@@ -86,10 +85,10 @@ for data in yaml.safe_load_all(UnityStreamNoTags):
 prefabInstances = filter(lambda x: 'PrefabInstance' in x, ListOfNodes)
 gameObjectInstances = filter(lambda x: 'GameObject' in x, ListOfNodes)
 
-def setKey(dataDict, *names):
+def setKey(content, defaultValue=None, *names):
     for name in names:
-        if name not in dataDict:
-            dataDict[name] = None
+        if name not in content:
+            content[name] = defaultValue
 
 def findPrefabInstance(content, objectInstance):
     for item in content:
@@ -113,6 +112,10 @@ def eventListHandler(content, sEventName, actionList):
                     pass
                 actionList.append(action)
 
+filterKeys = ['m_Name', 'm_IsActive', 'm_LocalPosition.x', 'm_LocalPosition.y', 'm_LocalPosition.z', 'm_LocalRotation.x', 
+    'm_LocalRotation.y', 'm_LocalRotation.z', 'm_LocalRotation.w', 'm_SourcePrefab', 'm_InstanceID', 'm_Attributes', 'm_Actions']
+
+prefabs = []
 for node in prefabInstances:
     modifications = node['PrefabInstance']['m_Modification']['m_Modifications']
     dataDict = {}
@@ -123,10 +126,12 @@ for node in prefabInstances:
             dataDict[data['propertyPath']] = findPrefabInstance(ListOfNodes, data['objectReference']['fileID'])
     dataDict['m_SourcePrefab'] = getPrefabGuid(node['PrefabInstance'])
     dataDict['m_InstanceID'] = node['PrefabInstance']['instanceID']
+    dataDict['m_Attributes'] = {}
+    setKey(dataDict, 1, 'm_IsActive')
     # floor logic
     if dataDict['m_SourcePrefab'] == SupportedPrefabGuid.floor.value:
         numberOfPrefabs[SupportedPrefabGuid.floor] = numberOfPrefabs[SupportedPrefabGuid.floor] + 1
-        setKey(dataDict, 'm_floorState', 'declineAfterExit', 'stepsBeforeIncline')
+        setKey(dataDict['m_Attributes'], None, 'm_floorState', 'declineAfterExit', 'stepsBeforeIncline')
     # floorConcave logic
     elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.floorConcave.value:
         numberOfPrefabs[SupportedPrefabGuid.floorConcave] = numberOfPrefabs[SupportedPrefabGuid.floorConcave] + 1
@@ -145,14 +150,14 @@ for node in prefabInstances:
     # checkpoint logic
     elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.checkpoint.value:
         numberOfPrefabs[SupportedPrefabGuid.checkpoint] = numberOfPrefabs[SupportedPrefabGuid.checkpoint] + 1
-        setKey(dataDict, 'respawnObject')
+        setKey(dataDict['m_Attributes'], None, 'respawnObject')
     # lava logic
     elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.lava.value:
         numberOfPrefabs[SupportedPrefabGuid.lava] = numberOfPrefabs[SupportedPrefabGuid.lava] + 1
     # spike logic
     elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.spike.value:
         numberOfPrefabs[SupportedPrefabGuid.spike] = numberOfPrefabs[SupportedPrefabGuid.spike] + 1
-        setKey(dataDict, 'spikeUp')
+        setKey(dataDict['m_Attributes'], None, 'spikeUp')
     # door logic
     elif dataDict['m_SourcePrefab'] == SupportedPrefabGuid.door.value:
         numberOfPrefabs[SupportedPrefabGuid.door] = numberOfPrefabs[SupportedPrefabGuid.door] + 1
@@ -162,15 +167,17 @@ for node in prefabInstances:
         actionList = list()
         eventListHandler(dataDict, EventName.onPlayerEnterEvent.value, actionList)
         eventListHandler(dataDict, EventName.onPlayerExitEvent.value, actionList)
-        dataDict['m_Actions'] = actionList
+        setKey(dataDict['m_Attributes'], actionList, 'm_Actions')
     # other logic
     else:
         numberOfPrefabs['other'] = numberOfPrefabs['other'] + 1
-    print(dataDict)
-# Example, print each object's name and type
-# for node in ListOfNodes:
-#     print(node)
-    #if 'm_Name' in node[ node.keys()[0] ]:
-        #print( 'Name: ' + node[ node.keys()[0] ]['m_Name']  + ' NodeType: ' + node.keys()[0] )
-    #else:
-        #print( 'Name: ' + 'No Name Attribute'  + ' NodeType: ' + node.keys()[0] )
+    result = {}
+    for k in filterKeys:
+        if k in dataDict:
+            result[k] = dataDict[k]
+    print(result)
+    prefabs.append(result)
+
+outfile = open('./prefabs.json', 'w')
+json.dump(prefabs, outfile)
+outfile.close()
