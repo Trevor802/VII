@@ -75,7 +75,7 @@ for item in SupportedPrefabGuid:
     numberOfPrefabs[item] = 0
 numberOfPrefabs['other'] = 0
 
-levelName = 'Trevor_Lava.unity'
+levelName = 'All_Levels(Draft 1).unity'
 
 document = os.getcwd() + '/Assets/Scenes/' + levelName
 UnityStreamNoTags = removeUnityTagAlias(document)
@@ -128,7 +128,7 @@ tileFilterKeys = ('m_InstanceID', 'm_Name', 'm_IsActive', 'm_LocalPosition', 'm_
      'm_SourcePrefab', 'm_Attributes', 'm_Actions')
 
 maps = {}
-municipalTiles = []
+otherPrefabs = []
 for node in prefabInstances:
     dataDict = {}
     result = {}
@@ -139,11 +139,15 @@ for node in prefabInstances:
     if not levelTransform:
         municipality = True
     else:
+        if 'm_GameObject' not in levelTransform:
+            continue
         levelGameObject = findNodeByID(levelTransform['m_GameObject']['fileID'], gameObjectInstances)
         mapTransform = findNodeByID(levelTransform['m_Father']['fileID'], transformInstances)
         if not mapTransform:
             municipality = True
         else:
+            if 'm_GameObject' not in mapTransform:
+                continue
             mapGameObject = findNodeByID(mapTransform['m_GameObject']['fileID'], gameObjectInstances)
     if not municipality:
         mapNode = levelNode = None
@@ -166,13 +170,15 @@ for node in prefabInstances:
             levelNode['m_Tiles'] = []
         levelNode['m_Tiles'].append(result)
     else:
-        municipalTiles.append(result)
+        otherPrefabs.append(result)
 
     modifications = node['PrefabInstance']['m_Modification']['m_Modifications']
     for data in modifications:
         if data['value'] != None:
             dataDict[data['propertyPath']] = data['value']
         else:
+            if data['objectReference']['fileID'] == 0:
+                continue
             dataDict[data['propertyPath']] = findNodeByID(data['objectReference']['fileID'])['m_PrefabInstance']['fileID']
     dataDict['m_SourcePrefab'] = getPrefabGuid(node['PrefabInstance'])
     dataDict['m_InstanceID'] = node['PrefabInstance']['instanceID']
@@ -228,8 +234,7 @@ for node in prefabInstances:
         if k in dataDict:
             result[k] = dataDict[k]
     #print(result)
-maps['municipalTiles'] = municipalTiles
-print(maps)
+maps['otherPrefabs'] = otherPrefabs
 
 outfile = open(os.getcwd() + '/Tools/' + levelName + '.json', 'w')
 json.dump(maps, outfile, indent=4)
