@@ -236,6 +236,8 @@ for node in prefabInstances:
     #print(result)
 maps['otherPrefabs'] = otherPrefabs
 
-outfile = open(os.getcwd() + '/Tools/' + levelName + '.json', 'w')
+outfilePath = os.getcwd() + '/Tools/' + levelName + '.json'
+outfile = open(outfilePath, 'w')
 json.dump(maps, outfile, indent=4)
+print('Successfully export to ' + outfilePath + '!')
 outfile.close()

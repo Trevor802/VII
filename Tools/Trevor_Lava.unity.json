@@ -195,7 +195,7 @@
             }
         }
     },
-    "municipalTiles": [
+    "otherPrefabs": [
         {
             "m_InstanceID": 864607519,
             "m_Name": "TriggerBoard (1)",
