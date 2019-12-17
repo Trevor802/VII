@@ -75,7 +75,9 @@ for item in SupportedPrefabGuid:
     numberOfPrefabs[item] = 0
 numberOfPrefabs['other'] = 0
 
-document = os.getcwd() + '/Assets/Scenes/Trevor_Lava.unity'
+levelName = 'Trevor_Lava.unity'
+
+document = os.getcwd() + '/Assets/Scenes/' + levelName
 UnityStreamNoTags = removeUnityTagAlias(document)
 
 ListOfNodes = list()
@@ -83,19 +85,25 @@ ListOfNodes = list()
 for data in yaml.safe_load_all(UnityStreamNoTags):
     ListOfNodes.append( data )
 
-prefabInstances = filter(lambda x: 'PrefabInstance' in x, ListOfNodes)
-gameObjectInstances = filter(lambda x: 'GameObject' in x, ListOfNodes)
+prefabInstances = list(filter(lambda x: 'PrefabInstance' in x, ListOfNodes))
+gameObjectInstances = list(filter(lambda x: 'GameObject' in x, ListOfNodes))
+transformInstances = list(filter(lambda x: 'Transform' in x, ListOfNodes))
+
+def printInstances(instances=ListOfNodes):
+    for item in instances:
+        print(item)
 
 def setKey(content, defaultValue=None, *names):
     for name in names:
         if name not in content:
             content[name] = defaultValue
 
-def findPrefabInstance(content, objectInstance):
+def findNodeByID(instanceID, content=ListOfNodes):
     for item in content:
         target = list(item.values())[0]
-        if target['instanceID'] == objectInstance:
-            return target['m_PrefabInstance']['fileID']
+        if target['instanceID'] == instanceID:
+            return target
+    return None
 
 def eventListHandler(content, sEventName, actionList):
     if sEventName + '.persistentCalls.calls.Array.size' not in content:
@@ -116,15 +124,31 @@ def eventListHandler(content, sEventName, actionList):
 filterKeys = ['m_Name', 'm_IsActive', 'm_LocalPosition.x', 'm_LocalPosition.y', 'm_LocalPosition.z', 'm_LocalRotation.x', 
     'm_LocalRotation.y', 'm_LocalRotation.z', 'm_LocalRotation.w', 'm_SourcePrefab', 'm_InstanceID', 'm_Attributes', 'm_Actions']
 
-prefabs = []
+maps = {}
+municipalTiles = []
 for node in prefabInstances:
-    modifications = node['PrefabInstance']['m_Modification']['m_Modifications']
     dataDict = {}
+    result = {}
+    levelTransformID = node['PrefabInstance']['m_Modification']['m_TransformParent']['fileID']
+    levelTransform = findNodeByID(levelTransformID, transformInstances)
+    levelGameObject = findNodeByID(levelTransform['m_GameObject']['fileID'], gameObjectInstances)
+    mapTransform = findNodeByID(levelTransform['m_Father']['fileID'], transformInstances)
+    mapGameObject = findNodeByID(mapTransform['m_GameObject']['fileID'], gameObjectInstances)
+
+
+    if mapGameObject['m_Name'] not in maps:
+        maps[mapGameObject['m_Name']] = {}
+        maps[mapGameObject['m_Name']][levelGameObject['m_Name']] = []
+    elif levelGameObject['m_Name'] not in maps[mapGameObject['m_Name']]:
+        maps[mapGameObject['m_Name']][levelGameObject['m_Name']] = []
+    maps[mapGameObject['m_Name']][levelGameObject['m_Name']].append(result)
+
+    modifications = node['PrefabInstance']['m_Modification']['m_Modifications']
     for data in modifications:
         if data['value'] != None:
             dataDict[data['propertyPath']] = data['value']
         else:
-            dataDict[data['propertyPath']] = findPrefabInstance(ListOfNodes, data['objectReference']['fileID'])
+            dataDict[data['propertyPath']] = findNodeByID(data['objectReference']['fileID'])['m_PrefabInstance']['fileID']
     dataDict['m_SourcePrefab'] = getPrefabGuid(node['PrefabInstance'])
     dataDict['m_InstanceID'] = node['PrefabInstance']['instanceID']
     dataDict['m_Attributes'] = {}
@@ -172,13 +196,13 @@ for node in prefabInstances:
     # other logic
     else:
         numberOfPrefabs['other'] = numberOfPrefabs['other'] + 1
-    result = {}
     for k in filterKeys:
         if k in dataDict:
             result[k] = dataDict[k]
-    print(result)
-    prefabs.append(result)
+    #print(result)
+maps['municipalTiles'] = municipalTiles
+print(maps)
 
-outfile = open(os.getcwd() + '/Tools/prefabs.json', 'w')
-json.dump(prefabs, outfile)
+outfile = open(os.getcwd() + '/Tools/' + levelName + '.json', 'w')
+json.dump(maps, outfile, indent=4)
 outfile.close()
