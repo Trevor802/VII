@@ -121,8 +121,8 @@ def eventListHandler(content, sEventName, actionList):
                     pass
                 actionList.append(action)
 
-filterKeys = ['m_Name', 'm_IsActive', 'm_LocalPosition.x', 'm_LocalPosition.y', 'm_LocalPosition.z', 'm_LocalRotation.x', 
-    'm_LocalRotation.y', 'm_LocalRotation.z', 'm_LocalRotation.w', 'm_SourcePrefab', 'm_InstanceID', 'm_Attributes', 'm_Actions']
+filterKeys = ['m_InstanceID', 'm_Name', 'm_IsActive', 'm_LocalPosition', 'm_LocalRotation',
+     'm_SourcePrefab', 'm_Attributes', 'm_Actions']
 
 maps = {}
 municipalTiles = []
@@ -167,6 +167,9 @@ for node in prefabInstances:
             dataDict[data['propertyPath']] = findNodeByID(data['objectReference']['fileID'])['m_PrefabInstance']['fileID']
     dataDict['m_SourcePrefab'] = getPrefabGuid(node['PrefabInstance'])
     dataDict['m_InstanceID'] = node['PrefabInstance']['instanceID']
+    dataDict['m_LocalPosition'] = {'x': dataDict['m_LocalPosition.x'], 'y': dataDict['m_LocalPosition.y'], 'z': dataDict['m_LocalPosition.z']}
+    dataDict['m_LocalRotation'] = {'x': dataDict['m_LocalRotation.x'], 'y': dataDict['m_LocalRotation.y'], 
+        'z': dataDict['m_LocalRotation.z'], 'w': dataDict['m_LocalRotation.w']}
     dataDict['m_Attributes'] = {}
     setKey(dataDict, 1, 'm_IsActive')
     # floor logic

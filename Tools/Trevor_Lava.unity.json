@@ -17,17 +17,21 @@
             },
             "m_Tiles": [
                 {
+                    "m_InstanceID": 27759473,
                     "m_Name": "TriggerBoard",
                     "m_IsActive": 1,
-                    "m_LocalPosition.x": 0,
-                    "m_LocalPosition.y": 0.5,
-                    "m_LocalPosition.z": 0,
-                    "m_LocalRotation.x": 0,
-                    "m_LocalRotation.y": 0,
-                    "m_LocalRotation.z": 0,
-                    "m_LocalRotation.w": 1,
+                    "m_LocalPosition": {
+                        "x": 0,
+                        "y": 0.5,
+                        "z": 0
+                    },
+                    "m_LocalRotation": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0,
+                        "w": 1
+                    },
                     "m_SourcePrefab": "6cfeb0107473b4df588127baf9804cd5",
-                    "m_InstanceID": 27759473,
                     "m_Attributes": {
                         "m_Actions": [
                             {
@@ -57,17 +61,21 @@
             },
             "m_Tiles": [
                 {
+                    "m_InstanceID": 452439046,
                     "m_Name": "Wall_Thin",
                     "m_IsActive": 1,
-                    "m_LocalPosition.x": -2,
-                    "m_LocalPosition.y": 1.5,
-                    "m_LocalPosition.z": -1,
-                    "m_LocalRotation.x": 0,
-                    "m_LocalRotation.y": 1,
-                    "m_LocalRotation.z": 0,
-                    "m_LocalRotation.w": 0,
+                    "m_LocalPosition": {
+                        "x": -2,
+                        "y": 1.5,
+                        "z": -1
+                    },
+                    "m_LocalRotation": {
+                        "x": 0,
+                        "y": 1,
+                        "z": 0,
+                        "w": 0
+                    },
                     "m_SourcePrefab": "e3a352e5e460640c99199adbd07d7925",
-                    "m_InstanceID": 452439046,
                     "m_Attributes": {}
                 }
             ]
@@ -75,17 +83,21 @@
     },
     "municipalTiles": [
         {
+            "m_InstanceID": 1382478472,
             "m_Name": "TriggerBoard (1)",
             "m_IsActive": 1,
-            "m_LocalPosition.x": 0,
-            "m_LocalPosition.y": 0.5,
-            "m_LocalPosition.z": 0,
-            "m_LocalRotation.x": 0,
-            "m_LocalRotation.y": 0,
-            "m_LocalRotation.z": 0,
-            "m_LocalRotation.w": 1,
+            "m_LocalPosition": {
+                "x": 0,
+                "y": 0.5,
+                "z": 0
+            },
+            "m_LocalRotation": {
+                "x": 0,
+                "y": 0,
+                "z": 0,
+                "w": 1
+            },
             "m_SourcePrefab": "6cfeb0107473b4df588127baf9804cd5",
-            "m_InstanceID": 1382478472,
             "m_Attributes": {
                 "m_Actions": [
                     {
@@ -97,17 +109,21 @@
             }
         },
         {
+            "m_InstanceID": 1907607938,
             "m_Name": "Wall_Thin (1)",
             "m_IsActive": 1,
-            "m_LocalPosition.x": -5,
-            "m_LocalPosition.y": 1.5,
-            "m_LocalPosition.z": -1,
-            "m_LocalRotation.x": 0,
-            "m_LocalRotation.y": 1,
-            "m_LocalRotation.z": 0,
-            "m_LocalRotation.w": 0,
+            "m_LocalPosition": {
+                "x": -5,
+                "y": 1.5,
+                "z": -1
+            },
+            "m_LocalRotation": {
+                "x": 0,
+                "y": 1,
+                "z": 0,
+                "w": 0
+            },
             "m_SourcePrefab": "e3a352e5e460640c99199adbd07d7925",
-            "m_InstanceID": 1907607938,
             "m_Attributes": {}
         }
     ]
