@@ -19,11 +19,11 @@ public class Trap : Tile
         if (!m_close)
         {
             m_close = true;
-            if (player.m_RespawnPosIndex == 5)
+            if (player.GetRespawnPosIndex() == 5)
             {
                 player.DiedInTrapInLevel5 = true;
             }
-            if (player.m_RespawnPosIndex == 7)
+            if (player.GetRespawnPosIndex() == 7)
             {
                 player.DiedInTrapInLevel7 = true;
             }

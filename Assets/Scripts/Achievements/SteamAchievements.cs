@@ -34,7 +34,7 @@ public class SteamAchievements : MonoBehaviour
 
         if (player)
         {
-            if (player.m_RespawnPosIndex == 0)
+            if (player.GetRespawnPosIndex() == 0)
             {
                 if(player.DiedInLevel0 == true)
                 {
@@ -42,7 +42,7 @@ public class SteamAchievements : MonoBehaviour
                 }
             }
 
-            if(player.m_RespawnPosIndex == 5)
+            if(player.GetRespawnPosIndex() == 5)
             {
                 if(player.DiedInLevel5 == false && player.DiedInTrapInLevel5 == true)
                 {
@@ -50,7 +50,7 @@ public class SteamAchievements : MonoBehaviour
                 }
             }
 
-            if(player.m_RespawnPosIndex == 8)
+            if(player.GetRespawnPosIndex() == 8)
             {
                 if(player.FinishLevel7 == true && player.DiedInTrapInLevel7 == false)
                 {
@@ -58,7 +58,7 @@ public class SteamAchievements : MonoBehaviour
                 }
             }
 
-            if(player.m_RespawnPosIndex == 8)
+            if(player.GetRespawnPosIndex() == 8)
             {
                 if (Level8TriggerBoard)
                 {
@@ -69,7 +69,7 @@ public class SteamAchievements : MonoBehaviour
                 }
             }
 
-            if(player.m_RespawnPosIndex == 17)
+            if(player.GetRespawnPosIndex() == 17)
             {
 
             }

@@ -15,7 +15,7 @@ public class ClearPositionOffset : EditorWindow
 	private void OnGUI()
 	{
         m_SnapValue = EditorGUILayout.FloatField("Snap Value", m_SnapValue);
-        if (GUILayout.Button("Snap to Grid"))
+        if (GUILayout.Button("Snap to Value"))
 		{
             foreach (var gameObject in Selection.gameObjects)
             {
@@ -31,8 +31,24 @@ public class ClearPositionOffset : EditorWindow
                 }
             }
 		}
-
-		GUI.enabled = false;
+        if (GUILayout.Button("Snap to Grid"))
+        {
+            foreach (var gameObject in Selection.gameObjects)
+            {
+                var selection = gameObject.GetComponentsInChildren<Transform>();
+                Vector3 offset = new Vector3(
+                    selection[1].transform.position.x - Mathf.Floor(selection[1].transform.position.x),
+                    selection[1].transform.position.y - Mathf.Floor(selection[1].transform.position.y),
+                    selection[1].transform.position.z - Mathf.Floor(selection[1].transform.position.z));
+                foreach (var item in selection)
+                {
+                    Undo.RecordObject(item.transform, "Previous transform");
+                    if (item.gameObject == gameObject) continue;
+                    item.transform.position += offset;
+                }
+            }
+        }
+        GUI.enabled = false;
 		EditorGUILayout.LabelField("Selection count: " + Selection.objects.Length);
 	}
 }

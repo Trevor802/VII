@@ -39,7 +39,8 @@ public class Player : MonoBehaviour
         //UI Initialization 
         UIManager.UIInstance.InitUI();
         UIManager.UIInstance.UpdateUI();
-
+        transform.position = RespawnTargetGameObjects[m_playerData.respawnPositionIndex].transform.position +
+            VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
     }
     private void Awake()
     {
@@ -47,10 +48,9 @@ public class Player : MonoBehaviour
         {
             Instance = this;
             // Initialization
-            m_playerData = new VII.PlayerData(initLives, initSteps,
-                RespawnPositions[m_RespawnPosIndex].transform.position);
+            m_playerData = new VII.PlayerData(initLives, initSteps);
             m_inverseMoveTime = 1 / moveTime;
-            RespawnPositions[m_RespawnPosIndex].transform.parent.parent.gameObject.SetActive(true);
+            RespawnTargetGameObjects[m_playerData.respawnPositionIndex].transform.parent.gameObject.SetActive(true);
             Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
             //Binding Input
             playerInput = new InputActions();
@@ -77,11 +77,10 @@ public class Player : MonoBehaviour
     public GameObject BodyDetector;
     public GameObject InteractableSpawnPoint;
     public Collider InteractiveCollider;
-    public List<GameObject> RespawnPositions; 
+    public List<GameObject> RespawnTargetGameObjects; 
     /*[Header("Prefabs")]
     public GameObject TombstonePrefab;*/
     [Header("Data for Achievements")]
-    public int m_RespawnPosIndex = 0;
     //level0
     public bool DiedInLevel0;
     //level5
@@ -182,8 +181,8 @@ public class Player : MonoBehaviour
         // Input
         // TODO Support multiple device
         #region Input
-        if (Input.inputString != "")
-            Debug.Log(Input.inputString);
+        //if (Input.inputString != "")
+        //    Debug.Log(Input.inputString);
         int horizontal = 0;
         int vertical = 0;
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
@@ -321,11 +320,11 @@ public class Player : MonoBehaviour
         }
 
         //Data for Achievements
-        if (m_RespawnPosIndex == 0 && costLife == true)
+        if (m_playerData.respawnPositionIndex == 0 && costLife == true)
         {
             DiedInLevel0 = true;
         }
-        if (m_RespawnPosIndex == 5 && !DiedInTrapInLevel5 && costLife == true)
+        if (m_playerData.respawnPositionIndex == 5 && !DiedInTrapInLevel5 && costLife == true)
         {
             DiedInLevel5 = true;
         }
@@ -349,7 +348,8 @@ public class Player : MonoBehaviour
         GroundDetector.SetActive(false);
         // Drop Items
         DropItems(costLife);
-        transform.position = m_playerData.respawnPosition;
+        transform.position = RespawnTargetGameObjects[m_playerData.respawnPositionIndex].transform.position
+            + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
         InteractiveCollider.enabled = true;
         GroundDetector.SetActive(true);
         m_playerData.steps = initSteps;
@@ -387,9 +387,8 @@ public class Player : MonoBehaviour
 
     public void SetRespawnPosition(int i_Next)
     {
-        m_RespawnPosIndex = Mathf.Abs((RespawnPositions.Count + m_RespawnPosIndex + i_Next) % RespawnPositions.Count);
-        PlayerData.respawnPosition = RespawnPositions[m_RespawnPosIndex].transform.position;
-        RespawnPositions[m_RespawnPosIndex].transform.parent.parent.gameObject.SetActive(true);
+        m_playerData.respawnPositionIndex = Mathf.Abs((RespawnTargetGameObjects.Count + m_playerData.respawnPositionIndex + i_Next) % RespawnTargetGameObjects.Count);
+        RespawnTargetGameObjects[m_playerData.respawnPositionIndex].transform.parent.gameObject.SetActive(true);
     }
 
     public void SetInitLives(int newLife)
@@ -409,5 +408,5 @@ public class Player : MonoBehaviour
     public VII.Inventory Inventory { get { return m_playerData.Inventory; } }
     public int GetSteps() { return m_playerData.steps; }
     public int GetLives() { return m_playerData.lives; }
-    public int GetRespawnPosIndex() { return m_RespawnPosIndex; }
+    public int GetRespawnPosIndex() { return m_playerData.respawnPositionIndex; }
 }

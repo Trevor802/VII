@@ -15,7 +15,7 @@ public class Checkpoint : Tile
         base.OnPlayerEnter(player);
         if (player.PlayerData.Inventory.ContainItem(requiredItem) && !activated)
         {
-            if (player.m_RespawnPosIndex == 7)
+            if (player.GetRespawnPosIndex() == 7)
             {
                 player.FinishLevel7 = true;
             }
