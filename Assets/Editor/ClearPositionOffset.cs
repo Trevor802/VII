@@ -19,9 +19,13 @@ public class ClearPositionOffset : EditorWindow
 		{
             foreach (var gameObject in Selection.gameObjects)
             {
+                Undo.RecordObject(gameObject.transform, "Parent Previous Transform");
+                gameObject.transform.position = Vector3.zero;
                 var selection = gameObject.GetComponentsInChildren<Transform>();
                 foreach (var item in selection)
                 {
+                    if (item.gameObject == gameObject || item.parent.gameObject != gameObject)
+                        continue;
                     Undo.RecordObject(item.transform, "Previous transform");
                     Vector3 itemPosition = item.transform.position;
                     itemPosition.x = Mathf.Round(itemPosition.x / m_SnapValue) * m_SnapValue;
@@ -42,8 +46,9 @@ public class ClearPositionOffset : EditorWindow
                     selection[1].transform.position.z - Mathf.Floor(selection[1].transform.position.z));
                 foreach (var item in selection)
                 {
+                    if (item.gameObject == gameObject || item.parent.gameObject != gameObject)
+                        continue;
                     Undo.RecordObject(item.transform, "Previous transform");
-                    if (item.gameObject == gameObject) continue;
                     item.transform.position += offset;
                 }
             }
