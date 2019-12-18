@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Checkpoint : Tile
 {
-    // TODO Remove respawnObject reference
-    public GameObject respawnObject;
     public Item requiredItem;
     public ByteSheep.Events.AdvancedEvent OnPlayerEnterEvent;
     private bool activated = false;
