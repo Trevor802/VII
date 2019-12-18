@@ -4,26 +4,32 @@ using UnityEditor;
 
 public class ClearPositionOffset : EditorWindow
 {
-	[MenuItem("Tools/Clear Position Offset")]
-	static void CreateReplaceWithPrefab()
+    [SerializeField] private float m_SnapValue = 0.5f;
+
+    [MenuItem("Tools/Clear Position Offset")]
+	static void CreateClearPositionOffset()
 	{
 		EditorWindow.GetWindow<ClearPositionOffset>();
 	}
 
 	private void OnGUI()
 	{
-		if (GUILayout.Button("Clear Offset"))
+        m_SnapValue = EditorGUILayout.FloatField("Snap Value", m_SnapValue);
+        if (GUILayout.Button("Snap to Grid"))
 		{
-			var selection = Selection.gameObjects;
-
-			for (var i = selection.Length - 1; i >= 1; --i)
-			{
-				var selected = selection[i];
-
-                selected.transform.localPosition -= selection[0].transform.localPosition;
-                Undo.RecordObject(selected.transform, "Previous transform");
-			}
-            selection[0].transform.localPosition = Vector3.zero;
+            foreach (var gameObject in Selection.gameObjects)
+            {
+                var selection = gameObject.GetComponentsInChildren<Transform>();
+                foreach (var item in selection)
+                {
+                    Undo.RecordObject(item.transform, "Previous transform");
+                    Vector3 itemPosition = item.transform.position;
+                    itemPosition.x = Mathf.Round(itemPosition.x / m_SnapValue) * m_SnapValue;
+                    itemPosition.y = Mathf.Round(itemPosition.y / m_SnapValue) * m_SnapValue;
+                    itemPosition.z = Mathf.Round(itemPosition.z / m_SnapValue) * m_SnapValue;
+                    item.transform.position = itemPosition;
+                }
+            }
 		}
 
 		GUI.enabled = false;
