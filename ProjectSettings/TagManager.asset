@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - VirtualCamera
+  - NewLevel
   - Map
   - Level
   - Tile

@@ -36,11 +36,10 @@ public class Player : MonoBehaviour
     private void Start()
     {
         //UpdateStepUI();
-        //UI Initialization 
-        UIManager.UIInstance.InitUI();
         UIManager.UIInstance.UpdateUI();
 
         m_playerData.respawnPositionIndex = UIManager.UIInstance.startRespawnIndex;
+        restartRespawnPositionIndex = m_playerData.respawnPositionIndex;
         initLives = UIManager.UIInstance.startLives;
         Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
         transform.position = RespawnTargetGameObjects[m_playerData.respawnPositionIndex].transform.position +
@@ -105,6 +104,7 @@ public class Player : MonoBehaviour
     private Vector3 nextGridPos;
     private InputActions playerInput;
     private ObjectPooler Pools;
+    private int restartRespawnPositionIndex;
 
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
     {
@@ -316,12 +316,12 @@ public class Player : MonoBehaviour
         UIManager.UIInstance.UpdateUI();
         if (m_playerData.lives <= 0)
         {
-            UIManager.UIInstance.startLevelIndex = CameraManager.Instance.level_index;
-            UIManager.UIInstance.startRespawnIndex = m_playerData.respawnPositionIndex;
+            UIManager.UIInstance.startLevelIndex = CameraManager.Instance.big_level_index;
+            UIManager.UIInstance.startRespawnIndex = restartRespawnPositionIndex;
             UIManager.UIInstance.startLives = initLives;
-            SceneManager.LoadScene("All_Levels(Draft 1)");
             //Clear UI manager
             UIManager.UIInstance.ClearUI();
+            SceneManager.LoadScene("All_Levels(Draft 1)");
         }
 
         //Data for Achievements
@@ -397,6 +397,11 @@ public class Player : MonoBehaviour
     public void SetRespawnPosition(int i_Next)
     {
         m_playerData.respawnPositionIndex = Mathf.Abs((RespawnTargetGameObjects.Count + m_playerData.respawnPositionIndex + i_Next) % RespawnTargetGameObjects.Count);
+    }
+
+    public void SetRestartRespawnPosition()
+    {
+        restartRespawnPositionIndex = m_playerData.respawnPositionIndex;
     }
 
     public void SetInitLives(int newLife)
