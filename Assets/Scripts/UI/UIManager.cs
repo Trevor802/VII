@@ -31,6 +31,10 @@ public class UIManager : MonoBehaviour
     private List<RawImage> m_lifeIcons;
     private List<RawImage> m_crossIcons;
 
+    public int startLevelIndex = 0;
+    public int startRespawnIndex = 0;
+    public int startLives = 7;
+
     public void UpdateUI()
     {
         //Player player = FindObjectOfType<Player>();
