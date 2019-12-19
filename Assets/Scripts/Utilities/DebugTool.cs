@@ -19,5 +19,7 @@ public class DebugTool : MonoBehaviour
             Player.Instance.SetRespawnPosition(-1);
             Player.Instance.Respawn(false);
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+            Debug.Log(VII.SceneDataManager.Instance.GetCurrentTileData().name);
     }
 }

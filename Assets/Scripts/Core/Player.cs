@@ -45,6 +45,9 @@ public class Player : MonoBehaviour
         Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
         transform.position = RespawnTargetGameObjects[m_playerData.respawnPositionIndex].transform.position +
             VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
+        // Wrap these
+        RespawnTargetGameObjects[m_playerData.respawnPositionIndex].GetComponent<Tile>().playerInside = true;
+        tilePlayerInside = RespawnTargetGameObjects[m_playerData.respawnPositionIndex].GetComponent<Tile>();
     }
     private void Awake()
     {
@@ -352,6 +355,10 @@ public class Player : MonoBehaviour
         DropItems(costLife);
         transform.position = RespawnTargetGameObjects[m_playerData.respawnPositionIndex].transform.position
             + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
+        // Wrap these
+        Debug.Log(RespawnTargetGameObjects[m_playerData.respawnPositionIndex].GetComponent<Tile>());
+        RespawnTargetGameObjects[m_playerData.respawnPositionIndex].GetComponent<Tile>().playerInside = true;
+        tilePlayerInside = RespawnTargetGameObjects[m_playerData.respawnPositionIndex].GetComponent<Tile>();
         InteractiveCollider.enabled = true;
         GroundDetector.SetActive(true);
         m_playerData.steps = initSteps;

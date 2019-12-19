@@ -7,7 +7,8 @@ public class Tile : MonoBehaviour
 {
     protected bool playerInTemp;
     protected bool playerOutTemp;
-    protected bool playerInside;
+    // TODO Set true for the respawn tile automatically
+    public bool playerInside;
     protected bool receiveTick;
     protected Player collidedPlayer;
 
@@ -50,13 +51,14 @@ public class Tile : MonoBehaviour
 
     protected virtual void OnPlayerRespawnStart(Player player)
     {
-        
+        playerInTemp = false;
+        playerOutTemp = false;
+        playerInside = false;
     }
     protected virtual void OnPlayerRespawnEnd(Player player)
     {
         playerInTemp = false;
         playerOutTemp = false;
-        playerInside = false;
     }
 
     protected virtual void OnPlayerEnter(Player player)

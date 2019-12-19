@@ -58,16 +58,16 @@ namespace VII
         #region getters/setters
         public List<LevelData> GetLevelData() { return m_LevelData; }
         public int GetMapID() { return m_MapID; }
+        public GameObject GetMapObject() { return m_MapObject; }
         public bool finished { get; set; }
         #endregion
     }
 
     public class LevelData
     {
-        public LevelData(List<GameObject> i_Tiles, int i_LevelID, GameObject i_LevelObject)
+        public LevelData(int i_LevelID, GameObject i_LevelObject)
         {
             #region Constructor
-            m_TileData = i_Tiles;
             m_LevelID = i_LevelID;
             m_LevelObject = i_LevelObject;
             #endregion
@@ -82,7 +82,6 @@ namespace VII
         }
 
         private GameObject m_LevelObject;
-        private List<GameObject> m_TileData;
         private int m_LevelID;
         private Checkpoint m_Checkpoint;
         private RespawnPoint m_RespawnPoint;
@@ -95,9 +94,22 @@ namespace VII
             parentMapData.finished |= parentMapData.CheckMapFinished();
         }
 
+        public List<GameObject> GetChildrenObjectsWithTag(string i_Tag)
+        {
+            List<GameObject> children = new List<GameObject>();
+            foreach (Transform item in m_LevelObject.transform)
+            {
+                if (item.CompareTag(i_Tag))
+                {
+                    children.Add(item.gameObject);
+                }
+            }
+            return children;
+        }
+
         private T GetComponentInTiles<T>() where T : Component
         {
-            foreach (var item in m_TileData)
+            foreach (var item in GetChildrenObjectsWithTag(GameData.TILE_TAG))
             {
                 if (item.GetComponent<T>() != null)
                 {
@@ -109,8 +121,12 @@ namespace VII
 
         public bool GetPlayerInside()
         {
-            foreach (var tile in m_TileData)
+            foreach (var tile in GetChildrenObjectsWithTag(GameData.TILE_TAG))
             {
+                if (!tile)
+                {
+                    Debug.Log(m_LevelObject);
+                }
                 if (tile.GetComponent<Tile>() && tile.GetComponent<Tile>().GetPlayerInside())
                 {
                     return true;
@@ -121,8 +137,12 @@ namespace VII
 
         public Tile GetTilePlayerInside()
         {
-            foreach (var tile in m_TileData)
+            foreach (var tile in GetChildrenObjectsWithTag(GameData.TILE_TAG))
             {
+                if (!tile)
+                {
+                    Debug.Log(m_LevelObject);
+                }
                 if (tile.GetComponent<Tile>() && tile.GetComponent<Tile>().GetPlayerInside())
                 {
                     return tile.GetComponent<Tile>();
@@ -133,32 +153,41 @@ namespace VII
 
         public void SetTilesEnabledState(bool i_bState)
         {
-            m_TileData.ForEach(x => x.GetComponent<Tile>().SetReceiveTick(i_bState));
+            GetChildrenObjectsWithTag(GameData.TILE_TAG).ForEach(
+                x => x.GetComponent<Tile>().SetReceiveTick(i_bState));
         }
 
         #endregion
 
         #region getters/setters
-        public List<GameObject> GetTileData() { return m_TileData; }
         public Checkpoint GetCheckpoint() { return m_Checkpoint; }
         public RespawnPoint GetRespawnPoint() { return m_RespawnPoint; }
         public bool finished { get; set; }
         public int GetLevelID() { return m_LevelID; }
         public MapData parentMapData { get; set; }
         public int GetPlayerLives() { return m_PlayerLivesAvailable; }
+        public GameObject GetLevelObject() { return m_LevelObject; }
         #endregion
     }
 
     public class SceneDataManager : MonoBehaviour
     {
+        public static SceneDataManager Instance = null;
+
         private List<MapData> m_MapData;
-        private const string m_MapTag = "Map";
-        private const string m_LevelTag = "Level";
-        private const string m_TileTag = "Tile";
 
         private void Awake()
         {
-            var maps = GameObject.FindGameObjectsWithTag(m_MapTag);
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else if (Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            var maps = GameObject.FindGameObjectsWithTag(GameData.MAP_TAG);
             var listOfMapData = new List<MapData>();
             int mapID = 0;
             foreach (var map in maps)
@@ -166,7 +195,7 @@ namespace VII
                 var levels = new List<GameObject>();
                 foreach (Transform level in map.transform)
                 {
-                    if (level.CompareTag(m_LevelTag))
+                    if (level.CompareTag(GameData.LEVEL_TAG))
                     {
                         levels.Add(level.gameObject);
                     }
@@ -175,20 +204,13 @@ namespace VII
                 int levelID = 0;
                 foreach (var level in levels)
                 {
-                    var tiles = new List<GameObject>();
-                    foreach (Transform child in level.transform)
-                    {
-                        if (child.CompareTag(m_TileTag))
-                        {
-                            tiles.Add(child.gameObject);
-                        }
-                    }
-                    listOfLevelData.Add(new LevelData(tiles, levelID, level.gameObject));
+                    listOfLevelData.Add(new LevelData(levelID, level.gameObject));
                     levelID++;
                 }
                 listOfMapData.Add(new MapData(listOfLevelData, mapID, map));
                 mapID++;
             }
+            m_MapData = listOfMapData;
         }
 
         public MapData GetCurrentMapData()
