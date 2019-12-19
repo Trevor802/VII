@@ -36,8 +36,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         //UpdateStepUI();
-        //UI Initialization 
-        UIManager.UIInstance.InitUI();
         UIManager.UIInstance.UpdateUI();
 
         m_playerData.respawnPositionIndex = UIManager.UIInstance.startRespawnIndex;
@@ -318,9 +316,9 @@ public class Player : MonoBehaviour
             UIManager.UIInstance.startLevelIndex = CameraManager.Instance.big_level_index;
             UIManager.UIInstance.startRespawnIndex = restartRespawnPositionIndex;
             UIManager.UIInstance.startLives = initLives;
-            SceneManager.LoadScene("All_Levels(Draft 1)");
             //Clear UI manager
             UIManager.UIInstance.ClearUI();
+            SceneManager.LoadScene("All_Levels(Draft 1)");
         }
 
         //Data for Achievements

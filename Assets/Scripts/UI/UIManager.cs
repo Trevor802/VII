@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
         if (UIInstance == null)
         {
             UIInstance = this;
+            InitUI();
         }
         else if (UIInstance != this)
         {
