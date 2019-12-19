@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
         UIManager.UIInstance.UpdateUI();
 
         m_playerData.respawnPositionIndex = UIManager.UIInstance.startRespawnIndex;
+        initLives = UIManager.UIInstance.startLives;
         Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
         transform.position = RespawnTargetGameObjects[m_playerData.respawnPositionIndex].transform.position +
             VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
@@ -314,6 +315,7 @@ public class Player : MonoBehaviour
         {
             UIManager.UIInstance.startLevelIndex = CameraManager.Instance.level_index;
             UIManager.UIInstance.startRespawnIndex = m_playerData.respawnPositionIndex;
+            UIManager.UIInstance.startLives = initLives;
             SceneManager.LoadScene("All_Levels(Draft 1)");
             //Clear UI manager
             UIManager.UIInstance.ClearUI();

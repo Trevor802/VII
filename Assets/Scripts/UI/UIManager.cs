@@ -33,6 +33,7 @@ public class UIManager : MonoBehaviour
 
     public int startLevelIndex = 0;
     public int startRespawnIndex = 0;
+    public int startLives = 7;
 
     public void UpdateUI()
     {
