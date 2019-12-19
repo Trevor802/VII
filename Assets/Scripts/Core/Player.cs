@@ -39,6 +39,10 @@ public class Player : MonoBehaviour
         //UI Initialization 
         UIManager.UIInstance.InitUI();
         UIManager.UIInstance.UpdateUI();
+
+        m_playerData.respawnPositionIndex = CameraManager.Instance.startLevelIndex;
+        RespawnTargetGameObjects[m_playerData.respawnPositionIndex].transform.parent.gameObject.SetActive(true);
+        Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
         transform.position = RespawnTargetGameObjects[m_playerData.respawnPositionIndex].transform.position +
             VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
     }
@@ -50,8 +54,6 @@ public class Player : MonoBehaviour
             // Initialization
             m_playerData = new VII.PlayerData(initLives, initSteps);
             m_inverseMoveTime = 1 / moveTime;
-            RespawnTargetGameObjects[m_playerData.respawnPositionIndex].transform.parent.gameObject.SetActive(true);
-            Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
             //Binding Input
             playerInput = new InputActions();
             playerInput.Player.Move.performed += ctx => PerformMove();
@@ -78,8 +80,6 @@ public class Player : MonoBehaviour
     public GameObject InteractableSpawnPoint;
     public Collider InteractiveCollider;
     public List<GameObject> RespawnTargetGameObjects; 
-    /*[Header("Prefabs")]
-    public GameObject TombstonePrefab;*/
     [Header("Data for Achievements")]
     //level0
     public bool DiedInLevel0;
@@ -107,7 +107,6 @@ public class Player : MonoBehaviour
     {
         // Ground detection
         bool groundHit = Physics.Raycast(GroundDetector.transform.position, i_dir, VII.GameData.STEP_SIZE);
-        // Player can't move to that direction even 1 grid
         if (!groundHit)
         {
             return false;
@@ -117,6 +116,7 @@ public class Player : MonoBehaviour
         bool bodyHitResult;
         bodyHitResult = Physics.Raycast(BodyDetector.transform.position,
             i_dir, out bodyHit, m_maxCastDistance, (int)VII.HitLayer.Block);
+        // Player can't move to that direction even 1 grid
         if (bodyHitResult &&
             Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
             < VII.GameData.STEP_SIZE)
@@ -130,8 +130,8 @@ public class Player : MonoBehaviour
             i_dir, out unreachableTileHit, m_maxCastDistance, (int)VII.HitLayer.Unreachable);
         if (unreachableTileHitResult)
         {
-            Debug.Log(unreachableTileHit.collider.transform.name);
-            Debug.Log(Vector3.Distance(GroundDetector.transform.position, unreachableTileHit.transform.position));
+            //Debug.Log(unreachableTileHit.collider.transform.name);
+            //Debug.Log(Vector3.Distance(GroundDetector.transform.position, unreachableTileHit.transform.position));
             if(Vector3.Distance(GroundDetector.transform.position, unreachableTileHit.transform.position)
             <= VII.GameData.STEP_SIZE)
                 return false;
@@ -251,11 +251,16 @@ public class Player : MonoBehaviour
             bool bodyHitResult;
             bodyHitResult = Physics.Raycast(BodyDetector.transform.position,
            moveDir * VII.GameData.STEP_SIZE, out bodyHit, m_maxCastDistance, (int)VII.HitLayer.Block);
+            if (bodyHitResult)
+            {
+                Debug.Log(bodyHit.transform.position);
+                Debug.Log(transform.position);
+            }
             if (bodyHitResult &&
                 Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
                 < VII.GameData.STEP_SIZE * 0.5f)
             {
-                transform.position = new Vector3(bodyHit.transform.position.x - (moveDir * 0.5f).x, 0, bodyHit.transform.position.z - (moveDir * 0.5f).z);
+                transform.position = new Vector3(bodyHit.transform.position.x - (moveDir * 0.5f).x, bodyHit.transform.position.y - VII.GameData.STEP_SIZE * 0.5f, bodyHit.transform.position.z - (moveDir * 0.5f).z);
                 currentGridPos = transform.position;
                 nextGridPos = currentGridPos;
                 m_playerData.playerState = VII.PlayerState.IDLE;
@@ -313,8 +318,8 @@ public class Player : MonoBehaviour
         UIManager.UIInstance.UpdateUI();
         if (m_playerData.lives <= 0)
         {
-            //return;
-            Debug.Log("Game Over");
+            CameraManager.Instance.startLevelIndex = CameraManager.Instance.level_index;
+            VII.SceneManager.instance.LoadScene(VII.SceneType.GameScene);
             //Clear UI manager
             UIManager.UIInstance.ClearUI();
         }
@@ -388,7 +393,7 @@ public class Player : MonoBehaviour
     public void SetRespawnPosition(int i_Next)
     {
         m_playerData.respawnPositionIndex = Mathf.Abs((RespawnTargetGameObjects.Count + m_playerData.respawnPositionIndex + i_Next) % RespawnTargetGameObjects.Count);
-        RespawnTargetGameObjects[m_playerData.respawnPositionIndex].transform.parent.gameObject.SetActive(true);
+        RespawnTargetGameObjects[m_playerData.respawnPositionIndex + 1].transform.parent.gameObject.SetActive(true);
     }
 
     public void SetInitLives(int newLife)
