@@ -1078,6 +1078,7 @@ public class JSONObject {
 					case Type.STRING: result.Add(keys[i], val.str); break;
 					case Type.NUMBER: result.Add(keys[i], val.n + ""); break;
 					case Type.BOOL: result.Add(keys[i], val.b + ""); break;
+                    case Type.NULL: result.Add(keys[i], "null"); break;
 					default:
 #if UNITY_2 || UNITY_3 || UNITY_4 || UNITY_5
 						Debug.LogWarning

@@ -128,7 +128,6 @@ tileFilterKeys = ('m_InstanceID', 'm_Name', 'm_IsActive', 'm_LocalPosition', 'm_
      'm_SourcePrefab', 'm_Attributes', 'm_Actions')
 
 maps = {}
-otherPrefabs = []
 for node in prefabInstances:
     dataDict = {}
     result = {}
@@ -169,8 +168,6 @@ for node in prefabInstances:
         if 'm_Tiles' not in levelNode:
             levelNode['m_Tiles'] = []
         levelNode['m_Tiles'].append(result)
-    else:
-        otherPrefabs.append(result)
 
     modifications = node['PrefabInstance']['m_Modification']['m_Modifications']
     for data in modifications:
@@ -234,10 +231,17 @@ for node in prefabInstances:
         if k in dataDict:
             result[k] = dataDict[k]
     #print(result)
-maps['otherPrefabs'] = otherPrefabs
 
-outfilePath = os.getcwd() + '/Tools/' + levelName + '.json'
+sceneData = []
+for k, v in maps.items():
+    mapData = []
+    for key, value in v['m_Levels'].items():
+        mapData.append(value)
+    v['m_Levels'] = mapData
+    sceneData.append(v)
+
+outfilePath = os.getcwd() + '/Assets/StreamingAssets/' + levelName + '.json'
 outfile = open(outfilePath, 'w')
-json.dump(maps, outfile, indent=4)
+json.dump(sceneData, outfile, indent=4)
 print('Successfully export to ' + outfilePath + '!')
 outfile.close()
