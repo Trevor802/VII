@@ -6,6 +6,9 @@ TagManager:
   tags:
   - VirtualCamera
   - NewLevel
+  - Map
+  - Level
+  - Tile
   layers:
   - Default
   - TransparentFX

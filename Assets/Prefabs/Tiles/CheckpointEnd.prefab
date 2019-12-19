@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3526707428679897419}
   m_Layer: 0
   m_Name: CheckpointEnd
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f305d17cc6c514192afcc688c762e477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnObject: {fileID: 0}
   requiredItem: {fileID: 11400000, guid: 60eec252b9c3b438cb854306806a057a, type: 2}
   OnPlayerEnterEvent:
     inspectorListHeight: 83
