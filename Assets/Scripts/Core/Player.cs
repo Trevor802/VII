@@ -40,8 +40,7 @@ public class Player : MonoBehaviour
         UIManager.UIInstance.InitUI();
         UIManager.UIInstance.UpdateUI();
 
-        m_playerData.respawnPositionIndex = CameraManager.Instance.startLevelIndex;
-        RespawnTargetGameObjects[m_playerData.respawnPositionIndex].transform.parent.gameObject.SetActive(true);
+        m_playerData.respawnPositionIndex = UIManager.UIInstance.startRespawnIndex;
         Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
         transform.position = RespawnTargetGameObjects[m_playerData.respawnPositionIndex].transform.position +
             VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
@@ -251,11 +250,6 @@ public class Player : MonoBehaviour
             bool bodyHitResult;
             bodyHitResult = Physics.Raycast(BodyDetector.transform.position,
            moveDir * VII.GameData.STEP_SIZE, out bodyHit, m_maxCastDistance, (int)VII.HitLayer.Block);
-            if (bodyHitResult)
-            {
-                Debug.Log(bodyHit.transform.position);
-                Debug.Log(transform.position);
-            }
             if (bodyHitResult &&
                 Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
                 < VII.GameData.STEP_SIZE * 0.5f)
@@ -318,8 +312,9 @@ public class Player : MonoBehaviour
         UIManager.UIInstance.UpdateUI();
         if (m_playerData.lives <= 0)
         {
-            CameraManager.Instance.startLevelIndex = CameraManager.Instance.level_index;
-            VII.SceneManager.instance.LoadScene(VII.SceneType.GameScene);
+            UIManager.UIInstance.startLevelIndex = CameraManager.Instance.level_index;
+            UIManager.UIInstance.startRespawnIndex = m_playerData.respawnPositionIndex;
+            SceneManager.LoadScene("All_Levels(Draft 1)");
             //Clear UI manager
             UIManager.UIInstance.ClearUI();
         }
@@ -393,7 +388,6 @@ public class Player : MonoBehaviour
     public void SetRespawnPosition(int i_Next)
     {
         m_playerData.respawnPositionIndex = Mathf.Abs((RespawnTargetGameObjects.Count + m_playerData.respawnPositionIndex + i_Next) % RespawnTargetGameObjects.Count);
-        RespawnTargetGameObjects[m_playerData.respawnPositionIndex + 1].transform.parent.gameObject.SetActive(true);
     }
 
     public void SetInitLives(int newLife)
