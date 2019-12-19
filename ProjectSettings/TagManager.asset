@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - VirtualCamera
+  - Map
+  - Level
+  - Tile
   layers:
   - Default
   - TransparentFX

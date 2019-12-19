@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 100699369}
   m_Layer: 0
   m_Name: LavaMap
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 592253945}
   m_Layer: 0
   m_Name: IceLevel_1
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -420,7 +420,7 @@ GameObject:
   - component: {fileID: 651778259}
   m_Layer: 0
   m_Name: IceLevel_0
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -511,7 +511,7 @@ PrefabInstance:
     - target: {fileID: 4764444555305076607, guid: 25399a8663513438abe48fcceca3e09e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.49443915
+      value: -0.45343095
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25399a8663513438abe48fcceca3e09e, type: 3}
@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 1056850239}
   m_Layer: 0
   m_Name: IceMap
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -564,7 +564,7 @@ GameObject:
   - component: {fileID: 1117172956}
   m_Layer: 0
   m_Name: IceLevel_0
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -665,7 +665,7 @@ PrefabInstance:
     - target: {fileID: 4764444555305076607, guid: 25399a8663513438abe48fcceca3e09e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.49443915
+      value: -0.45343095
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25399a8663513438abe48fcceca3e09e, type: 3}
@@ -686,7 +686,7 @@ GameObject:
   - component: {fileID: 1233044737}
   - component: {fileID: 1233044736}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: SceneDataManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -704,7 +704,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701c06627ecfe49c5a04da61d9163599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonFilePath: Trevor_Lava.unity.json
 --- !u!4 &1233044737
 Transform:
   m_ObjectHideFlags: 0
@@ -805,7 +804,7 @@ GameObject:
   - component: {fileID: 1494033535}
   m_Layer: 0
   m_Name: IceLevel_1
-  m_TagString: Untagged
+  m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

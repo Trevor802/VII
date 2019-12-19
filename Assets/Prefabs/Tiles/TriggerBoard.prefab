@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2170061643165533417}
   m_Layer: 0
   m_Name: TriggerBoard
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,6 +131,7 @@ MonoBehaviour:
         isDynamic: 0
         isCallEnabled: 1
   model: {fileID: 7496669739212438372}
+  Level8TriggerBoard: {fileID: 0}
 --- !u!1001 &7399075832206915008
 PrefabInstance:
   m_ObjectHideFlags: 0

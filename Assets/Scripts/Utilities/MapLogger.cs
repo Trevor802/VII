@@ -80,7 +80,7 @@ public class MapLogger : MonoBehaviour
         LogData(m_JSON.ToString());
     }
 
-    private void OnLevelFinish(Player i_player)
+    private void OnLevelFinish(GameObject i_Invoker, Player i_player)
     {
         m_levelElapsedTime = m_elapsedTime - m_levelElapsedTime;
         LevelLogData levelLog = new LevelLogData(i_player.GetLives(), i_player.GetSteps(),
