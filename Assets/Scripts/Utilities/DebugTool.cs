@@ -9,14 +9,14 @@ public class DebugTool : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            CameraManager.Instance.SwitchLevelCamera(1);
             Player.Instance.SetRespawnPosition(1);
+            CameraManager.Instance.SwitchLevelCamera(1);
             Player.Instance.Respawn(false);
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            CameraManager.Instance.SwitchLevelCamera(-1);
             Player.Instance.SetRespawnPosition(-1);
+            CameraManager.Instance.SwitchLevelCamera(-1);
             Player.Instance.Respawn(false);
         }
     }
