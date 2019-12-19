@@ -72,8 +72,8 @@ public class Player : MonoBehaviour
     public AudioClip respawn;
     [Header("Configuration")]
     public float moveTime = 0.5f;
-    public int initLives = 7;
-    public int initSteps = 7;
+    public int initLives = VII.GameData.PLAYER_DEFAULT_LIVES;
+    public int initSteps = VII.GameData.PLAYER_DEFAULT_STEPS;
     [Header("Game Objects")]
     public GameObject GroundDetector;
     public GameObject BodyDetector;
@@ -403,11 +403,13 @@ public class Player : MonoBehaviour
         //Debug.Log(playerInput.Player.Move.interactions);
     }
 
-     // Getter
+     // Getters/Setters
     public VII.PlayerData PlayerData { get { return m_playerData; } }
     public VII.PlayerState PlayerState { get { return m_playerData.playerState; } }
     public VII.Inventory Inventory { get { return m_playerData.Inventory; } }
     public int GetSteps() { return m_playerData.steps; }
     public int GetLives() { return m_playerData.lives; }
     public int GetRespawnPosIndex() { return m_playerData.respawnPositionIndex; }
+    [HideInInspector]
+    public Tile tilePlayerInside { get; set; }
 }

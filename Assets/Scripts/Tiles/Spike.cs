@@ -68,6 +68,7 @@ public class Spike : Tile
     protected override void OnTickStart()
     {
         base.OnTickStart();
+        if (!receiveTick) { return; }
         m_spikeUp = !m_spikeUp;
         UpdateSpike();
     }

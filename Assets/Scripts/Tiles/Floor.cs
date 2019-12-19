@@ -100,6 +100,7 @@ public class Floor : Tile
     protected override void OnTickStart()
     {
         base.OnTickStart();
+        if (!receiveTick) { return; }
         if(m_lavaFillCounter == 1)
         {
             //Debug.Log("Lava can flow in");
@@ -110,6 +111,7 @@ public class Floor : Tile
     protected override void OnTickEnd()
     {
         base.OnTickEnd();
+        if (!receiveTick) { return; }
         if (declineAfterExit && m_floorState == FloorState.DOWN) 
         {
             //step counter

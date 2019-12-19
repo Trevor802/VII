@@ -8,6 +8,7 @@ public class Tile : MonoBehaviour
     protected bool playerInTemp;
     protected bool playerOutTemp;
     protected bool playerInside;
+    protected bool receiveTick;
     protected Player collidedPlayer;
 
     #region Event System
@@ -21,6 +22,8 @@ public class Tile : MonoBehaviour
         VII.VIIEvents.PlayerRespawnEnd.AddListener(OnPlayerRespawnEnd);
     }
     #endregion
+
+    public void SetReceiveTick(bool i_bReceiveTick) { receiveTick = i_bReceiveTick; }
 
     #region Virtual Functions
     protected virtual void OnTickStart()
@@ -41,7 +44,8 @@ public class Tile : MonoBehaviour
             OnPlayerEnter(collidedPlayer);
             playerInTemp = false;
         }
-        
+        if (playerInside)
+            Player.Instance.tilePlayerInside = this;
     }
 
     protected virtual void OnPlayerRespawnStart(Player player)
@@ -83,4 +87,8 @@ public class Tile : MonoBehaviour
         }
     }
     #endregion Virtual Functions
+
+    #region setters/getters
+    public bool GetPlayerInside() { return playerInside; }
+    #endregion
 }

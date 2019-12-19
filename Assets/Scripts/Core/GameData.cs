@@ -9,5 +9,7 @@ namespace VII
         public const float WALL_WIDTH = STEP_SIZE * 0.1f;
         public const float EQUAL_DEVIATION = STEP_SIZE * 0.25f;
         public static readonly Vector3 PLAYER_RESPAWN_POSITION_OFFSET = new Vector3(0, STEP_SIZE * 0.5f, 0);
+        public const int PLAYER_DEFAULT_LIVES = 7;
+        public const int PLAYER_DEFAULT_STEPS = 7;
     }
 }

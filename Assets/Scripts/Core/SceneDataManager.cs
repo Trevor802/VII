@@ -20,7 +20,7 @@ namespace VII
         private List<LevelData> m_LevelData;
         private int m_MapID;
         private GameObject m_MapObject;
-
+        #region Logic Layer
         public bool CheckMapFinished()
         {
             bool finishedTemp = true;
@@ -31,6 +31,30 @@ namespace VII
             return finishedTemp;
         }
 
+        public bool GetPlayerInside()
+        {
+            foreach (var level in m_LevelData)
+            {
+                if (level.GetPlayerInside())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public LevelData GetLevelPlayerInside()
+        {
+            foreach (var level in m_LevelData)
+            {
+                if (level.GetPlayerInside())
+                {
+                    return level;
+                }
+            }
+            return null;
+        }
+        #endregion
         #region getters/setters
         public List<LevelData> GetLevelData() { return m_LevelData; }
         public int GetMapID() { return m_MapID; }
@@ -49,38 +73,79 @@ namespace VII
             #endregion
 
             VIIEvents.LevelFinish.AddListener(OnLevelFinish);
-            foreach (var item in m_TileData)
-            {
-                if (item.GetComponent<Checkpoint>())
-                {
-                    m_Checkpoint = item.GetComponent<Checkpoint>();
-                    break;
-                }
-            }
+            m_Checkpoint = GetComponentInTiles<Checkpoint>();
             if (!m_Checkpoint) Debug.Log("No checkpoint in " + m_LevelObject.name);
             // TODO Set respawn point
-            m_RespawnPoint = m_TileData[0];
+            m_RespawnPoint = GetComponentInTiles<RespawnPoint>();
+            if (!m_RespawnPoint) Debug.Log("No respawn point in " + m_LevelObject.name);
+            if (m_RespawnPoint) m_PlayerLivesAvailable = m_RespawnPoint.livesAvailable;
         }
 
         private GameObject m_LevelObject;
         private List<GameObject> m_TileData;
         private int m_LevelID;
         private Checkpoint m_Checkpoint;
-        private GameObject m_RespawnPoint;
+        private RespawnPoint m_RespawnPoint;
+        private int m_PlayerLivesAvailable = GameData.PLAYER_DEFAULT_LIVES;
 
+        #region Logic Layer
         private void OnLevelFinish(GameObject i_Invoker, Player i_Player)
         {
             this.finished |= i_Invoker == m_Checkpoint.gameObject;
             parentMapData.finished |= parentMapData.CheckMapFinished();
         }
 
+        private T GetComponentInTiles<T>() where T : Component
+        {
+            foreach (var item in m_TileData)
+            {
+                if (item.GetComponent<T>() != null)
+                {
+                    return item.GetComponent<T>() as T;
+                }
+            }
+            return null;
+        }
+
+        public bool GetPlayerInside()
+        {
+            foreach (var tile in m_TileData)
+            {
+                if (tile.GetComponent<Tile>() && tile.GetComponent<Tile>().GetPlayerInside())
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public Tile GetTilePlayerInside()
+        {
+            foreach (var tile in m_TileData)
+            {
+                if (tile.GetComponent<Tile>() && tile.GetComponent<Tile>().GetPlayerInside())
+                {
+                    return tile.GetComponent<Tile>();
+                }
+            }
+            return null;
+        }
+
+        public void SetTilesEnabledState(bool i_bState)
+        {
+            m_TileData.ForEach(x => x.GetComponent<Tile>().SetReceiveTick(i_bState));
+        }
+
+        #endregion
+
         #region getters/setters
         public List<GameObject> GetTileData() { return m_TileData; }
         public Checkpoint GetCheckpoint() { return m_Checkpoint; }
-        public GameObject GetRespawnPoint() { return m_RespawnPoint; }
+        public RespawnPoint GetRespawnPoint() { return m_RespawnPoint; }
         public bool finished { get; set; }
         public int GetLevelID() { return m_LevelID; }
         public MapData parentMapData { get; set; }
+        public int GetPlayerLives() { return m_PlayerLivesAvailable; }
         #endregion
     }
 
@@ -124,6 +189,30 @@ namespace VII
                 listOfMapData.Add(new MapData(listOfLevelData, mapID, map));
                 mapID++;
             }
+        }
+
+        public MapData GetCurrentMapData()
+        {
+            foreach (var map in m_MapData)
+            {
+                if (map.GetPlayerInside())
+                {
+                    return map;
+                }
+            }
+            return null;
+        }
+
+        public LevelData GetCurrentLevelData()
+        {
+            MapData mapData = GetCurrentMapData();
+            return mapData.GetLevelPlayerInside();
+        }
+
+        public Tile GetCurrentTileData()
+        {
+            LevelData levelData = GetCurrentLevelData();
+            return levelData.GetTilePlayerInside();
         }
 
         #region getters

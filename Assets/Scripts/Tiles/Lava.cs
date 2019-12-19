@@ -31,6 +31,7 @@ public class Lava : Tile
     protected override void OnTickEnd()
     {
         base.OnTickEnd();
+        if (!receiveTick) { return; }
         if (b_DestroyedInFuture)
         {
             m_Life--;
