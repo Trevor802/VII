@@ -6,7 +6,7 @@ public class Checkpoint : Tile
 {
     public Item requiredItem;
     public ByteSheep.Events.AdvancedEvent OnPlayerEnterEvent;
-    private bool activated = false;
+    public bool activated = false;
 
     protected override void OnPlayerEnter(Player player)
     {

@@ -66,7 +66,6 @@ public class Player : MonoBehaviour
     public GameObject BodyDetector;
     public GameObject InteractableSpawnPoint;
     public Collider InteractiveCollider;
-    public List<GameObject> RespawnTargetGameObjects; 
     [Header("Data for Achievements")]
     //level0
     public bool DiedInLevel0;
@@ -100,7 +99,12 @@ public class Player : MonoBehaviour
         mapData = VII.SceneDataManager.Instance.GetMapData();
         currentMapID = UIManager.UIInstance.startMapID;
         currentLevelID = UIManager.UIInstance.startLevelID;
+
         currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
+        for (int i = 0; i < currentLevelID; i++)
+        {
+            mapData[currentMapID].GetLevelData()[i].GetCheckpoint().activated = true;
+        }
         transform.position = currentRespawnPoint.transform.position + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
         currentRespawnPoint.playerInside = true;
         tilePlayerInside = currentRespawnPoint;
