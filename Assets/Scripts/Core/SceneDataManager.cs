@@ -90,8 +90,11 @@ namespace VII
         #region Logic Layer
         private void OnLevelFinish(GameObject i_Invoker, Player i_Player)
         {
-            this.finished |= i_Invoker == m_Checkpoint.gameObject;
-            parentMapData.finished |= parentMapData.CheckMapFinished();
+            if (m_Checkpoint != null)
+            {
+                finished |= i_Invoker == m_Checkpoint.gameObject;
+                parentMapData.finished |= parentMapData.CheckMapFinished();
+            }
         }
 
         public List<GameObject> GetChildrenObjectsWithTag(string i_Tag)
@@ -153,8 +156,12 @@ namespace VII
 
         public void SetTilesEnabledState(bool i_bState)
         {
-            GetChildrenObjectsWithTag(GameData.TILE_TAG).ForEach(
-                x => x.GetComponent<Tile>().SetReceiveTick(i_bState));
+            List<GameObject> TileList = GetChildrenObjectsWithTag(GameData.TILE_TAG);
+            foreach (GameObject tile in TileList)
+            {
+                if (tile.GetComponent<Tile>())
+                    tile.GetComponent<Tile>().SetReceiveTick(i_bState);
+            }
         }
 
         #endregion
@@ -187,10 +194,18 @@ namespace VII
                 Destroy(gameObject);
                 return;
             }
-            var maps = GameObject.FindGameObjectsWithTag(GameData.MAP_TAG);
+            var maps = GameObject.Find("Maps");
+            var mapList = new List<GameObject>();
+            foreach (Transform map in maps.transform)
+            {
+                if (map.CompareTag(GameData.MAP_TAG))
+                {
+                    mapList.Add(map.gameObject);
+                }
+            }
             var listOfMapData = new List<MapData>();
             int mapID = 0;
-            foreach (var map in maps)
+            foreach (var map in mapList)
             {
                 var levels = new List<GameObject>();
                 foreach (Transform level in map.transform)

@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
         {
             UIInstance = this;
             InitUI();
+            startMapID = 0;
+            startLevelID = 0;
         }
         else if (UIInstance != this)
         {
@@ -32,9 +34,9 @@ public class UIManager : MonoBehaviour
     private List<RawImage> m_lifeIcons;
     private List<RawImage> m_crossIcons;
 
-    public int startLevelIndex = 0;
-    public int startRespawnIndex = 0;
-    public int startLives = 7;
+    public int startMapID;
+    public int startLevelID;
+    public int startLevelIndex;
 
     public void UpdateUI()
     {
@@ -50,7 +52,8 @@ public class UIManager : MonoBehaviour
             m_crossIcons[i].enabled = false;
             m_lifeIcons[i].enabled = false;
         }
-        levelIndexText.text = "level_" + Player.Instance.GetRespawnPosIndex();
+        levelIndexText.enabled = true;
+        levelIndexText.text = "level_" + VII.SceneDataManager.Instance.GetCurrentLevelData().GetLevelID().ToString();
     }
 
     public void ClearUI()
@@ -74,6 +77,6 @@ public class UIManager : MonoBehaviour
         }
         m_lifeIcons.ForEach(x => x.enabled = true);
         m_crossIcons.ForEach(x => x.enabled = true);
-        levelIndexText.text = (Player.Instance.GetRespawnPosIndex() + 1).ToString();
+        levelIndexText.text = "";
     }
 }

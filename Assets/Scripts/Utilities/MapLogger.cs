@@ -56,7 +56,7 @@ public class MapLogger : MonoBehaviour
         JSONSetFields(m_JSON);
         m_mapName = SceneManager.GetActiveScene().name;
         m_startTime = DateTime.Now.ToString("dddd, dd MMMM yyyy HH:mm:ss");
-        VII.VIIEvents.LevelFinish.AddListener(OnLevelFinish);
+        //VII.VIIEvents.LevelFinish.AddListener(OnLevelFinish);
     }
 
     private void JSONSetFields(JSONObject i_JSONObject)

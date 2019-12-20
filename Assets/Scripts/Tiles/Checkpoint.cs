@@ -21,7 +21,7 @@ public class Checkpoint : Tile
             activated = true;
             VII.VIIEvents.LevelFinish.Invoke(gameObject, player);
             player.PlayerData.Inventory.RemoveItem(requiredItem);
-            player.SetRespawnPosition(1);
+            player.SetRespawnPoint(1);
             OnPlayerEnterEvent.Invoke();
             player.Respawn(false);
         }

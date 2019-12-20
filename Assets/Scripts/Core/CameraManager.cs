@@ -7,7 +7,6 @@ public class CameraManager : MonoBehaviour
     public List<GameObject> cinema_list;
     public bool debugMode;  //in debug mode, the player will transfer with the camera to next or prev level.
     public int level_index;
-    public int big_level_index;
     private Player player;
 
     #region Singleton
@@ -35,17 +34,10 @@ public class CameraManager : MonoBehaviour
         }
 
         level_index = UIManager.UIInstance.startLevelIndex;
-        big_level_index = level_index;
         for (int i = 0; i < cinema_list.Count; i++)
         {
-            if (i < level_index)
+            if (i == level_index)
             {
-                cinema_list[i].transform.parent.gameObject.SetActive(true);
-                cinema_list[i].SetActive(false);
-            }
-            else if (i == level_index)
-            {
-                cinema_list[i].transform.parent.gameObject.SetActive(true);
                 cinema_list[i].SetActive(true);
             }
             else
@@ -66,12 +58,7 @@ public class CameraManager : MonoBehaviour
             level_index += cinema_list.Count;
         }
         level_index %= cinema_list.Count;
-        cinema_list[level_index].transform.parent.gameObject.SetActive(true);
-        if (cinema_list[level_index].transform.parent.gameObject.tag == "NewLevel")
-        {
-            big_level_index = level_index;
-            player.SetRestartRespawnPosition();
-        }
+        //cinema_list[level_index].transform.parent.gameObject.SetActive(true);
         cinema_list.ForEach(cam => cam.SetActive(false));
         cinema_list[level_index].SetActive(true);
         if(debugMode)

@@ -33,21 +33,6 @@ public class Player : MonoBehaviour
     #region Singleton
     public static Player Instance = null;
 
-    private void Start()
-    {
-        //UpdateStepUI();
-        UIManager.UIInstance.UpdateUI();
-
-        m_playerData.respawnPositionIndex = UIManager.UIInstance.startRespawnIndex;
-        restartRespawnPositionIndex = m_playerData.respawnPositionIndex;
-        initLives = UIManager.UIInstance.startLives;
-        Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
-        transform.position = RespawnTargetGameObjects[m_playerData.respawnPositionIndex].transform.position +
-            VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
-        // Wrap these
-        RespawnTargetGameObjects[m_playerData.respawnPositionIndex].GetComponent<Tile>().playerInside = true;
-        tilePlayerInside = RespawnTargetGameObjects[m_playerData.respawnPositionIndex].GetComponent<Tile>();
-    }
     private void Awake()
     {
         if (Instance == null)
@@ -104,7 +89,26 @@ public class Player : MonoBehaviour
     private Vector3 nextGridPos;
     private InputActions playerInput;
     private ObjectPooler Pools;
-    private int restartRespawnPositionIndex;
+    private List<VII.MapData> mapData;
+    private int currentLevelID;
+    private int currentMapID;
+    private RespawnPoint currentRespawnPoint;
+
+    private void Start()
+    {
+        Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
+        mapData = VII.SceneDataManager.Instance.GetMapData();
+        currentMapID = UIManager.UIInstance.startMapID;
+        currentLevelID = UIManager.UIInstance.startLevelID;
+        currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
+        transform.position = currentRespawnPoint.transform.position + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
+        currentRespawnPoint.playerInside = true;
+        tilePlayerInside = currentRespawnPoint;
+        mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
+        SetInitLives(mapData[currentMapID].GetLevelData()[currentLevelID].GetPlayerLives());
+        m_playerData.lives = initLives;
+        UIManager.UIInstance.UpdateUI();
+    }
 
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
     {
@@ -312,13 +316,11 @@ public class Player : MonoBehaviour
             m_playerData.lives = initLives;
         }
         VII.VIIEvents.PlayerRespawnStart.Invoke(this);
-        //UI Update
-        UIManager.UIInstance.UpdateUI();
         if (m_playerData.lives <= 0)
         {
-            UIManager.UIInstance.startLevelIndex = CameraManager.Instance.big_level_index;
-            UIManager.UIInstance.startRespawnIndex = restartRespawnPositionIndex;
-            UIManager.UIInstance.startLives = initLives;
+            UIManager.UIInstance.startMapID = currentMapID;
+            UIManager.UIInstance.startLevelID = currentLevelID;
+            UIManager.UIInstance.startLevelIndex = CameraManager.Instance.level_index;
             //Clear UI manager
             UIManager.UIInstance.ClearUI();
             SceneManager.LoadScene("All_Levels(Draft 1)");
@@ -353,12 +355,11 @@ public class Player : MonoBehaviour
         GroundDetector.SetActive(false);
         // Drop Items
         DropItems(costLife);
-        transform.position = RespawnTargetGameObjects[m_playerData.respawnPositionIndex].transform.position
+        transform.position = currentRespawnPoint.transform.position
             + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
-        // Wrap these
-        Debug.Log(RespawnTargetGameObjects[m_playerData.respawnPositionIndex].GetComponent<Tile>());
-        RespawnTargetGameObjects[m_playerData.respawnPositionIndex].GetComponent<Tile>().playerInside = true;
-        tilePlayerInside = RespawnTargetGameObjects[m_playerData.respawnPositionIndex].GetComponent<Tile>();
+        currentRespawnPoint.playerInside = true;
+        tilePlayerInside = currentRespawnPoint;
+        UIManager.UIInstance.UpdateUI();
         InteractiveCollider.enabled = true;
         GroundDetector.SetActive(true);
         m_playerData.steps = initSteps;
@@ -394,14 +395,44 @@ public class Player : MonoBehaviour
     }
 
 
-    public void SetRespawnPosition(int i_Next)
+    public void SetRespawnPoint(int i_Next)
     {
-        m_playerData.respawnPositionIndex = Mathf.Abs((RespawnTargetGameObjects.Count + m_playerData.respawnPositionIndex + i_Next) % RespawnTargetGameObjects.Count);
-    }
-
-    public void SetRestartRespawnPosition()
-    {
-        restartRespawnPositionIndex = m_playerData.respawnPositionIndex;
+        //m_playerData.respawnPositionIndex = Mathf.Abs((RespawnTargetGameObjects.Count + m_playerData.respawnPositionIndex + i_Next) % RespawnTargetGameObjects.Count);
+        if (currentLevelID + i_Next < mapData[currentMapID].GetLevelData().Count && currentLevelID + i_Next >= 0)
+        {
+            currentLevelID += i_Next;
+        }
+        // go to previous map
+        else if (currentLevelID + i_Next < 0)
+        {
+            if (currentMapID + i_Next >= 0)
+            {
+                currentMapID += i_Next;
+                currentLevelID = mapData[currentMapID].GetLevelData().Count - 1;
+            }
+            else if (currentMapID + i_Next < 0)
+            {
+                currentMapID = mapData.Count - 1;
+                currentLevelID = mapData[currentMapID].GetLevelData().Count - 1;
+            }
+        }
+        // go to next map
+        else if (currentLevelID + i_Next >= mapData[currentMapID].GetLevelData().Count)
+        {
+            if (currentMapID + i_Next < mapData.Count)
+            {
+                currentMapID += i_Next;
+                currentLevelID = 0;
+            }
+            else if (currentMapID + i_Next >= mapData.Count)
+            {
+                currentMapID = 0;
+                currentLevelID = 0;
+            }
+        }
+        currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
+        mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
+        SetInitLives(mapData[currentMapID].GetLevelData()[currentLevelID].GetPlayerLives());
     }
 
     public void SetInitLives(int newLife)
