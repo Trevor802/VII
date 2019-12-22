@@ -72,6 +72,7 @@ public class TriggerBoard : Tile
         base.OnPlayerEnter(player);
         if (m_TombstoneOn) return;
         m_PlayerOn = true;
+        m_animator.SetBool("Press", true);
         OnPlayerEnterEvent.Invoke();
     }
 
@@ -91,6 +92,7 @@ public class TriggerBoard : Tile
         base.OnPlayerExit(player);
         if (m_TombstoneOn) return;
         m_PlayerOn = false;
+        m_animator.SetBool("Press", false);
         OnPlayerExitEvent.Invoke();
     }
 }
