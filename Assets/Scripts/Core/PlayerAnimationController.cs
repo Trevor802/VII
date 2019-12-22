@@ -6,7 +6,7 @@ namespace VII
 {
     public enum PlayerAnimationState
     {
-        Idling, Moving, Respawning, Transiting
+        Idling, Moving, Death, Respawning, Transiting
     }
 
     [RequireComponent(typeof(Animator))]
@@ -14,12 +14,16 @@ namespace VII
     {
         private Animator m_animator;
 
-        private readonly int m_hashRespawnTrigger = Animator.StringToHash("Respawn");
+        // Trigger hash
         private readonly int m_hashMoveTrigger = Animator.StringToHash("Move");
         private readonly int m_hashIdleTrigger = Animator.StringToHash("Idle");
+        private readonly int m_hashDeadTrigger = Animator.StringToHash("Dead");
+
+        // State hash
         private readonly int m_hashMovingTag = Animator.StringToHash("Moving");
         private readonly int m_hashIdlingTag = Animator.StringToHash("Idling");
         private readonly int m_hashRespawningTag = Animator.StringToHash("Respawning");
+        private readonly int m_hashDeathTag = Animator.StringToHash("Death");
 
         private void Awake()
         {
@@ -37,8 +41,8 @@ namespace VII
                     RotateModel(Player.Instance.GetMoveDirection());
                     m_animator.SetTrigger(m_hashMoveTrigger);
                     break;
-                case PlayerAnimationState.Respawning:
-                    m_animator.SetTrigger(m_hashRespawnTrigger);
+                case PlayerAnimationState.Death:
+                    m_animator.SetTrigger(m_hashDeadTrigger);
                     break;
                 default:
                     break;
@@ -55,6 +59,10 @@ namespace VII
             if (currentStateTagHash == m_hashMovingTag)
             {
                 return PlayerAnimationState.Moving;
+            }
+            if (currentStateTagHash == m_hashDeathTag)
+            {
+                return PlayerAnimationState.Death;
             }
             if (currentStateTagHash == m_hashRespawningTag)
             {

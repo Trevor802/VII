@@ -354,9 +354,13 @@ public class Player : MonoBehaviour
         transform.position = nextGridPos;
         if (costLife)
         {
-            //animator.Play("Death");
+            // Death Animation
+            m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Death);
+            while (m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Respawning)
+            {
+                yield return null;
+            }
         }
-        yield return null;
         // EVENT: Respawing Ends
         //Vector3 deathPos = transform.position;
         //Quaternion deathRot = transform.rotation;
@@ -374,7 +378,10 @@ public class Player : MonoBehaviour
         GroundDetector.SetActive(true);
         m_playerData.steps = initSteps;
         // Respawn Animation
-        //animator.Play("Respawn");
+        while(m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Idling)
+        {
+            yield return null;
+        }
         // Respawning Ends
         m_playerData.playerState = VII.PlayerState.IDLE;
         // Broadcast with Event System
