@@ -4,13 +4,21 @@ using UnityEngine;
 
 namespace VII
 {
+    public enum PlayerAnimationState
+    {
+        Idling, Moving, Respawning, Transiting
+    }
+
     [RequireComponent(typeof(Animator))]
     public class PlayerAnimationController : MonoBehaviour
     {
         private Animator m_animator;
 
         private readonly int m_hashRespawnTrigger = Animator.StringToHash("Respawn");
-        private readonly int m_hashLocomotionTag = Animator.StringToHash("Locomotion");
+        private readonly int m_hashMoveTrigger = Animator.StringToHash("Move");
+        private readonly int m_hashIdleTrigger = Animator.StringToHash("Idle");
+        private readonly int m_hashMovingTag = Animator.StringToHash("Moving");
+        private readonly int m_hashIdlingTag = Animator.StringToHash("Idling");
         private readonly int m_hashRespawningTag = Animator.StringToHash("Respawning");
 
         private void Awake()
@@ -18,25 +26,46 @@ namespace VII
             m_animator = GetComponent<Animator>();
         }
 
-        public void PlaySpawnAnimation()
+        public void TriggerAnimation(PlayerAnimationState i_eState)
         {
-            m_animator.SetTrigger(m_hashRespawnTrigger);
-        }
-
-        public bool IsLocomotion
-        {
-            get
+            switch (i_eState)
             {
-                return m_animator.GetCurrentAnimatorStateInfo(0).tagHash == m_hashLocomotionTag;
+                case PlayerAnimationState.Idling:
+                    m_animator.SetTrigger(m_hashIdleTrigger);
+                    break;
+                case PlayerAnimationState.Moving:
+                    RotateModel(Player.Instance.GetMoveDirection());
+                    m_animator.SetTrigger(m_hashMoveTrigger);
+                    break;
+                case PlayerAnimationState.Respawning:
+                    m_animator.SetTrigger(m_hashRespawnTrigger);
+                    break;
+                default:
+                    break;
             }
         }
 
-        public bool IsRespawning
+        public PlayerAnimationState GetAnimationState()
         {
-            get
+            int currentStateTagHash = m_animator.GetCurrentAnimatorStateInfo(0).tagHash;
+            if (currentStateTagHash == m_hashIdlingTag)
             {
-                return m_animator.GetCurrentAnimatorStateInfo(0).tagHash == m_hashRespawningTag;
+                return PlayerAnimationState.Idling;
             }
+            if (currentStateTagHash == m_hashMovingTag)
+            {
+                return PlayerAnimationState.Moving;
+            }
+            if (currentStateTagHash == m_hashRespawningTag)
+            {
+                return PlayerAnimationState.Respawning;
+            }
+            return PlayerAnimationState.Transiting;
+        }
+
+        public void RotateModel(Vector3 i_Direction)
+        {
+            m_animator.transform.rotation = Quaternion.LookRotation(i_Direction, Vector3.up);
         }
     }
 }

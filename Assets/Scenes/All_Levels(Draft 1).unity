@@ -27699,7 +27699,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -100339,6 +100339,10 @@ PrefabInstance:
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[25]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
+      propertyPath: moveTime
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5636654175404877946, guid: 1086020a0c65a48178f154fe003f9a6d,
         type: 3}

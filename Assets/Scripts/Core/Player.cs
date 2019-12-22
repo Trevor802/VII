@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
             //Binding Input
             playerInput = new InputActions();
             playerInput.Player.Move.performed += ctx => PerformMove();
+            m_PlayerAnimationController = GetComponentInChildren<VII.PlayerAnimationController>();
         }
         else if (Instance != this)
         {
@@ -92,6 +93,8 @@ public class Player : MonoBehaviour
     private int currentLevelID;
     private int currentMapID;
     private RespawnPoint currentRespawnPoint;
+    [SerializeField]
+    private VII.PlayerAnimationController m_PlayerAnimationController;
 
     private void Start()
     {
@@ -176,6 +179,7 @@ public class Player : MonoBehaviour
             // Movement starts
             m_destination = end;
             m_playerData.playerState = VII.PlayerState.MOVING;
+            m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Moving);
             VII.VIIEvents.TickStart.Invoke();
         }
         else
@@ -270,6 +274,7 @@ public class Player : MonoBehaviour
                 currentGridPos = transform.position;
                 nextGridPos = currentGridPos;
                 m_playerData.playerState = VII.PlayerState.IDLE;
+                m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Idling);
                 VII.VIIEvents.TickEnd.Invoke();
                 if (m_playerData.steps <= 0)
                 {
@@ -290,6 +295,7 @@ public class Player : MonoBehaviour
                 currentGridPos = transform.position;
                 nextGridPos = currentGridPos;
                 m_playerData.playerState = VII.PlayerState.IDLE;
+                m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Idling);
                 VII.VIIEvents.TickEnd.Invoke();
                 if (m_playerData.steps <= 0)
                 {
@@ -457,6 +463,7 @@ public class Player : MonoBehaviour
     public int GetSteps() { return m_playerData.steps; }
     public int GetLives() { return m_playerData.lives; }
     public int GetRespawnPosIndex() { return m_playerData.respawnPositionIndex; }
+    public Vector3 GetMoveDirection() { return moveDir; }
     [HideInInspector]
     public Tile tilePlayerInside { get; set; }
 }
