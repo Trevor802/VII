@@ -8,6 +8,7 @@ public class Tile : MonoBehaviour
     protected bool playerInTemp;
     protected bool playerOutTemp;
     // TODO Set true for the respawn tile automatically
+    [HideInInspector]
     public bool playerInside;
     protected bool receiveTick;
     protected Player collidedPlayer;

@@ -90,9 +90,11 @@ public class Floor : Tile
                 default:
                     break;
             }
+#if !UNITY_EDITOR
             gameObject.layer = (!declineAfterExit && m_floorState == FloorState.DOWN) ?
                 LayerMask.NameToLayer(VII.HitLayer.Unreachable.ToString()) :
                 LayerMask.NameToLayer(VII.HitLayer.Default.ToString());
+#endif
         }
         #endregion
     }
