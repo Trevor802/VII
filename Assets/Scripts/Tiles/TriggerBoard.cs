@@ -76,7 +76,7 @@ public class TriggerBoard : Tile
         OnPlayerEnterEvent.Invoke();
     }
 
-    protected override void OnPlayerRespawnEnd(Player player)
+    protected override void OnPlayerRespawnStart(Player player)
     {
         base.OnPlayerRespawnStart(player);
         if (m_TombstoneOn) return;
