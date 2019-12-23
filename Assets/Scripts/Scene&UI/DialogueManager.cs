@@ -10,10 +10,16 @@ public class DialogueManager : MonoBehaviour
     public Text textBox;
     //public Animator animator;
     public List<string> sentences;
+    public List<string> sentences_transition_trap;
+    public List<string> sentences_transition_ice;
+    public List<string> sentences_transition_lava;
     public float CharPopupDuration = 0.02f;
     public SceneType sceneToLoadAfterDialogue;
     private int sentenceIndex = 0;
     private bool inputAvail = false;
+    public Player player;
+    public Canvas transitionTextsCanvas;
+    public bool displayingTexts;
 
     public void StartSentence()
     {
@@ -33,7 +39,7 @@ public class DialogueManager : MonoBehaviour
 
     public void NextSentence()
     {
-        if(sentenceIndex >= sentences.Count)
+        if (sentenceIndex >= sentences.Count)
         {
             EndSentence();
             return;
@@ -47,9 +53,36 @@ public class DialogueManager : MonoBehaviour
             textBox.text += sentences[i];
         }
         */
-        string j = sentences[sentenceIndex];
+        string j = "";
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            j = sentences[sentenceIndex];
+        }
+        else
+        {
+            if (transitionTextsCanvas)
+            {
+                if (player.display_text_trap == true)
+                {
+                    j = sentences_transition_trap[sentenceIndex];
+                    displayingTexts = true;
+                }
+                else if (player.display_text_ice == true)
+                {
+                    j = sentences_transition_ice[sentenceIndex];
+                    displayingTexts = true;
+                }
+                else if (player.display_text_lava == true)
+                {
+                    j = sentences_transition_lava[sentenceIndex];
+                    displayingTexts = true;
+                }
+            }
+        }
+
         sentenceIndex++;
         StartCoroutine(DisplaySentence(j));
+
     }
 
     IEnumerator DisplaySentence(string sentence)
@@ -92,7 +125,19 @@ public class DialogueManager : MonoBehaviour
     void EndSentence()
     {
         //animator.SetBool("IsOpen", false);
-        VII.SceneManager.instance.LoadScene(sceneToLoadAfterDialogue);
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 0) //only loads next scene when in menu
+        {
+            VII.SceneManager.instance.LoadScene(sceneToLoadAfterDialogue);
+        }
+        else
+        {
+            if (transitionTextsCanvas)
+            {
+                transitionTextsCanvas.enabled = false;
+                displayingTexts = false;
+            }
+        }
+
         inputAvail = false;
     }
 }

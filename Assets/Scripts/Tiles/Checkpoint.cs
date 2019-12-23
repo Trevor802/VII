@@ -13,9 +13,36 @@ public class Checkpoint : Tile
         base.OnPlayerEnter(player);
         if (player.PlayerData.Inventory.ContainItem(requiredItem) && !activated)
         {
-            if (player.GetRespawnPosIndex() == 7)
+            //Achievement Data
+            if (player.mapIndex == 0 && player.levelIndex == 8)
             {
                 player.FinishLevel7 = true;
+            }
+            if (player.mapIndex == 0 && player.levelIndex == 9)
+            {
+                player.completeDungeon = true;
+            }
+            if (player.mapIndex == 1 && player.levelIndex == 8)
+            {
+                player.completeIce = true;
+            }
+            if (player.mapIndex == 2 && player.levelIndex == 6)
+            {
+                player.completeLava = true;
+            }
+            player.checkLeastLives = true;
+            //Transition Texts Data
+            if(player.mapIndex == 0 && player.levelIndex == 5)
+            {
+                player.display_text_trap = true;
+            }
+            if (player.mapIndex == 0 && player.levelIndex == 9)
+            {
+                player.display_text_ice = true;
+            }
+            if (player.mapIndex == 1 && player.levelIndex == 8)
+            {
+                player.display_text_lava = true;
             }
             // Reset respawn position and respawn player
             activated = true;
@@ -34,6 +61,7 @@ public class Checkpoint : Tile
 
     public void Win()
     {
+
         UIManager.UIInstance.gameObject.SetActive(false);
         VII.SceneManager.instance.LoadScene(VII.SceneType.WinScene);
     }

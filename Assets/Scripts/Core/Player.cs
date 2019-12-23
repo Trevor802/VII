@@ -68,6 +68,9 @@ public class Player : MonoBehaviour
     public GameObject InteractableSpawnPoint;
     public Collider InteractiveCollider;
     [Header("Data for Achievements")]
+    //map data
+    public int levelIndex;
+    public int mapIndex;
     //level0
     public bool DiedInLevel0;
     //level5
@@ -78,6 +81,21 @@ public class Player : MonoBehaviour
     public bool DiedInTrapInLevel7;
     //level8
     public bool HasKeyInLevel8;
+    //map completion
+    public bool completeDungeon;
+    public bool completeIce;
+    public bool completeLava;
+    public bool summonGreatOne;
+    //optimized route
+    public bool checkLeastLives;
+    public int livesLeft;
+    public bool playedLevel17; //TODO: This needs to be saved
+    [Header("Show Map Transition Texts")]
+    public DialogueManager dialogueManager;
+    public Canvas transitionTextCanvas;
+    public bool display_text_trap;
+    public bool display_text_ice;
+    public bool display_text_lava;
     #endregion PlayerData
 
     private float m_inverseMoveTime;
@@ -191,8 +209,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        //print("level index" + m_RespawnPosIndex);
-        //print(DiedInLevel0);
+        //Achievement stuff
+        mapIndex = currentMapID;
+        levelIndex = currentLevelID;
+        livesLeft = m_playerData.lives;
+        Debug.Log(mapIndex + " " + levelIndex + " " + livesLeft);
         // Input
         // TODO Support multiple device
         #region Input
@@ -254,7 +275,7 @@ public class Player : MonoBehaviour
             }
         }
         #region Moving
-        if (m_playerData.playerState == VII.PlayerState.MOVING)
+        if (m_playerData.playerState == VII.PlayerState.MOVING && !dialogueManager.displayingTexts /*cant move when displaying texts*/)
         {
             if (Vector3.Distance(transform.position, nextGridPos) < 0.2f)
             {
@@ -328,11 +349,11 @@ public class Player : MonoBehaviour
         VII.VIIEvents.PlayerRespawnStart.Invoke(this);
 
         //Data for Achievements
-        if (m_playerData.respawnPositionIndex == 0 && costLife == true)
+        if (mapIndex == 0 && levelIndex == 0 && costLife == true)
         {
             DiedInLevel0 = true;
         }
-        if (m_playerData.respawnPositionIndex == 5 && !DiedInTrapInLevel5 && costLife == true)
+        if (mapIndex == 0 && levelIndex == 6 && !DiedInTrapInLevel5 && costLife == true)
         {
             DiedInLevel5 = true;
         }
@@ -466,6 +487,7 @@ public class Player : MonoBehaviour
         //Debug.Log(playerInput.Player.Move.interactions);
     }
 
+
      // Getters/Setters
     public VII.PlayerData PlayerData { get { return m_playerData; } }
     public VII.PlayerState PlayerState { get { return m_playerData.playerState; } }
@@ -477,3 +499,4 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public Tile tilePlayerInside { get; set; }
 }
+
