@@ -27,6 +27,7 @@ public class DialogueManager : MonoBehaviour
         textBox.gameObject.SetActive(true);
         NextSentence();
         inputAvail = true;
+        displayingTexts = true;
     }
 
     void Update()
@@ -39,10 +40,43 @@ public class DialogueManager : MonoBehaviour
 
     public void NextSentence()
     {
-        if (sentenceIndex >= sentences.Count)
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 0)
         {
-            EndSentence();
-            return;
+            if (sentenceIndex >= sentences.Count)
+            {
+                EndSentence();
+                return;
+            }
+        }
+        else
+        {
+            if (transitionTextsCanvas)
+            {
+                if (player.display_text_trap == true)
+                {
+                    if (sentenceIndex >= sentences_transition_trap.Count)
+                    {
+                        EndSentence();
+                        return;
+                    }
+                }
+                else if (player.display_text_ice == true)
+                {
+                    if (sentenceIndex >= sentences_transition_ice.Count)
+                    {
+                        EndSentence();
+                        return;
+                    }
+                }
+                else if (player.display_text_lava == true)
+                {
+                    if (sentenceIndex >= sentences_transition_lava.Count)
+                    {
+                        EndSentence();
+                        return;
+                    }
+                }
+            }
         }
         StopAllCoroutines();
         textBox.text = "";
@@ -65,17 +99,14 @@ public class DialogueManager : MonoBehaviour
                 if (player.display_text_trap == true)
                 {
                     j = sentences_transition_trap[sentenceIndex];
-                    displayingTexts = true;
                 }
                 else if (player.display_text_ice == true)
                 {
                     j = sentences_transition_ice[sentenceIndex];
-                    displayingTexts = true;
                 }
                 else if (player.display_text_lava == true)
                 {
                     j = sentences_transition_lava[sentenceIndex];
-                    displayingTexts = true;
                 }
             }
         }
@@ -125,6 +156,8 @@ public class DialogueManager : MonoBehaviour
     void EndSentence()
     {
         //animator.SetBool("IsOpen", false);
+        sentenceIndex = 0;
+        inputAvail = false;
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 0) //only loads next scene when in menu
         {
             VII.SceneManager.instance.LoadScene(sceneToLoadAfterDialogue);
@@ -133,11 +166,13 @@ public class DialogueManager : MonoBehaviour
         {
             if (transitionTextsCanvas)
             {
-                transitionTextsCanvas.enabled = false;
                 displayingTexts = false;
+                player.display_text_trap = false;
+                player.display_text_ice = false;
+                player.display_text_lava = false;
+                player.startSentence = false;
+                transitionTextsCanvas.enabled = false;
             }
         }
-
-        inputAvail = false;
     }
 }
