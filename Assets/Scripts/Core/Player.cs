@@ -317,6 +317,7 @@ public class Player : MonoBehaviour
             return;
         }
         m_playerData.playerState = VII.PlayerState.RESPAWNING;
+        SetInitLives(mapData[currentMapID].GetLevelData()[currentLevelID].GetPlayerLives());
         if (costLife)
         {
             m_playerData.lives--;
@@ -376,6 +377,7 @@ public class Player : MonoBehaviour
             + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
         currentRespawnPoint.playerInside = true;
         tilePlayerInside = currentRespawnPoint;
+        mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
         UIManager.UIInstance.UpdateUI();
         InteractiveCollider.enabled = true;
         GroundDetector.SetActive(true);
@@ -389,7 +391,6 @@ public class Player : MonoBehaviour
         m_playerData.playerState = VII.PlayerState.IDLE;
         // Broadcast with Event System
         VII.VIIEvents.PlayerRespawnEnd.Invoke(this);
-        //animator.Play("WalkDown");
     }
 
     private void DropItems(bool dropTombstone = true)
@@ -451,8 +452,6 @@ public class Player : MonoBehaviour
             }
         }
         currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
-        mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
-        SetInitLives(mapData[currentMapID].GetLevelData()[currentLevelID].GetPlayerLives());
     }
 
     public void SetInitLives(int newLife)

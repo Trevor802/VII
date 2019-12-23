@@ -135,7 +135,7 @@ public class Floor : Tile
         base.OnPlayerEnter(player);
         if(declineAfterExit)
         {
-            Debug.Log("Player steps on floor");
+            //Debug.Log("Player steps on floor");
         }
         
         if (m_floorState == FloorState.DOWN)
@@ -150,7 +150,7 @@ public class Floor : Tile
         if (declineAfterExit && m_floorState == FloorState.UP)
         {
             // Decline
-            Debug.Log("Player exits floor");
+            //Debug.Log("Player exits floor");
             m_floorState = FloorState.DOWN;
             m_lavaFillCounter = 1;
             UpdateFloor();

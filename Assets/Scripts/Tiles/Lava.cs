@@ -76,9 +76,9 @@ public class Lava : Tile
             //Debug.Log(hit.transform.gameObject.layer);
             GameObject hit_tile = groundHit.transform.gameObject;
             //Is the abut tile ice? - turn it into normal floor tile
-            if(hit_tile.layer == ice_layer)
+            if (hit_tile.layer == ice_layer)
             {
-                Debug.Log("Melt ice");
+                //Debug.Log("Melt ice");
                 Instantiate(floor_tile, groundHit.transform.position, groundHit.transform.rotation);
                 Destroy(groundHit.transform.gameObject);
             }
@@ -96,6 +96,7 @@ public class Lava : Tile
 
                     GameObject lava_instance = Instantiate(lava_tile, groundHit.transform.position, groundHit.transform.rotation) as GameObject;
                     lava_instance.GetComponent<Lava>().b_DestroyedInFuture = false;
+                    lava_instance.GetComponent<Lava>().SetReceiveTick(true);
                     if (hit_floor.declineAfterExit)
                     {
                         if (lava_instance.GetComponent<Lava>())
@@ -104,8 +105,8 @@ public class Lava : Tile
                             lava_instance.GetComponent<Lava>().m_Life = hit_floor.stepsBeforeIncline - 1;
                             lava_instance.GetComponent<Lava>().b_DestroyedInFuture = true;
                             //Debug.Log(i_dir);
-                            Debug.Log(lava_instance.transform.name + lava_instance.GetComponent<Lava>().m_Life);
-                            Debug.Log(lava_instance.GetComponent<Lava>().b_DestroyedInFuture);
+                            //Debug.Log(lava_instance.transform.name + lava_instance.GetComponent<Lava>().m_Life);
+                            //Debug.Log(lava_instance.GetComponent<Lava>().b_DestroyedInFuture);
                         }
                     }
 
