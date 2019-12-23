@@ -326,15 +326,6 @@ public class Player : MonoBehaviour
             m_playerData.lives = initLives;
         }
         VII.VIIEvents.PlayerRespawnStart.Invoke(this);
-        if (m_playerData.lives <= 0)
-        {
-            UIManager.UIInstance.startMapID = currentMapID;
-            UIManager.UIInstance.startLevelID = currentLevelID;
-            UIManager.UIInstance.startLevelIndex = CameraManager.Instance.level_index;
-            //Clear UI manager
-            UIManager.UIInstance.ClearUI();
-            SceneManager.LoadScene("All_Levels(Draft 1)");
-        }
 
         //Data for Achievements
         if (m_playerData.respawnPositionIndex == 0 && costLife == true)
@@ -351,20 +342,32 @@ public class Player : MonoBehaviour
 
     private IEnumerator Respawning(bool costLife)
     {
-        transform.position = nextGridPos;
         if (costLife)
         {
+            while (Vector3.Distance(transform.position, nextGridPos) > float.Epsilon)
+            {
+                //transform.position = nextGridPos;
+                transform.position = Vector3.MoveTowards(transform.position,
+                    nextGridPos, Time.deltaTime * m_inverseMoveTime);
+                yield return null;
+            }
             // Death Animation
             m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Death);
             while (m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Respawning)
             {
                 yield return null;
+            } 
+            if (m_playerData.lives <= 0)
+            {
+                UIManager.UIInstance.startMapID = currentMapID;
+                UIManager.UIInstance.startLevelID = currentLevelID;
+                UIManager.UIInstance.startLevelIndex = CameraManager.Instance.level_index;
+                //Clear UI manager
+                UIManager.UIInstance.ClearUI();
+                SceneManager.LoadScene("All_Levels(Draft 1)");
             }
         }
         // EVENT: Respawing Ends
-        //Vector3 deathPos = transform.position;
-        //Quaternion deathRot = transform.rotation;
-        //ObjectPooler.Instance.SpawnFromPool("Body", deathPos, deathRot);
         InteractiveCollider.enabled = false;
         GroundDetector.SetActive(false);
         // Drop Items
