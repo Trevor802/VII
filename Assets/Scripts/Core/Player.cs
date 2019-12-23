@@ -317,7 +317,6 @@ public class Player : MonoBehaviour
             return;
         }
         m_playerData.playerState = VII.PlayerState.RESPAWNING;
-        SetInitLives(mapData[currentMapID].GetLevelData()[currentLevelID].GetPlayerLives());
         if (costLife)
         {
             m_playerData.lives--;
@@ -347,7 +346,6 @@ public class Player : MonoBehaviour
         {
             while (Vector3.Distance(transform.position, nextGridPos) > float.Epsilon)
             {
-                //transform.position = nextGridPos;
                 transform.position = Vector3.MoveTowards(transform.position,
                     nextGridPos, Time.deltaTime * m_inverseMoveTime);
                 yield return null;
@@ -377,7 +375,6 @@ public class Player : MonoBehaviour
             + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
         currentRespawnPoint.playerInside = true;
         tilePlayerInside = currentRespawnPoint;
-        mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
         UIManager.UIInstance.UpdateUI();
         InteractiveCollider.enabled = true;
         GroundDetector.SetActive(true);
@@ -452,6 +449,8 @@ public class Player : MonoBehaviour
             }
         }
         currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
+        mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
+        SetInitLives(mapData[currentMapID].GetLevelData()[currentLevelID].GetPlayerLives());
     }
 
     public void SetInitLives(int newLife)
