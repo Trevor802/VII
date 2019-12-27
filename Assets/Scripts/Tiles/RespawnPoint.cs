@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class RespawnPoint : Tile
 {
-    public int livesAvailable = VII.GameData.PLAYER_DEFAULT_LIVES;
+    public int bestLifeCost = VII.GameData.PLAYER_DEFAULT_LIVES;
 }

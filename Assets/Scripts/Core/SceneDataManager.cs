@@ -75,17 +75,16 @@ namespace VII
             VIIEvents.LevelFinish.AddListener(OnLevelFinish);
             m_Checkpoint = GetComponentInTiles<Checkpoint>();
             if (!m_Checkpoint) Debug.Log("No checkpoint in " + m_LevelObject.name);
-            // TODO Set respawn point
             m_RespawnPoint = GetComponentInTiles<RespawnPoint>();
             if (!m_RespawnPoint) Debug.Log("No respawn point in " + m_LevelObject.name);
-            if (m_RespawnPoint) m_PlayerLivesAvailable = m_RespawnPoint.livesAvailable;
+            if (m_RespawnPoint) m_BestLifeCost = m_RespawnPoint.bestLifeCost;
         }
 
         private GameObject m_LevelObject;
         private int m_LevelID;
         private Checkpoint m_Checkpoint;
         private RespawnPoint m_RespawnPoint;
-        private int m_PlayerLivesAvailable = GameData.PLAYER_DEFAULT_LIVES;
+        private int m_BestLifeCost;
 
         #region Logic Layer
         private void OnLevelFinish(GameObject i_Invoker, Player i_Player)
@@ -172,7 +171,7 @@ namespace VII
         public bool finished { get; set; }
         public int GetLevelID() { return m_LevelID; }
         public MapData parentMapData { get; set; }
-        public int GetPlayerLives() { return m_PlayerLivesAvailable; }
+        public int GetBestLivesCost() { return m_BestLifeCost; }
         public GameObject GetLevelObject() { return m_LevelObject; }
         #endregion
     }

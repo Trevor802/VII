@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
             InitUI();
             startMapID = 0;
             startLevelID = 0;
+            startLevelIndex = 0;
         }
         else if (UIInstance != this)
         {
@@ -28,21 +29,21 @@ public class UIManager : MonoBehaviour
 
     public GameObject lifeIcon;
     public RectTransform lifeIconHolder;
-    public int maxLives = 10;
+    //public int maxLives = 10;
     public Text levelIndexText;
-
-    private List<RawImage> m_lifeIcons;
-    private List<RawImage> m_crossIcons;
-
+    [HideInInspector]
     public int startMapID;
+    [HideInInspector]
     public int startLevelID;
+    [HideInInspector]
     public int startLevelIndex;
+
+    //private List<RawImage> m_lifeIcons;
+    //private List<RawImage> m_crossIcons;
 
     public void UpdateUI()
     {
-        //Player player = FindObjectOfType<Player>();
-        //VII.PlayerData playerData = player.GetComponent<Player>().PlayerData;
-        for (int i = 0; i < Player.Instance.initLives; i++)
+        /*for (int i = 0; i < Player.Instance.initLives; i++)
         {
             m_lifeIcons[i].enabled = true;
             m_crossIcons[i].enabled = i >= Player.Instance.GetLives();
@@ -51,21 +52,21 @@ public class UIManager : MonoBehaviour
         {
             m_crossIcons[i].enabled = false;
             m_lifeIcons[i].enabled = false;
-        }
+        }*/
         levelIndexText.enabled = true;
-        levelIndexText.text = "level_" + VII.SceneDataManager.Instance.GetCurrentLevelData().GetLevelID().ToString();
+        levelIndexText.text = "map_" + VII.SceneDataManager.Instance.GetCurrentMapData().GetMapID().ToString() + ", level_" + VII.SceneDataManager.Instance.GetCurrentLevelData().GetLevelID().ToString();
     }
 
     public void ClearUI()
     {
-        m_lifeIcons.ForEach(x => x.enabled = false);
-        m_crossIcons.ForEach(x => x.enabled = false);
+        //m_lifeIcons.ForEach(x => x.enabled = false);
+        //m_crossIcons.ForEach(x => x.enabled = false);
         levelIndexText.enabled = false;
     }
 
     public void InitUI()
     {
-        m_lifeIcons = new List<RawImage>();
+        /*m_lifeIcons = new List<RawImage>();
         m_crossIcons = new List<RawImage>();
 
         //for (int i = 0; i < Player.Instance.initLives; i++)
@@ -76,7 +77,7 @@ public class UIManager : MonoBehaviour
             m_crossIcons.Add(life.transform.GetChild(0).GetComponent<RawImage>());
         }
         m_lifeIcons.ForEach(x => x.enabled = true);
-        m_crossIcons.ForEach(x => x.enabled = true);
+        m_crossIcons.ForEach(x => x.enabled = true);*/
         levelIndexText.text = "";
     }
 }

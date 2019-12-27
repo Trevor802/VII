@@ -83,6 +83,7 @@ public class Player : MonoBehaviour
     private float m_inverseMoveTime;
     private const float m_maxCastDistance = 10f;
     private Vector3 m_destination;
+    private int bestLifeCost;
     private VII.PlayerData m_playerData;
     private Vector3 moveDir;
     private Vector3 currentGridPos;
@@ -102,18 +103,16 @@ public class Player : MonoBehaviour
         mapData = VII.SceneDataManager.Instance.GetMapData();
         currentMapID = UIManager.UIInstance.startMapID;
         currentLevelID = UIManager.UIInstance.startLevelID;
-
-        currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
-        for (int i = 0; i < currentLevelID; i++)
+        if (currentLevelID > 0)
         {
-            mapData[currentMapID].GetLevelData()[i].GetCheckpoint().activated = true;
+            mapData[currentMapID].GetLevelData()[currentLevelID - 1].GetCheckpoint().activated = true;
         }
+        currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
+        bestLifeCost = mapData[currentMapID].GetLevelData()[currentLevelID].GetBestLivesCost();
         transform.position = currentRespawnPoint.transform.position + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
         currentRespawnPoint.playerInside = true;
         tilePlayerInside = currentRespawnPoint;
         mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
-        SetInitLives(mapData[currentMapID].GetLevelData()[currentLevelID].GetPlayerLives());
-        m_playerData.lives = initLives;
         UIManager.UIInstance.UpdateUI();
     }
 
@@ -196,8 +195,14 @@ public class Player : MonoBehaviour
         // Input
         // TODO Support multiple device
         #region Input
-        //if (Input.inputString != "")
-        //    Debug.Log(Input.inputString);
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            UIManager.UIInstance.startMapID = currentMapID;
+            UIManager.UIInstance.startLevelID = currentLevelID;
+            UIManager.UIInstance.startLevelIndex = CameraManager.Instance.level_index;
+            UIManager.UIInstance.ClearUI();
+            SceneManager.LoadScene("All_Levels(Draft 1)");
+        }
         int horizontal = 0;
         int vertical = 0;
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
@@ -319,7 +324,7 @@ public class Player : MonoBehaviour
         m_playerData.playerState = VII.PlayerState.RESPAWNING;
         if (costLife)
         {
-            m_playerData.lives--;
+            m_playerData.lives++;
         }
         else
         {
@@ -356,15 +361,14 @@ public class Player : MonoBehaviour
             {
                 yield return null;
             } 
-            if (m_playerData.lives <= 0)
+            /*if (m_playerData.lives <= 0)
             {
                 UIManager.UIInstance.startMapID = currentMapID;
                 UIManager.UIInstance.startLevelID = currentLevelID;
                 UIManager.UIInstance.startLevelIndex = CameraManager.Instance.level_index;
-                //Clear UI manager
                 UIManager.UIInstance.ClearUI();
                 SceneManager.LoadScene("All_Levels(Draft 1)");
-            }
+            }*/
         }
         // EVENT: Respawing Ends
         InteractiveCollider.enabled = false;
@@ -415,7 +419,6 @@ public class Player : MonoBehaviour
 
     public void SetRespawnPoint(int i_Next)
     {
-        //m_playerData.respawnPositionIndex = Mathf.Abs((RespawnTargetGameObjects.Count + m_playerData.respawnPositionIndex + i_Next) % RespawnTargetGameObjects.Count);
         if (currentLevelID + i_Next < mapData[currentMapID].GetLevelData().Count && currentLevelID + i_Next >= 0)
         {
             currentLevelID += i_Next;
@@ -450,12 +453,7 @@ public class Player : MonoBehaviour
         }
         currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
         mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
-        SetInitLives(mapData[currentMapID].GetLevelData()[currentLevelID].GetPlayerLives());
-    }
-
-    public void SetInitLives(int newLife)
-    {
-        initLives = newLife;
+        bestLifeCost = mapData[currentMapID].GetLevelData()[currentLevelID].GetBestLivesCost();
     }
 
     public void PerformMove()

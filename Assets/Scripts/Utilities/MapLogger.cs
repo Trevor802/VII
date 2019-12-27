@@ -9,20 +9,20 @@ using System.IO;
 public class LevelLogData
 {
     public string levelName;
-    public int remainingLives;
+    public int usedLives;
     public int remainingSteps;
     public float levelElapsedTime;
     private JSONObject m_JSON = new JSONObject(JSONObject.Type.OBJECT);
 
-    public LevelLogData(int i_remainingLives, int i_remainingSteps,
+    public LevelLogData(int i_usedLives, int i_remainingSteps,
         float i_levelElapsedTime, string i_levelName)
     {
         levelName = i_levelName;
-        remainingLives = i_remainingLives;
+        usedLives = i_usedLives;
         remainingSteps = i_remainingSteps;
         levelElapsedTime = i_levelElapsedTime;
         m_JSON.AddField("LevelName", this.levelName);
-        m_JSON.AddField("RemainingLives", this.remainingLives);
+        m_JSON.AddField("UsedLives", this.usedLives);
         m_JSON.AddField("RemainingSteps", this.remainingSteps);
         m_JSON.AddField("LevelElapsedTime", this.levelElapsedTime);
     }
