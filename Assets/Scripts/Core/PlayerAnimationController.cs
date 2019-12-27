@@ -6,7 +6,7 @@ namespace VII
 {
     public enum PlayerAnimationState
     {
-        Idling, Moving, Death, Respawning, Transiting
+        Idling, Moving, Death, Respawning, Transiting, Sliding
     }
 
     [RequireComponent(typeof(Animator))]
@@ -24,6 +24,7 @@ namespace VII
         private readonly int m_hashIdlingTag = Animator.StringToHash("Idling");
         private readonly int m_hashRespawningTag = Animator.StringToHash("Respawning");
         private readonly int m_hashDeathTag = Animator.StringToHash("Death");
+        private readonly int m_hashSlidingTag = Animator.StringToHash("Sliding");
 
         private void Awake()
         {
@@ -68,7 +69,16 @@ namespace VII
             {
                 return PlayerAnimationState.Respawning;
             }
-            return PlayerAnimationState.Transiting;
+            if (currentStateTagHash == m_hashSlidingTag)
+            {
+                return PlayerAnimationState.Sliding;
+            }
+                return PlayerAnimationState.Transiting;
+        }
+
+        public void TriggerSlidingAnimation(bool isSliding)
+        {
+            m_animator.SetBool("IsSliding", isSliding);
         }
 
         public void RotateModel(Vector3 i_Direction)

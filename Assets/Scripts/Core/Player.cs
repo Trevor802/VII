@@ -177,6 +177,10 @@ public class Player : MonoBehaviour
             m_destination = end;
             m_playerData.playerState = VII.PlayerState.MOVING;
             m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Moving);
+            if (expectationStep > 1)
+            {
+                m_PlayerAnimationController.TriggerSlidingAnimation(true);
+            }
             VII.VIIEvents.TickStart.Invoke();
         }
         else
@@ -261,11 +265,11 @@ public class Player : MonoBehaviour
                 currentGridPos = nextGridPos;
                 nextGridPos += moveDir * VII.GameData.STEP_SIZE;
             }
-            // If there is wall on ice
+            // If there is wall on path
             RaycastHit bodyHit;
             bool bodyHitResult;
             bodyHitResult = Physics.Raycast(BodyDetector.transform.position,
-           moveDir * VII.GameData.STEP_SIZE, out bodyHit, m_maxCastDistance, (int)VII.HitLayer.Block);
+           moveDir * VII.GameData.STEP_SIZE, out bodyHit, VII.GameData.STEP_SIZE, (int)VII.HitLayer.Block);
             if (bodyHitResult &&
                 Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
                 < VII.GameData.STEP_SIZE * 0.5f)
@@ -273,6 +277,7 @@ public class Player : MonoBehaviour
                 transform.position = new Vector3(bodyHit.transform.position.x - (moveDir * 0.5f).x, bodyHit.transform.position.y - VII.GameData.STEP_SIZE * 0.5f, bodyHit.transform.position.z - (moveDir * 0.5f).z);
                 currentGridPos = transform.position;
                 nextGridPos = currentGridPos;
+                m_PlayerAnimationController.TriggerSlidingAnimation(false);
                 m_playerData.playerState = VII.PlayerState.IDLE;
                 m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Idling);
                 VII.VIIEvents.TickEnd.Invoke();
@@ -294,6 +299,7 @@ public class Player : MonoBehaviour
                 transform.position = m_destination;
                 currentGridPos = transform.position;
                 nextGridPos = currentGridPos;
+                m_PlayerAnimationController.TriggerSlidingAnimation(false);
                 m_playerData.playerState = VII.PlayerState.IDLE;
                 m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Idling);
                 VII.VIIEvents.TickEnd.Invoke();
@@ -348,6 +354,7 @@ public class Player : MonoBehaviour
                     nextGridPos, Time.deltaTime * m_inverseMoveTime);
                 yield return null;
             }
+            transform.position = nextGridPos;
             // Death Animation
             m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Death);
             while (m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Respawning)
