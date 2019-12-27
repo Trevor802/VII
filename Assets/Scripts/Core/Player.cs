@@ -110,6 +110,7 @@ public class Player : MonoBehaviour
         currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
         bestLifeCost = mapData[currentMapID].GetLevelData()[currentLevelID].GetBestLivesCost();
         transform.position = currentRespawnPoint.transform.position + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
+        m_playerData.playerState = VII.PlayerState.IDLE;
         currentRespawnPoint.playerInside = true;
         tilePlayerInside = currentRespawnPoint;
         mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
@@ -143,8 +144,6 @@ public class Player : MonoBehaviour
             i_dir, out unreachableTileHit, m_maxCastDistance, (int)VII.HitLayer.Unreachable);
         if (unreachableTileHitResult)
         {
-            //Debug.Log(unreachableTileHit.collider.transform.name);
-            //Debug.Log(Vector3.Distance(GroundDetector.transform.position, unreachableTileHit.transform.position));
             if(Vector3.Distance(GroundDetector.transform.position, unreachableTileHit.transform.position)
             <= VII.GameData.STEP_SIZE)
                 return false;
@@ -160,7 +159,6 @@ public class Player : MonoBehaviour
         int expectationStep = 1;
         foreach (var item in iceHits)
         {
-            //Debug.Log(Vector3.Distance(GroundDetector.transform.position, item.transform.position));
             // Player can't move that far
             if (Vector3.Distance(GroundDetector.transform.position, item.transform.position)
                 - expectationStep * VII.GameData.STEP_SIZE > 0.2f * VII.GameData.STEP_SIZE)
@@ -190,9 +188,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        //print("level index" + m_RespawnPosIndex);
-        //print(DiedInLevel0);
-        // Input
         // TODO Support multiple device
         #region Input
         if (Input.GetKeyDown(KeyCode.R))
@@ -228,7 +223,7 @@ public class Player : MonoBehaviour
         #endregion
         if (horizontal != 0 || vertical != 0)
         {
-            if (m_playerData.playerState == VII.PlayerState.IDLE)
+            if (m_playerData.playerState == VII.PlayerState.IDLE && m_PlayerAnimationController.GetAnimationState() == VII.PlayerAnimationState.Idling)
             {
                 if (horizontal != 0)
                 {
@@ -306,8 +301,6 @@ public class Player : MonoBehaviour
                 {
                     Respawn();
                 }
-                //UI Update
-               // UIManager.UIInstance.UpdateUI();
             }
     }
         #endregion
@@ -406,8 +399,6 @@ public class Player : MonoBehaviour
         }
         Inventory.RemoveDroppableItems();
         if (dropTombstone)
-            /*Instantiate(TombstonePrefab, InteractableSpawnPoint.transform.position,
-                    Quaternion.identity);*/
             Pools.SpawnFromPool("Tomb", InteractableSpawnPoint.transform.position, Quaternion.identity);
     }
 
