@@ -103,6 +103,15 @@ public class Player : MonoBehaviour
         mapData = VII.SceneDataManager.Instance.GetMapData();
         currentMapID = UIManager.UIInstance.startMapID;
         currentLevelID = UIManager.UIInstance.startLevelID;
+        if (currentLevelID > 0)
+        {
+            mapData[currentMapID].GetLevelData()[currentLevelID - 1].GetCheckpoint().activated = true;
+        }
+        for (int i = 0; i < mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.childCount; i++)
+        {
+            if (mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.GetChild(i).name == "Level_blocker")
+                mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.GetChild(i).GetComponent<Wall>().Move(new Vector3(0, 1, 0));
+        }
         mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
         currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
         bestLifeCost = mapData[currentMapID].GetLevelData()[currentLevelID].GetBestLivesCost();
