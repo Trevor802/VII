@@ -103,7 +103,6 @@ public class Player : MonoBehaviour
         mapData = VII.SceneDataManager.Instance.GetMapData();
         currentMapID = UIManager.UIInstance.startMapID;
         currentLevelID = UIManager.UIInstance.startLevelID;
-        mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().SetActive(true);
         mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
         currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
         bestLifeCost = mapData[currentMapID].GetLevelData()[currentLevelID].GetBestLivesCost();
@@ -418,10 +417,111 @@ public class Player : MonoBehaviour
 
     public void SetRespawnPoint(int i_Next)
     {
-        mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().SetActive(false);
         if (currentLevelID + i_Next < mapData[currentMapID].GetLevelData().Count && currentLevelID + i_Next >= 0)
         {
             currentLevelID += i_Next;
+            if (currentMapID == 0 && currentLevelID == 4 && i_Next == 1)
+            {
+                for (int i=0; i < 4; i++)
+                    mapData[currentMapID].GetLevelData()[i].GetLevelObject().SetActive(false);
+            }
+            else if (currentMapID == 0 && currentLevelID == 3 && i_Next == -1)
+            {
+                for (int i = 0; i < 4; i++)
+                    mapData[currentMapID].GetLevelData()[i].GetLevelObject().SetActive(true);
+            }
+            if (currentMapID == 0 && currentLevelID == 6 && i_Next == 1)
+            {
+                for (int i = 4; i < 6; i++)
+                    mapData[currentMapID].GetLevelData()[i].GetLevelObject().SetActive(false);
+            }
+            else if (currentMapID == 0 && currentLevelID == 5 && i_Next == -1)
+            {
+                for (int i = 4; i < 6; i++)
+                    mapData[currentMapID].GetLevelData()[i].GetLevelObject().SetActive(true);
+            }
+            if (currentMapID == 0 && currentLevelID == 8 && i_Next == 1)
+            {
+                for (int i = 6; i < 8; i++)
+                    mapData[currentMapID].GetLevelData()[i].GetLevelObject().SetActive(false);
+            }
+            else if (currentMapID == 0 && currentLevelID == 7 && i_Next == -1)
+            {
+                for (int i = 6; i < 8; i++)
+                    mapData[currentMapID].GetLevelData()[i].GetLevelObject().SetActive(true);
+            }
+            if (currentMapID == 1 && currentLevelID == 3 && i_Next == 1)
+            {
+                for (int i = 0; i < 3; i++)
+                    mapData[currentMapID].GetLevelData()[i].GetLevelObject().SetActive(false);
+            }
+            else if (currentMapID == 1 && currentLevelID == 2 && i_Next == -1)
+            {
+                for (int i = 0; i < 3; i++)
+                    mapData[currentMapID].GetLevelData()[i].GetLevelObject().SetActive(true);
+            }
+            if (currentMapID == 1 && currentLevelID == 4 && i_Next == 1)
+            {
+                mapData[currentMapID].GetLevelData()[3].GetLevelObject().SetActive(false);
+            }
+            else if (currentMapID == 1 && currentLevelID == 3 && i_Next == -1)
+            {
+                mapData[currentMapID].GetLevelData()[3].GetLevelObject().SetActive(true);
+            }
+            if (currentMapID == 1 && currentLevelID == 6 && i_Next == 1)
+            {
+                for (int i = 4; i < 6; i++)
+                    mapData[currentMapID].GetLevelData()[i].GetLevelObject().SetActive(false);
+            }
+            else if (currentMapID == 1 && currentLevelID == 5 && i_Next == -1)
+            {
+                for (int i = 4; i < 6; i++)
+                    mapData[currentMapID].GetLevelData()[i].GetLevelObject().SetActive(true);
+            }
+            if (currentMapID == 1 && currentLevelID == 7 && i_Next == 1)
+            {
+                mapData[currentMapID].GetLevelData()[6].GetLevelObject().SetActive(false);
+            }
+            else if (currentMapID == 1 && currentLevelID == 6 && i_Next == -1)
+            {
+                mapData[currentMapID].GetLevelData()[6].GetLevelObject().SetActive(true);
+            }
+            if (currentMapID == 2 && currentLevelID == 3 && i_Next == 1)
+            {
+                for (int i = 0; i < 3; i++)
+                    mapData[currentMapID].GetLevelData()[i].GetLevelObject().SetActive(false);
+            }
+            else if (currentMapID == 2 && currentLevelID == 2 && i_Next == -1)
+            {
+                for (int i = 0; i < 3; i++)
+                    mapData[currentMapID].GetLevelData()[i].GetLevelObject().SetActive(true);
+            }
+            if (currentMapID == 2 && currentLevelID == 5 && i_Next == 1)
+            {
+                for (int i = 3; i < 5; i++)
+                    mapData[currentMapID].GetLevelData()[i].GetLevelObject().SetActive(false);
+            }
+            else if (currentMapID == 2 && currentLevelID == 4 && i_Next == -1)
+            {
+                for (int i = 3; i < 5; i++)
+                    mapData[currentMapID].GetLevelData()[i].GetLevelObject().SetActive(true);
+            }
+            if (currentMapID == 2 && currentLevelID == 5 && i_Next == 1)
+            {
+                mapData[currentMapID].GetLevelData()[4].GetLevelObject().SetActive(false);
+            }
+            else if (currentMapID == 2 && currentLevelID == 4 && i_Next == -1)
+            {
+                mapData[currentMapID].GetLevelData()[4].GetLevelObject().SetActive(true);
+            }
+            if (currentMapID == 2 && currentLevelID == 6 && i_Next == 1)
+            {
+                mapData[currentMapID].GetLevelData()[5].GetLevelObject().SetActive(false);
+            }
+            else if (currentMapID == 2 && currentLevelID == 5 && i_Next == -1)
+            {
+                mapData[currentMapID].GetLevelData()[5].GetLevelObject().SetActive(true);
+            }
         }
         // go to previous map
         else if (currentLevelID + i_Next < 0)
@@ -435,6 +535,20 @@ public class Player : MonoBehaviour
             {
                 currentMapID = mapData.Count - 1;
                 currentLevelID = mapData[currentMapID].GetLevelData().Count - 1;
+            }
+            if (currentMapID == 0)
+            {
+                for (int i = 8; i < 10; i++)
+                    mapData[currentMapID].GetLevelData()[i].GetLevelObject().SetActive(true);
+            }
+            else if (currentMapID == 1)
+            {
+                for (int i = 7; i < 9; i++)
+                    mapData[currentMapID].GetLevelData()[i].GetLevelObject().SetActive(true);
+            }
+            else if (currentMapID == 2)
+            {
+                mapData[currentMapID].GetLevelData()[6].GetLevelObject().SetActive(true);
             }
         }
         // go to next map
@@ -450,8 +564,21 @@ public class Player : MonoBehaviour
                 currentMapID = 0;
                 currentLevelID = 0;
             }
+            if (currentMapID == 0)
+            {
+                mapData[2].GetLevelData()[6].GetLevelObject().SetActive(false);
+            }
+            else if (currentMapID == 1)
+            {
+                for (int i = 8; i < 10; i++)
+                    mapData[0].GetLevelData()[i].GetLevelObject().SetActive(false);
+            }
+            else if (currentMapID == 2)
+            {
+                for (int i = 7; i < 9; i++)
+                    mapData[1].GetLevelData()[i].GetLevelObject().SetActive(false);
+            }
         }
-        mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().SetActive(true);
         currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
         mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
         bestLifeCost = mapData[currentMapID].GetLevelData()[currentLevelID].GetBestLivesCost();
