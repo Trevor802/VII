@@ -103,17 +103,14 @@ public class Player : MonoBehaviour
         mapData = VII.SceneDataManager.Instance.GetMapData();
         currentMapID = UIManager.UIInstance.startMapID;
         currentLevelID = UIManager.UIInstance.startLevelID;
-        if (currentLevelID > 0)
-        {
-            mapData[currentMapID].GetLevelData()[currentLevelID - 1].GetCheckpoint().activated = true;
-        }
+        mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().SetActive(true);
+        mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
         currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
         bestLifeCost = mapData[currentMapID].GetLevelData()[currentLevelID].GetBestLivesCost();
         transform.position = currentRespawnPoint.transform.position + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
         m_playerData.playerState = VII.PlayerState.IDLE;
         currentRespawnPoint.playerInside = true;
         tilePlayerInside = currentRespawnPoint;
-        mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
         UIManager.UIInstance.UpdateUI();
     }
 
@@ -400,13 +397,17 @@ public class Player : MonoBehaviour
         {
             if (item.droppable)
             {
-                Instantiate(item.prefab, InteractableSpawnPoint.transform.position,
+                GameObject itemDroped = Instantiate(item.prefab, InteractableSpawnPoint.transform.position,
                 Quaternion.identity);
+                itemDroped.transform.parent = mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform;
             }
         }
         Inventory.RemoveDroppableItems();
         if (dropTombstone)
-            Pools.SpawnFromPool("Tomb", InteractableSpawnPoint.transform.position, Quaternion.identity);
+        {
+            GameObject tomb = Pools.SpawnFromPool("Tomb", InteractableSpawnPoint.transform.position, Quaternion.identity);
+            tomb.transform.parent = mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform;
+        } 
     }
 
     public void AddStep(int step)
@@ -417,6 +418,7 @@ public class Player : MonoBehaviour
 
     public void SetRespawnPoint(int i_Next)
     {
+        mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().SetActive(false);
         if (currentLevelID + i_Next < mapData[currentMapID].GetLevelData().Count && currentLevelID + i_Next >= 0)
         {
             currentLevelID += i_Next;
@@ -449,6 +451,7 @@ public class Player : MonoBehaviour
                 currentLevelID = 0;
             }
         }
+        mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().SetActive(true);
         currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
         mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
         bestLifeCost = mapData[currentMapID].GetLevelData()[currentLevelID].GetBestLivesCost();
