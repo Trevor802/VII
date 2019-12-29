@@ -5,8 +5,10 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     public List<GameObject> cinema_list;
+    public List<GameObject> pp_list;
     public bool debugMode;  //in debug mode, the player will transfer with the camera to next or prev level.
     public int level_index;
+    public int pp_index;
     private Player player;
 
     #region Singleton
@@ -34,6 +36,7 @@ public class CameraManager : MonoBehaviour
         }
 
         level_index = UIManager.UIInstance.startLevelIndex;
+        pp_index = UIManager.UIInstance.startPPIndex;
         for (int i = 0; i < cinema_list.Count; i++)
         {
             if (i == level_index)
@@ -43,6 +46,17 @@ public class CameraManager : MonoBehaviour
             else
             {
                 cinema_list[i].SetActive(false);
+            }
+        }
+        for (int i = 0; i < pp_list.Count; i++)
+        {
+            if (i == pp_index)
+            {
+                pp_list[i].SetActive(true);
+            }
+            else
+            {
+                pp_list[i].SetActive(false);
             }
         }
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -69,6 +83,19 @@ public class CameraManager : MonoBehaviour
             //player.Respawn(false);
         }
         
+    }
+
+    public void SwitchPostProcessing(int new_index)
+    {
+        pp_index = new_index;
+        pp_list[pp_index].SetActive(true);
+        for (int i = 0; i < pp_list.Count; i++)
+        {
+            if (i != pp_index)
+            {
+                pp_list[i].SetActive(false);
+            }
+        }
     }
 }
 

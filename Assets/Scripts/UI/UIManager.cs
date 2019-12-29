@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
             startMapID = 0;
             startLevelID = 0;
             startLevelIndex = 0;
+            startPPIndex = 0;
         }
         else if (UIInstance != this)
         {
@@ -37,6 +38,8 @@ public class UIManager : MonoBehaviour
     public int startLevelID;
     [HideInInspector]
     public int startLevelIndex;
+    [HideInInspector]
+    public int startPPIndex;
 
     //private List<RawImage> m_lifeIcons;
     //private List<RawImage> m_crossIcons;

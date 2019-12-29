@@ -14939,8 +14939,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].arguments.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
       propertyPath: livesAvailable
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
+      value: 83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].genericMenuData.selectedComponent
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].isCallEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].target
+      value: 
+      objectReference: {fileID: 233517635}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].memberName
+      value: SwitchPostProcessing
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].memberType
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].genericMenuData.selectedMember
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].arguments.Array.data[0].typeName
+      value: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].arguments.Array.data[0].supportedType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].arguments.Array.data[0].intArgument
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -27252,12 +27312,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].arguments.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
       propertyPath: livesAvailable
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: bestLifeCost
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].genericMenuData.selectedComponent
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].isCallEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].target
+      value: 
+      objectReference: {fileID: 233517635}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].memberName
+      value: SwitchPostProcessing
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].memberType
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].genericMenuData.selectedMember
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].arguments.Array.data[0].typeName
+      value: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].arguments.Array.data[0].supportedType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].arguments.Array.data[0].intArgument
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -27485,6 +27600,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7585793158539555722, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
+      propertyPath: pp_list.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7585793158539555722, guid: 821c8d460c3281941ace02b519c60692,
+        type: 3}
       propertyPath: cinema_list.Array.data[0]
       value: 
       objectReference: {fileID: 1416349374}
@@ -27618,6 +27738,21 @@ PrefabInstance:
       propertyPath: cinema_list.Array.data[25]
       value: 
       objectReference: {fileID: 2142110956}
+    - target: {fileID: 7585793158539555722, guid: 821c8d460c3281941ace02b519c60692,
+        type: 3}
+      propertyPath: pp_list.Array.data[0]
+      value: 
+      objectReference: {fileID: 1838256833}
+    - target: {fileID: 7585793158539555722, guid: 821c8d460c3281941ace02b519c60692,
+        type: 3}
+      propertyPath: pp_list.Array.data[1]
+      value: 
+      objectReference: {fileID: 1711047716}
+    - target: {fileID: 7585793158539555722, guid: 821c8d460c3281941ace02b519c60692,
+        type: 3}
+      propertyPath: pp_list.Array.data[2]
+      value: 
+      objectReference: {fileID: 1421147526}
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -69372,6 +69507,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1420218157}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1421147526 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1971911637843258286, guid: 6db4e78ab51902945b202f29a249d421,
+    type: 3}
+  m_PrefabInstance: {fileID: 2054090509}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1425282478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82580,6 +82721,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1711002955}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1711047716 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3691382642901540195, guid: 3e12ee6b21668f642878c505b826c22a,
+    type: 3}
+  m_PrefabInstance: {fileID: 881332694}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1713962044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -88856,6 +89003,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1936402778260479692, guid: e3a352e5e460640c99199adbd07d7925,
     type: 3}
   m_PrefabInstance: {fileID: 1836395361}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1838256833 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5849639142952955955, guid: a2a807ef279922f499819650a211c7d5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1734010508}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1842073862
 PrefabInstance:

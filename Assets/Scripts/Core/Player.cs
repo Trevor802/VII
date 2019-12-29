@@ -103,6 +103,11 @@ public class Player : MonoBehaviour
         mapData = VII.SceneDataManager.Instance.GetMapData();
         currentMapID = UIManager.UIInstance.startMapID;
         currentLevelID = UIManager.UIInstance.startLevelID;
+        if (currentMapID > 0)
+        {
+            for (int i = 0; i < currentMapID; i++)
+                mapData[i].GetMapObject().SetActive(false);
+        }
         if (currentLevelID > 0)
         {
             mapData[currentMapID].GetLevelData()[currentLevelID - 1].GetCheckpoint().activated = true;
@@ -204,6 +209,7 @@ public class Player : MonoBehaviour
             UIManager.UIInstance.startMapID = currentMapID;
             UIManager.UIInstance.startLevelID = currentLevelID;
             UIManager.UIInstance.startLevelIndex = CameraManager.Instance.level_index;
+            UIManager.UIInstance.startPPIndex = CameraManager.Instance.pp_index;
             UIManager.UIInstance.ClearUI();
             SceneManager.LoadScene("All_Levels(Draft 1)");
         }
