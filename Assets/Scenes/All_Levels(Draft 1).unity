@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 930055634}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -205,7 +205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2788662}
   m_Layer: 0
-  m_Name: lvl.1.3
+  m_Name: lvl1.3
   m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1010,7 +1010,7 @@ PrefabInstance:
     - target: {fileID: 8730513351939630493, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
       propertyPath: m_Name
-      value: Cam_Ice_lvl4.2
+      value: Cam_Ice_lvl5.2
       objectReference: {fileID: 0}
     - target: {fileID: 8730513351939630495, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
@@ -2544,7 +2544,7 @@ PrefabInstance:
     - target: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_Name
-      value: CheckpointEnd_Ice.lvl1.4
+      value: CheckpointEnd_Ice.lvl2
       objectReference: {fileID: 0}
     - target: {fileID: 1636170244721508879, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -3135,7 +3135,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 26
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -3809,6 +3809,38 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 77016599}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &77655732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 77655733}
+  m_Layer: 0
+  m_Name: Dungeon_Map2
+  m_TagString: Map
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &77655733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77655732}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1113690148}
+  - {fileID: 1174520279}
+  m_Father: {fileID: 1301648177}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &78111995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4258,6 +4290,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 84130896}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &87687266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 87687267}
+  m_Layer: 0
+  m_Name: Lava_Map4
+  m_TagString: Map
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &87687267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87687266}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1094726285}
+  m_Father: {fileID: 1301648177}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &88063606 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6857349775925842101, guid: 3b68c9bc9bd2648e8852d4d2b19e4673,
@@ -8604,7 +8667,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_Name
-      value: Respawn Ice lvl 2
+      value: Respawn Ice lvl 3
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -8820,7 +8883,7 @@ PrefabInstance:
     - target: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_Name
-      value: CheckpointEnd_Ice.lvl2
+      value: CheckpointEnd_Ice.lvl3
       objectReference: {fileID: 0}
     - target: {fileID: 1636170244721508879, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -9290,7 +9353,7 @@ PrefabInstance:
     - target: {fileID: 8730513351939630493, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
       propertyPath: m_Name
-      value: Cam_Ice_lvl2
+      value: Cam_Ice_lvl3
       objectReference: {fileID: 0}
     - target: {fileID: 8730513351939630495, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
@@ -9995,12 +10058,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1936402778260479692, guid: e3a352e5e460640c99199adbd07d7925,
     type: 3}
   m_PrefabInstance: {fileID: 201773306}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &206035177 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 939635875}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &209253692
 PrefabInstance:
@@ -10805,7 +10862,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_Name
-      value: Respawn Ice lvl 4
+      value: Respawn Ice lvl 5
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -11783,6 +11840,38 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 245876122}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &246072537
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 246072538}
+  m_Layer: 0
+  m_Name: Ice_Map5
+  m_TagString: Map
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &246072538
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246072537}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1710931269}
+  - {fileID: 1541900419}
+  m_Father: {fileID: 1301648177}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &246112057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12498,7 +12587,7 @@ PrefabInstance:
     - target: {fileID: 1936402778260479692, guid: e3a352e5e460640c99199adbd07d7925,
         type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 1936402778260479692, guid: e3a352e5e460640c99199adbd07d7925,
         type: 3}
@@ -12833,6 +12922,38 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 259069723}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &259692061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 259692062}
+  m_Layer: 0
+  m_Name: Ice_Map3
+  m_TagString: Map
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &259692062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259692061}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1460257995}
+  - {fileID: 512134623}
+  m_Father: {fileID: 1301648177}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &261135419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13031,7 +13152,7 @@ GameObject:
   m_Component:
   - component: {fileID: 262088019}
   m_Layer: 0
-  m_Name: lvl.6
+  m_Name: lvl4.2
   m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13045,7 +13166,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262088018}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.5, y: -9, z: 15.5}
+  m_LocalPosition: {x: 13.5, y: 3, z: 15.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 880819834}
@@ -13090,8 +13211,8 @@ Transform:
   - {fileID: 1508427291}
   - {fileID: 870005728}
   - {fileID: 1472934752}
-  m_Father: {fileID: 1748642063}
-  m_RootOrder: 9
+  m_Father: {fileID: 1779393781}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &262409696
 PrefabInstance:
@@ -13661,12 +13782,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 267918812}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &268419822 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 1911932946}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &268923116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13677,7 +13792,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_Name
-      value: Respawn Ice lvl 2.2
+      value: Respawn Ice lvl 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -16798,7 +16913,7 @@ PrefabInstance:
     - target: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_Name
-      value: CheckpointEnd_Dungeon.lvl6
+      value: CheckpointEnd_Dungeon.lvl4.2
       objectReference: {fileID: 0}
     - target: {fileID: 1636170244721508879, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -18948,6 +19063,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 382087710}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &385281955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 385281956}
+  m_Layer: 0
+  m_Name: Ice_Map2
+  m_TagString: Map
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &385281956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385281955}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1167358463}
+  m_Father: {fileID: 1301648177}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &385294138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21643,7 +21789,7 @@ PrefabInstance:
     - target: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_Name
-      value: CheckpointEnd_Dungeon.lvl4.2
+      value: CheckpointEnd_Dungeon.lvl3.2
       objectReference: {fileID: 0}
     - target: {fileID: 1636170244721508879, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -24264,12 +24410,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08c6a9191fe224a179b16832b8d4ff63, type: 3}
---- !u!1 &488998380 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 1353255077}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &489282220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25400,7 +25540,7 @@ GameObject:
   m_Component:
   - component: {fileID: 512134623}
   m_Layer: 0
-  m_Name: lvl.2.2
+  m_Name: lvl3.2
   m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25414,7 +25554,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 512134622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 68, y: -27, z: 17}
+  m_LocalPosition: {x: 66.5, y: -28, z: 16.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1220986693}
@@ -25449,8 +25589,8 @@ Transform:
   - {fileID: 773421090}
   - {fileID: 37901026}
   - {fileID: 268923117}
-  m_Father: {fileID: 1570814713}
-  m_RootOrder: 5
+  m_Father: {fileID: 259692062}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &512519728
 PrefabInstance:
@@ -25677,7 +25817,7 @@ PrefabInstance:
     - target: {fileID: 1936402778260479692, guid: e3a352e5e460640c99199adbd07d7925,
         type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 1936402778260479692, guid: e3a352e5e460640c99199adbd07d7925,
         type: 3}
@@ -30171,12 +30311,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 597595161}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &599400126 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 2030852172}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &599650976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34267,7 +34401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 694996826}
   m_Layer: 0
-  m_Name: lvl4.2
+  m_Name: lvl3.2
   m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34281,7 +34415,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694996825}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.5, y: -2, z: 6}
+  m_LocalPosition: {x: 12.5, y: 10, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 667143889}
@@ -34330,8 +34464,8 @@ Transform:
   - {fileID: 604113179}
   - {fileID: 1832660486}
   - {fileID: 695458325}
-  m_Father: {fileID: 1748642063}
-  m_RootOrder: 7
+  m_Father: {fileID: 1391806268}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &695458324
 PrefabInstance:
@@ -34343,7 +34477,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_Name
-      value: Respawn_Dungeon lvl 4.2
+      value: Respawn_Dungeon lvl 3.2
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -37813,12 +37947,6 @@ MonoBehaviour:
     posMin: {x: -0.5, y: -0.1, z: -0.5}
     posMax: {x: 0.5, y: 0.1, z: 0.5}
   includeInMerge: 1
---- !u!1 &779070560 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 972277513}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &779470936
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42112,7 +42240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 876449635}
   m_Layer: 0
-  m_Name: lvl.5
+  m_Name: lvl4
   m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42126,7 +42254,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876449634}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 14.5, y: -8, z: 15.5}
+  m_LocalPosition: {x: 14.5, y: 4, z: 15.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1925898004}
@@ -42189,8 +42317,8 @@ Transform:
   - {fileID: 1590137923}
   - {fileID: 1834282740}
   - {fileID: 891999538}
-  m_Father: {fileID: 1748642063}
-  m_RootOrder: 8
+  m_Father: {fileID: 1779393781}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &876597129
 PrefabInstance:
@@ -42736,7 +42864,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_Name
-      value: Respawn_Dungeon lvl 5
+      value: Respawn_Dungeon lvl 4
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -47778,6 +47906,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 972277513}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &974557658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 974557659}
+  m_Layer: 0
+  m_Name: Ice_Map4
+  m_TagString: Map
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &974557659
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974557658}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2080200002}
+  m_Father: {fileID: 1301648177}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &976115382
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48409,12 +48568,6 @@ Transform:
   m_Father: {fileID: 1748642063}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &989329338 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 1274328585}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &989811663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50285,7 +50438,7 @@ PrefabInstance:
     - target: {fileID: 1936402778260479692, guid: e3a352e5e460640c99199adbd07d7925,
         type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 1936402778260479692, guid: e3a352e5e460640c99199adbd07d7925,
         type: 3}
@@ -50320,7 +50473,7 @@ PrefabInstance:
     - target: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_Name
-      value: CheckpointEnd_Ice.lvl2.2
+      value: CheckpointEnd_Ice.lvl3.2
       objectReference: {fileID: 0}
     - target: {fileID: 1636170244721508879, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -50570,7 +50723,7 @@ PrefabInstance:
     - target: {fileID: 8730513351939630493, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
       propertyPath: m_Name
-      value: Cam_Dungeon.lvl3
+      value: Cam_Dungeon.lvl2.2
       objectReference: {fileID: 0}
     - target: {fileID: 8730513351939630495, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
@@ -51904,7 +52057,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_Name
-      value: Respawn Ice lvl 3
+      value: Respawn Ice lvl 4
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -52886,7 +53039,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094726284}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 59, y: -11.5, z: 32.5}
+  m_LocalPosition: {x: 70.5, y: -46, z: 9.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 182936293}
@@ -52949,8 +53102,8 @@ Transform:
   - {fileID: 40567526}
   - {fileID: 2141658792}
   - {fileID: 534461009}
-  m_Father: {fileID: 1165859421}
-  m_RootOrder: 6
+  m_Father: {fileID: 87687267}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1094855482 stripped
 MonoBehaviour:
@@ -53890,7 +54043,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1113690148}
   m_Layer: 0
-  m_Name: lvl.2
+  m_Name: lvl2
   m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53904,7 +54057,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1113690147}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.5, y: -5, z: 9.5}
+  m_LocalPosition: {x: 15.5, y: 7, z: 9.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 244157119}
@@ -53945,8 +54098,8 @@ Transform:
   - {fileID: 249251870}
   - {fileID: 959688230}
   - {fileID: 2020510379}
-  m_Father: {fileID: 1748642063}
-  m_RootOrder: 4
+  m_Father: {fileID: 77655733}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1114282064
 PrefabInstance:
@@ -54864,12 +55017,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1144102978}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1144459917 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 1214953908}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1147439801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55534,7 +55681,7 @@ PrefabInstance:
     - target: {fileID: 8730513351939630493, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
       propertyPath: m_Name
-      value: Cam_Ice_lvl4
+      value: Cam_Ice_lvl5
       objectReference: {fileID: 0}
     - target: {fileID: 8730513351939630495, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
@@ -55628,7 +55775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1156652384}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 53, y: -0.5, z: 27.5}
+  m_LocalPosition: {x: 64.5, y: -35, z: 4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 578175485}
@@ -55661,8 +55808,8 @@ Transform:
   - {fileID: 1434320420}
   - {fileID: 40201660}
   - {fileID: 1352182686}
-  m_Father: {fileID: 1165859421}
-  m_RootOrder: 4
+  m_Father: {fileID: 2048397534}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1160469500
 PrefabInstance:
@@ -56022,7 +56169,7 @@ PrefabInstance:
     - target: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_Name
-      value: CheckpointEnd_Ice.lvl4.2
+      value: CheckpointEnd_Ice.lvl5.2
       objectReference: {fileID: 0}
     - target: {fileID: 1636170244721508879, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -56182,7 +56329,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1165859421}
   m_Layer: 0
-  m_Name: Lava_LEVELS
+  m_Name: Lava_Map1
   m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56202,12 +56349,8 @@ Transform:
   - {fileID: 1816598205}
   - {fileID: 474109853}
   - {fileID: 1550759463}
-  - {fileID: 1538577854}
-  - {fileID: 1156652385}
-  - {fileID: 1735406822}
-  - {fileID: 1094726285}
   m_Father: {fileID: 1301648177}
-  m_RootOrder: 2
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1166666306
 PrefabInstance:
@@ -56327,7 +56470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1167358463}
   m_Layer: 0
-  m_Name: lvl.1.4
+  m_Name: lvl2
   m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56341,7 +56484,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167358462}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 47, y: -21.5, z: 10}
+  m_LocalPosition: {x: 45.5, y: -22.5, z: 9.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 215376900}
@@ -56387,8 +56530,8 @@ Transform:
   - {fileID: 1170711892}
   - {fileID: 1104608808}
   - {fileID: 1830891077}
-  m_Father: {fileID: 1570814713}
-  m_RootOrder: 3
+  m_Father: {fileID: 385281956}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1170711891
 PrefabInstance:
@@ -56555,7 +56698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1174520279}
   m_Layer: 0
-  m_Name: lvl.2.2
+  m_Name: lvl2.2
   m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56569,7 +56712,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174520278}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 33.5, y: 3, z: 34.5}
+  m_LocalPosition: {x: 33.5, y: 15, z: 34.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 579598687}
@@ -56632,8 +56775,8 @@ Transform:
   - {fileID: 2099141179}
   - {fileID: 1752128741}
   - {fileID: 497562221}
-  m_Father: {fileID: 1748642063}
-  m_RootOrder: 5
+  m_Father: {fileID: 77655733}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1178606554
 PrefabInstance:
@@ -58641,7 +58784,7 @@ PrefabInstance:
     - target: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_Name
-      value: CheckpointEnd_Dungeon.lvl4
+      value: CheckpointEnd_Dungeon.lvl3
       objectReference: {fileID: 0}
     - target: {fileID: 1636170244721508879, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -59210,7 +59353,7 @@ PrefabInstance:
     - target: {fileID: 8730513351939630493, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
       propertyPath: m_Name
-      value: Cam_Ice_lvl1.4
+      value: Cam_Ice_lvl2
       objectReference: {fileID: 0}
     - target: {fileID: 8730513351939630495, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
@@ -60585,7 +60728,7 @@ PrefabInstance:
     - target: {fileID: 8730513351939630493, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
       propertyPath: m_Name
-      value: Cam_Dungeon.lvl4.2
+      value: Cam_Dungeon.lvl3.2
       objectReference: {fileID: 0}
     - target: {fileID: 8730513351939630495, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
@@ -61400,7 +61543,7 @@ PrefabInstance:
     - target: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_Name
-      value: CheckpointEnd_Ice.lvl4
+      value: CheckpointEnd_Ice.lvl5
       objectReference: {fileID: 0}
     - target: {fileID: 1636170244721508879, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -62094,7 +62237,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_Name
-      value: Respawn Ice lvl 1.4
+      value: Respawn Ice lvl 2
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -62253,12 +62396,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25399a8663513438abe48fcceca3e09e, type: 3}
---- !u!1 &1289427339 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 138374843}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1290909718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62343,12 +62480,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
     type: 3}
   m_PrefabInstance: {fileID: 1290909718}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1291690003 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 127959018}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1292368597
 PrefabInstance:
@@ -62968,8 +63099,18 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1748642063}
+  - {fileID: 77655733}
+  - {fileID: 1391806268}
+  - {fileID: 1779393781}
   - {fileID: 1570814713}
+  - {fileID: 385281956}
+  - {fileID: 259692062}
+  - {fileID: 974557659}
+  - {fileID: 246072538}
   - {fileID: 1165859421}
+  - {fileID: 2048397534}
+  - {fileID: 1470894958}
+  - {fileID: 87687267}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -64875,7 +65016,7 @@ PrefabInstance:
     - target: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_Name
-      value: CheckpointEnd_Dungeon.lvl5
+      value: CheckpointEnd_Dungeon.lvl4
       objectReference: {fileID: 0}
     - target: {fileID: 1636170244721508879, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -67084,6 +67225,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3069bf0f15024cd384845ed6c0fc935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1391806267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1391806268}
+  m_Layer: 0
+  m_Name: Dungeon_Map3
+  m_TagString: Map
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1391806268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391806267}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2059700531}
+  - {fileID: 694996826}
+  m_Father: {fileID: 1301648177}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1391809878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67556,7 +67729,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_Name
-      value: Respawn_Dungeon lvl 4
+      value: Respawn_Dungeon lvl 3
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -70886,7 +71059,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1460257995}
   m_Layer: 0
-  m_Name: lvl.2
+  m_Name: lvl3
   m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70899,8 +71072,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460257994}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 68, y: -27, z: 17}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 66.5, y: -28, z: 16.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 187965934}
@@ -70933,8 +71106,8 @@ Transform:
   - {fileID: 28248987}
   - {fileID: 1768030385}
   - {fileID: 185738691}
-  m_Father: {fileID: 1570814713}
-  m_RootOrder: 4
+  m_Father: {fileID: 259692062}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1460512863
 PrefabInstance:
@@ -71561,6 +71734,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1470748157}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1470894957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1470894958}
+  m_Layer: 0
+  m_Name: Lava_Map3
+  m_TagString: Map
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1470894958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470894957}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1735406822}
+  m_Father: {fileID: 1301648177}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1471409558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71646,7 +71850,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_Name
-      value: Respawn_Dungeon lvl 6
+      value: Respawn_Dungeon lvl 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -72435,7 +72639,7 @@ PrefabInstance:
     - target: {fileID: 8730513351939630493, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
       propertyPath: m_Name
-      value: Cam_Ice_lvl3
+      value: Cam_Ice_lvl4
       objectReference: {fileID: 0}
     - target: {fileID: 8730513351939630495, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
@@ -74435,7 +74639,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538577853}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 53.5, y: 0, z: 27}
+  m_LocalPosition: {x: 65, y: -34.5, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 382043513}
@@ -74471,8 +74675,8 @@ Transform:
   - {fileID: 687694561}
   - {fileID: 1408323637}
   - {fileID: 1296465376}
-  m_Father: {fileID: 1165859421}
-  m_RootOrder: 3
+  m_Father: {fileID: 2048397534}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1541900418
 GameObject:
@@ -74484,7 +74688,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1541900419}
   m_Layer: 0
-  m_Name: lvl.4.2
+  m_Name: lvl5.2
   m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74497,8 +74701,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1541900418}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 61, y: -37, z: 13}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 59.5, y: -38, z: 12.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 483897907}
@@ -74537,8 +74741,8 @@ Transform:
   - {fileID: 11363848}
   - {fileID: 1163918501}
   - {fileID: 1971475467}
-  m_Father: {fileID: 1570814713}
-  m_RootOrder: 8
+  m_Father: {fileID: 246072538}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1543998033
 PrefabInstance:
@@ -75797,12 +76001,6 @@ MonoBehaviour:
     posMin: {x: -0.5, y: -0.1, z: -0.5}
     posMax: {x: 0.5, y: 0.1, z: 0.5}
   includeInMerge: 1
---- !u!1 &1564313798 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 923292112}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1564714897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76146,7 +76344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1570814713}
   m_Layer: 0
-  m_Name: ICE_LEVELS
+  m_Name: Ice_Map1
   m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76166,14 +76364,8 @@ Transform:
   - {fileID: 1669614605}
   - {fileID: 1903059777}
   - {fileID: 2788662}
-  - {fileID: 1167358463}
-  - {fileID: 1460257995}
-  - {fileID: 512134623}
-  - {fileID: 2080200002}
-  - {fileID: 1710931269}
-  - {fileID: 1541900419}
   m_Father: {fileID: 1301648177}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1570834282
 PrefabInstance:
@@ -78542,12 +78734,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1627741498}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1628268742 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 187965933}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1629307595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -79545,12 +79731,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1644264225}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1644868848 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 328430314}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1645156718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80199,7 +80379,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1669614605}
   m_Layer: 0
-  m_Name: lvl.1
+  m_Name: lvl1
   m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80476,7 +80656,7 @@ PrefabInstance:
     - target: {fileID: 8730513351939630493, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
       propertyPath: m_Name
-      value: Cam_Dungeon.lvl4
+      value: Cam_Dungeon.lvl3
       objectReference: {fileID: 0}
     - target: {fileID: 8730513351939630495, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
@@ -82244,7 +82424,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1710931269}
   m_Layer: 0
-  m_Name: lvl.4
+  m_Name: lvl5
   m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82258,7 +82438,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710931268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 61, y: -37, z: 13}
+  m_LocalPosition: {x: 59.5, y: -38, z: 12.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 588274397}
@@ -82307,8 +82487,8 @@ Transform:
   - {fileID: 2027088103}
   - {fileID: 1134006290}
   - {fileID: 221916835}
-  m_Father: {fileID: 1570814713}
-  m_RootOrder: 7
+  m_Father: {fileID: 246072538}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1711002955
 PrefabInstance:
@@ -83283,7 +83463,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735406821}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 47, y: -6, z: 26.5}
+  m_LocalPosition: {x: 58.5, y: -40.5, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1189464757}
@@ -83348,8 +83528,8 @@ Transform:
   - {fileID: 1554064027}
   - {fileID: 1898800295}
   - {fileID: 3195247}
-  m_Father: {fileID: 1165859421}
-  m_RootOrder: 5
+  m_Father: {fileID: 1470894958}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1736435914
 PrefabInstance:
@@ -84157,7 +84337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1748642063}
   m_Layer: 0
-  m_Name: Dungeon_LEVELS
+  m_Name: Dungeon_Map1
   m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84178,12 +84358,6 @@ Transform:
   - {fileID: 929943491}
   - {fileID: 1068212330}
   - {fileID: 988368341}
-  - {fileID: 1113690148}
-  - {fileID: 1174520279}
-  - {fileID: 2059700531}
-  - {fileID: 694996826}
-  - {fileID: 876449635}
-  - {fileID: 262088019}
   m_Father: {fileID: 1301648177}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -85908,6 +86082,38 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 410502165}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1779393780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1779393781}
+  m_Layer: 0
+  m_Name: Dungeon_Map4
+  m_TagString: Map
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1779393781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779393780}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 876449635}
+  - {fileID: 262088019}
+  m_Father: {fileID: 1301648177}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1779994016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -90433,7 +90639,7 @@ PrefabInstance:
     - target: {fileID: 1936402778260479692, guid: e3a352e5e460640c99199adbd07d7925,
         type: 3}
       propertyPath: m_RootOrder
-      value: 25
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 1936402778260479692, guid: e3a352e5e460640c99199adbd07d7925,
         type: 3}
@@ -91162,7 +91368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1903059777}
   m_Layer: 0
-  m_Name: lvl.1.2
+  m_Name: lvl1.2
   m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91255,7 +91461,7 @@ PrefabInstance:
     - target: {fileID: 8730513351939630493, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
       propertyPath: m_Name
-      value: Cam_Dungeon.lvl6
+      value: Cam_Dungeon.lvl4.2
       objectReference: {fileID: 0}
     - target: {fileID: 8730513351939630495, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
@@ -93291,7 +93497,7 @@ PrefabInstance:
     - target: {fileID: 8730513351939630493, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
       propertyPath: m_Name
-      value: Cam_Dungeon.lvl5
+      value: Cam_Dungeon.lvl4
       objectReference: {fileID: 0}
     - target: {fileID: 8730513351939630495, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
@@ -93965,7 +94171,7 @@ PrefabInstance:
     - target: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_Name
-      value: CheckpointEnd_Ice.lvl3
+      value: CheckpointEnd_Ice.lvl4
       objectReference: {fileID: 0}
     - target: {fileID: 1636170244721508879, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -94439,7 +94645,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_Name
-      value: Respawn Ice lvl 4.2
+      value: Respawn Ice lvl 5.2
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -95994,12 +96200,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08c6a9191fe224a179b16832b8d4ff63, type: 3}
---- !u!1 &2001452994 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 1783690055}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2001674505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -96877,7 +97077,7 @@ PrefabInstance:
     - target: {fileID: 8730513351939630493, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
       propertyPath: m_Name
-      value: Cam_Ice_lvl2.2
+      value: Cam_Ice_lvl3.2
       objectReference: {fileID: 0}
     - target: {fileID: 8730513351939630495, guid: f7383e28ee1bc3e4fa49e13478cae7d5,
         type: 3}
@@ -98795,6 +98995,38 @@ MonoBehaviour:
     posMin: {x: -0.5, y: -0.1, z: -0.5}
     posMax: {x: 0.5, y: 0.1, z: 0.5}
   includeInMerge: 1
+--- !u!1 &2048397533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2048397534}
+  m_Layer: 0
+  m_Name: Lava_Map2
+  m_TagString: Map
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2048397534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048397533}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1538577854}
+  - {fileID: 1156652385}
+  m_Father: {fileID: 1301648177}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2054090509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98884,7 +99116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2059700531}
   m_Layer: 0
-  m_Name: lvl.4
+  m_Name: lvl3
   m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98898,7 +99130,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059700530}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.5, y: -11, z: 17}
+  m_LocalPosition: {x: 18.5, y: 1, z: 17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 708237364}
@@ -98933,8 +99165,8 @@ Transform:
   - {fileID: 1935908531}
   - {fileID: 2089234140}
   - {fileID: 1398667640}
-  m_Father: {fileID: 1748642063}
-  m_RootOrder: 6
+  m_Father: {fileID: 1391806268}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2064407655
 PrefabInstance:
@@ -99659,7 +99891,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2080200002}
   m_Layer: 0
-  m_Name: lvl.3
+  m_Name: lvl4
   m_TagString: Level
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99673,7 +99905,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2080200001}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 72, y: -32, z: 24}
+  m_LocalPosition: {x: 70.5, y: -33, z: 23.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1015629490}
@@ -99721,8 +99953,8 @@ Transform:
   - {fileID: 1470028921}
   - {fileID: 1955633214}
   - {fileID: 1074147117}
-  m_Father: {fileID: 1570814713}
-  m_RootOrder: 6
+  m_Father: {fileID: 974557659}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2080472231
 PrefabInstance:
@@ -101137,12 +101369,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6857349775925842101, guid: 25399a8663513438abe48fcceca3e09e,
     type: 3}
   m_PrefabInstance: {fileID: 2110460545}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2113519660 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2318947331025577726, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
-    type: 3}
-  m_PrefabInstance: {fileID: 1405613855}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2115057098
 PrefabInstance:
@@ -102893,15 +103119,15 @@ PrefabInstance:
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[1]
       value: 
-      objectReference: {fileID: 779070560}
+      objectReference: {fileID: 0}
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[2]
       value: 
-      objectReference: {fileID: 2001452994}
+      objectReference: {fileID: 0}
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[3]
       value: 
-      objectReference: {fileID: 206035177}
+      objectReference: {fileID: 0}
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[4]
       value: 
@@ -102909,7 +103135,7 @@ PrefabInstance:
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[5]
       value: 
-      objectReference: {fileID: 2113519660}
+      objectReference: {fileID: 0}
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[6]
       value: 
@@ -102917,7 +103143,7 @@ PrefabInstance:
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[7]
       value: 
-      objectReference: {fileID: 1144459917}
+      objectReference: {fileID: 0}
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[8]
       value: 
@@ -102925,7 +103151,7 @@ PrefabInstance:
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[9]
       value: 
-      objectReference: {fileID: 488998380}
+      objectReference: {fileID: 0}
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[10]
       value: 
@@ -102933,15 +103159,15 @@ PrefabInstance:
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[11]
       value: 
-      objectReference: {fileID: 1291690003}
+      objectReference: {fileID: 0}
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[12]
       value: 
-      objectReference: {fileID: 599400126}
+      objectReference: {fileID: 0}
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[13]
       value: 
-      objectReference: {fileID: 1644868848}
+      objectReference: {fileID: 0}
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[14]
       value: 
@@ -102949,7 +103175,7 @@ PrefabInstance:
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[15]
       value: 
-      objectReference: {fileID: 1628268742}
+      objectReference: {fileID: 0}
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[16]
       value: 
@@ -102961,7 +103187,7 @@ PrefabInstance:
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[18]
       value: 
-      objectReference: {fileID: 989329338}
+      objectReference: {fileID: 0}
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[19]
       value: 
@@ -102969,11 +103195,11 @@ PrefabInstance:
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[20]
       value: 
-      objectReference: {fileID: 268419822}
+      objectReference: {fileID: 0}
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[21]
       value: 
-      objectReference: {fileID: 1289427339}
+      objectReference: {fileID: 0}
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[22]
       value: 
@@ -102981,7 +103207,7 @@ PrefabInstance:
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[23]
       value: 
-      objectReference: {fileID: 1564313798}
+      objectReference: {fileID: 0}
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: RespawnTargetGameObjects.Array.data[24]
       value: 
