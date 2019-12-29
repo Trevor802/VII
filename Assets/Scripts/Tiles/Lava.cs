@@ -79,7 +79,9 @@ public class Lava : Tile
             if (hit_tile.layer == ice_layer)
             {
                 //Debug.Log("Melt ice");
-                Instantiate(floor_tile, groundHit.transform.position, groundHit.transform.rotation);
+                GameObject newFloor = Instantiate(floor_tile, groundHit.transform.parent);
+                newFloor.transform.position = groundHit.transform.position;
+                newFloor.transform.rotation = groundHit.transform.rotation;
                 Destroy(groundHit.transform.gameObject);
             }
             //Is the abut tile unreachable floor? - fill it with lava 
@@ -94,7 +96,9 @@ public class Lava : Tile
                     //    hit_floor.SetLavaFlowState();
                     //}
 
-                    GameObject lava_instance = Instantiate(lava_tile, groundHit.transform.position, groundHit.transform.rotation) as GameObject;
+                    GameObject lava_instance = Instantiate(lava_tile, groundHit.transform.parent) as GameObject;
+                    lava_instance.transform.position = groundHit.transform.position;
+                    lava_instance.transform.rotation = groundHit.transform.rotation;
                     lava_instance.GetComponent<Lava>().b_DestroyedInFuture = false;
                     lava_instance.GetComponent<Lava>().SetReceiveTick(true);
                     if (hit_floor.declineAfterExit)
