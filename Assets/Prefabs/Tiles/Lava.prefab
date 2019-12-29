@@ -71,9 +71,9 @@ GameObject:
   - component: {fileID: 7883152431963655666}
   - component: {fileID: 7883152431963655669}
   - component: {fileID: 7397644019002077313}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Lava
-  m_TagString: Tile
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7591fd80e4a692346815aef01bab3b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInside: 0
   wall_detector: {fileID: 7544679215110174287}
   ground_detector: {fileID: 1190853640907776760}
   floor_tile: {fileID: 6857349775925842100, guid: 25399a8663513438abe48fcceca3e09e,
@@ -138,11 +139,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Block_Base5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8638386372246495472, guid: c5896ef4f05c57a43b6391a2ed2ce6f5,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4736361272944431843, guid: c5896ef4f05c57a43b6391a2ed2ce6f5,
         type: 3}
@@ -204,9 +200,9 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 2877232867953018221, guid: c5896ef4f05c57a43b6391a2ed2ce6f5,
+    - target: {fileID: 3014087605962097115, guid: c5896ef4f05c57a43b6391a2ed2ce6f5,
         type: 3}
-      propertyPath: m_Layer
+      propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
