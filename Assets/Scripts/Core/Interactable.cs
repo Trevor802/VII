@@ -19,7 +19,7 @@ public class Interactable : MonoBehaviour
         {
             if (!player.PlayerData.Inventory.ContainItem(item) || item.stackable)
             {
-                if(player.GetRespawnPosIndex() == 8)
+                if(player.mapIndex == 3 && player.levelIndex == 1)
                 {
                     player.HasKeyInLevel8 = true;
                 }

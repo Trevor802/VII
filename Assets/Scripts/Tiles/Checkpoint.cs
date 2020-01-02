@@ -13,9 +13,37 @@ public class Checkpoint : Tile
         base.OnPlayerEnter(player);
         if (player.PlayerData.Inventory.ContainItem(requiredItem) && !activated)
         {
-            if (player.GetRespawnPosIndex() == 7)
+            //Achievement Data
+            if (player.mapIndex == 0 && player.levelIndex == 8)
             {
                 player.FinishLevel7 = true;
+            }
+            if (player.mapIndex == 3 && player.levelIndex == 1)
+            {
+                player.completeDungeon = true;
+            }
+            if (player.mapIndex == 8 && player.levelIndex == 1)
+            {
+                player.completeIce = true;
+            }
+            if (player.mapIndex == 12 && player.levelIndex == 0)
+            {
+                player.completeLava = true;
+                player.summonGreatOne = true;
+            }
+            player.checkLeastLives = true;
+            //Transition Texts Data
+            if (player.mapIndex == 1 && player.levelIndex == 1)
+            {
+                player.display_text_trap = true;
+            }
+            if (player.mapIndex == 3 && player.levelIndex == 1)
+            {
+                player.display_text_ice = true;
+            }
+            if (player.mapIndex == 8 && player.levelIndex == 1)
+            {
+                player.display_text_lava = true;
             }
             // Reset respawn position and respawn player
             activated = true;
