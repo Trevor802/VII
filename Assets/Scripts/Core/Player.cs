@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
     public AudioClip respawn;
     [Header("Configuration")]
     public float moveTime = 0.5f;
+    public float fallingSpeed = 5f;
     public int initLives = VII.GameData.PLAYER_DEFAULT_LIVES;
     public int initSteps = VII.GameData.PLAYER_DEFAULT_STEPS;
     [Header("Game Objects")]
@@ -363,7 +364,7 @@ public class Player : MonoBehaviour
     }
 
 
-    public void Respawn(bool costLife = true)
+    public void Respawn(bool costLife = true, bool i_bSmoothMove = false)
     {
         // Respawn Start
         if (m_playerData.playerState == VII.PlayerState.RESPAWNING)
@@ -391,10 +392,10 @@ public class Player : MonoBehaviour
             DiedInLevel5 = true;
         }
 
-        StartCoroutine(Respawning(costLife));
+        StartCoroutine(Respawning(costLife, i_bSmoothMove));
     }
 
-    private IEnumerator Respawning(bool costLife)
+    private IEnumerator Respawning(bool costLife, bool i_bSmoothMove)
     {
         if (costLife)
         {
@@ -425,8 +426,26 @@ public class Player : MonoBehaviour
         // EVENT: Respawing Ends
         InteractiveCollider.enabled = false;
         GroundDetector.SetActive(false);
-        transform.position = currentRespawnPoint.transform.position
+
+        m_destination = currentRespawnPoint.transform.position
             + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
+        if (i_bSmoothMove)
+        {
+            if(m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Respawning)
+                m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Respawning);
+            while (Vector3.Distance(transform.position, m_destination) > float.Epsilon)
+            {
+                transform.position = Vector3.MoveTowards(transform.position,
+                    m_destination, Time.fixedDeltaTime * fallingSpeed);
+                yield return null;
+            }
+        }
+        m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Reviving);
+        transform.position = m_destination;
+        currentGridPos = transform.position;
+        nextGridPos = currentGridPos;
+
+
         currentRespawnPoint.playerInside = true;
         tilePlayerInside = currentRespawnPoint;
         UIManager.UIInstance.UpdateUI();

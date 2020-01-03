@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 930055634}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641287, b: 0.5748173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -104596,13 +104596,9 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
-      propertyPath: dialogueManager
-      value: 
-      objectReference: {fileID: 602873564}
-    - target: {fileID: 358277883, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
-      propertyPath: transitionTextCanvas
-      value: 
-      objectReference: {fileID: 275913015}
+      propertyPath: fallingSpeed
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1918655054, guid: 1086020a0c65a48178f154fe003f9a6d, type: 3}
       propertyPath: m_IsKinematic
       value: 0

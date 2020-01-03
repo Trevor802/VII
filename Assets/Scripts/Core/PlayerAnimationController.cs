@@ -6,7 +6,7 @@ namespace VII
 {
     public enum PlayerAnimationState
     {
-        Idling, Moving, Death, Respawning, Transiting, Sliding
+        Idling, Moving, Death, Respawning, Transiting, Sliding, Reviving
     }
 
     [RequireComponent(typeof(Animator))]
@@ -18,6 +18,8 @@ namespace VII
         private readonly int m_hashMoveTrigger = Animator.StringToHash("Move");
         private readonly int m_hashIdleTrigger = Animator.StringToHash("Idle");
         private readonly int m_hashDeadTrigger = Animator.StringToHash("Dead");
+        private readonly int m_hashReviveTrigger = Animator.StringToHash("Revive");
+        private readonly int m_hashFallTrigger = Animator.StringToHash("Fall");
 
         // State hash
         private readonly int m_hashMovingTag = Animator.StringToHash("Moving");
@@ -44,6 +46,12 @@ namespace VII
                     break;
                 case PlayerAnimationState.Death:
                     m_animator.SetTrigger(m_hashDeadTrigger);
+                    break;
+                case PlayerAnimationState.Reviving:
+                    m_animator.SetTrigger(m_hashReviveTrigger);
+                    break;
+                case PlayerAnimationState.Respawning:
+                    m_animator.SetTrigger(m_hashFallTrigger);
                     break;
                 default:
                     break;

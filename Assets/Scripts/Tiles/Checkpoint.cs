@@ -51,7 +51,9 @@ public class Checkpoint : Tile
             player.PlayerData.Inventory.RemoveItem(requiredItem);
             player.SetRespawnPoint(1);
             OnPlayerEnterEvent.Invoke();
-            player.Respawn(false);
+            bool willFall = VII.SceneDataManager.Instance.GetCurrentLevelData().GetLevelID() ==
+                VII.SceneDataManager.Instance.GetCurrentMapData().GetLevelData().Count - 1;
+            player.Respawn(false, willFall);
         }
     }
 
