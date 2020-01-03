@@ -9,7 +9,7 @@ namespace VII
     {
         public static UnityEvent TickStart = new UnityEvent();
         public static UnityEvent TickEnd = new UnityEvent();
-        public static PlayerEvent LevelFinish = new PlayerEvent();
+        public static TargetTriggerEvent LevelFinish = new TargetTriggerEvent();
         public static PlayerEvent PlayerRespawnStart = new PlayerEvent();
         public static PlayerEvent PlayerRespawnEnd = new PlayerEvent();
     }
@@ -18,4 +18,6 @@ namespace VII
     public class PlayerEvent : UnityEvent<Player> { }
     [System.Serializable]
     public class VectorEvent : UnityEvent<Vector3> { }
+    [System.Serializable]
+    public class TargetTriggerEvent : UnityEvent<GameObject, Player> { }
 }

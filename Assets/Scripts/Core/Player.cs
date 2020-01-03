@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.InputSystem;
 
 namespace VII
 {
@@ -23,7 +23,8 @@ namespace VII
         Block = 1 << 8,
         Ice = 1 << 9,
         Player = 1 << 10,
-        Interactable = 1 << 11
+        Interactable = 1 << 11,
+        Unreachable = 1 << 12
     }
 }
 
@@ -32,24 +33,18 @@ public class Player : MonoBehaviour
     #region Singleton
     public static Player Instance = null;
 
-    private void Start()
-    {
-        //UpdateStepUI();
-        //UI Initialization 
-        UIManager.UIInstance.InitUI();
-        UIManager.UIInstance.UpdateUI();
-
-    }
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             // Initialization
-            m_playerData = new VII.PlayerData(initLives, initSteps,
-                RespawnPositions[m_RespawnPosIndex].transform.position);
+            m_playerData = new VII.PlayerData(initLives, initSteps);
             m_inverseMoveTime = 1 / moveTime;
-            RespawnPositions[m_RespawnPosIndex].transform.parent.parent.gameObject.SetActive(true);
+            //Binding Input
+            playerInput = new InputActions();
+            playerInput.Player.Move.performed += ctx => PerformMove();
+            m_PlayerAnimationController = GetComponentInChildren<VII.PlayerAnimationController>();
         }
         else if (Instance != this)
         {
@@ -59,53 +54,129 @@ public class Player : MonoBehaviour
     #endregion
 
     #region PlayerData
-    [Header("Audio Clips")]
-    public AudioClip footStep;
-    public AudioClip death;
-    public AudioClip respawn;
     [Header("Configuration")]
     public float moveTime = 0.5f;
-    public int initLives = 7;
-    public int initSteps = 7;
-    public int saveCameraIndex = 0;
+    public float fallingSpeed = 5f;
+    public int initSteps = VII.GameData.PLAYER_DEFAULT_STEPS;
     [Header("Game Objects")]
     public GameObject GroundDetector;
     public GameObject BodyDetector;
     public GameObject InteractableSpawnPoint;
     public Collider InteractiveCollider;
-    public List<GameObject> RespawnPositions; 
-    [Header("Prefabs")]
-    public GameObject TombstonePrefab;
+    [Header("Data for Achievements")]
+    //map data
+    public int levelIndex;
+    public int mapIndex;
+    //level0
+    public bool DiedInLevel0;
+    //level5
+    public bool DiedInLevel5;
+    public bool DiedInTrapInLevel5;
+    //level7
+    public bool FinishLevel7;
+    public bool DiedInTrapInLevel7;
+    //level8
+    public bool HasKeyInLevel8;
+    //map completion
+    public bool completeDungeon;
+    public bool completeIce;
+    public bool completeLava;
+    public bool summonGreatOne;
+    //optimized route
+    public bool checkLeastLives;
+    public int livesLeft;
+    public bool playedLevel17; //TODO: This needs to be saved
+    [Header("Show Map Transition Texts")]
+    public DialogueManager dialogueManager;
+    public Canvas transitionTextCanvas;
+    public bool display_text_trap;
+    public bool display_text_ice;
+    public bool display_text_lava;
+    public bool startSentence;
     #endregion PlayerData
 
     private float m_inverseMoveTime;
     private const float m_maxCastDistance = 10f;
     private Vector3 m_destination;
-    private int m_RespawnPosIndex = 0;
+    private int initLives = VII.GameData.PLAYER_DEFAULT_LIVES;
+    private int bestLifeCost;
     private VII.PlayerData m_playerData;
     private Vector3 moveDir;
     private Vector3 currentGridPos;
     private Vector3 nextGridPos;
+    private InputActions playerInput;
+    private ObjectPooler Pools;
+    private List<VII.MapData> mapData;
+    private int currentLevelID;
+    private int currentMapID;
+    private RespawnPoint currentRespawnPoint;
+    [SerializeField]
+    private VII.PlayerAnimationController m_PlayerAnimationController;
+
+    private void Start()
+    {
+        Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
+        mapData = VII.SceneDataManager.Instance.GetMapData();
+        currentMapID = UIManager.UIInstance.startMapID;
+        currentLevelID = UIManager.UIInstance.startLevelID;
+        if (currentMapID > 0)
+        {
+            for (int i = 0; i < currentMapID; i++)
+                mapData[i].GetMapObject().SetActive(false);
+        }
+        if (currentLevelID > 0)
+        {
+            mapData[currentMapID].GetLevelData()[currentLevelID - 1].GetCheckpoint().activated = true;
+        }
+        for (int i = 0; i < mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.childCount; i++)
+        {
+            if (mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.GetChild(i).name == "Level_blocker")
+                mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.GetChild(i).GetComponent<Wall>().Move(new Vector3(0, 1, 0));
+            if (mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.GetChild(i).name == "Level_blocker2")
+                mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.GetChild(i).GetComponent<Wall>().Move(new Vector3(0, -1, 0));
+        }
+        mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
+        currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
+        bestLifeCost = mapData[currentMapID].GetLevelData()[currentLevelID].GetBestLivesCost();
+        transform.position = currentRespawnPoint.transform.position + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
+        m_playerData.playerState = VII.PlayerState.IDLE;
+        currentRespawnPoint.playerInside = true;
+        tilePlayerInside = currentRespawnPoint;
+        UIManager.UIInstance.UpdateUI();
+    }
 
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
     {
         // Ground detection
         bool groundHit = Physics.Raycast(GroundDetector.transform.position, i_dir, VII.GameData.STEP_SIZE);
-        // Player can't move to that direction even 1 grid
         if (!groundHit)
         {
             return false;
         }
+
         RaycastHit bodyHit;
         bool bodyHitResult;
         bodyHitResult = Physics.Raycast(BodyDetector.transform.position,
             i_dir, out bodyHit, m_maxCastDistance, (int)VII.HitLayer.Block);
+        // Player can't move to that direction even 1 grid
         if (bodyHitResult &&
             Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
             < VII.GameData.STEP_SIZE)
         {
             return false;
         }
+
+        RaycastHit unreachableTileHit;
+        bool unreachableTileHitResult;
+        unreachableTileHitResult = Physics.Raycast(GroundDetector.transform.position,
+            i_dir, out unreachableTileHit, m_maxCastDistance, (int)VII.HitLayer.Unreachable);
+        if (unreachableTileHitResult)
+        {
+            if(Vector3.Distance(GroundDetector.transform.position, unreachableTileHit.transform.position)
+            <= VII.GameData.STEP_SIZE)
+                return false;
+        }
+
         RaycastHit[] iceHits;
         iceHits = Physics.RaycastAll(GroundDetector.transform.position,
             i_dir, m_maxCastDistance, (int)VII.HitLayer.Ice);
@@ -116,7 +187,6 @@ public class Player : MonoBehaviour
         int expectationStep = 1;
         foreach (var item in iceHits)
         {
-            //Debug.Log(Vector3.Distance(GroundDetector.transform.position, item.transform.position));
             // Player can't move that far
             if (Vector3.Distance(GroundDetector.transform.position, item.transform.position)
                 - expectationStep * VII.GameData.STEP_SIZE > 0.2f * VII.GameData.STEP_SIZE)
@@ -134,6 +204,15 @@ public class Player : MonoBehaviour
             // Movement starts
             m_destination = end;
             m_playerData.playerState = VII.PlayerState.MOVING;
+            #region Presentation Layer
+            AudioManager.instance.PlaySingle(AudioManager.instance.footStep);
+            m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Moving);
+            if (expectationStep > 1)
+            {
+                m_PlayerAnimationController.TriggerSlidingAnimation(true);
+                AudioManager.instance.PlaySingle(AudioManager.instance.slide);
+            }
+            #endregion
             VII.VIIEvents.TickStart.Invoke();
         }
         else
@@ -145,24 +224,48 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        //Achievement stuff
+        mapIndex = currentMapID;
+        levelIndex = currentLevelID;
+        livesLeft = m_playerData.lives;
+        //Debug.Log(mapIndex + " " + levelIndex + " " + livesLeft);
+        //Transition Texts Stuff
+        if (display_text_trap == true || display_text_ice == true || display_text_lava == true)
+        {
+            transitionTextCanvas.enabled = true;
+            if (!startSentence)
+            {
+                startSentence = true;
+                dialogueManager.StartSentence();
+            }
+        }
         // Input
         // TODO Support multiple device
         #region Input
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            UIManager.UIInstance.startMapID = currentMapID;
+            UIManager.UIInstance.startLevelID = currentLevelID;
+            UIManager.UIInstance.startLevelIndex = CameraManager.Instance.level_index;
+            UIManager.UIInstance.startPPIndex = CameraManager.Instance.pp_index;
+            UIManager.UIInstance.ClearUI();
+            SceneManager.LoadScene("All_Levels(Draft 1)");
+        }
         int horizontal = 0;
         int vertical = 0;
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || Input.GetAxis("ControllerHor") < 0)
         {
             horizontal = -1;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || Input.GetAxis("ControllerHor") > 0)
         {
             horizontal = 1;
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetAxis("ControllerVer") > 0)
         {
             vertical = 1;
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || Input.GetAxis("ControllerVer") < 0)
         {
             vertical = -1;
         }
@@ -171,9 +274,9 @@ public class Player : MonoBehaviour
             vertical = 0;
         }
         #endregion
-        if (horizontal != 0 || vertical != 0)
+        if ((horizontal != 0 || vertical != 0) & !dialogueManager.displayingTexts /*cant move when displaying sentences*/)
         {
-            if (m_playerData.playerState == VII.PlayerState.IDLE)
+            if (m_playerData.playerState == VII.PlayerState.IDLE && m_PlayerAnimationController.GetAnimationState() == VII.PlayerAnimationState.Idling)
             {
                 if (horizontal != 0)
                 {
@@ -211,19 +314,21 @@ public class Player : MonoBehaviour
                 currentGridPos = nextGridPos;
                 nextGridPos += moveDir * VII.GameData.STEP_SIZE;
             }
-            // If there is wall on ice
+            // If there is wall on path
             RaycastHit bodyHit;
             bool bodyHitResult;
             bodyHitResult = Physics.Raycast(BodyDetector.transform.position,
-           moveDir * VII.GameData.STEP_SIZE, out bodyHit, m_maxCastDistance, (int)VII.HitLayer.Block);
+           moveDir * VII.GameData.STEP_SIZE, out bodyHit, VII.GameData.STEP_SIZE, (int)VII.HitLayer.Block);
             if (bodyHitResult &&
                 Vector3.Distance(BodyDetector.transform.position, bodyHit.transform.position)
                 < VII.GameData.STEP_SIZE * 0.5f)
             {
-                transform.position = new Vector3(bodyHit.transform.position.x - (moveDir * 0.5f).x, 0, bodyHit.transform.position.z - (moveDir * 0.5f).z);
+                transform.position = new Vector3(bodyHit.transform.position.x - (moveDir * 0.5f).x, bodyHit.transform.position.y - VII.GameData.STEP_SIZE * 0.5f, bodyHit.transform.position.z - (moveDir * 0.5f).z);
                 currentGridPos = transform.position;
                 nextGridPos = currentGridPos;
+                m_PlayerAnimationController.TriggerSlidingAnimation(false);
                 m_playerData.playerState = VII.PlayerState.IDLE;
+                m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Idling);
                 VII.VIIEvents.TickEnd.Invoke();
                 if (m_playerData.steps <= 0)
                 {
@@ -243,14 +348,14 @@ public class Player : MonoBehaviour
                 transform.position = m_destination;
                 currentGridPos = transform.position;
                 nextGridPos = currentGridPos;
+                m_PlayerAnimationController.TriggerSlidingAnimation(false);
                 m_playerData.playerState = VII.PlayerState.IDLE;
+                m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Idling);
                 VII.VIIEvents.TickEnd.Invoke();
                 if (m_playerData.steps <= 0)
                 {
                     Respawn();
                 }
-                //UI Update
-               // UIManager.UIInstance.UpdateUI();
             }
     }
         if (Input.GetKeyDown(KeyCode.J))
@@ -267,7 +372,8 @@ public class Player : MonoBehaviour
         #endregion
     }
 
-    public void Respawn(bool costLife = true)
+
+    public void Respawn(bool costLife = true, bool i_bSmoothMove = false)
     {
         // Respawn Start
         if (m_playerData.playerState == VII.PlayerState.RESPAWNING)
@@ -277,66 +383,117 @@ public class Player : MonoBehaviour
         m_playerData.playerState = VII.PlayerState.RESPAWNING;
         if (costLife)
         {
-            m_playerData.lives--;
+            m_playerData.lives++;
         }
         else
         {
             m_playerData.lives = initLives;
         }
         VII.VIIEvents.PlayerRespawnStart.Invoke(this);
-        //UI Update
-        UIManager.UIInstance.UpdateUI();
-        if (m_playerData.lives <= 0)
+
+        //Data for Achievements
+        if (m_playerData.respawnPositionIndex == 0 && costLife == true)
         {
-            //return;
-            Debug.Log("Game Over");
-            //Clear UI manager
-            UIManager.UIInstance.ClearUI();
+            DiedInLevel0 = true;
         }
-        
-        StartCoroutine(Respawning(costLife));
+        if (m_playerData.respawnPositionIndex == 5 && !DiedInTrapInLevel5 && costLife == true)
+        {
+            DiedInLevel5 = true;
+        }
+        #region Presentation Layer
+        if (costLife)
+            AudioManager.instance.PlaySingle(AudioManager.instance.death);
+        else
+            AudioManager.instance.PlaySingle(AudioManager.instance.checkpoint);
+        #endregion
+        StartCoroutine(Respawning(costLife, i_bSmoothMove));
     }
 
-    private IEnumerator Respawning(bool costLife)
+    private IEnumerator Respawning(bool costLife, bool i_bSmoothMove)
     {
-        transform.position = nextGridPos;
         if (costLife)
         {
-            //animator.Play("Death");
+            while (Vector3.Distance(transform.position, nextGridPos) > float.Epsilon)
+            {
+                transform.position = Vector3.MoveTowards(transform.position,
+                    nextGridPos, Time.deltaTime * m_inverseMoveTime);
+                yield return null;
+            }
+            transform.position = nextGridPos;
+            // Death Animation
+            m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Death);
+            while (m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Respawning)
+            {
+                yield return null;
+            } 
+            /*if (m_playerData.lives <= 0)
+            {
+                UIManager.UIInstance.startMapID = currentMapID;
+                UIManager.UIInstance.startLevelID = currentLevelID;
+                UIManager.UIInstance.startLevelIndex = CameraManager.Instance.level_index;
+                UIManager.UIInstance.ClearUI();
+                SceneManager.LoadScene("All_Levels(Draft 1)");
+            }*/
         }
-        yield return null;
-        // EVENT: Respawing Ends
-        //Vector3 deathPos = transform.position;
-        //Quaternion deathRot = transform.rotation;
-        //ObjectPooler.Instance.SpawnFromPool("Body", deathPos, deathRot);
-        InteractiveCollider.enabled = false;
         // Drop Items
-        DropItems();
-        transform.position = m_playerData.respawnPosition;
+        DropItems(costLife);
+        // EVENT: Respawing Ends
+        InteractiveCollider.enabled = false;
+        GroundDetector.SetActive(false);
+
+        m_destination = currentRespawnPoint.transform.position
+            + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
+        if (i_bSmoothMove)
+        {
+            if(m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Respawning)
+            {
+                m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Respawning);
+            }
+            while (Vector3.Distance(transform.position, m_destination) > float.Epsilon)
+            {
+                transform.position = Vector3.MoveTowards(transform.position,
+                    m_destination, Time.fixedDeltaTime * fallingSpeed);
+                yield return null;
+            }
+        }
+        m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Reviving);
+        transform.position = m_destination;
+        currentGridPos = transform.position;
+        nextGridPos = currentGridPos;
+        currentRespawnPoint.playerInside = true;
+        tilePlayerInside = currentRespawnPoint;
+        UIManager.UIInstance.UpdateUI();
         InteractiveCollider.enabled = true;
+        GroundDetector.SetActive(true);
         m_playerData.steps = initSteps;
         // Respawn Animation
-        //animator.Play("Respawn");
+        while(m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Idling)
+        {
+            yield return null;
+        }
         // Respawning Ends
         m_playerData.playerState = VII.PlayerState.IDLE;
         // Broadcast with Event System
         VII.VIIEvents.PlayerRespawnEnd.Invoke(this);
-        //animator.Play("WalkDown");
     }
 
-    private void DropItems()
+    private void DropItems(bool dropTombstone = true)
     {
         foreach (var item in Inventory.items)
         {
             if (item.droppable)
             {
-                Instantiate(item.prefab, InteractableSpawnPoint.transform.position,
+                GameObject itemDroped = Instantiate(item.prefab, InteractableSpawnPoint.transform.position,
                 Quaternion.identity);
+                itemDroped.transform.parent = mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform;
             }
         }
         Inventory.RemoveDroppableItems();
-        Instantiate(TombstonePrefab, InteractableSpawnPoint.transform.position,
-                    Quaternion.identity);
+        if (dropTombstone)
+        {
+            GameObject tomb = Pools.SpawnFromPool("Tomb", InteractableSpawnPoint.transform.position, Quaternion.identity);
+            tomb.transform.parent = mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform;
+        } 
     }
 
     public void AddStep(int step)
@@ -345,47 +502,63 @@ public class Player : MonoBehaviour
     }
 
 
-    public void SetRespawnPosition(int i_Next)
+    public void SetRespawnPoint(int i_Next)
     {
-        m_RespawnPosIndex = Mathf.Abs((m_RespawnPosIndex + i_Next) % RespawnPositions.Count);
-        PlayerData.respawnPosition = RespawnPositions[m_RespawnPosIndex].transform.position;
-        RespawnPositions[m_RespawnPosIndex].transform.parent.parent.gameObject.SetActive(true);
-        saveCameraIndex = m_RespawnPosIndex;
+        if (currentLevelID + i_Next < mapData[currentMapID].GetLevelData().Count && currentLevelID + i_Next >= 0)
+        {
+            currentLevelID += i_Next;
+        }
+        // go to previous map
+        else if (currentLevelID + i_Next < 0)
+        {
+            if (currentMapID + i_Next >= 0)
+            {
+                currentMapID += i_Next;
+                currentLevelID = mapData[currentMapID].GetLevelData().Count - 1;
+            }
+            else if (currentMapID + i_Next < 0)
+            {
+                currentMapID = mapData.Count - 1;
+                currentLevelID = mapData[currentMapID].GetLevelData().Count - 1;
+            }
+            mapData[currentMapID].GetMapObject().SetActive(true);
+        }
+        // go to next map
+        else if (currentLevelID + i_Next >= mapData[currentMapID].GetLevelData().Count)
+        {
+            mapData[currentMapID].GetMapObject().SetActive(false);
+            if (currentMapID + i_Next < mapData.Count)
+            {
+                currentMapID += i_Next;
+                currentLevelID = 0;
+            }
+            else if (currentMapID + i_Next >= mapData.Count)
+            {
+                currentMapID = 0;
+                currentLevelID = 0;
+            }
+        }
+        currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
+        mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
+        bestLifeCost = mapData[currentMapID].GetLevelData()[currentLevelID].GetBestLivesCost();
     }
 
-    public void SetInitLives(int newLife)
+    public void PerformMove()
     {
-        initLives = newLife;
+        Debug.Log("Use controller");
+        //Debug.Log(playerInput.Player.Move.interactions);
     }
     public void SavePlayer()
     {
 
-        SaveSystem.SavePlayer(this);
-    }
-
-    public void LoadPlayer()
-    {
-        SavePlayerData data = SaveSystem.LoadPlayer();
-        Vector3 position;
-        position.x = data.position[0];
-        position.y = data.position[1];
-        position.z = data.position[2];
-        PlayerData.respawnPosition = position;
-        initLives = data.savelives;
-        Respawn(false);
-        m_RespawnPosIndex = data.cameraIndex;
-        print(data.cameraIndex);
-        CameraManager.Instance.cinema_list.ForEach(cam => cam.SetActive(false));
-        CameraManager.Instance.cinema_list[data.cameraIndex].SetActive(true);
-        CameraManager.Instance.SetLevelIndex(data.cameraIndex);
-        print(data.savelives);
-        // UIManager.UIInstance.UpdateUI();
-    }
-
-    // Getter
+     // Getters/Setters
     public VII.PlayerData PlayerData { get { return m_playerData; } }
     public VII.PlayerState PlayerState { get { return m_playerData.playerState; } }
     public VII.Inventory Inventory { get { return m_playerData.Inventory; } }
     public int GetSteps() { return m_playerData.steps; }
     public int GetLives() { return m_playerData.lives; }
+    public int GetRespawnPosIndex() { return m_playerData.respawnPositionIndex; }
+    public Vector3 GetMoveDirection() { return moveDir; }
+    [HideInInspector]
+    public Tile tilePlayerInside { get; set; }
 }

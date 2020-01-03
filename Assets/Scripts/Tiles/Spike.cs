@@ -22,14 +22,16 @@ public class Spike : Tile
         #endregion
     }
 
-    #region Editor Mode
     private void OnEnable()
     {
         if (!m_animator) m_animator = model.GetComponent<Animator>();
         UpdateSpike();
+#if UNITY_EDITOR
         EditorApplication.update += EditorUpdate;
+#endif
     }
 
+#if UNITY_EDITOR
     private void OnDisable()
     {
         if (!m_animator) m_animator = model.GetComponent<Animator>();
@@ -52,7 +54,7 @@ public class Spike : Tile
     {
         UpdateSpike();
     }
-    #endregion
+#endif
 
     private void UpdateSpike()
     {
@@ -66,6 +68,7 @@ public class Spike : Tile
     protected override void OnTickStart()
     {
         base.OnTickStart();
+        if (!receiveTick) { return; }
         m_spikeUp = !m_spikeUp;
         UpdateSpike();
     }
@@ -111,6 +114,9 @@ public class Spike : Tile
         if (m_spikeUp)
         {
             player.Respawn();
+            #region Presentation Layer
+            AudioManager.instance.PlaySingle(AudioManager.instance.spikeDeath);
+            #endregion
         }
     }
 

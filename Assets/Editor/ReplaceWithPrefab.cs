@@ -5,8 +5,9 @@ using UnityEditor;
 public class ReplaceWithPrefab : EditorWindow
 {
 	[SerializeField] private GameObject prefab;
+	[SerializeField] private GameObject m_RespawnTilePrefab;
 
-	[MenuItem("Tools/Replace With Prefab")]
+    [MenuItem("Tools/Replace With Prefab")]
 	static void CreateReplaceWithPrefab()
 	{
 		EditorWindow.GetWindow<ReplaceWithPrefab>();
@@ -15,8 +16,10 @@ public class ReplaceWithPrefab : EditorWindow
 	private void OnGUI()
 	{
 		prefab = (GameObject)EditorGUILayout.ObjectField("Prefab", prefab, typeof(GameObject), false);
+        m_RespawnTilePrefab = (GameObject)EditorGUILayout.ObjectField("RespawnTilePrefabs",
+            m_RespawnTilePrefab, typeof(GameObject), false);
 
-		if (GUILayout.Button("Replace"))
+        if (GUILayout.Button("Replace"))
 		{
 			var selection = Selection.gameObjects;
 
@@ -52,7 +55,7 @@ public class ReplaceWithPrefab : EditorWindow
 			}
 		}
 
-		GUI.enabled = false;
+        GUI.enabled = false;
 		EditorGUILayout.LabelField("Selection count: " + Selection.objects.Length);
 	}
 }

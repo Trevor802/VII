@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VII;
 
 public class Lava : Tile
 {
@@ -8,8 +9,8 @@ public class Lava : Tile
     public GameObject ground_detector;
     public GameObject floor_tile;
     public GameObject lava_tile;
-    [SerializeField] private int m_Life;
-    [SerializeField] private bool b_DestroyedInFuture;
+    public int m_Life;
+    public bool b_DestroyedInFuture;
     private int ice_layer = 9;
     private int default_layer = 0;
     private float m_maxCastDistance = 1f;
@@ -20,15 +21,23 @@ public class Lava : Tile
             LavaSpread();
     }
 
+    protected override void OnTickStart()
+    {
+        base.OnTickStart();
+        
+        
+    }
+
     protected override void OnTickEnd()
     {
         base.OnTickEnd();
-        if(b_DestroyedInFuture)
+        if (!receiveTick) { return; }
+        if (b_DestroyedInFuture)
         {
             m_Life--;
             if (m_Life <= 0)
                 Destroy(this.gameObject);
-            Debug.Log("Lava life: " + m_Life);
+            //Debug.Log("Lava life: " + m_Life);
         }
         LavaSpread();
     }
@@ -36,6 +45,7 @@ public class Lava : Tile
     protected override void OnPlayerEnter(Player player)
     {
         base.OnPlayerEnter(player);
+        Debug.Log("Player steps on Lava");
         player.Respawn();
     }
 
@@ -63,35 +73,48 @@ public class Lava : Tile
         groundHitResult = Physics.Raycast(ground_detector.transform.position, i_dir, out groundHit, m_maxCastDistance);
         if(groundHitResult)
         {
+            AudioManager.instance.PlaySingle(AudioManager.instance.lavaSpread);
             //Debug.Log(hit.transform.gameObject.layer);
             GameObject hit_tile = groundHit.transform.gameObject;
             //Is the abut tile ice? - turn it into normal floor tile
-            if(hit_tile.layer == ice_layer)
+            if (hit_tile.layer == ice_layer)
             {
-                Instantiate(floor_tile, groundHit.transform.position, groundHit.transform.rotation);
+                //Debug.Log("Melt ice");
+                GameObject newFloor = Instantiate(floor_tile, groundHit.transform.parent);
+                newFloor.transform.position = groundHit.transform.position;
+                newFloor.transform.rotation = groundHit.transform.rotation;
                 Destroy(groundHit.transform.gameObject);
             }
-            //Is the abut tile floor? - fill it with lava 
-            else if(hit_tile.layer == default_layer)
+            //Is the abut tile unreachable floor? - fill it with lava 
+            else if(hit_tile.layer == 12)
             {
                 Floor hit_floor = hit_tile.GetComponent<Floor>();
-                if(hit_floor && hit_floor.GetFloorState() == Floor.FloorState.DOWN)
+                if(hit_floor && hit_floor.GetFloorState() == Floor.FloorState.DOWN && hit_floor.GetLavaFlowState())
                 {
-                    GameObject lava_instant = Instantiate(lava_tile, groundHit.transform.position, groundHit.transform.rotation) as GameObject;
-                    lava_instant.GetComponent<Lava>().b_DestroyedInFuture = false;
+                    //Debug.Log(hit_floor.name + ": Set floor state to allow lava");
+                    //if(!hit_floor.GetLavaFlowState())
+                    //{
+                    //    hit_floor.SetLavaFlowState();
+                    //}
+
+                    GameObject lava_instance = Instantiate(lava_tile, groundHit.transform.parent) as GameObject;
+                    lava_instance.transform.position = groundHit.transform.position;
+                    lava_instance.transform.rotation = groundHit.transform.rotation;
+                    lava_instance.GetComponent<Lava>().b_DestroyedInFuture = false;
+                    lava_instance.GetComponent<Lava>().SetReceiveTick(true);
                     if (hit_floor.declineAfterExit)
                     {
-                        if(lava_instant.GetComponent<Lava>())
+                        if (lava_instance.GetComponent<Lava>())
                         {
-                            
-                            lava_instant.GetComponent<Lava>().m_Life = hit_floor.stepsBeforeIncline - 1;    
-                            lava_instant.GetComponent<Lava>().b_DestroyedInFuture = true;
-                            Debug.Log(i_dir);
-                            Debug.Log(lava_instant.GetComponent<Lava>().m_Life);
-                            Debug.Log(lava_instant.GetComponent<Lava>().b_DestroyedInFuture);
+
+                            lava_instance.GetComponent<Lava>().m_Life = hit_floor.stepsBeforeIncline - 1;
+                            lava_instance.GetComponent<Lava>().b_DestroyedInFuture = true;
+                            //Debug.Log(i_dir);
+                            //Debug.Log(lava_instance.transform.name + lava_instance.GetComponent<Lava>().m_Life);
+                            //Debug.Log(lava_instance.GetComponent<Lava>().b_DestroyedInFuture);
                         }
                     }
-                        
+
                 }
             }
             return true;

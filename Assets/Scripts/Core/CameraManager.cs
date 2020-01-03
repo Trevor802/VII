@@ -1,13 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class CameraManager : MonoBehaviour
 {
     public List<GameObject> cinema_list;
+    public List<GameObject> pp_list;
     public bool debugMode;  //in debug mode, the player will transfer with the camera to next or prev level.
-    private int level_index;
+    [HideInInspector]
+    public int level_index;
+    [HideInInspector]
+    public int pp_index;
+    private int prevppIndex;
     private Player player;
+    public float ppSwitchSpeed = 0.02f;
 
     #region Singleton
     public static CameraManager Instance = null;
@@ -33,17 +40,20 @@ public class CameraManager : MonoBehaviour
             vc.SetActive(false);
         }
 
-        level_index = 0;
+        level_index = UIManager.UIInstance.startLevelIndex;
+        pp_index = UIManager.UIInstance.startPPIndex;
         for (int i = 0; i < cinema_list.Count; i++)
         {
             if (i == level_index)
             {
                 cinema_list[i].SetActive(true);
             }
-
             else
+            {
                 cinema_list[i].SetActive(false);
+            }
         }
+        StartCoroutine(InitPostProcessing());
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         if (player == null)
             Debug.LogError("CameraManager: Player not found!");
@@ -57,6 +67,7 @@ public class CameraManager : MonoBehaviour
             level_index += cinema_list.Count;
         }
         level_index %= cinema_list.Count;
+        //cinema_list[level_index].transform.parent.gameObject.SetActive(true);
         cinema_list.ForEach(cam => cam.SetActive(false));
         cinema_list[level_index].SetActive(true);
         if(debugMode)
@@ -69,14 +80,36 @@ public class CameraManager : MonoBehaviour
         
     }
 
-    public int ReturnLevelIndex()
+    private IEnumerator InitPostProcessing()
     {
-        return level_index;
+        while (pp_list[pp_index].GetComponent<PostProcessVolume>().weight < 1)
+        {
+            pp_list[pp_index].GetComponent<PostProcessVolume>().weight += ppSwitchSpeed;
+            yield return null;
+        }
+        pp_list[pp_index].GetComponent<PostProcessVolume>().weight = 1;
     }
-    public void SetLevelIndex(int getNewLevelIndex)
+
+    private IEnumerator SwitchPP()
     {
-        level_index = getNewLevelIndex;
+        while (pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight > 0)
+        {
+            pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight -= ppSwitchSpeed;
+            pp_list[pp_index].GetComponent<PostProcessVolume>().weight += ppSwitchSpeed;
+            yield return null;
+        }
+        pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight = 0;
+        pp_list[pp_index].GetComponent<PostProcessVolume>().weight = 1;
+    }
+
+    public void SwitchPostProcessing(int new_index)
+    {
+        prevppIndex = pp_index;
+        pp_index = new_index;
+        StartCoroutine(SwitchPP());
     }
 }
+
+
 
 

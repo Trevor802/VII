@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - VirtualCamera
+  - NewLevel
+  - Map
+  - Level
+  - Tile
+  - Collectible
   layers:
   - Default
   - TransparentFX
@@ -18,6 +23,7 @@ TagManager:
   - Ice
   - Player
   - Interactable
+  - Unreachable
   - 
   - 
   - 
@@ -25,8 +31,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - postprocessing
   - 
   - 
   - 
@@ -39,6 +44,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: TipNode
+    uniqueID: 2163766487
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

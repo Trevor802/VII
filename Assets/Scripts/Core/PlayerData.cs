@@ -15,15 +15,14 @@ namespace VII
     {
         public Inventory Inventory;
         public PlayerState playerState;
-        public Vector3 respawnPosition;
+        public int respawnPositionIndex;
         public int steps;
         public int lives;
 
-        public PlayerData(int i_initLifes, int i_initSteps, Vector3 i_initRespawnPosition)
+        public PlayerData(int i_initLifes, int i_initSteps)
         {
             lives = i_initLifes;
             steps = i_initSteps;
-            respawnPosition = i_initRespawnPosition;
             Inventory = new Inventory();
         }
     }

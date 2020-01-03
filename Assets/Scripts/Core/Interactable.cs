@@ -19,6 +19,11 @@ public class Interactable : MonoBehaviour
         {
             if (!player.PlayerData.Inventory.ContainItem(item) || item.stackable)
             {
+                if(player.mapIndex == 3 && player.levelIndex == 1)
+                {
+                    player.HasKeyInLevel8 = true;
+                }
+                AudioManager.instance.PlaySingle(AudioManager.instance.collect);
                 player.PlayerData.Inventory.AddItem(item);
                 // Destroy gameobject
                 Destroy(gameObject);

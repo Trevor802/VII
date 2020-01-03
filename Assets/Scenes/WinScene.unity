@@ -1757,6 +1757,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1682194730}
   - component: {fileID: 1682194731}
+  - component: {fileID: 1682194732}
   m_Layer: 5
   m_Name: Gugu
   m_TagString: Untagged
@@ -1807,6 +1808,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1682194732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682194729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540491d94bdfa44d9995b4b1d102f121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1683738604
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1822,7 +1835,7 @@ PrefabInstance:
     - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
         type: 3}
       propertyPath: sentences.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
         type: 3}
