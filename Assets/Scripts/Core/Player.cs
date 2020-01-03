@@ -230,7 +230,7 @@ public class Player : MonoBehaviour
         mapIndex = currentMapID;
         levelIndex = currentLevelID;
         livesLeft = m_playerData.lives;
-        Debug.Log(mapIndex + " " + levelIndex + " " + livesLeft);
+        //Debug.Log(mapIndex + " " + levelIndex + " " + livesLeft);
         //Transition Texts Stuff
         if (display_text_trap == true || display_text_ice == true || display_text_lava == true)
         {
