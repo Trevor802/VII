@@ -30,6 +30,7 @@ public class Trap : Tile
             player.Respawn();
             #region Presentation Layer
             m_animator.SetTrigger("Close");
+            AudioManager.instance.PlaySingle(AudioManager.instance.trapDeath);
             #endregion
         }
     }

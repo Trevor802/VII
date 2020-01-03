@@ -23,6 +23,7 @@ public class Interactable : MonoBehaviour
                 {
                     player.HasKeyInLevel8 = true;
                 }
+                AudioManager.instance.PlaySingle(AudioManager.instance.collect);
                 player.PlayerData.Inventory.AddItem(item);
                 // Destroy gameobject
                 Destroy(gameObject);

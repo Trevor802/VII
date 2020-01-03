@@ -218,22 +218,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334f6287b577b42e19f0de2da403d47f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footStep: {fileID: 0}
+  footStep: {fileID: 8300000, guid: 48b7be1e7a84b4d668f331392ef0bee5, type: 3}
   death: {fileID: 0}
   respawn: {fileID: 0}
   moveTime: 0.5
+  fallingSpeed: 5
   initLives: 7
   initSteps: 7
   GroundDetector: {fileID: 495575058121285873}
   BodyDetector: {fileID: 6856558870743893840}
   InteractableSpawnPoint: {fileID: 8439769570966933305}
   InteractiveCollider: {fileID: 3513142302597082962}
+  levelIndex: 0
+  mapIndex: 0
   DiedInLevel0: 0
   DiedInLevel5: 0
   DiedInTrapInLevel5: 0
   FinishLevel7: 0
   DiedInTrapInLevel7: 0
   HasKeyInLevel8: 0
+  completeDungeon: 0
+  completeIce: 0
+  completeLava: 0
+  summonGreatOne: 0
+  checkLeastLives: 0
+  livesLeft: 0
+  playedLevel17: 0
+  dialogueManager: {fileID: 0}
+  transitionTextCanvas: {fileID: 0}
+  display_text_trap: 0
+  display_text_ice: 0
+  display_text_lava: 0
+  startSentence: 0
   m_PlayerAnimationController: {fileID: 4372436038592171633}
 --- !u!54 &1918655054
 Rigidbody:

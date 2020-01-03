@@ -54,10 +54,6 @@ public class Player : MonoBehaviour
     #endregion
 
     #region PlayerData
-    [Header("Audio Clips")]
-    public AudioClip footStep;
-    public AudioClip death;
-    public AudioClip respawn;
     [Header("Configuration")]
     public float moveTime = 0.5f;
     public float fallingSpeed = 5f;
@@ -153,6 +149,9 @@ public class Player : MonoBehaviour
 
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
     {
+        #region Presentation Layer
+        AudioManager.instance.PlaySingle(AudioManager.instance.footStep);
+        #endregion
         // Ground detection
         bool groundHit = Physics.Raycast(GroundDetector.transform.position, i_dir, VII.GameData.STEP_SIZE);
         if (!groundHit)
@@ -214,6 +213,7 @@ public class Player : MonoBehaviour
             if (expectationStep > 1)
             {
                 m_PlayerAnimationController.TriggerSlidingAnimation(true);
+                AudioManager.instance.PlaySingle(AudioManager.instance.slide);
             }
             VII.VIIEvents.TickStart.Invoke();
         }
@@ -391,7 +391,12 @@ public class Player : MonoBehaviour
         {
             DiedInLevel5 = true;
         }
-
+        #region Presentation Layer
+        if (costLife)
+            AudioManager.instance.PlaySingle(AudioManager.instance.death);
+        else
+            AudioManager.instance.PlaySingle(AudioManager.instance.checkpoint);
+        #endregion
         StartCoroutine(Respawning(costLife, i_bSmoothMove));
     }
 

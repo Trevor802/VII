@@ -23,6 +23,18 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicSource;
     public AudioSource soundSource;
 
+    [Header("Audio Clips")]
+    public AudioClip footStep;
+    public AudioClip death;
+    public AudioClip respawn;
+    public AudioClip lavaSpread;
+    public AudioClip slide;
+    public AudioClip triggerBoard;
+    public AudioClip checkpoint;
+    public AudioClip collect;
+    public AudioClip spikeDeath;
+    public AudioClip trapDeath;
+
     // Play sound one time
     public void PlaySingle(AudioClip clip)
     {
@@ -43,13 +55,5 @@ public class AudioManager : MonoBehaviour
         }
         musicSource.clip = clip;
         musicSource.Play();
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown("escape"))
-        {
-            Application.Quit();
-        }
     }
 }

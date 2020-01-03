@@ -53,6 +53,8 @@ public class Checkpoint : Tile
             OnPlayerEnterEvent.Invoke();
             bool willFall = VII.SceneDataManager.Instance.GetCurrentLevelData().GetLevelID() ==
                 VII.SceneDataManager.Instance.GetCurrentMapData().GetLevelData().Count - 1;
+            if (willFall)
+                AudioManager.instance.PlaySingle(AudioManager.instance.respawn);
             player.Respawn(false, willFall);
         }
     }

@@ -73,6 +73,7 @@ public class Lava : Tile
         groundHitResult = Physics.Raycast(ground_detector.transform.position, i_dir, out groundHit, m_maxCastDistance);
         if(groundHitResult)
         {
+            AudioManager.instance.PlaySingle(AudioManager.instance.lavaSpread);
             //Debug.Log(hit.transform.gameObject.layer);
             GameObject hit_tile = groundHit.transform.gameObject;
             //Is the abut tile ice? - turn it into normal floor tile

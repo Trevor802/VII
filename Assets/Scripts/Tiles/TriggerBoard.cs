@@ -72,6 +72,9 @@ public class TriggerBoard : Tile
         base.OnPlayerEnter(player);
         if (m_TombstoneOn) return;
         m_PlayerOn = true;
+        #region Presentation Layer
+        AudioManager.instance.PlaySingle(AudioManager.instance.triggerBoard);
+        #endregion
         m_animator.SetBool("Press", true);
         OnPlayerEnterEvent.Invoke();
     }

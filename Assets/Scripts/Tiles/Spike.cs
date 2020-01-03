@@ -114,6 +114,9 @@ public class Spike : Tile
         if (m_spikeUp)
         {
             player.Respawn();
+            #region Presentation Layer
+            AudioManager.instance.PlaySingle(AudioManager.instance.spikeDeath);
+            #endregion
         }
     }
 
