@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 930055634}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641287, b: 0.5748173, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -104104,7 +104104,7 @@ MonoBehaviour:
   sharedProfile: {fileID: 11400000, guid: 9ebe2b0f8fb99f54498bd69f5e18f237, type: 2}
   isGlobal: 1
   blendDistance: 0
-  weight: 1
+  weight: 0
   priority: 0
 --- !u!4 &1971911636876117153
 Transform:
@@ -104136,7 +104136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &3691382642172251317
 GameObject:
   m_ObjectHideFlags: 0
@@ -104153,7 +104153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &3691382642172251318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104169,7 +104169,7 @@ MonoBehaviour:
   sharedProfile: {fileID: 11400000, guid: 55b3627ccf7c9484e9f0348ea3bfad54, type: 2}
   isGlobal: 1
   blendDistance: 0
-  weight: 1
+  weight: 0
   priority: 0
 --- !u!4 &3691382642172251319
 Transform:
@@ -104618,7 +104618,7 @@ MonoBehaviour:
   sharedProfile: {fileID: 11400000, guid: 282a12f275937ca4fb29b2208edb2419, type: 2}
   isGlobal: 1
   blendDistance: 0
-  weight: 1
+  weight: 0
   priority: 0
 --- !u!1 &5849639142429071039
 GameObject:

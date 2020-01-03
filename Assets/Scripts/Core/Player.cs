@@ -57,7 +57,6 @@ public class Player : MonoBehaviour
     [Header("Configuration")]
     public float moveTime = 0.5f;
     public float fallingSpeed = 5f;
-    public int initLives = VII.GameData.PLAYER_DEFAULT_LIVES;
     public int initSteps = VII.GameData.PLAYER_DEFAULT_STEPS;
     [Header("Game Objects")]
     public GameObject GroundDetector;
@@ -99,6 +98,7 @@ public class Player : MonoBehaviour
     private float m_inverseMoveTime;
     private const float m_maxCastDistance = 10f;
     private Vector3 m_destination;
+    private int initLives = VII.GameData.PLAYER_DEFAULT_LIVES;
     private int bestLifeCost;
     private VII.PlayerData m_playerData;
     private Vector3 moveDir;

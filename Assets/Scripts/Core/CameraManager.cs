@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class CameraManager : MonoBehaviour
 {
     public List<GameObject> cinema_list;
     public List<GameObject> pp_list;
     public bool debugMode;  //in debug mode, the player will transfer with the camera to next or prev level.
+    [HideInInspector]
     public int level_index;
+    [HideInInspector]
     public int pp_index;
+    private int prevppIndex;
     private Player player;
+    public float ppSwitchSpeed = 0.02f;
 
     #region Singleton
     public static CameraManager Instance = null;
@@ -48,17 +53,7 @@ public class CameraManager : MonoBehaviour
                 cinema_list[i].SetActive(false);
             }
         }
-        for (int i = 0; i < pp_list.Count; i++)
-        {
-            if (i == pp_index)
-            {
-                pp_list[i].SetActive(true);
-            }
-            else
-            {
-                pp_list[i].SetActive(false);
-            }
-        }
+        StartCoroutine(InitPostProcessing());
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         if (player == null)
             Debug.LogError("CameraManager: Player not found!");
@@ -85,18 +80,36 @@ public class CameraManager : MonoBehaviour
         
     }
 
+    private IEnumerator InitPostProcessing()
+    {
+        while (pp_list[pp_index].GetComponent<PostProcessVolume>().weight < 1)
+        {
+            pp_list[pp_index].GetComponent<PostProcessVolume>().weight += ppSwitchSpeed;
+            yield return null;
+        }
+        pp_list[pp_index].GetComponent<PostProcessVolume>().weight = 1;
+    }
+
+    private IEnumerator SwitchPP()
+    {
+        while (pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight > 0)
+        {
+            pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight -= ppSwitchSpeed;
+            pp_list[pp_index].GetComponent<PostProcessVolume>().weight += ppSwitchSpeed;
+            yield return null;
+        }
+        pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight = 0;
+        pp_list[pp_index].GetComponent<PostProcessVolume>().weight = 1;
+    }
+
     public void SwitchPostProcessing(int new_index)
     {
+        prevppIndex = pp_index;
         pp_index = new_index;
-        pp_list[pp_index].SetActive(true);
-        for (int i = 0; i < pp_list.Count; i++)
-        {
-            if (i != pp_index)
-            {
-                pp_list[i].SetActive(false);
-            }
-        }
+        StartCoroutine(SwitchPP());
     }
 }
+
+
 
 
