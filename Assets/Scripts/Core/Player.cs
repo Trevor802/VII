@@ -119,8 +119,6 @@ public class Player : MonoBehaviour
         mapData = VII.SceneDataManager.Instance.GetMapData();
         currentMapID = UIManager.UIInstance.startMapID;
         currentLevelID = UIManager.UIInstance.startLevelID;
-        prevMapID = currentMapID;
-        prevLevelID = currentLevelID;
         if (currentMapID > 0)
         {
             for (int i = 0; i < currentMapID; i++)
