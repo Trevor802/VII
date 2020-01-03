@@ -109,8 +109,6 @@ public class Player : MonoBehaviour
     private List<VII.MapData> mapData;
     private int currentLevelID;
     private int currentMapID;
-    private int prevLevelID;
-    private int prevMapID;
     private RespawnPoint currentRespawnPoint;
     [SerializeField]
     private VII.PlayerAnimationController m_PlayerAnimationController;
@@ -136,6 +134,8 @@ public class Player : MonoBehaviour
         {
             if (mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.GetChild(i).name == "Level_blocker")
                 mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.GetChild(i).GetComponent<Wall>().Move(new Vector3(0, 1, 0));
+            if (mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.GetChild(i).name == "Level_blocker2")
+                mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.GetChild(i).GetComponent<Wall>().Move(new Vector3(0, -1, 0));
         }
         mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
         currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
@@ -476,14 +476,14 @@ public class Player : MonoBehaviour
             {
                 GameObject itemDroped = Instantiate(item.prefab, InteractableSpawnPoint.transform.position,
                 Quaternion.identity);
-                itemDroped.transform.parent = mapData[prevMapID].GetLevelData()[prevLevelID].GetLevelObject().transform;
+                itemDroped.transform.parent = mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform;
             }
         }
         Inventory.RemoveDroppableItems();
         if (dropTombstone)
         {
             GameObject tomb = Pools.SpawnFromPool("Tomb", InteractableSpawnPoint.transform.position, Quaternion.identity);
-            tomb.transform.parent = mapData[prevMapID].GetLevelData()[prevLevelID].GetLevelObject().transform;
+            tomb.transform.parent = mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform;
         } 
     }
 
@@ -495,8 +495,6 @@ public class Player : MonoBehaviour
 
     public void SetRespawnPoint(int i_Next)
     {
-        prevMapID = currentMapID;
-        prevLevelID = currentLevelID;
         if (currentLevelID + i_Next < mapData[currentMapID].GetLevelData().Count && currentLevelID + i_Next >= 0)
         {
             currentLevelID += i_Next;
