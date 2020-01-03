@@ -149,9 +149,6 @@ public class Player : MonoBehaviour
 
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
     {
-        #region Presentation Layer
-        AudioManager.instance.PlaySingle(AudioManager.instance.footStep);
-        #endregion
         // Ground detection
         bool groundHit = Physics.Raycast(GroundDetector.transform.position, i_dir, VII.GameData.STEP_SIZE);
         if (!groundHit)
@@ -209,12 +206,15 @@ public class Player : MonoBehaviour
             // Movement starts
             m_destination = end;
             m_playerData.playerState = VII.PlayerState.MOVING;
+            #region Presentation Layer
+            AudioManager.instance.PlaySingle(AudioManager.instance.footStep);
             m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Moving);
             if (expectationStep > 1)
             {
                 m_PlayerAnimationController.TriggerSlidingAnimation(true);
                 AudioManager.instance.PlaySingle(AudioManager.instance.slide);
             }
+            #endregion
             VII.VIIEvents.TickStart.Invoke();
         }
         else
@@ -437,7 +437,9 @@ public class Player : MonoBehaviour
         if (i_bSmoothMove)
         {
             if(m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Respawning)
+            {
                 m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Respawning);
+            }
             while (Vector3.Distance(transform.position, m_destination) > float.Epsilon)
             {
                 transform.position = Vector3.MoveTowards(transform.position,
@@ -449,8 +451,6 @@ public class Player : MonoBehaviour
         transform.position = m_destination;
         currentGridPos = transform.position;
         nextGridPos = currentGridPos;
-
-
         currentRespawnPoint.playerInside = true;
         tilePlayerInside = currentRespawnPoint;
         UIManager.UIInstance.UpdateUI();
