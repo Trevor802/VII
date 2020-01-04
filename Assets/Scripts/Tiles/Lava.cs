@@ -9,6 +9,7 @@ public class Lava : Tile
     public GameObject ground_detector;
     public GameObject floor_tile;
     public GameObject lava_tile;
+    public GameObject lava_block;
     public int m_Life;
     public bool b_DestroyedInFuture;
     private int ice_layer = 9;
@@ -59,6 +60,7 @@ public class Lava : Tile
 
     bool CheckAbutTile(Vector3 i_dir)
     {
+        
         RaycastHit wallHit;
         RaycastHit groundHit;
         bool wallHitResult;
@@ -100,6 +102,24 @@ public class Lava : Tile
                     GameObject lava_instance = Instantiate(lava_tile, groundHit.transform.parent) as GameObject;
                     lava_instance.transform.position = groundHit.transform.position;
                     lava_instance.transform.rotation = groundHit.transform.rotation;
+                    //Debug.Log(i_dir);
+                    if(i_dir == new Vector3(-1,0,0))
+                    {
+                        //Debug.Log("180");
+                        //lava_instance.GetComponent<Lava>().ChangeSpreadDirection(180);
+                        lava_instance.transform.eulerAngles = new Vector3(0, 180, 0);
+                    }
+                    else if (i_dir == new Vector3(0, 0, 1))
+                    {
+                        //Debug.Log("-90");
+                        lava_instance.transform.eulerAngles = new Vector3(0, -90, 0);
+                    }
+                    else if (i_dir == new Vector3(0, 0, -1))
+                    {
+                        //Debug.Log("90");
+                        lava_instance.transform.eulerAngles = new Vector3(0, 90, 0);
+                    }
+                    //Debug.Break();
                     lava_instance.GetComponent<Lava>().b_DestroyedInFuture = false;
                     lava_instance.GetComponent<Lava>().SetReceiveTick(true);
                     if (hit_floor.declineAfterExit)
@@ -123,5 +143,10 @@ public class Lava : Tile
         {
             return false;
         }
+    }
+
+    public void ChangeSpreadDirection(float i_eulerAngleY)
+    {
+        lava_block.transform.eulerAngles = new Vector3(0, i_eulerAngleY, 0);
     }
 }
