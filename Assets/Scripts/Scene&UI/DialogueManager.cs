@@ -32,7 +32,7 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("space") && inputAvail)
+        if ((Input.GetKeyDown("space") || Input.GetButtonDown("Submit")) && inputAvail)
         {
             NextSentence();
         }
