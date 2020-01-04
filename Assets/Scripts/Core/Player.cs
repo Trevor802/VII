@@ -426,6 +426,7 @@ public class Player : MonoBehaviour
         }
         // Drop Items
         DropItems(costLife);
+        GetComponentInChildren<CrystalRotating>().DeactivateCrystal();
         // EVENT: Respawing Ends
         InteractiveCollider.enabled = false;
         GroundDetector.SetActive(false);
