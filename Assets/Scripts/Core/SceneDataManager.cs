@@ -129,28 +129,13 @@ namespace VII
                 {
                     Debug.Log(m_LevelObject);
                 }
-                if (tile.GetComponent<Tile>() && tile.GetComponent<Tile>().GetPlayerInside())
+                if (tile.GetComponent<Tile>() &&
+                    tile.GetComponent<Tile>() == Player.Instance.tilePlayerInside)
                 {
                     return true;
                 }
             }
             return false;
-        }
-
-        public Tile GetTilePlayerInside()
-        {
-            foreach (var tile in GetChildrenObjectsWithTag(GameData.TILE_TAG))
-            {
-                if (!tile)
-                {
-                    Debug.Log(m_LevelObject);
-                }
-                if (tile.GetComponent<Tile>() && tile.GetComponent<Tile>().GetPlayerInside())
-                {
-                    return tile.GetComponent<Tile>();
-                }
-            }
-            return null;
         }
 
         public void SetTilesEnabledState(bool i_bState)
@@ -245,10 +230,10 @@ namespace VII
             return mapData.GetLevelPlayerInside();
         }
 
+        // Only works at runtime
         public Tile GetCurrentTileData()
         {
-            LevelData levelData = GetCurrentLevelData();
-            return levelData.GetTilePlayerInside();
+            return Player.Instance.tilePlayerInside;
         }
 
         #region getters

@@ -46,8 +46,6 @@ public class Tile : MonoBehaviour
             OnPlayerEnter(collidedPlayer);
             playerInTemp = false;
         }
-        if (playerInside)
-            Player.Instance.tilePlayerInside = this;
     }
 
     protected virtual void OnPlayerRespawnStart(Player player)
@@ -64,7 +62,7 @@ public class Tile : MonoBehaviour
 
     protected virtual void OnPlayerEnter(Player player)
     {
-        
+        player.tilePlayerInside = this;
     }
     protected virtual void OnPlayerExit(Player player)
     {
