@@ -420,8 +420,8 @@ public class Player : MonoBehaviour
                     yield return null;
                 }
             }
-                // Death Animation 
-                m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Death);
+            // Death Animation 
+            m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Death);
             while (m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Respawning)
             {
                 yield return null;
@@ -439,10 +439,15 @@ public class Player : MonoBehaviour
             + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
         if (i_bSmoothMove)
         {
-            if(m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Respawning)
+            if (m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Respawning)
             {
                 m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Respawning);
             }
+        }
+        if (tilePlayerInside.GetComponent<Checkpoint>())
+            yield return tilePlayerInside.GetComponent<Checkpoint>().WaitUntilAnimation(Checkpoint.hashIdleTag);
+        if (i_bSmoothMove)
+        {
             while (Vector3.Distance(transform.position, m_destination) > float.Epsilon)
             {
                 transform.position = Vector3.MoveTowards(transform.position,
@@ -464,6 +469,8 @@ public class Player : MonoBehaviour
         {
             yield return null;
         }
+        if (i_bSmoothMove)
+            VII.SceneDataManager.Instance.GetCurrentMapData().previousMap.GetMapObject().SetActive(false);
         UIManager.UIInstance.UpdateUI();
         UIManager.UIInstance.InitStepUI();
         // Respawning Ends
@@ -516,12 +523,10 @@ public class Player : MonoBehaviour
                 currentMapID = mapData.Count - 1;
                 currentLevelID = mapData[currentMapID].GetLevelData().Count - 1;
             }
-            mapData[currentMapID].GetMapObject().SetActive(true);
         }
         // go to next map
         else if (currentLevelID + i_Next >= mapData[currentMapID].GetLevelData().Count)
         {
-            mapData[currentMapID].GetMapObject().SetActive(false);
             if (currentMapID + i_Next < mapData.Count)
             {
                 currentMapID += i_Next;

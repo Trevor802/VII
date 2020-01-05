@@ -151,6 +151,8 @@ MonoBehaviour:
         isDynamic: 0
         isCallEnabled: 1
   activated: 0
+  floorAnimator: {fileID: 3855695304243778539}
+  baseAnimator: {fileID: 524232701983295517}
 --- !u!65 &3526707428679897419
 BoxCollider:
   m_ObjectHideFlags: 0

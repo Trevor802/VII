@@ -60,6 +60,20 @@ namespace VII
         public int GetMapID() { return m_MapID; }
         public GameObject GetMapObject() { return m_MapObject; }
         public bool finished { get; set; }
+        public MapData previousMap { get
+            {
+                int count = SceneDataManager.Instance.GetMapData().Count;
+                int index = Mathf.Abs((m_MapID - 1 + count) % count);
+                return SceneDataManager.Instance.GetMapData()[index];
+            }
+        }
+        public MapData nextMap { get
+            {
+                int count = SceneDataManager.Instance.GetMapData().Count;
+                int index = Mathf.Abs((m_MapID + 1 + count) % count);
+                return SceneDataManager.Instance.GetMapData()[index];
+            }
+        }
         #endregion
     }
 
