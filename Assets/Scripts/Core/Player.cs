@@ -464,6 +464,7 @@ public class Player : MonoBehaviour
         {
             yield return null;
         }
+        UIManager.UIInstance.UpdateUI();
         UIManager.UIInstance.InitStepUI();
         // Respawning Ends
         m_playerData.playerState = VII.PlayerState.IDLE;
