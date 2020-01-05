@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour
             startLevelID = 0;
             startLevelIndex = 0;
             startPPIndex = 0;
+            startFogIndex = 0;
         }
         else if (UIInstance != this)
         {
@@ -30,7 +31,6 @@ public class UIManager : MonoBehaviour
 
     public GameObject lifeIcon;
     public RectTransform lifeIconHolder;
-    public Animator StepAnimator;
 
     //public int maxLives = 10;
     public Text levelIndexText;
@@ -42,6 +42,8 @@ public class UIManager : MonoBehaviour
     public int startLevelIndex;
     [HideInInspector]
     public int startPPIndex;
+    [HideInInspector]
+    public int startFogIndex;
 
     //private List<RawImage> m_lifeIcons;
     //private List<RawImage> m_crossIcons;
@@ -84,20 +86,5 @@ public class UIManager : MonoBehaviour
         m_lifeIcons.ForEach(x => x.enabled = true);
         m_crossIcons.ForEach(x => x.enabled = true);*/
         levelIndexText.text = "";
-    }
-
-    public void InitStepUI()
-    {
-        StepAnimator.SetTrigger("Init");
-    }
-
-    public void ClearStepUI()
-    {
-        StepAnimator.SetTrigger("Clear");
-    }
-
-    public void UpdateStepUI()
-    {
-        StepAnimator.SetTrigger("Step");
     }
 }
