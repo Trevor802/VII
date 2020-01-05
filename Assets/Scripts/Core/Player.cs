@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
         currentRespawnPoint.playerInside = true;
         tilePlayerInside = currentRespawnPoint;
         UIManager.UIInstance.UpdateUI();
-        UIManager.UIInstance.InitStepUI();
+        m_PlayerAnimationController.InitStepUI();
     }
 
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
@@ -214,7 +214,7 @@ public class Player : MonoBehaviour
             }
             if (m_playerData.steps > 0)
             {
-                UIManager.UIInstance.UpdateStepUI();
+                m_PlayerAnimationController.UpdateStepUI();
             }
             #endregion
             VII.VIIEvents.TickStart.Invoke();
@@ -428,7 +428,7 @@ public class Player : MonoBehaviour
                 yield return null;
             } 
         }
-        UIManager.UIInstance.ClearStepUI();
+        m_PlayerAnimationController.ClearStepUI();
         // Drop Items
         DropItems(costLife);
         GetComponentInChildren<CrystalRotating>().DeactivateCrystal();
@@ -466,7 +466,7 @@ public class Player : MonoBehaviour
             yield return null;
         }
         UIManager.UIInstance.UpdateUI();
-        UIManager.UIInstance.InitStepUI();
+        m_PlayerAnimationController.InitStepUI();
         // Respawning Ends
         m_playerData.playerState = VII.PlayerState.IDLE;
         // Broadcast with Event System

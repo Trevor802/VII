@@ -31,7 +31,6 @@ public class UIManager : MonoBehaviour
 
     public GameObject lifeIcon;
     public RectTransform lifeIconHolder;
-    public Animator StepAnimator;
 
     //public int maxLives = 10;
     public Text levelIndexText;
@@ -87,20 +86,5 @@ public class UIManager : MonoBehaviour
         m_lifeIcons.ForEach(x => x.enabled = true);
         m_crossIcons.ForEach(x => x.enabled = true);*/
         levelIndexText.text = "";
-    }
-
-    public void InitStepUI()
-    {
-        StepAnimator.SetTrigger("Init");
-    }
-
-    public void ClearStepUI()
-    {
-        StepAnimator.SetTrigger("Clear");
-    }
-
-    public void UpdateStepUI()
-    {
-        StepAnimator.SetTrigger("Step");
     }
 }
