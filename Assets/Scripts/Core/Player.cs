@@ -252,6 +252,7 @@ public class Player : MonoBehaviour
             UIManager.UIInstance.startLevelID = currentLevelID;
             UIManager.UIInstance.startLevelIndex = CameraManager.Instance.level_index;
             UIManager.UIInstance.startPPIndex = CameraManager.Instance.pp_index;
+            UIManager.UIInstance.startFogIndex = CameraManager.Instance.fog_index;
             UIManager.UIInstance.ClearUI();
             SceneManager.LoadScene("All_Levels(Draft 1)");
         }
