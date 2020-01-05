@@ -205,7 +205,6 @@ public class Player : MonoBehaviour
             m_destination = end;
             m_playerData.playerState = VII.PlayerState.MOVING;
             #region Presentation Layer
-            AudioManager.instance.PlaySingle(AudioManager.instance.footStep);
             m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Moving);
             if (expectationStep > 1)
             {
@@ -327,12 +326,12 @@ public class Player : MonoBehaviour
                 currentGridPos = transform.position;
                 nextGridPos = currentGridPos;
                 m_PlayerAnimationController.TriggerSlidingAnimation(false);
-                m_playerData.playerState = VII.PlayerState.IDLE;
                 m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Idling);
+                m_playerData.playerState = VII.PlayerState.IDLE;
                 VII.VIIEvents.TickEnd.Invoke();
                 if (m_playerData.steps <= 0)
                 {
-                    Respawn();
+                    Respawn(true, false, true);
                 }
                 return;
             }
@@ -349,12 +348,12 @@ public class Player : MonoBehaviour
                 currentGridPos = transform.position;
                 nextGridPos = currentGridPos;
                 m_PlayerAnimationController.TriggerSlidingAnimation(false);
-                m_playerData.playerState = VII.PlayerState.IDLE;
                 m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Idling);
+                m_playerData.playerState = VII.PlayerState.IDLE;
                 VII.VIIEvents.TickEnd.Invoke();
                 if (m_playerData.steps <= 0)
                 {
-                    Respawn();
+                    Respawn(true, false, true);
                 }
             }
     }
@@ -362,7 +361,7 @@ public class Player : MonoBehaviour
     }
 
 
-    public void Respawn(bool costLife = true, bool i_bSmoothMove = false)
+    public void Respawn(bool costLife = true, bool i_bSmoothMove = false, bool waitIdle = false)
     {
         // Respawn Start
         if (m_playerData.playerState == VII.PlayerState.RESPAWNING)
@@ -395,10 +394,10 @@ public class Player : MonoBehaviour
         else
             AudioManager.instance.PlaySingle(AudioManager.instance.checkpoint);
         #endregion
-        StartCoroutine(Respawning(costLife, i_bSmoothMove));
+        StartCoroutine(Respawning(costLife, i_bSmoothMove, waitIdle));
     }
 
-    private IEnumerator Respawning(bool costLife, bool i_bSmoothMove)
+    private IEnumerator Respawning(bool costLife, bool i_bSmoothMove, bool waitIdle)
     {
         if (costLife)
         {
@@ -409,20 +408,19 @@ public class Player : MonoBehaviour
                 yield return null;
             }
             transform.position = nextGridPos;
-            // Death Animation
-            m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Death);
+            if (waitIdle)
+            {
+                while (m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Idling)
+                {
+                    yield return null;
+                }
+            }
+                // Death Animation 
+                m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Death);
             while (m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Respawning)
             {
                 yield return null;
             } 
-            /*if (m_playerData.lives <= 0)
-            {
-                UIManager.UIInstance.startMapID = currentMapID;
-                UIManager.UIInstance.startLevelID = currentLevelID;
-                UIManager.UIInstance.startLevelIndex = CameraManager.Instance.level_index;
-                UIManager.UIInstance.ClearUI();
-                SceneManager.LoadScene("All_Levels(Draft 1)");
-            }*/
         }
         // Drop Items
         DropItems(costLife);

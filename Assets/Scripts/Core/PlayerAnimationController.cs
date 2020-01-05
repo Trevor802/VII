@@ -89,6 +89,12 @@ namespace VII
             m_animator.SetBool("IsSliding", isSliding);
         }
 
+        public void PlayStepSound()
+        {
+            if (!AudioManager.instance.soundSource.clip || AudioManager.instance.soundSource.clip.name != "slide")
+                AudioManager.instance.PlaySingle(AudioManager.instance.footStep);
+        }
+
         public void RotateModel(Vector3 i_Direction)
         {
             m_animator.transform.rotation = Quaternion.LookRotation(i_Direction, Vector3.up);
