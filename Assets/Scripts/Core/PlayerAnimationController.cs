@@ -91,7 +91,7 @@ namespace VII
 
         public void PlayStepSound()
         {
-            if (!AudioManager.instance.soundSource.clip || AudioManager.instance.soundSource.clip.name != "slide")
+            if (!(AudioManager.instance.soundSource.isPlaying && AudioManager.instance.soundSource.clip.name == "slide"))
                 AudioManager.instance.PlaySingle(AudioManager.instance.footStep);
         }
 
