@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 930055634}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641287, b: 0.5748173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3074,6 +3074,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Respawn_Dungeon lvl 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -8483,6 +8488,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Respawn Ice lvl 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8547,6 +8557,11 @@ PrefabInstance:
         type: 3}
       propertyPath: livesAvailable
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
+      value: 83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -10752,6 +10767,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Respawn Ice lvl 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10821,6 +10841,11 @@ PrefabInstance:
         type: 3}
       propertyPath: bestLifeCost
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
+      value: 83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -13757,6 +13782,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Respawn Ice lvl 3.2
       objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15057,6 +15087,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Respawn Ice lvl 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15165,7 +15200,7 @@ PrefabInstance:
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].genericMenuData.selectedMember
-      value: 22
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -24975,6 +25010,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Respawn_Dungeon lvl 2.3
       objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26745,6 +26785,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Respawn Lava lvl 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27828,27 +27873,27 @@ PrefabInstance:
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 45.5
+      value: -9.5
       objectReference: {fileID: 0}
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 47
+      value: 105
       objectReference: {fileID: 0}
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -50.5
+      value: -35
       objectReference: {fileID: 0}
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5
+      value: -0.4999999
       objectReference: {fileID: 0}
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000029802322
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
@@ -27858,7 +27903,7 @@ PrefabInstance:
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.86602545
+      value: -0.8660255
       objectReference: {fileID: 0}
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
@@ -27883,27 +27928,27 @@ PrefabInstance:
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 45.5
+      value: -9.5
       objectReference: {fileID: 0}
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 47
+      value: 105
       objectReference: {fileID: 0}
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -50.5
+      value: -35
       objectReference: {fileID: 0}
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5
+      value: -0.4999999
       objectReference: {fileID: 0}
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000029802322
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
@@ -27913,7 +27958,7 @@ PrefabInstance:
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.86602545
+      value: -0.8660255
       objectReference: {fileID: 0}
     - target: {fileID: 7585793158539555720, guid: 821c8d460c3281941ace02b519c60692,
         type: 3}
@@ -28448,6 +28493,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Respawn_Dungeon lvl 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -35021,6 +35071,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Respawn_Dungeon lvl 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -43715,6 +43770,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Respawn_Dungeon lvl 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -43779,6 +43839,11 @@ PrefabInstance:
         type: 3}
       propertyPath: bestLifeCost
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
+      value: 83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -50413,6 +50478,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Respawn Ice lvl 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -53367,6 +53437,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Respawn Ice lvl 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -53436,6 +53511,11 @@ PrefabInstance:
         type: 3}
       propertyPath: bestLifeCost
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
+      value: 83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -63746,6 +63826,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Respawn Ice lvl 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -63810,6 +63895,11 @@ PrefabInstance:
         type: 3}
       propertyPath: livesAvailable
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
+      value: 83
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -63914,6 +64004,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Respawn Ice lvl 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -64160,6 +64255,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Respawn Lava lvl 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -66238,6 +66338,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Respawn Lava lvl 3.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -68902,6 +69007,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Respawn_Dungeon lvl 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -72863,6 +72973,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Respawn_Dungeon lvl 4.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -82612,6 +82727,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Respawn_Dungeon lvl 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -86859,6 +86979,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Respawn_Dungeon lvl 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -92382,6 +92507,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Respawn Lava lvl 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -95804,6 +95934,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Respawn Ice lvl 5.2
       objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -96487,6 +96622,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Respawn Lava lvl 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -98397,6 +98537,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Respawn_Dungeon lvl 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -102245,6 +102390,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Respawn Lava lvl 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
