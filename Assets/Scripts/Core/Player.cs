@@ -438,17 +438,14 @@ public class Player : MonoBehaviour
 
         m_destination = currentRespawnPoint.transform.position
             + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
+        if (tilePlayerInside.GetComponent<Checkpoint>())
+            yield return tilePlayerInside.GetComponent<Checkpoint>().WaitUntilAnimation(Checkpoint.hashIdleTag);
         if (i_bSmoothMove)
         {
             if (m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Respawning)
             {
                 m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Respawning);
             }
-        }
-        if (tilePlayerInside.GetComponent<Checkpoint>())
-            yield return tilePlayerInside.GetComponent<Checkpoint>().WaitUntilAnimation(Checkpoint.hashIdleTag);
-        if (i_bSmoothMove)
-        {
             while (Vector3.Distance(transform.position, m_destination) > float.Epsilon)
             {
                 transform.position = Vector3.MoveTowards(transform.position,
