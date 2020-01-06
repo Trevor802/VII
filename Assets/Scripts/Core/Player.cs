@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
         else if (Instance != this)
         {
             Destroy(gameObject);
-        }    
+        }
     }
     #endregion
 
@@ -174,7 +174,7 @@ public class Player : MonoBehaviour
             i_dir, out unreachableTileHit, m_maxCastDistance, (int)VII.HitLayer.Unreachable);
         if (unreachableTileHitResult)
         {
-            if(Vector3.Distance(GroundDetector.transform.position, unreachableTileHit.transform.position)
+            if (Vector3.Distance(GroundDetector.transform.position, unreachableTileHit.transform.position)
             <= VII.GameData.STEP_SIZE)
                 return false;
         }
@@ -352,7 +352,18 @@ public class Player : MonoBehaviour
                     Respawn(true, false, true);
                 }
             }
-    }
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            print("Save Player");
+            SavePlayer();
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            print("Load Player");
+            LoadPlayer();
+
+        }
         #endregion
     }
 
@@ -483,7 +494,7 @@ public class Player : MonoBehaviour
         {
             GameObject tomb = Pools.SpawnFromPool("Tomb", InteractableSpawnPoint.transform.position, Quaternion.identity);
             tomb.transform.parent = mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform;
-        } 
+        }
     }
 
     public void AddStep(int step)
@@ -536,15 +547,35 @@ public class Player : MonoBehaviour
         Debug.Log("Use controller");
         //Debug.Log(playerInput.Player.Move.interactions);
     }
+    public void SavePlayer()
+    {
 
-     // Getters/Setters
+        SaveSystem.SavePlayer(this);
+    }
+
+    public void LoadPlayer()
+    {
+        SavePlayerData data = SaveSystem.LoadPlayer();
+        currentRespawnPoint = mapData[data.saveMapId].GetLevelData()[0].GetRespawnPoint();
+        Respawn(false);
+        CameraManager.Instance.SwitchLevelCamera(data.cameraIndex);
+        print(data.cameraIndex);
+        for(int i = 0; i<data.cameraIndex;i++)
+        {
+            SetRespawnPoint(1);
+        }
+        print(data.savelives);
+    }
+
+    // Getters/Setters
     public VII.PlayerData PlayerData { get { return m_playerData; } }
     public VII.PlayerState PlayerState { get { return m_playerData.playerState; } }
     public VII.Inventory Inventory { get { return m_playerData.Inventory; } }
     public int GetSteps() { return m_playerData.steps; }
     public int GetLives() { return m_playerData.lives; }
-    public int GetRespawnPosIndex() { return m_playerData.respawnPositionIndex; }
+    public int GetPosIndex() { return m_playerData.respawnPositionIndex; }
     public Vector3 GetMoveDirection() { return moveDir; }
     [HideInInspector]
     public Tile tilePlayerInside { get; set; }
+    
 }
