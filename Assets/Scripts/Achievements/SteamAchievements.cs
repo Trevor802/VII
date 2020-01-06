@@ -8,10 +8,14 @@ public class SteamAchievements : MonoBehaviour
     public bool achievementUnlocked;
     public Player player;
     public Level8TriggerBoard Level8TriggerBoard;
-    public List<int> leastLives; //TODO: This needs to be saved
-    public bool listInit; //TODO: This also needs to be saved
+    public static List<int> leastLives; //TODO: This needs to be saved
+    public static bool listInit; //TODO: This also needs to be saved
     private void Start()
     {
+        SavePlayerData saveForAchievement = SaveSystem.LoadPlayer();
+        listInit = saveForAchievement.saveListInit;
+        player.playedLevel17 = saveForAchievement.savePlayedLevel17;
+        leastLives = saveForAchievement.saveLeastLives;
         //unlockAchievement("achievement_00");
         if (!listInit)
         {

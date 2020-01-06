@@ -26,9 +26,9 @@ public class TriggerSave : Tile
         if (Input.GetKeyDown(KeyCode.K))
         {
             SavePlayerData data = SaveSystem.LoadPlayer();
-            player.PlayerData.respawnPosition.x = data.position[0];
+            /*player.PlayerData.respawnPosition.x = data.position[0];
             player.PlayerData.respawnPosition.y = data.position[1];
-            player.PlayerData.respawnPosition.z = data.position[2];
+            player.PlayerData.respawnPosition.z = data.position[2];*/
 
         }
     }

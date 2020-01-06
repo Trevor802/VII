@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class SavePlayerData
@@ -8,17 +9,27 @@ public class SavePlayerData
     public float[] position;
     public int savelives;
     public int cameraIndex;
+    public int saveMapId;
+    public int saveLevelId;
+    public bool saveListInit;
+    public bool savePlayedLevel17;
+    public List<int> saveLeastLives;
     //public int cameraIndex;
     //public string playerName;
-    
+
     public SavePlayerData(Player player)
     {
-        position = new float[3];
-        position[0] = player.PlayerData.respawnPosition.x;
+        saveMapId = VII.SceneDataManager.Instance.GetCurrentMapData().GetMapID();
+        saveLevelId = VII.SceneDataManager.Instance.GetCurrentLevelData().GetLevelID();
+        cameraIndex = CameraManager.Instance.level_index;
+        saveListInit = SteamAchievements.listInit;
+        savePlayedLevel17 = player.playedLevel17;
+        saveLeastLives = SteamAchievements.leastLives;
+        /*position[0] = player.PlayerData.respawnPosition.x;
         position[1] = player.PlayerData.respawnPosition.y;
         position[2] = player.PlayerData.respawnPosition.z;
         savelives = player.initLives;
-        cameraIndex = player.saveCameraIndex;
+        cameraIndex = player.saveCameraIndex;*/
         
         
     }
