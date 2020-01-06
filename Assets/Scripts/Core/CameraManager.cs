@@ -130,6 +130,12 @@ public class CameraManager : MonoBehaviour
         pp_index = new_index;
         StartCoroutine(SwitchPP());
     }
+
+    public void SetFogYPosition(float yCoord)
+    {
+        fog_list[fog_index].transform.position = new Vector3(fog_list[fog_index].transform.position.x,
+            yCoord, fog_list[fog_index].transform.position.z);
+    }
 }
 
 
