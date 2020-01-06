@@ -39,19 +39,6 @@ public class Checkpoint : Tile
                 player.summonGreatOne = true;
             }
             player.checkLeastLives = true;
-            //Transition Texts Data
-            if (player.mapIndex == 1 && player.levelIndex == 1)
-            {
-                player.display_text_trap = true;
-            }
-            if (player.mapIndex == 3 && player.levelIndex == 1)
-            {
-                player.display_text_ice = true;
-            }
-            if (player.mapIndex == 8 && player.levelIndex == 1)
-            {
-                player.display_text_lava = true;
-            }
             // Reset respawn position and respawn player
             activated = true;
             VII.VIIEvents.LevelFinish.Invoke(gameObject, player);

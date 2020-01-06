@@ -88,11 +88,11 @@ public class Player : MonoBehaviour
     public bool playedLevel17; //TODO: This needs to be saved
     [Header("Show Map Transition Texts")]
     public DialogueManager dialogueManager;
-    public Canvas transitionTextCanvas;
-    public bool display_text_trap;
-    public bool display_text_ice;
-    public bool display_text_lava;
-    public bool startSentence;
+    //public Canvas transitionTextCanvas;
+    //public bool display_text_trap;
+    //public bool display_text_ice;
+    //public bool display_text_lava;
+    //public bool startSentence;
     #endregion PlayerData
 
     private float m_inverseMoveTime;
@@ -232,17 +232,6 @@ public class Player : MonoBehaviour
         mapIndex = currentMapID;
         levelIndex = currentLevelID;
         livesLeft = m_playerData.lives;
-        //Debug.Log(mapIndex + " " + levelIndex + " " + livesLeft);
-        //Transition Texts Stuff
-        if (display_text_trap == true || display_text_ice == true || display_text_lava == true)
-        {
-            transitionTextCanvas.enabled = true;
-            if (!startSentence)
-            {
-                startSentence = true;
-                dialogueManager.StartSentence();
-            }
-        }
         // Input
         // TODO Support multiple device
         #region Input

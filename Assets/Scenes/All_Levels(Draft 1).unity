@@ -2807,12 +2807,12 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 4e-45
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -3153,7 +3153,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -3224,6 +3224,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
       value: 83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029772140912600660, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -6579,17 +6584,17 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 4.6009584e-38
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 3.67342e-40
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 3.765255e-39
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -7297,17 +7302,17 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 6.3063424e+13
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 2.6914583e+20
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 4.250213e-22
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -9394,22 +9399,22 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 1.8318155e+25
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 1.5745979e+25
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 1.0692902e-38
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: 1.1112263e-38
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -14010,7 +14015,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -14076,6 +14081,16 @@ PrefabInstance:
         type: 3}
       propertyPath: livesAvailable
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
+      value: 83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029772140912600660, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -15380,7 +15395,7 @@ PrefabInstance:
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -15394,13 +15409,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].arguments.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
       propertyPath: livesAvailable
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
-      value: 128
+      value: 218
       objectReference: {fileID: 0}
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -15490,6 +15510,102 @@ PrefabInstance:
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[1].isCallEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].genericMenuData.selectedComponent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].genericMenuData.selectedMember
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].target
+      value: 
+      objectReference: {fileID: 602873564}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].memberName
+      value: EnableIceText
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].memberType
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[0].typeName
+      value: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[0].supportedType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[0].intArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].isCallEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[1].typeName
+      value: UnityEngine.SendMessageOptions, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[1].supportedType
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[1].intArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[1].enumArgument
+      value: RequireReceiver
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[3].genericMenuData.selectedComponent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[3].genericMenuData.selectedMember
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[3].target
+      value: 
+      objectReference: {fileID: 602873564}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[3].memberName
+      value: StartSentence
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[3].memberType
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[3].isCallEnabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -17102,17 +17218,17 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 2.3510604e-38
+      value: 1.15152e-40
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 2.31741e-40
+      value: 1.1754944e-38
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -17875,17 +17991,17 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 1.5046787e-36
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 7.9639e-41
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: 2.85372e-40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -21231,7 +21347,7 @@ PrefabInstance:
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[1].arguments.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -21251,22 +21367,22 @@ PrefabInstance:
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[1].genericMenuData.selectedComponent
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[1].genericMenuData.selectedMember
-      value: 23
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[1].target
       value: 
-      objectReference: {fileID: 233517635}
+      objectReference: {fileID: 602873564}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[1].memberName
-      value: SwitchLevelCamera
+      value: EnableTrapText
       objectReference: {fileID: 0}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -21366,22 +21482,22 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 4.5905e-41
+      value: 1.435e-42
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 2.7369918e+20
+      value: 8.4302e-41
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 1.7558775e+25
+      value: 1.0842022e-19
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 4.444501e-39
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -22764,17 +22880,17 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: -2.825388e+10
+      value: 9.629944e-35
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: NaN
+      value: 3.54428e-40
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: -1.0299822e-23
+      value: 3.8205e-41
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -25261,22 +25377,22 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 2.6672e-41
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 6e-44
+      value: 5.4167e-41
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 1.1754944e-38
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 1.0045e-41
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -25628,7 +25744,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -25692,6 +25808,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
       propertyPath: livesAvailable
       value: 5
       objectReference: {fileID: 0}
@@ -25704,6 +25825,41 @@ PrefabInstance:
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
       value: 83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].genericMenuData.selectedComponent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].isCallEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].target
+      value: 
+      objectReference: {fileID: 602873564}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].memberName
+      value: StartSentence
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].memberType
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].genericMenuData.selectedMember
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029772140912600660, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -34336,22 +34492,22 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: -2.9880884
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 3.8186448e+25
+      value: 3.7616967e-37
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: -4.591426e-35
+      value: 7.9639e-41
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: -1.158295e-25
+      value: 2.85372e-40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -35784,7 +35940,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -35860,6 +36016,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
       value: 83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029772140912600660, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -46352,12 +46513,12 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 1.435e-42
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 2.3318e-41
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -46367,7 +46528,7 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: -0.0014223801
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -47821,17 +47982,17 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 6.018715e-36
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 1.7579e-41
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: 1.7757e-41
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -49003,22 +49164,22 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 3.6350876e-27
+      value: -1.114e-42
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 6e-45
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 2.4e-44
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 3e-44
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -50118,17 +50279,17 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 3e-44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 1.9446e-41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 1.05e-43
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -51533,7 +51694,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -51609,6 +51770,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
       value: 83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029772140912600660, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -52776,22 +52942,22 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 6.57e-43
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: -2.825388e+10
+      value: 9.4e-44
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: NaN
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: -5.675651e+23
+      value: -8.495094e-29
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -58494,12 +58660,12 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 1
+      value: 6.57e-43
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 1.125e-42
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -58509,7 +58675,7 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 2.1e-44
+      value: -8.495094e-29
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -60633,22 +60799,22 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 6.57e-43
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 2.3510604e-38
+      value: 1.5e-44
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 3.01335e-40
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 7.7666e-41
+      value: -9.158105e-29
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -61817,22 +61983,22 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 3.7616967e-37
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 2.9057e-41
+      value: 7.9639e-41
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 3.8205e-41
+      value: 2.85372e-40
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 5.38e-43
+      value: 1.614e-42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -64741,17 +64907,17 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 9.404242e-38
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 2.92008e-40
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 3e-45
+      value: 1.5964e-41
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -65185,7 +65351,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -65256,6 +65422,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
       value: 83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029772140912600660, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -65364,7 +65535,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -65430,6 +65601,16 @@ PrefabInstance:
         type: 3}
       propertyPath: livesAvailable
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
+      value: 83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029772140912600660, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -67698,7 +67879,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -67769,6 +67950,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
       value: 83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029772140912600660, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -68122,22 +68308,22 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 2.4650057e+32
+      value: 2.87e-42
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 3.587e-42
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: -3.59e-43
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 2.1e-44
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -70513,6 +70699,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
       propertyPath: livesAvailable
       value: 3
       objectReference: {fileID: 0}
@@ -70524,7 +70715,67 @@ PrefabInstance:
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
-      value: 83
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].genericMenuData.selectedComponent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].isCallEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].target
+      value: 
+      objectReference: {fileID: 602873564}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].memberName
+      value: EnableTrapText
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].memberType
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[0].genericMenuData.selectedMember
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[1].genericMenuData.selectedComponent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[1].genericMenuData.selectedMember
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[1].target
+      value: 
+      objectReference: {fileID: 602873564}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[1].memberName
+      value: StartSentence
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[1].memberType
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[1].isCallEnabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -70959,22 +71210,22 @@ PrefabInstance:
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[1].genericMenuData.selectedComponent
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[1].genericMenuData.selectedMember
-      value: 13
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[1].target
       value: 
-      objectReference: {fileID: 743965248}
+      objectReference: {fileID: 233517635}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[1].memberName
-      value: Move
+      value: SwitchLevelCamera
       objectReference: {fileID: 0}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -70984,13 +71235,12 @@ PrefabInstance:
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[1].arguments.Array.data[0].typeName
-      value: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
+      value: System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       objectReference: {fileID: 0}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[1].arguments.Array.data[0].supportedType
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -71131,27 +71381,27 @@ PrefabInstance:
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[1].arguments.Array.data[0].vector3Argument.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 6.57e-43
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: -0.015633196
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 4.5905e-41
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 7.201609e+22
+      value: -9.502009e-29
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -74153,7 +74403,7 @@ PrefabInstance:
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[2].arguments.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -74244,17 +74494,17 @@ PrefabInstance:
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[2].genericMenuData.selectedMember
-      value: 13
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[2].target
       value: 
-      objectReference: {fileID: 743965248}
+      objectReference: {fileID: 602873564}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[2].memberName
-      value: Move
+      value: StartSentence
       objectReference: {fileID: 0}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -74264,13 +74514,12 @@ PrefabInstance:
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[0].typeName
-      value: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
+      value: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
       objectReference: {fileID: 0}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[0].supportedType
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -74347,25 +74596,56 @@ PrefabInstance:
       propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[1].arguments.Array.data[0].vector3Argument.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
+        type: 3}
+      propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[1].typeName
+      value: UnityEngine.SendMessageOptions, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
+        type: 3}
+      propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[1].supportedType
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
+        type: 3}
+      propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[1].stringArgument
+      value: Press
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
+        type: 3}
+      propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[1].intArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
+        type: 3}
+      propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[1].vector3Argument.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2107566566651462034, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
+        type: 3}
+      propertyPath: OnPlayerEnterEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[1].enumArgument
+      value: RequireReceiver
+      objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 6.57e-43
-      objectReference: {fileID: 0}
-    - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
-        type: 3}
-      propertyPath: m_BoundingSphereOverride.y
-      value: 1.16e-43
-      objectReference: {fileID: 0}
-    - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
-        type: 3}
-      propertyPath: m_BoundingSphereOverride.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 2.3509887e-38
+      objectReference: {fileID: 0}
+    - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
+        type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 131080
+      objectReference: {fileID: 0}
+    - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
+        type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: -4.8994178e+23
+      value: 8.307678e+34
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -74577,7 +74857,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -74648,6 +74928,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
       value: 83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029772140912600660, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -88588,7 +88873,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -88659,6 +88944,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
       value: 83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029772140912600660, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -89765,17 +90055,17 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 3.4e-44
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 2.73e-43
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 0
+      value: 4.5905e-41
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -97339,22 +97629,22 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 6.57e-43
+      value: 6.018715e-36
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: -4.8428554e+23
+      value: 2.92008e-40
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 6.57e-43
+      value: 1.13e-41
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 0
+      value: 2.87e-42
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b4cb67c63b54e09ab4f8a32995c2ef, type: 3}
@@ -97699,7 +97989,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -97770,6 +98060,16 @@ PrefabInstance:
         type: 3}
       propertyPath: bestLifeCost
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
+      value: 83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029772140912600660, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -100303,7 +100603,7 @@ PrefabInstance:
     - target: {fileID: 6857349775925842100, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6857349775925842101, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -100374,6 +100674,11 @@ PrefabInstance:
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
       value: 83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2029772140912600660, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed1122a60cb14040b7d60b64fc7b4d1, type: 3}
@@ -100890,12 +101195,12 @@ PrefabInstance:
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 2.6518e-41
+      value: 2.152e-42
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 1.05e-43
+      value: -3.59e-43
       objectReference: {fileID: 0}
     - target: {fileID: 524232700912021769, guid: 57b4cb67c63b54e09ab4f8a32995c2ef,
         type: 3}
@@ -104302,7 +104607,7 @@ PrefabInstance:
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -104316,13 +104621,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].arguments.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
       propertyPath: livesAvailable
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.inspectorListHeight
-      value: 128
+      value: 218
       objectReference: {fileID: 0}
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
@@ -104412,6 +104722,102 @@ PrefabInstance:
     - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
         type: 3}
       propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[1].isCallEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].genericMenuData.selectedComponent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].genericMenuData.selectedMember
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].target
+      value: 
+      objectReference: {fileID: 602873564}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].memberName
+      value: EnableLavaText
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].memberType
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[0].typeName
+      value: System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[0].supportedType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[0].intArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].isCallEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[1].typeName
+      value: UnityEngine.SendMessageOptions, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[1].supportedType
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[1].intArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[2].arguments.Array.data[1].enumArgument
+      value: RequireReceiver
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[3].genericMenuData.selectedComponent
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[3].genericMenuData.selectedMember
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[3].target
+      value: 
+      objectReference: {fileID: 602873564}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[3].memberName
+      value: StartSentence
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[3].memberType
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2363178299473363511, guid: 0ed1122a60cb14040b7d60b64fc7b4d1,
+        type: 3}
+      propertyPath: OnPlayerRespawnEndEvent.persistentCalls.calls.Array.data[3].isCallEnabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
