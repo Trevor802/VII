@@ -7,10 +7,15 @@ public class RespawnPoint : Tile
     public ByteSheep.Events.AdvancedEvent OnPlayerRespawnEndEvent;
     public int bestLifeCost = VII.GameData.PLAYER_DEFAULT_LIVES;
 
+    private bool invokeEvents = false;
+
     protected override void OnPlayerRespawnEnd(Player player)
     {
         base.OnPlayerRespawnEnd(player);
-        if (playerInside)
+        if (playerInside && !invokeEvents)
+        {
             OnPlayerRespawnEndEvent.Invoke();
+            invokeEvents = true;
+        }
     }
 }

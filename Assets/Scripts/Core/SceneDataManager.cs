@@ -60,6 +60,20 @@ namespace VII
         public int GetMapID() { return m_MapID; }
         public GameObject GetMapObject() { return m_MapObject; }
         public bool finished { get; set; }
+        public MapData previousMap { get
+            {
+                int count = SceneDataManager.Instance.GetMapData().Count;
+                int index = Mathf.Abs((m_MapID - 1 + count) % count);
+                return SceneDataManager.Instance.GetMapData()[index];
+            }
+        }
+        public MapData nextMap { get
+            {
+                int count = SceneDataManager.Instance.GetMapData().Count;
+                int index = Mathf.Abs((m_MapID + 1 + count) % count);
+                return SceneDataManager.Instance.GetMapData()[index];
+            }
+        }
         #endregion
     }
 
@@ -129,28 +143,13 @@ namespace VII
                 {
                     Debug.Log(m_LevelObject);
                 }
-                if (tile.GetComponent<Tile>() && tile.GetComponent<Tile>().GetPlayerInside())
+                if (tile.GetComponent<Tile>() &&
+                    tile.GetComponent<Tile>() == Player.Instance.tilePlayerInside)
                 {
                     return true;
                 }
             }
             return false;
-        }
-
-        public Tile GetTilePlayerInside()
-        {
-            foreach (var tile in GetChildrenObjectsWithTag(GameData.TILE_TAG))
-            {
-                if (!tile)
-                {
-                    Debug.Log(m_LevelObject);
-                }
-                if (tile.GetComponent<Tile>() && tile.GetComponent<Tile>().GetPlayerInside())
-                {
-                    return tile.GetComponent<Tile>();
-                }
-            }
-            return null;
         }
 
         public void SetTilesEnabledState(bool i_bState)
@@ -245,10 +244,10 @@ namespace VII
             return mapData.GetLevelPlayerInside();
         }
 
+        // Only works at runtime
         public Tile GetCurrentTileData()
         {
-            LevelData levelData = GetCurrentLevelData();
-            return levelData.GetTilePlayerInside();
+            return Player.Instance.tilePlayerInside;
         }
 
         #region getters

@@ -13,6 +13,7 @@ namespace VII
     public class PlayerAnimationController : MonoBehaviour
     {
         private Animator m_animator;
+        public Animator StepAnimator;
 
         // Trigger hash
         private readonly int m_hashMoveTrigger = Animator.StringToHash("Move");
@@ -89,9 +90,30 @@ namespace VII
             m_animator.SetBool("IsSliding", isSliding);
         }
 
+        public void PlayStepSound()
+        {
+            if (!(AudioManager.instance.soundSource.isPlaying && AudioManager.instance.soundSource.clip.name == "slide"))
+                AudioManager.instance.PlaySingle(AudioManager.instance.footStep);
+        }
+
         public void RotateModel(Vector3 i_Direction)
         {
             m_animator.transform.rotation = Quaternion.LookRotation(i_Direction, Vector3.up);
+        }
+
+        public void InitStepUI()
+        {
+            StepAnimator.SetTrigger("Init");
+        }
+
+        public void ClearStepUI()
+        {
+            StepAnimator.SetTrigger("Clear");
+        }
+
+        public void UpdateStepUI()
+        {
+            StepAnimator.SetTrigger("Step");
         }
     }
 }

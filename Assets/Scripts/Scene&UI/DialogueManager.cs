@@ -21,9 +21,15 @@ public class DialogueManager : MonoBehaviour
     public Canvas transitionTextsCanvas;
     public bool displayingTexts;
 
+    private bool display_text_trap;
+    private bool display_text_ice;
+    private bool display_text_lava;
+
     public void StartSentence()
     {
         //animator.SetBool("IsOpen", true);
+        if (transitionTextsCanvas)
+            transitionTextsCanvas.enabled = true;
         textBox.gameObject.SetActive(true);
         NextSentence();
         inputAvail = true;
@@ -32,7 +38,7 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("space") && inputAvail)
+        if ((Input.GetKeyDown("space") || Input.GetButtonDown("Submit")) && inputAvail)
         {
             NextSentence();
         }
@@ -52,7 +58,7 @@ public class DialogueManager : MonoBehaviour
         {
             if (transitionTextsCanvas)
             {
-                if (player.display_text_trap == true)
+                if (display_text_trap == true)
                 {
                     if (sentenceIndex >= sentences_transition_trap.Count)
                     {
@@ -60,7 +66,7 @@ public class DialogueManager : MonoBehaviour
                         return;
                     }
                 }
-                else if (player.display_text_ice == true)
+                else if (display_text_ice == true)
                 {
                     if (sentenceIndex >= sentences_transition_ice.Count)
                     {
@@ -68,7 +74,7 @@ public class DialogueManager : MonoBehaviour
                         return;
                     }
                 }
-                else if (player.display_text_lava == true)
+                else if (display_text_lava == true)
                 {
                     if (sentenceIndex >= sentences_transition_lava.Count)
                     {
@@ -96,15 +102,15 @@ public class DialogueManager : MonoBehaviour
         {
             if (transitionTextsCanvas)
             {
-                if (player.display_text_trap == true)
+                if (display_text_trap == true)
                 {
                     j = sentences_transition_trap[sentenceIndex];
                 }
-                else if (player.display_text_ice == true)
+                else if (display_text_ice == true)
                 {
                     j = sentences_transition_ice[sentenceIndex];
                 }
-                else if (player.display_text_lava == true)
+                else if (display_text_lava == true)
                 {
                     j = sentences_transition_lava[sentenceIndex];
                 }
@@ -167,12 +173,26 @@ public class DialogueManager : MonoBehaviour
             if (transitionTextsCanvas)
             {
                 displayingTexts = false;
-                player.display_text_trap = false;
-                player.display_text_ice = false;
-                player.display_text_lava = false;
-                player.startSentence = false;
+                display_text_trap = false;
+                display_text_ice = false;
+                display_text_lava = false;
                 transitionTextsCanvas.enabled = false;
             }
         }
+    }
+
+    public void EnableTrapText()
+    {
+        display_text_trap = true;
+    }
+
+    public void EnableIceText()
+    {
+        display_text_ice = true;
+    }
+
+    public void EnableLavaText()
+    {
+        display_text_lava = true;
     }
 }

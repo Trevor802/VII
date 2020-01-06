@@ -7,12 +7,15 @@ public class CameraManager : MonoBehaviour
 {
     public List<GameObject> cinema_list;
     public List<GameObject> pp_list;
-    public bool debugMode;  //in debug mode, the player will transfer with the camera to next or prev level.
+    public List<GameObject> fog_list;
     [HideInInspector]
     public int level_index;
     [HideInInspector]
     public int pp_index;
     private int prevppIndex;
+    [HideInInspector]
+    public int fog_index;
+    private ParticleSystem fogParticle;
     private Player player;
     public float ppSwitchSpeed = 0.02f;
 
@@ -42,6 +45,7 @@ public class CameraManager : MonoBehaviour
 
         level_index = UIManager.UIInstance.startLevelIndex;
         pp_index = UIManager.UIInstance.startPPIndex;
+        fog_index = UIManager.UIInstance.startFogIndex;
         for (int i = 0; i < cinema_list.Count; i++)
         {
             if (i == level_index)
@@ -54,6 +58,18 @@ public class CameraManager : MonoBehaviour
             }
         }
         StartCoroutine(InitPostProcessing());
+        for (int i = 0; i < fog_list.Count; i++)
+        {
+            if (i == fog_index)
+            {
+                fog_list[i].SetActive(true);
+                fog_list[i].GetComponent<ParticleSystem>().Play();
+            }
+            else
+            {
+                fog_list[i].SetActive(false);
+            }
+        }
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         if (player == null)
             Debug.LogError("CameraManager: Player not found!");
@@ -70,14 +86,17 @@ public class CameraManager : MonoBehaviour
         //cinema_list[level_index].transform.parent.gameObject.SetActive(true);
         cinema_list.ForEach(cam => cam.SetActive(false));
         cinema_list[level_index].SetActive(true);
-        if(debugMode)
+    }
+
+    public void SwitchFog(int index)
+    {
+        if (fog_index != index)
         {
-            //Finish here when respawn points are done
-            //Vector3 next_checkpoint = cinema_list[level_index].GetComponent<LevelData>().level_checkpoint.transform.position;
-            //player.ResetRespawnPos(next_checkpoint);
-            //player.Respawn(false);
+            fog_index = index;
+            fog_list.ForEach(fog => fog.SetActive(false));
+            fog_list[fog_index].SetActive(true);
+            fog_list[fog_index].GetComponent<ParticleSystem>().Play();
         }
-        
     }
 
     private IEnumerator InitPostProcessing()
@@ -92,14 +111,17 @@ public class CameraManager : MonoBehaviour
 
     private IEnumerator SwitchPP()
     {
-        while (pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight > 0)
+        if (prevppIndex != pp_index)
         {
-            pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight -= ppSwitchSpeed;
-            pp_list[pp_index].GetComponent<PostProcessVolume>().weight += ppSwitchSpeed;
-            yield return null;
+            while (pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight > 0)
+            {
+                pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight -= ppSwitchSpeed;
+                pp_list[pp_index].GetComponent<PostProcessVolume>().weight += ppSwitchSpeed;
+                yield return null;
+            }
+            pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight = 0;
+            pp_list[pp_index].GetComponent<PostProcessVolume>().weight = 1;
         }
-        pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight = 0;
-        pp_list[pp_index].GetComponent<PostProcessVolume>().weight = 1;
     }
 
     public void SwitchPostProcessing(int new_index)

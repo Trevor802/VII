@@ -25,6 +25,7 @@ public class Interactable : MonoBehaviour
                 }
                 AudioManager.instance.PlaySingle(AudioManager.instance.collect);
                 player.PlayerData.Inventory.AddItem(item);
+                player.transform.GetComponentInChildren<CrystalRotating>().ActivateCrystal();
                 // Destroy gameobject
                 Destroy(gameObject);
             }

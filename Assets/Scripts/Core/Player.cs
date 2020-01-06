@@ -88,11 +88,11 @@ public class Player : MonoBehaviour
     public bool playedLevel17; //TODO: This needs to be saved
     [Header("Show Map Transition Texts")]
     public DialogueManager dialogueManager;
-    public Canvas transitionTextCanvas;
-    public bool display_text_trap;
-    public bool display_text_ice;
-    public bool display_text_lava;
-    public bool startSentence;
+    //public Canvas transitionTextCanvas;
+    //public bool display_text_trap;
+    //public bool display_text_ice;
+    //public bool display_text_lava;
+    //public bool startSentence;
     #endregion PlayerData
 
     private float m_inverseMoveTime;
@@ -139,10 +139,12 @@ public class Player : MonoBehaviour
         currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
         bestLifeCost = mapData[currentMapID].GetLevelData()[currentLevelID].GetBestLivesCost();
         transform.position = currentRespawnPoint.transform.position + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
-        m_playerData.playerState = VII.PlayerState.IDLE;
         currentRespawnPoint.playerInside = true;
         tilePlayerInside = currentRespawnPoint;
+        VII.VIIEvents.PlayerRespawnEnd.Invoke(this);
+        m_playerData.playerState = VII.PlayerState.IDLE;
         UIManager.UIInstance.UpdateUI();
+        m_PlayerAnimationController.InitStepUI();
     }
 
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
@@ -205,12 +207,15 @@ public class Player : MonoBehaviour
             m_destination = end;
             m_playerData.playerState = VII.PlayerState.MOVING;
             #region Presentation Layer
-            AudioManager.instance.PlaySingle(AudioManager.instance.footStep);
             m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Moving);
             if (expectationStep > 1)
             {
                 m_PlayerAnimationController.TriggerSlidingAnimation(true);
                 AudioManager.instance.PlaySingle(AudioManager.instance.slide);
+            }
+            if (m_playerData.steps > 0)
+            {
+                m_PlayerAnimationController.UpdateStepUI();
             }
             #endregion
             VII.VIIEvents.TickStart.Invoke();
@@ -228,17 +233,6 @@ public class Player : MonoBehaviour
         mapIndex = currentMapID;
         levelIndex = currentLevelID;
         livesLeft = m_playerData.lives;
-        //Debug.Log(mapIndex + " " + levelIndex + " " + livesLeft);
-        //Transition Texts Stuff
-        if (display_text_trap == true || display_text_ice == true || display_text_lava == true)
-        {
-            transitionTextCanvas.enabled = true;
-            if (!startSentence)
-            {
-                startSentence = true;
-                dialogueManager.StartSentence();
-            }
-        }
         // Input
         // TODO Support multiple device
         #region Input
@@ -248,6 +242,7 @@ public class Player : MonoBehaviour
             UIManager.UIInstance.startLevelID = currentLevelID;
             UIManager.UIInstance.startLevelIndex = CameraManager.Instance.level_index;
             UIManager.UIInstance.startPPIndex = CameraManager.Instance.pp_index;
+            UIManager.UIInstance.startFogIndex = CameraManager.Instance.fog_index;
             UIManager.UIInstance.ClearUI();
             SceneManager.LoadScene("All_Levels(Draft 1)");
         }
@@ -327,12 +322,12 @@ public class Player : MonoBehaviour
                 currentGridPos = transform.position;
                 nextGridPos = currentGridPos;
                 m_PlayerAnimationController.TriggerSlidingAnimation(false);
-                m_playerData.playerState = VII.PlayerState.IDLE;
                 m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Idling);
+                m_playerData.playerState = VII.PlayerState.IDLE;
                 VII.VIIEvents.TickEnd.Invoke();
                 if (m_playerData.steps <= 0)
                 {
-                    Respawn();
+                    Respawn(true, false, true);
                 }
                 return;
             }
@@ -349,12 +344,12 @@ public class Player : MonoBehaviour
                 currentGridPos = transform.position;
                 nextGridPos = currentGridPos;
                 m_PlayerAnimationController.TriggerSlidingAnimation(false);
-                m_playerData.playerState = VII.PlayerState.IDLE;
                 m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Idling);
+                m_playerData.playerState = VII.PlayerState.IDLE;
                 VII.VIIEvents.TickEnd.Invoke();
                 if (m_playerData.steps <= 0)
                 {
-                    Respawn();
+                    Respawn(true, false, true);
                 }
             }
         }
@@ -373,7 +368,7 @@ public class Player : MonoBehaviour
     }
 
 
-    public void Respawn(bool costLife = true, bool i_bSmoothMove = false)
+    public void Respawn(bool costLife = true, bool i_bSmoothMove = false, bool waitIdle = false)
     {
         // Respawn Start
         if (m_playerData.playerState == VII.PlayerState.RESPAWNING)
@@ -406,10 +401,10 @@ public class Player : MonoBehaviour
         else
             AudioManager.instance.PlaySingle(AudioManager.instance.checkpoint);
         #endregion
-        StartCoroutine(Respawning(costLife, i_bSmoothMove));
+        StartCoroutine(Respawning(costLife, i_bSmoothMove, waitIdle));
     }
 
-    private IEnumerator Respawning(bool costLife, bool i_bSmoothMove)
+    private IEnumerator Respawning(bool costLife, bool i_bSmoothMove, bool waitIdle)
     {
         if (costLife)
         {
@@ -420,29 +415,32 @@ public class Player : MonoBehaviour
                 yield return null;
             }
             transform.position = nextGridPos;
-            // Death Animation
+            if (waitIdle)
+            {
+                while (m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Idling)
+                {
+                    yield return null;
+                }
+            }
+            // Death Animation 
             m_PlayerAnimationController.TriggerAnimation(VII.PlayerAnimationState.Death);
             while (m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Respawning)
             {
                 yield return null;
-            }
-            /*if (m_playerData.lives <= 0)
-            {
-                UIManager.UIInstance.startMapID = currentMapID;
-                UIManager.UIInstance.startLevelID = currentLevelID;
-                UIManager.UIInstance.startLevelIndex = CameraManager.Instance.level_index;
-                UIManager.UIInstance.ClearUI();
-                SceneManager.LoadScene("All_Levels(Draft 1)");
-            }*/
+            } 
         }
+        m_PlayerAnimationController.ClearStepUI();
         // Drop Items
         DropItems(costLife);
+        GetComponentInChildren<CrystalRotating>().DeactivateCrystal();
         // EVENT: Respawing Ends
         InteractiveCollider.enabled = false;
         GroundDetector.SetActive(false);
 
         m_destination = currentRespawnPoint.transform.position
             + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
+        if (tilePlayerInside.GetComponent<Checkpoint>() && !costLife)
+            yield return tilePlayerInside.GetComponent<Checkpoint>().WaitUntilAnimation(Checkpoint.hashIdleTag);
         if (i_bSmoothMove)
         {
             if (m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Respawning)
@@ -462,15 +460,18 @@ public class Player : MonoBehaviour
         nextGridPos = currentGridPos;
         currentRespawnPoint.playerInside = true;
         tilePlayerInside = currentRespawnPoint;
-        UIManager.UIInstance.UpdateUI();
         InteractiveCollider.enabled = true;
         GroundDetector.SetActive(true);
         m_playerData.steps = initSteps;
         // Respawn Animation
-        while (m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Idling)
+        while(m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Idling)
         {
             yield return null;
         }
+        if (i_bSmoothMove)
+            VII.SceneDataManager.Instance.GetCurrentMapData().previousMap.GetMapObject().SetActive(false);
+        UIManager.UIInstance.UpdateUI();
+        m_PlayerAnimationController.InitStepUI();
         // Respawning Ends
         m_playerData.playerState = VII.PlayerState.IDLE;
         // Broadcast with Event System
@@ -521,12 +522,10 @@ public class Player : MonoBehaviour
                 currentMapID = mapData.Count - 1;
                 currentLevelID = mapData[currentMapID].GetLevelData().Count - 1;
             }
-            mapData[currentMapID].GetMapObject().SetActive(true);
         }
         // go to next map
         else if (currentLevelID + i_Next >= mapData[currentMapID].GetLevelData().Count)
         {
-            mapData[currentMapID].GetMapObject().SetActive(false);
             if (currentMapID + i_Next < mapData.Count)
             {
                 currentMapID += i_Next;
