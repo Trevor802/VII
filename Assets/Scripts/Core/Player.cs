@@ -438,7 +438,7 @@ public class Player : MonoBehaviour
 
         m_destination = currentRespawnPoint.transform.position
             + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
-        if (tilePlayerInside.GetComponent<Checkpoint>())
+        if (tilePlayerInside.GetComponent<Checkpoint>() && tilePlayerInside.GetComponent<Checkpoint>().activated)
             yield return tilePlayerInside.GetComponent<Checkpoint>().WaitUntilAnimation(Checkpoint.hashIdleTag);
         if (i_bSmoothMove)
         {
