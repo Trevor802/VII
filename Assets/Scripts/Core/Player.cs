@@ -139,9 +139,10 @@ public class Player : MonoBehaviour
         currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
         bestLifeCost = mapData[currentMapID].GetLevelData()[currentLevelID].GetBestLivesCost();
         transform.position = currentRespawnPoint.transform.position + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
-        m_playerData.playerState = VII.PlayerState.IDLE;
         currentRespawnPoint.playerInside = true;
         tilePlayerInside = currentRespawnPoint;
+        VII.VIIEvents.PlayerRespawnEnd.Invoke(this);
+        m_playerData.playerState = VII.PlayerState.IDLE;
         UIManager.UIInstance.UpdateUI();
         m_PlayerAnimationController.InitStepUI();
     }

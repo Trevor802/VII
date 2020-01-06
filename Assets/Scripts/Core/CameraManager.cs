@@ -90,10 +90,13 @@ public class CameraManager : MonoBehaviour
 
     public void SwitchFog(int index)
     {
-        fog_index = index;
-        fog_list.ForEach(fog => fog.SetActive(false));
-        fog_list[fog_index].SetActive(true);
-        fog_list[fog_index].GetComponent<ParticleSystem>().Play();
+        if (fog_index != index)
+        {
+            fog_index = index;
+            fog_list.ForEach(fog => fog.SetActive(false));
+            fog_list[fog_index].SetActive(true);
+            fog_list[fog_index].GetComponent<ParticleSystem>().Play();
+        }
     }
 
     private IEnumerator InitPostProcessing()
@@ -108,14 +111,17 @@ public class CameraManager : MonoBehaviour
 
     private IEnumerator SwitchPP()
     {
-        while (pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight > 0)
+        if (prevppIndex != pp_index)
         {
-            pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight -= ppSwitchSpeed;
-            pp_list[pp_index].GetComponent<PostProcessVolume>().weight += ppSwitchSpeed;
-            yield return null;
+            while (pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight > 0)
+            {
+                pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight -= ppSwitchSpeed;
+                pp_list[pp_index].GetComponent<PostProcessVolume>().weight += ppSwitchSpeed;
+                yield return null;
+            }
+            pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight = 0;
+            pp_list[pp_index].GetComponent<PostProcessVolume>().weight = 1;
         }
-        pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight = 0;
-        pp_list[pp_index].GetComponent<PostProcessVolume>().weight = 1;
     }
 
     public void SwitchPostProcessing(int new_index)
