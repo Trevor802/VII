@@ -164,11 +164,7 @@ MonoBehaviour:
   livesLeft: 0
   playedLevel17: 0
   dialogueManager: {fileID: 0}
-  transitionTextCanvas: {fileID: 0}
-  display_text_trap: 0
-  display_text_ice: 0
-  display_text_lava: 0
-  startSentence: 0
+  restartUI: {fileID: 0}
   m_PlayerAnimationController: {fileID: 4372436038592171633}
 --- !u!54 &1918655054
 Rigidbody:
@@ -464,6 +460,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: krystal2
       objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: f4efba538cdd34043a22bb2720e98202,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: f4efba538cdd34043a22bb2720e98202,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4adde520f7c4ae1459cea0cff79920f2, type: 2}
     - target: {fileID: -4216859302048453862, guid: f4efba538cdd34043a22bb2720e98202,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -518,11 +524,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1504981713932161579, guid: f4efba538cdd34043a22bb2720e98202,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4efba538cdd34043a22bb2720e98202, type: 3}
