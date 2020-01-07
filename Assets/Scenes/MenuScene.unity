@@ -154,10 +154,10 @@ RectTransform:
   m_Father: {fileID: 336003980}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 480, y: -60}
-  m_SizeDelta: {x: 320, y: 100}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -32, y: 0}
+  m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &31218145
 MonoBehaviour:
@@ -614,10 +614,10 @@ RectTransform:
   m_Father: {fileID: 436115645}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -217.75}
-  m_SizeDelta: {x: -960, y: -955.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -169.8}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &283081234
 MonoBehaviour:
@@ -641,8 +641,8 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 84d10da35426a1243a08a4c2be73e075, type: 3}
     m_FontSize: 23
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 23
+    m_BestFit: 0
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -889,10 +889,10 @@ RectTransform:
   m_Father: {fileID: 436115645}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 200}
-  m_SizeDelta: {x: 0, y: 120}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -184}
+  m_SizeDelta: {x: 1024, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &336003981
 MonoBehaviour:
@@ -1082,7 +1082,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 320, y: 100}
+  m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &442620744
 MonoBehaviour:
@@ -1417,7 +1417,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 320, y: 100}
+  m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &467748746
 MonoBehaviour:
@@ -1937,7 +1937,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 160, y: -60}
-  m_SizeDelta: {x: 320, y: 100}
+  m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &976573473
 MonoBehaviour:
@@ -2374,7 +2374,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 320, y: 100}
+  m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1061488793
 MonoBehaviour:
@@ -2589,7 +2589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 442620742}
+  m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1271389381
@@ -3159,10 +3159,10 @@ RectTransform:
   m_Father: {fileID: 436115645}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 114.50003}
-  m_SizeDelta: {x: -960, y: -540}
+  m_SizeDelta: {x: 400, y: 228}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2059570286
 MonoBehaviour:
@@ -3241,10 +3241,10 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 84d10da35426a1243a08a4c2be73e075, type: 3}
     m_FontSize: 23
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 23
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -3291,10 +3291,10 @@ RectTransform:
   m_Father: {fileID: 436115645}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 40}
-  m_SizeDelta: {x: -960, y: -680}
+  m_SizeDelta: {x: 300, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2133935823
 GameObject:
@@ -3549,6 +3549,39 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
+        type: 3}
+      propertyPath: sentences.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
+        type: 3}
+      propertyPath: textBox
+      value: 
+      objectReference: {fileID: 2097379496}
+    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
+        type: 3}
+      propertyPath: sceneToLoadAfterDialogue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
+        type: 3}
+      propertyPath: sentences.Array.data[0]
+      value: A group of people gathered together, trying to summon <color=red>the
+        Great One</color> at all costs.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
+        type: 3}
+      propertyPath: sentences.Array.data[1]
+      value: The closer they get to <color=red>the Great One</color>, the weaker and
+        crazier they feel.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
+        type: 3}
+      propertyPath: sentences.Array.data[2]
+      value: But they are ready to sacrifice themselves to bring <color=red>the Holy
+        Grail</color> to him and revive the world again.
+      objectReference: {fileID: 0}
     - target: {fileID: 6425399052359096056, guid: 6c22a6b21e20a154ea704bc7ed3db007,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3603,39 +3636,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
-        type: 3}
-      propertyPath: sentences.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
-        type: 3}
-      propertyPath: textBox
-      value: 
-      objectReference: {fileID: 2097379496}
-    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
-        type: 3}
-      propertyPath: sceneToLoadAfterDialogue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
-        type: 3}
-      propertyPath: sentences.Array.data[0]
-      value: A group of people gathered together, trying to summon <color=red>the
-        Great One</color> at all costs.
-      objectReference: {fileID: 0}
-    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
-        type: 3}
-      propertyPath: sentences.Array.data[1]
-      value: The closer they get to <color=red>the Great One</color>, the weaker and
-        crazier they feel.
-      objectReference: {fileID: 0}
-    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
-        type: 3}
-      propertyPath: sentences.Array.data[2]
-      value: But they are ready to sacrifice themselves to bring <color=red>the Holy
-        Grail</color> to him and revive the world again.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c22a6b21e20a154ea704bc7ed3db007, type: 3}
