@@ -559,7 +559,9 @@ public class Player : MonoBehaviour
         currentMapID = data.saveMapId;
         currentLevelID = data.saveLevelId;
         currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
+        CameraManager.Instance.SwitchPostProcessing(data.savePPIndex);
         CameraManager.Instance.SwitchLevelCamera(data.cameraIndex - CameraManager.Instance.level_index);
+        CameraManager.Instance.SwitchFog(data.savFogIndex);
         if (currentMapID > 0)
         {
             for (int i = 0; i < currentMapID; i++)

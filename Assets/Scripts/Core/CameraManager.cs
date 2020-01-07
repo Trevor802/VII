@@ -13,6 +13,7 @@ public class CameraManager : MonoBehaviour
     [HideInInspector]
     public int pp_index;
     private int prevppIndex;
+    private bool ppSwitching = false;
     [HideInInspector]
     public int fog_index;
     private ParticleSystem fogParticle;
@@ -111,24 +112,29 @@ public class CameraManager : MonoBehaviour
 
     private IEnumerator SwitchPP()
     {
-        if (prevppIndex != pp_index)
+        ppSwitching = true;
+        while (pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight > 0)
         {
-            while (pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight > 0)
-            {
-                pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight -= ppSwitchSpeed;
-                pp_list[pp_index].GetComponent<PostProcessVolume>().weight += ppSwitchSpeed;
-                yield return null;
-            }
-            pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight = 0;
-            pp_list[pp_index].GetComponent<PostProcessVolume>().weight = 1;
+            pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight -= ppSwitchSpeed;
+            pp_list[pp_index].GetComponent<PostProcessVolume>().weight += ppSwitchSpeed;
+            yield return null;
         }
+        pp_list[prevppIndex].GetComponent<PostProcessVolume>().weight = 0;
+        pp_list[pp_index].GetComponent<PostProcessVolume>().weight = 1;
+        ppSwitching = false;
     }
 
     public void SwitchPostProcessing(int new_index)
     {
-        prevppIndex = pp_index;
-        pp_index = new_index;
-        StartCoroutine(SwitchPP());
+        if (!ppSwitching)
+        {
+            prevppIndex = pp_index;
+            pp_index = new_index;
+            if (prevppIndex != pp_index)
+            {
+                StartCoroutine(SwitchPP());
+            }
+        }
     }
 
     public void SetFogYPosition(float yCoord)
