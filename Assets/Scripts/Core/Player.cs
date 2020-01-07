@@ -556,15 +556,30 @@ public class Player : MonoBehaviour
     public void LoadPlayer()
     {
         SavePlayerData data = SaveSystem.LoadPlayer();
-        currentRespawnPoint = mapData[data.saveMapId].GetLevelData()[0].GetRespawnPoint();
-        Respawn(false);
-        CameraManager.Instance.SwitchLevelCamera(data.cameraIndex);
-        print(data.cameraIndex);
-        for(int i = 0; i<data.cameraIndex;i++)
+        currentMapID = data.saveMapId;
+        currentLevelID = data.saveLevelId;
+        currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
+        CameraManager.Instance.SwitchLevelCamera(data.cameraIndex - CameraManager.Instance.level_index);
+        if (currentMapID > 0)
         {
-            SetRespawnPoint(1);
+            for (int i = 0; i < currentMapID; i++)
+                mapData[i].GetMapObject().SetActive(false);
         }
-        print(data.savelives);
+        if (currentLevelID > 0)
+        {
+            mapData[currentMapID].GetLevelData()[currentLevelID - 1].GetCheckpoint().activated = true;
+        }
+        for (int i = 0; i < mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.childCount; i++)
+        {
+            if (mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.GetChild(i).name == "Level_blocker")
+                mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.GetChild(i).GetComponent<Wall>().Move(new Vector3(0, 1, 0));
+            if (mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.GetChild(i).name == "Level_blocker2")
+                mapData[currentMapID].GetLevelData()[currentLevelID].GetLevelObject().transform.GetChild(i).GetComponent<Wall>().Move(new Vector3(0, -1, 0));
+        }
+        mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
+        bestLifeCost = mapData[currentMapID].GetLevelData()[currentLevelID].GetBestLivesCost();
+        //m_playerData.lives = data.savelives;
+        Respawn(false);
     }
 
     // Getters/Setters

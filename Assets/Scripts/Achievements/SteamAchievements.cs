@@ -13,10 +13,12 @@ public class SteamAchievements : MonoBehaviour
     private void Start()
     {
         SavePlayerData saveForAchievement = SaveSystem.LoadPlayer();
-        listInit = saveForAchievement.saveListInit;
-        player.playedLevel17 = saveForAchievement.savePlayedLevel17;
-        leastLives = saveForAchievement.saveLeastLives;
-        //unlockAchievement("achievement_00");
+        if (saveForAchievement !=  null)
+        {
+            listInit = saveForAchievement.saveListInit;
+            player.playedLevel17 = saveForAchievement.savePlayedLevel17;
+            leastLives = saveForAchievement.saveLeastLives;
+        }
         if (!listInit)
         {
             leastLives = new List<int> {1, 2, 1, 1, 1, 3, 1, 2, 5, 4, //Dungeon Levels
@@ -25,6 +27,8 @@ public class SteamAchievements : MonoBehaviour
 
             listInit = true;
         }
+        //unlockAchievement("achievement_00");
+
     }
 
     private void Update()
