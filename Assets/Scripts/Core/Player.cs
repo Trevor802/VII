@@ -86,6 +86,7 @@ public class Player : MonoBehaviour
     public bool checkLeastLives;
     public int livesLeft;
     public bool playedLevel17; //TODO: This needs to be saved
+    #endregion PlayerData
     [Header("Show Map Transition Texts")]
     public DialogueManager dialogueManager;
     //public Canvas transitionTextCanvas;
@@ -93,7 +94,7 @@ public class Player : MonoBehaviour
     //public bool display_text_ice;
     //public bool display_text_lava;
     //public bool startSentence;
-    #endregion PlayerData
+    public GameObject restartUI;
 
     private float m_inverseMoveTime;
     private const float m_maxCastDistance = 10f;
@@ -474,6 +475,14 @@ public class Player : MonoBehaviour
         m_PlayerAnimationController.InitStepUI();
         // Respawning Ends
         m_playerData.playerState = VII.PlayerState.IDLE;
+        if (m_playerData.lives > bestLifeCost)
+        {
+            restartUI.GetComponent<Animator>().SetBool("Active", true);
+        }
+        else
+        {
+            restartUI.GetComponent<Animator>().SetBool("Active", false);
+        }
         // Broadcast with Event System
         VII.VIIEvents.PlayerRespawnEnd.Invoke(this);
     }
