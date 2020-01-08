@@ -8,7 +8,7 @@ public class SavePlayerData
 {
     public float[] position;
     public int savelives;
-    public int cameraIndex;
+    public int saveLevelIndex;
     public int saveMapId;
     public int saveLevelId;
     public int savePPIndex;
@@ -24,7 +24,7 @@ public class SavePlayerData
     {
         saveMapId = VII.SceneDataManager.Instance.GetCurrentMapData().GetMapID();
         saveLevelId = VII.SceneDataManager.Instance.GetCurrentLevelData().GetLevelID();
-        cameraIndex = CameraManager.Instance.level_index;
+        saveLevelIndex = CameraManager.Instance.level_index;
         savePPIndex = CameraManager.Instance.pp_index;
         saveFogIndex = CameraManager.Instance.fog_index;
         saveMusicVolume = AudioManager.instance.GetMusicVolume();

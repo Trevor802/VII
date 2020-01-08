@@ -47,7 +47,7 @@ public class CameraManager : MonoBehaviour
         if (VII.SceneManager.instance.GetSave())
         {
             SavePlayerData data = SaveSystem.LoadPlayer();
-            level_index = data.saveLevelId;
+            level_index = data.saveLevelIndex;
             pp_index = data.savePPIndex;
             fog_index = data.saveFogIndex;
         }
