@@ -11,7 +11,7 @@ public class DialogueManager : MonoBehaviour
     //public Animator animator;
     public List<string> sentences;
     public List<string> sentences_transition_trap;
-    public List<string> sentences_transition_ice;
+    //public List<string> sentences_transition_ice;
     public List<string> sentences_transition_lava;
     public float CharPopupDuration = 0.02f;
     public SceneType sceneToLoadAfterDialogue;
@@ -24,7 +24,7 @@ public class DialogueManager : MonoBehaviour
     public bool displayingTexts;
 
     private bool display_text_trap;
-    private bool display_text_ice;
+    //private bool display_text_ice;
     private bool display_text_lava;
 
     public void StartSentence()
@@ -72,6 +72,7 @@ public class DialogueManager : MonoBehaviour
                         return;
                     }
                 }
+                /*
                 else if (display_text_ice == true)
                 {
                     if (sentenceIndex >= sentences_transition_ice.Count)
@@ -80,6 +81,7 @@ public class DialogueManager : MonoBehaviour
                         return;
                     }
                 }
+                */
                 else if (display_text_lava == true)
                 {
                     if (sentenceIndex >= sentences_transition_lava.Count)
@@ -112,10 +114,12 @@ public class DialogueManager : MonoBehaviour
                 {
                     j = sentences_transition_trap[sentenceIndex];
                 }
+                /*
                 else if (display_text_ice == true)
                 {
                     j = sentences_transition_ice[sentenceIndex];
                 }
+                */
                 else if (display_text_lava == true)
                 {
                     j = sentences_transition_lava[sentenceIndex];
@@ -182,7 +186,7 @@ public class DialogueManager : MonoBehaviour
                 continueAnimator.SetBool("Active", false);
                 displayingTexts = false;
                 display_text_trap = false;
-                display_text_ice = false;
+                //display_text_ice = false;
                 display_text_lava = false;
                 //transitionTextsCanvas.enabled = false;
             }
@@ -193,12 +197,12 @@ public class DialogueManager : MonoBehaviour
     {
         display_text_trap = true;
     }
-    
+    /*
     public void EnableIceText()
     {
         display_text_ice = true;
     }
-
+    */
     public void EnableLavaText()
     {
         display_text_lava = true;

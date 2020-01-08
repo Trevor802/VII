@@ -9,11 +9,13 @@ public class MakeSentence : MonoBehaviour
     private bool displayLevel1_Sentence1;
     private bool displayLevel1_Sentence2;
     private bool displayLevel7_Sentence1;
+    private bool displayFinalLevel_Sentence1;
 
     private bool displayedLevel0_Sentence1;
     private bool displayedLevel1_Sentence1;
     private bool displayedLevel1_Sentence2;
     private bool displayedLevel7_Sentence1;
+    private bool displayedFinalLevel_Sentence1;
 
     private bool deactivateSentence;
 
@@ -63,6 +65,14 @@ public class MakeSentence : MonoBehaviour
             displayingText = true;
         }
 
+        if(displayFinalLevel_Sentence1 == true && !displayedFinalLevel_Sentence1)
+        {
+            animator.SetBool("Active", true);
+            text.text = "When the Pieces are back together.";
+            displayedLevel7_Sentence1 = true;
+            displayingText = true;
+        }
+
 
     }
 
@@ -84,6 +94,11 @@ public class MakeSentence : MonoBehaviour
     public void EnableLevel7_Sentence1()
     {
         displayLevel7_Sentence1 = true;
+    }
+
+    public void EnableFinalLevel_Sentence1()
+    {
+        displayedFinalLevel_Sentence1 = true;
     }
 
     public void deactivate()
