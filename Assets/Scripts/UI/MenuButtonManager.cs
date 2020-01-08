@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MenuButtonManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class MenuButtonManager : MonoBehaviour
     public GameObject RestartButton;
     public GameObject ContinueButton;
     public GameObject SeperateLine;
+    public EventSystem eventSystem;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,8 @@ public class MenuButtonManager : MonoBehaviour
             SeperateLine.SetActive(true);
             ContinueButton.SetActive(true);
             VII.SceneManager.instance.SetSave(true);
+
+            eventSystem.firstSelectedGameObject = ContinueButton;
         }
     }
 
@@ -44,6 +48,19 @@ public class MenuButtonManager : MonoBehaviour
         else
         {
             StartButton.SetActive(true);
+        }
+    }
+
+    private void Update()
+    {
+        //Debug.Log(eventSystem.currentSelectedGameObject);
+        Debug.Log(Input.GetAxis("Horizontal"));
+        if (eventSystem.currentSelectedGameObject == null && Input.GetAxis("Horizontal") != 0)
+        {
+            if(RestartButton.activeSelf)
+                eventSystem.SetSelectedGameObject(RestartButton);
+            else if(StartButton.activeSelf)
+                eventSystem.SetSelectedGameObject(StartButton);
         }
     }
 }
