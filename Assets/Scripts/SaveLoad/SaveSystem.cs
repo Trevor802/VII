@@ -37,4 +37,9 @@ public static class SaveSystem{
         }
     }
     
+    public static void DeleteSave()
+    {
+        string path = Application.persistentDataPath + "/player.save";
+        File.Delete(path);
+    }
 }

@@ -17,13 +17,18 @@ public class MenuButtonManager : MonoBehaviour
             RestartButton.SetActive(true);
             SeperateLine.SetActive(true);
             ContinueButton.SetActive(true);
-            VII.SceneManager.instance.hasSave = true;
+            VII.SceneManager.instance.SetSave(true);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnClickRestart()
     {
-        
+        SaveSystem.DeleteSave();
+        VII.SceneManager.instance.SetSave(false);
+    }
+
+    public void OnClickContinue()
+    {
+        VII.SceneManager.instance.LoadScene(VII.SceneType.GameScene);
     }
 }

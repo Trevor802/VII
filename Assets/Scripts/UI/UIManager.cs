@@ -15,11 +15,6 @@ public class UIManager : MonoBehaviour
         {
             UIInstance = this;
             InitUI();
-            startMapID = 0;
-            startLevelID = 0;
-            startLevelIndex = 0;
-            startPPIndex = 0;
-            startFogIndex = 0;
         }
         else if (UIInstance != this)
         {
@@ -34,16 +29,6 @@ public class UIManager : MonoBehaviour
 
     //public int maxLives = 10;
     public Text levelIndexText;
-    [HideInInspector]
-    public int startMapID;
-    [HideInInspector]
-    public int startLevelID;
-    [HideInInspector]
-    public int startLevelIndex;
-    [HideInInspector]
-    public int startPPIndex;
-    [HideInInspector]
-    public int startFogIndex;
 
     //private List<RawImage> m_lifeIcons;
     //private List<RawImage> m_crossIcons;

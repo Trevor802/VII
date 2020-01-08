@@ -43,4 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 354ad348f4324394a8672fefa38ee2df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: []
+  music:
+  - SceneType: 0
+    MusicClip: {fileID: 8300000, guid: 2c1bda81cbbba5340a407e3ef7568977, type: 3}
+  - SceneType: 3
+    MusicClip: {fileID: 8300000, guid: 07396a9ac6fe16c40ba0af9244069b4b, type: 3}
+  - SceneType: 1
+    MusicClip: {fileID: 8300000, guid: 2c1bda81cbbba5340a407e3ef7568977, type: 3}
+  hasSave: 0

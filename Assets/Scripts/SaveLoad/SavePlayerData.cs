@@ -12,7 +12,7 @@ public class SavePlayerData
     public int saveMapId;
     public int saveLevelId;
     public int savePPIndex;
-    public int savFogIndex;
+    public int saveFogIndex;
     public bool saveListInit;
     public bool savePlayedLevel17;
     public List<int> saveLeastLives;
@@ -25,7 +25,7 @@ public class SavePlayerData
         saveLevelId = VII.SceneDataManager.Instance.GetCurrentLevelData().GetLevelID();
         cameraIndex = CameraManager.Instance.level_index;
         savePPIndex = CameraManager.Instance.pp_index;
-        savFogIndex = CameraManager.Instance.fog_index;
+        saveFogIndex = CameraManager.Instance.fog_index;
         saveListInit = SteamAchievements.listInit;
         savePlayedLevel17 = player.playedLevel17;
         saveLeastLives = SteamAchievements.leastLives;

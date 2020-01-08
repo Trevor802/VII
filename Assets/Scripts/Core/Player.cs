@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 namespace VII
@@ -45,6 +44,17 @@ public class Player : MonoBehaviour
             playerInput = new InputActions();
             playerInput.Player.Move.performed += ctx => PerformMove();
             m_PlayerAnimationController = GetComponentInChildren<VII.PlayerAnimationController>();
+            if (VII.SceneManager.instance.GetSave())
+            {
+                SavePlayerData data = SaveSystem.LoadPlayer();
+                currentMapID = data.saveMapId;
+                currentLevelID = data.saveLevelId;
+            }
+            else
+            {
+                currentMapID = VII.SceneManager.instance.GetStartMapID();
+                currentLevelID = VII.SceneManager.instance.GetStartLevelID();
+            }
         }
         else if (Instance != this)
         {
@@ -118,8 +128,6 @@ public class Player : MonoBehaviour
     {
         Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
         mapData = VII.SceneDataManager.Instance.GetMapData();
-        currentMapID = UIManager.UIInstance.startMapID;
-        currentLevelID = UIManager.UIInstance.startLevelID;
         if (currentMapID > 0)
         {
             for (int i = 0; i < currentMapID; i++)
@@ -239,13 +247,13 @@ public class Player : MonoBehaviour
         #region Input
         if (Input.GetKeyDown(KeyCode.R))
         {
-            UIManager.UIInstance.startMapID = currentMapID;
-            UIManager.UIInstance.startLevelID = currentLevelID;
-            UIManager.UIInstance.startLevelIndex = CameraManager.Instance.level_index;
-            UIManager.UIInstance.startPPIndex = CameraManager.Instance.pp_index;
-            UIManager.UIInstance.startFogIndex = CameraManager.Instance.fog_index;
+            VII.SceneManager.instance.SetStartMapID(currentMapID);
+            VII.SceneManager.instance.SetStartLevelID(currentLevelID);
+            VII.SceneManager.instance.SetStartStartLevelIndex(CameraManager.Instance.level_index);
+            VII.SceneManager.instance.SetStartStartPPIndex(CameraManager.Instance.pp_index);
+            VII.SceneManager.instance.SetStartStartFogIndex(CameraManager.Instance.fog_index);
             UIManager.UIInstance.ClearUI();
-            SceneManager.LoadScene("All_Levels(Draft 1)");
+            VII.SceneManager.instance.LoadScene(VII.SceneType.GameScene);
         }
         int horizontal = 0;
         int vertical = 0;
@@ -353,17 +361,6 @@ public class Player : MonoBehaviour
                     Respawn(true, false, true);
                 }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            print("Save Player");
-            SavePlayer();
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            print("Load Player");
-            LoadPlayer();
-
         }
         #endregion
     }
@@ -485,6 +482,8 @@ public class Player : MonoBehaviour
         }
         // Broadcast with Event System
         VII.VIIEvents.PlayerRespawnEnd.Invoke(this);
+        if (!costLife)
+            SavePlayer();
     }
 
     private void DropItems(bool dropTombstone = true)
@@ -570,7 +569,7 @@ public class Player : MonoBehaviour
         currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
         CameraManager.Instance.SwitchPostProcessing(data.savePPIndex);
         CameraManager.Instance.SwitchLevelCamera(data.cameraIndex - CameraManager.Instance.level_index);
-        CameraManager.Instance.SwitchFog(data.savFogIndex);
+        CameraManager.Instance.SwitchFog(data.saveFogIndex);
         if (currentMapID > 0)
         {
             for (int i = 0; i < currentMapID; i++)

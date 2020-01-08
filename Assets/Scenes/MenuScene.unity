@@ -202,8 +202,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 149207643}
-        m_MethodName: StartGame
+      - m_Target: {fileID: 336003983}
+        m_MethodName: OnClickContinue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -326,18 +326,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 85700663}
   m_CullTransparentMesh: 0
---- !u!114 &149207643 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7792247500308284322, guid: b2a5a04204bac694091e24249a54326d,
-    type: 3}
-  m_PrefabInstance: {fileID: 2266721795703694948}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 354ad348f4324394a8672fefa38ee2df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &159781892
 GameObject:
   m_ObjectHideFlags: 0
@@ -2177,6 +2165,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 336003983}
+        m_MethodName: OnClickRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &976573474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3582,6 +3581,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 895900401474862242, guid: b51397dda2b58fc4b8dc9a1ba2619e3e,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 895900401474862242, guid: b51397dda2b58fc4b8dc9a1ba2619e3e,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2c1bda81cbbba5340a407e3ef7568977, type: 3}
+    - target: {fileID: 2619611026658199106, guid: b51397dda2b58fc4b8dc9a1ba2619e3e,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b51397dda2b58fc4b8dc9a1ba2619e3e, type: 3}
 --- !u!1001 &2266721795703694948
@@ -3651,26 +3665,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7792247500308284322, guid: b2a5a04204bac694091e24249a54326d,
-        type: 3}
-      propertyPath: music.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7792247500308284322, guid: b2a5a04204bac694091e24249a54326d,
-        type: 3}
-      propertyPath: music.Array.data[1].SceneType
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7792247500308284322, guid: b2a5a04204bac694091e24249a54326d,
-        type: 3}
-      propertyPath: music.Array.data[0].MusicClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 2c1bda81cbbba5340a407e3ef7568977, type: 3}
-    - target: {fileID: 7792247500308284322, guid: b2a5a04204bac694091e24249a54326d,
-        type: 3}
-      propertyPath: music.Array.data[1].MusicClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 07396a9ac6fe16c40ba0af9244069b4b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2a5a04204bac694091e24249a54326d, type: 3}
 --- !u!1001 &8398568740525523961

@@ -44,9 +44,20 @@ public class CameraManager : MonoBehaviour
             vc.SetActive(false);
         }
 
-        level_index = UIManager.UIInstance.startLevelIndex;
-        pp_index = UIManager.UIInstance.startPPIndex;
-        fog_index = UIManager.UIInstance.startFogIndex;
+        if (VII.SceneManager.instance.GetSave())
+        {
+            SavePlayerData data = SaveSystem.LoadPlayer();
+            level_index = data.saveLevelId;
+            pp_index = data.savePPIndex;
+            fog_index = data.saveFogIndex;
+            VII.SceneManager.instance.SetSave(false);
+        }
+        else
+        {
+            level_index = VII.SceneManager.instance.GetStartLevelIndex();
+            pp_index = VII.SceneManager.instance.GetStartPPIndex();
+            fog_index = VII.SceneManager.instance.GetStartFogIndex();
+        }
         for (int i = 0; i < cinema_list.Count; i++)
         {
             if (i == level_index)
