@@ -44,6 +44,12 @@ public class Checkpoint : Tile
             {
                 player.displayLevel0Text = true;
             }
+            if(player.mapIndex == 13 && player.levelIndex == 0)
+            {
+                player.makeSentence.EnableFinalLevel_Sentence1();
+                player.winCountDown = true;
+            }
+
             player.checkLeastLives = true;
             // Reset respawn position and respawn player
             activated = true;
@@ -84,9 +90,12 @@ public class Checkpoint : Tile
             OnPlayerExitEvent.Invoke();
     }
 
-    public void Win()
+    public void Win(Player player)
     {
-        UIManager.UIInstance.gameObject.SetActive(false);
-        VII.SceneManager.instance.LoadScene(VII.SceneType.WinScene);
+        if(player.enterWinScene == true)
+        {
+            UIManager.UIInstance.gameObject.SetActive(false);
+            VII.SceneManager.instance.LoadScene(VII.SceneType.WinScene);
+        }
     }
 }

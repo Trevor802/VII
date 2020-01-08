@@ -92,6 +92,8 @@ public class Player : MonoBehaviour
     //public Canvas transitionTextCanvas;
     public bool displayLevel0Text;
     public bool diedInLevel1;
+    public bool winCountDown;
+    public bool enterWinScene;
 
     public GameObject restartUI;
 
@@ -110,6 +112,7 @@ public class Player : MonoBehaviour
     private int currentLevelID;
     private int currentMapID;
     private RespawnPoint currentRespawnPoint;
+    private float winDelay = 0.0f;
     [SerializeField]
     private VII.PlayerAnimationController m_PlayerAnimationController;
 
@@ -254,6 +257,20 @@ public class Player : MonoBehaviour
         {
             makeSentence.EnableLevel1_Sentence1();
             //print("triggered");
+        }
+
+        if(winCountDown == true)
+        {
+            winDelay += Time.deltaTime;
+        }
+
+        if(winDelay >= 3.0f)
+        {
+            makeSentence.deactivate();
+        }
+        if(winDelay >= 4.0f)
+        {
+            enterWinScene = true;
         }
 
             // Input
