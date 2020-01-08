@@ -91,9 +91,8 @@ public class Player : MonoBehaviour
     public MakeSentence makeSentence;
     //public Canvas transitionTextCanvas;
     public bool displayLevel0Text;
-    //public bool display_text_ice;
-    //public bool display_text_lava;
-    //public bool startSentence;
+    public bool diedInLevel1;
+
     public GameObject restartUI;
 
     private float m_inverseMoveTime;
@@ -404,12 +403,6 @@ public class Player : MonoBehaviour
         }
         VII.VIIEvents.PlayerRespawnStart.Invoke(this);
 
-        //text stuff
-        if(mapIndex == 0 && levelIndex == 1)
-        {
-            makeSentence.EnableLevel1_Sentence2();
-        }
-
         //Data for Achievements
         if (mapIndex == 0 && levelIndex == 0 && costLife == true)
         {
@@ -418,6 +411,12 @@ public class Player : MonoBehaviour
         if (mapIndex == 2 && levelIndex == 0 && !DiedInTrapInLevel5 && costLife == true)
         {
             DiedInLevel5 = true;
+        }
+
+        //text stuff
+        if(mapIndex == 0 && levelIndex == 1)
+        {
+            diedInLevel1 = true;
         }
         #region Presentation Layer
         if (costLife)

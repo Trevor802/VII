@@ -65,6 +65,7 @@ public class TriggerBoard : Tile
             playerInTemp = false;
             OnPlayerExit(collidedPlayer);
         }
+
     }
 
     protected override void OnPlayerEnter(Player player)
@@ -92,6 +93,10 @@ public class TriggerBoard : Tile
 
     protected override void OnPlayerExit(Player player)
     {
+        if(player.mapIndex == 3 && player.levelIndex == 0)
+        {
+            player.makeSentence.EnableLevel7_Sentence1();
+        }
         base.OnPlayerExit(player);
         if (m_TombstoneOn) return;
         m_PlayerOn = false;

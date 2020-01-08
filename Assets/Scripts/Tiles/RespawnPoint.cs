@@ -17,5 +17,10 @@ public class RespawnPoint : Tile
             OnPlayerRespawnEndEvent.Invoke();
             invokeEvents = true;
         }
+        //text stuff
+        if (player.mapIndex == 0 && player.levelIndex == 1 && player.diedInLevel1 == true)
+        {
+            player.makeSentence.EnableLevel1_Sentence2();
+        }
     }
 }
