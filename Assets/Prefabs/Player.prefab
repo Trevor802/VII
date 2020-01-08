@@ -134,7 +134,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.9995635, g: 1, b: 0.8254717, a: 1}
   m_Intensity: 0.5
-  m_Range: 7
+  m_Range: 3
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -262,6 +262,7 @@ MonoBehaviour:
   winCountDown: 0
   enterWinScene: 0
   restartUI: {fileID: 0}
+  saveUI: {fileID: 0}
   m_PlayerAnimationController: {fileID: 4372436038592171633}
 --- !u!54 &1918655054
 Rigidbody:
@@ -491,11 +492,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 89736b363a9c44d6799bd70e3eba28a0,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: c81a5eaf420034f4886c88c3c86c901f, type: 2}
     - target: {fileID: -4431429744085825124, guid: 89736b363a9c44d6799bd70e3eba28a0,
         type: 3}
       propertyPath: m_LocalRotation.x
@@ -531,6 +527,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 89736b363a9c44d6799bd70e3eba28a0,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c81a5eaf420034f4886c88c3c86c901f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89736b363a9c44d6799bd70e3eba28a0, type: 3}
 --- !u!1 &8107094166429241402 stripped
@@ -643,6 +644,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5636654175404877946}
     m_Modifications:
+    - target: {fileID: 2103823068792989912, guid: 2233f595edc397c4ca5e7fd2e7a25680,
+        type: 3}
+      propertyPath: m_Name
+      value: StepCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 2103823068792989916, guid: 2233f595edc397c4ca5e7fd2e7a25680,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -747,11 +753,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2103823068792989912, guid: 2233f595edc397c4ca5e7fd2e7a25680,
-        type: 3}
-      propertyPath: m_Name
-      value: StepCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2233f595edc397c4ca5e7fd2e7a25680, type: 3}

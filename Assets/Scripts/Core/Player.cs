@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
     public bool enterWinScene;
 
     public GameObject restartUI;
+    public GameObject saveUI;
 
     private float m_inverseMoveTime;
     private const float m_maxCastDistance = 10f;
@@ -558,12 +559,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void AddStep(int step)
-    {
-        m_playerData.steps += step;
-    }
-
-
     public void SetRespawnPoint(int i_Next)
     {
         if (currentLevelID + i_Next < mapData[currentMapID].GetLevelData().Count && currentLevelID + i_Next >= 0)
@@ -611,6 +606,7 @@ public class Player : MonoBehaviour
     public void SavePlayer()
     {
         SaveSystem.SavePlayer(this);
+        saveUI.GetComponent<Animator>().SetTrigger("Active");
     }
 
     public void LoadPlayer()
