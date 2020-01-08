@@ -25,10 +25,25 @@ public class MenuButtonManager : MonoBehaviour
     {
         SaveSystem.DeleteSave();
         VII.SceneManager.instance.SetSave(false);
+        VII.SceneManager.instance.ResetStartIDs();
     }
 
     public void OnClickContinue()
     {
         VII.SceneManager.instance.LoadScene(VII.SceneType.GameScene);
+    }
+
+    public void OnClickCreditBack()
+    {
+        if (SaveSystem.LoadPlayer() != null)
+        {
+            RestartButton.SetActive(true);
+            SeperateLine.SetActive(true);
+            ContinueButton.SetActive(true);
+        }
+        else
+        {
+            StartButton.SetActive(true);
+        }
     }
 }

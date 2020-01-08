@@ -78,6 +78,15 @@ namespace VII
             AudioManager.instance.PlayMusic(musicOfScenes[scene]);
         }
 
+        public void ResetStartIDs()
+        {
+            startMapID = 0;
+            startLevelID = 0;
+            startLevelIndex = 0;
+            startPPIndex = 0;
+            startFogIndex = 0;
+    }
+
         public bool GetSave() { return saveLoaded; }
         public int GetStartMapID() { return startMapID; }
         public int GetStartLevelID() { return startLevelID; }

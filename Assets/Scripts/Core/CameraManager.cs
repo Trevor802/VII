@@ -46,6 +46,7 @@ public class CameraManager : MonoBehaviour
 
         if (VII.SceneManager.instance.GetSave())
         {
+            Debug.Log("camera load save");
             SavePlayerData data = SaveSystem.LoadPlayer();
             level_index = data.saveLevelId;
             pp_index = data.savePPIndex;
