@@ -11,11 +11,25 @@ public class PauseMenu : MonoBehaviour
     public Slider soundSlider;
     private AudioManager ins_audioManager;
     private bool menuDisplayed;
+
     void Start()
     {
         ins_audioManager = AudioManager.instance;
         pauseMenu.SetActive(false);
         menuDisplayed = false;
+        if (SceneManager.instance.GetSave())
+        {
+            SavePlayerData data = SaveSystem.LoadPlayer();
+            musicSlider.value = data.saveMusicVolume;
+            soundSlider.value = data.saveSoundVolume;
+        }
+        else
+        {
+            musicSlider.value = SceneManager.instance.GetStartMusicVolume();
+            soundSlider.value = SceneManager.instance.GetStartSoundVolume();
+            UpdateMusicVolume();
+            UpdateSoundVolume();
+        }
     }
 
     // Update is called once per frame
@@ -24,11 +38,6 @@ public class PauseMenu : MonoBehaviour
         if(Input.GetButtonDown("Menu"))
         {
             ToggleMenu();
-        }
-        if(musicSlider && soundSlider)
-        {
-            ins_audioManager.UpdateMusicVolume(musicSlider);
-            ins_audioManager.UpdateSoundVolume(soundSlider);
         }
     }
 
@@ -52,5 +61,15 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.instance.LoadScene(SceneType.MainScene);
+    }
+
+    public void UpdateMusicVolume()
+    {
+        ins_audioManager.UpdateMusicVolume(musicSlider);
+    }
+
+    public void UpdateSoundVolume()
+    {
+        ins_audioManager.UpdateSoundVolume(soundSlider);
     }
 }

@@ -61,9 +61,14 @@ public class AudioManager : MonoBehaviour
     public void UpdateMusicVolume(Slider i_musicSlider)
     {
         musicSource.volume = i_musicSlider.value;
+        VII.SceneManager.instance.SetStartMusicVolume(musicSource.volume);
     }
     public void UpdateSoundVolume(Slider i_soundSlider)
     {
         soundSource.volume = i_soundSlider.value;
+        VII.SceneManager.instance.SetStartSoundVolume(soundSource.volume);
     }
+
+    public float GetMusicVolume() { return musicSource.volume; }
+    public float GetSoundVolume() { return soundSource.volume; }
 }

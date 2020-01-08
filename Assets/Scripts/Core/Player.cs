@@ -44,17 +44,6 @@ public class Player : MonoBehaviour
             playerInput = new InputActions();
             playerInput.Player.Move.performed += ctx => PerformMove();
             m_PlayerAnimationController = GetComponentInChildren<VII.PlayerAnimationController>();
-            if (VII.SceneManager.instance.GetSave())
-            {
-                SavePlayerData data = SaveSystem.LoadPlayer();
-                currentMapID = data.saveMapId;
-                currentLevelID = data.saveLevelId;
-            }
-            else
-            {
-                currentMapID = VII.SceneManager.instance.GetStartMapID();
-                currentLevelID = VII.SceneManager.instance.GetStartLevelID();
-            }
         }
         else if (Instance != this)
         {
@@ -128,6 +117,17 @@ public class Player : MonoBehaviour
     {
         Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
         mapData = VII.SceneDataManager.Instance.GetMapData();
+        if (VII.SceneManager.instance.GetSave())
+        {
+            SavePlayerData data = SaveSystem.LoadPlayer();
+            currentMapID = data.saveMapId;
+            currentLevelID = data.saveLevelId;
+        }
+        else
+        {
+            currentMapID = VII.SceneManager.instance.GetStartMapID();
+            currentLevelID = VII.SceneManager.instance.GetStartLevelID();
+        }
         if (currentMapID > 0)
         {
             for (int i = 0; i < currentMapID; i++)

@@ -40,6 +40,8 @@ namespace VII
         private int startLevelIndex = 0;
         private int startPPIndex = 0;
         private int startFogIndex = 0;
+        private float startMusicVolume = 1;
+        private float startSoundVolume = 1;
 
         private void Start()
         {
@@ -78,7 +80,7 @@ namespace VII
             AudioManager.instance.PlayMusic(musicOfScenes[scene]);
         }
 
-        public void ResetStartIDs()
+        public void ResetStartValues()
         {
             startMapID = 0;
             startLevelID = 0;
@@ -93,12 +95,16 @@ namespace VII
         public int GetStartLevelIndex() { return startLevelIndex; }
         public int GetStartFogIndex() { return startFogIndex; }
         public int GetStartPPIndex() { return startPPIndex; }
+        public float GetStartMusicVolume() { return startMusicVolume; }
+        public float GetStartSoundVolume() { return startSoundVolume; }
         public void SetSave(bool ifSave) { saveLoaded = ifSave; }
         public void SetStartMapID(int newMapID) { startMapID = newMapID; }
         public void SetStartLevelID(int newLevelID) { startLevelID = newLevelID; }
         public void SetStartStartLevelIndex(int newLevelIndex) { startLevelIndex = newLevelIndex; }
         public void SetStartStartFogIndex(int newFogIndex) { startFogIndex = newFogIndex; }
         public void SetStartStartPPIndex(int newPPIndex) { startPPIndex = newPPIndex; }
+        public void SetStartMusicVolume(float musicVolume) { startMusicVolume = musicVolume; }
+        public void SetStartSoundVolume(float soundVolume) { startSoundVolume = soundVolume; }
     }
 }
 

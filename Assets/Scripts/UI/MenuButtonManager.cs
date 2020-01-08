@@ -25,7 +25,7 @@ public class MenuButtonManager : MonoBehaviour
     {
         SaveSystem.DeleteSave();
         VII.SceneManager.instance.SetSave(false);
-        VII.SceneManager.instance.ResetStartIDs();
+        VII.SceneManager.instance.ResetStartValues();
     }
 
     public void OnClickContinue()

@@ -13,10 +13,11 @@ public class SavePlayerData
     public int saveLevelId;
     public int savePPIndex;
     public int saveFogIndex;
+    public float saveMusicVolume;
+    public float saveSoundVolume;
     public bool saveListInit;
     public bool savePlayedLevel17;
     public List<int> saveLeastLives;
-    //public int cameraIndex;
     //public string playerName;
 
     public SavePlayerData(Player player)
@@ -26,6 +27,8 @@ public class SavePlayerData
         cameraIndex = CameraManager.Instance.level_index;
         savePPIndex = CameraManager.Instance.pp_index;
         saveFogIndex = CameraManager.Instance.fog_index;
+        saveMusicVolume = AudioManager.instance.GetMusicVolume();
+        saveSoundVolume = AudioManager.instance.GetSoundVolume();
         saveListInit = SteamAchievements.listInit;
         savePlayedLevel17 = player.playedLevel17;
         saveLeastLives = SteamAchievements.leastLives;
