@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenu;
     public Slider musicSlider;
     public Slider soundSlider;
+    public GameObject layerToHide;
     private AudioManager ins_audioManager;
     private bool menuDisplayed;
 
@@ -45,12 +46,14 @@ public class PauseMenu : MonoBehaviour
     {
         if(menuDisplayed)
         {
+            layerToHide.SetActive(true);
             pauseMenu.SetActive(false);
             menuDisplayed = false;
             Time.timeScale = 1f;
         }
         else
         {
+            layerToHide.SetActive(false);
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
             menuDisplayed = true;

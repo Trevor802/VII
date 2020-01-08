@@ -288,26 +288,30 @@ public class Player : MonoBehaviour
         }
         int horizontal = 0;
         int vertical = 0;
-        if (Input.GetAxis("Horizontal") < 0)
+        if(Time.timeScale != 0)
         {
-            horizontal = -1;
+            if (Input.GetAxis("Horizontal") < 0)
+            {
+                horizontal = -1;
+            }
+            if (Input.GetAxis("Horizontal") > 0)
+            {
+                horizontal = 1;
+            }
+            if (Input.GetAxis("Vertical") > 0)
+            {
+                vertical = 1;
+            }
+            if (Input.GetAxis("Vertical") < 0)
+            {
+                vertical = -1;
+            }
+            if (horizontal != 0)
+            {
+                vertical = 0;
+            }
         }
-        if (Input.GetAxis("Horizontal") > 0)
-        {
-            horizontal = 1;
-        }
-        if (Input.GetAxis("Vertical") > 0)
-        {
-            vertical = 1;
-        }
-        if (Input.GetAxis("Vertical") < 0)
-        {
-            vertical = -1;
-        }
-        if (horizontal != 0)
-        {
-            vertical = 0;
-        }
+        
         #endregion
         if ((horizontal != 0 || vertical != 0) & !dialogueManager.displayingTexts /*cant move when displaying sentences*/)
         {
