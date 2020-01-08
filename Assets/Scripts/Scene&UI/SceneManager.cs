@@ -34,6 +34,8 @@ namespace VII
         #endregion
         public List<MusicOfScene> music;
         private Dictionary<SceneType, AudioClip> musicOfScenes;
+        [HideInInspector]
+        public bool hasSave = false;
 
         private void Start()
         {
@@ -70,6 +72,11 @@ namespace VII
                     break;
             }
             AudioManager.instance.PlayMusic(musicOfScenes[scene]);
+        }
+
+        public void StartGame()
+        {
+            LoadScene(SceneType.GameScene);
         }
     }
 }
