@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VII;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -15,17 +16,31 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && !menuDisplayed)
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
-            pauseMenu.SetActive(true);
-            Time.timeScale = 0f;
-            menuDisplayed = true;
+            ToggleMenu();
         }
-        else if(Input.GetKeyDown(KeyCode.Escape) && menuDisplayed)
+        
+    }
+
+    public void ToggleMenu()
+    {
+        if(menuDisplayed)
         {
             pauseMenu.SetActive(false);
             menuDisplayed = false;
             Time.timeScale = 1f;
         }
+        else
+        {
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0f;
+            menuDisplayed = true;
+        }
+    }
+
+    public void ToMainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MenuScene");
     }
 }
