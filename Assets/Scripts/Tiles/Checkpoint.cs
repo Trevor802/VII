@@ -6,6 +6,7 @@ public class Checkpoint : Tile
 {
     public Item requiredItem;
     public ByteSheep.Events.AdvancedEvent OnPlayerEnterEvent;
+    public ByteSheep.Events.AdvancedEvent OnPlayerExitEvent;
     public bool activated = false;
     public Animator floorAnimator;
     public Animator baseAnimator;
@@ -74,6 +75,8 @@ public class Checkpoint : Tile
     protected override void OnPlayerExit(Player player)
     {
         base.OnPlayerExit(player);
+        if (activated)
+            OnPlayerExitEvent.Invoke();
     }
 
     public void Win()
