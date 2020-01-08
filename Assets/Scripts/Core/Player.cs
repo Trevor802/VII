@@ -250,11 +250,17 @@ public class Player : MonoBehaviour
             makeSentence.EnableLevel0_Sentence1();
             //print("triggered");
         }
+        //print(m_playerData.steps);
+        if (mapIndex == 0 && levelIndex == 1 && m_playerData.steps == 1)
+        {
+            makeSentence.EnableLevel1_Sentence1();
+            //print("triggered");
+        }
 
-        // Input
-        // TODO Support multiple device
-        #region Input
-        if (Input.GetKeyDown(KeyCode.R))
+            // Input
+            // TODO Support multiple device
+            #region Input
+            if (Input.GetKeyDown(KeyCode.R))
         {
             VII.SceneManager.instance.SetStartMapID(currentMapID);
             VII.SceneManager.instance.SetStartLevelID(currentLevelID);
@@ -289,7 +295,6 @@ public class Player : MonoBehaviour
         #endregion
         if ((horizontal != 0 || vertical != 0) & !dialogueManager.displayingTexts /*cant move when displaying sentences*/)
         {
-            makeSentence.deactivate(); // removes texts when moved
             if (m_playerData.playerState == VII.PlayerState.IDLE && m_PlayerAnimationController.GetAnimationState() == VII.PlayerAnimationState.Idling)
             {
                 if (horizontal != 0)
@@ -318,6 +323,11 @@ public class Player : MonoBehaviour
                 moveDir = new Vector3(horizontal, 0, vertical);
                 Move(moveDir * VII.GameData.STEP_SIZE);
                 nextGridPos = transform.position + moveDir * VII.GameData.STEP_SIZE;
+
+                if (makeSentence.displayingText == true)
+                {
+                    makeSentence.deactivate(); // removes texts when moved
+                }
             }
         }
         #region Moving
@@ -394,12 +404,18 @@ public class Player : MonoBehaviour
         }
         VII.VIIEvents.PlayerRespawnStart.Invoke(this);
 
+        //text stuff
+        if(mapIndex == 0 && levelIndex == 1)
+        {
+            makeSentence.EnableLevel1_Sentence2();
+        }
+
         //Data for Achievements
-        if (m_playerData.respawnPositionIndex == 0 && costLife == true)
+        if (mapIndex == 0 && levelIndex == 0 && costLife == true)
         {
             DiedInLevel0 = true;
         }
-        if (m_playerData.respawnPositionIndex == 5 && !DiedInTrapInLevel5 && costLife == true)
+        if (mapIndex == 2 && levelIndex == 0 && !DiedInTrapInLevel5 && costLife == true)
         {
             DiedInLevel5 = true;
         }

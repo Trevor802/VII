@@ -19,13 +19,16 @@ public class MakeSentence : MonoBehaviour
 
     public Text text;
     public Animator animator;
+    public bool displayingText;
     // Update is called once per frame
     void Update()
     {
-        if(deactivateSentence == true)
+        //print(deactivateSentence + " " + displayingText);
+        if(deactivateSentence == true && displayingText == true)
         {
             animator.SetBool("Active", false);
             deactivateSentence = false;
+            displayingText = false;
         }
 
         if(displayLevel0_Sentence1 == true && !displayedLevel0_Sentence1)
@@ -33,6 +36,7 @@ public class MakeSentence : MonoBehaviour
             animator.SetBool("Active", true);
             text.text = "You look much better now!";
             displayedLevel0_Sentence1 = true;
+            displayingText = true;
         }
 
         if(displayLevel1_Sentence1 == true && !displayedLevel1_Sentence1)
@@ -40,6 +44,7 @@ public class MakeSentence : MonoBehaviour
             animator.SetBool("Active", true);
             text.text = "Be careful of their feeble flesh...";
             displayedLevel1_Sentence1 = true;
+            displayingText = true;
         }
 
         if (displayLevel1_Sentence2 == true && !displayedLevel1_Sentence2)
@@ -47,6 +52,7 @@ public class MakeSentence : MonoBehaviour
             animator.SetBool("Active", true);
             text.text = "...Yet their sacrifice is destined";
             displayedLevel1_Sentence2 = true;
+            displayingText = true;
         }
 
         if (displayLevel7_Sentence1 == true && !displayedLevel7_Sentence1)
@@ -54,6 +60,7 @@ public class MakeSentence : MonoBehaviour
             animator.SetBool("Active", true);
             text.text = "Ah, a nice resting place for their exhausted bodies.";
             displayedLevel7_Sentence1 = true;
+            displayingText = true;
         }
 
 
