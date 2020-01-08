@@ -55,13 +55,15 @@ public class Checkpoint : Tile
             activated = true;
             VII.VIIEvents.LevelFinish.Invoke(gameObject, player);
             player.PlayerData.Inventory.RemoveItem(requiredItem);
-            // Set respoint point after death animation. Thus it's moved to Respawn
-            // function in Player.cs
             player.SetRespawnPoint(1);
             baseAnimator.SetTrigger(m_hashPressTrigger);
-            VII.SceneDataManager.Instance.GetCurrentMapData().GetMapObject().SetActive(true);
-            bool willFall = VII.SceneDataManager.Instance.GetCurrentLevelData().GetLevelID() ==
-                VII.SceneDataManager.Instance.GetCurrentMapData().GetLevelData().Count - 1;
+            bool gameEnd = VII.SceneDataManager.Instance.GetCurrentMapData().GetMapID() >=
+                VII.SceneDataManager.Instance.GetMapData().Count - 1;
+            if (!gameEnd)
+                VII.SceneDataManager.Instance.GetCurrentMapData().GetMapObject().SetActive(true);
+            bool willFall = (VII.SceneDataManager.Instance.GetCurrentLevelData().GetLevelID() ==
+                VII.SceneDataManager.Instance.GetCurrentMapData().GetLevelData().Count - 1) &&
+                !gameEnd;
             if (willFall)
             {
                 AudioManager.instance.PlaySingle(AudioManager.instance.respawn);
@@ -71,7 +73,14 @@ public class Checkpoint : Tile
             {
                 floorAnimator.SetTrigger(m_hashPressTrigger);
             }
-            player.Respawn(false, willFall);
+            if (!gameEnd)
+                player.Respawn(false, willFall);
+            else
+            {
+                player.PlayerData.playerState = VII.PlayerState.ENDING;
+                StartCoroutine(WaitUntilAnimation(hashIdleTag));
+            }
+                
         }
     }
 

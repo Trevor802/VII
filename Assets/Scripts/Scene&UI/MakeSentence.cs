@@ -19,6 +19,8 @@ public class MakeSentence : MonoBehaviour
 
     private bool deactivateSentence;
 
+    private bool m_bAutoDisable = true;
+
     public Text text;
     public Animator animator;
     public bool displayingText;
@@ -26,7 +28,7 @@ public class MakeSentence : MonoBehaviour
     void Update()
     {
         //print(deactivateSentence + " " + displayingText);
-        if(deactivateSentence == true && displayingText == true)
+        if(deactivateSentence == true && displayingText == true && m_bAutoDisable)
         {
             animator.SetBool("Active", false);
             deactivateSentence = false;
@@ -74,6 +76,13 @@ public class MakeSentence : MonoBehaviour
         }
 
 
+    }
+    public void DisplayLastSentence()
+    {
+        animator.SetBool("Active", true);
+        text.text = "What sleeps is aroused,\nOnce more.";
+        displayingText = true;
+        m_bAutoDisable = false;
     }
 
     public void EnableLevel0_Sentence1()
