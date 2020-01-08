@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using VII;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public Slider musicSlider;
+    public Slider soundSlider;
+    private AudioManager ins_audioManager;
     private bool menuDisplayed;
     void Start()
     {
+        ins_audioManager = AudioManager.instance;
         pauseMenu.SetActive(false);
         menuDisplayed = false;
     }
@@ -20,7 +25,11 @@ public class PauseMenu : MonoBehaviour
         {
             ToggleMenu();
         }
-        
+        if(musicSlider && soundSlider)
+        {
+            ins_audioManager.UpdateMusicVolume(musicSlider);
+            ins_audioManager.UpdateSoundVolume(soundSlider);
+        }
     }
 
     public void ToggleMenu()
