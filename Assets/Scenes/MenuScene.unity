@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3704,6 +3704,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2619611026658199106, guid: b51397dda2b58fc4b8dc9a1ba2619e3e,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 895900401474862242, guid: b51397dda2b58fc4b8dc9a1ba2619e3e,
         type: 3}
       propertyPath: m_PlayOnAwake
@@ -3714,11 +3719,6 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 2c1bda81cbbba5340a407e3ef7568977, type: 3}
-    - target: {fileID: 2619611026658199106, guid: b51397dda2b58fc4b8dc9a1ba2619e3e,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b51397dda2b58fc4b8dc9a1ba2619e3e, type: 3}
 --- !u!1001 &2266721795703694948
@@ -3820,20 +3820,17 @@ PrefabInstance:
     - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
         type: 3}
       propertyPath: sentences.Array.data[0]
-      value: A group of people gathered together, trying to summon <color=red>the
-        Great One</color> at all costs.
+      value: For years, unsettling tales have shadowed over the Frosty Land
       objectReference: {fileID: 0}
     - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
         type: 3}
       propertyPath: sentences.Array.data[1]
-      value: The closer they get to <color=red>the Great One</color>, the weaker and
-        crazier they feel.
+      value: Suggesting some mythical, unnameable power lurking beneath.
       objectReference: {fileID: 0}
     - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
         type: 3}
       propertyPath: sentences.Array.data[2]
-      value: But they are ready to sacrifice themselves to bring <color=red>the Holy
-        Grail</color> to him and revive the world again.
+      value: Driven by curiosity, we headed North, into the deep unknown.
       objectReference: {fileID: 0}
     - target: {fileID: 6425399052359096056, guid: 6c22a6b21e20a154ea704bc7ed3db007,
         type: 3}
