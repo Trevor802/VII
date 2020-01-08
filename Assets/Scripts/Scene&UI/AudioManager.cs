@@ -22,9 +22,7 @@ public class AudioManager : MonoBehaviour
     #endregion
 
     public AudioSource musicSource;
-    public GameObject musicSlider;
     public AudioSource soundSource;
-    public GameObject soundSlider;
 
     [Header("Audio Clips")]
     public AudioClip footStep;
@@ -60,12 +58,12 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
 
-    public void UpdateMusicVolume()
+    public void UpdateMusicVolume(Slider i_musicSlider)
     {
-        musicSource.volume = musicSlider.GetComponent<Slider>().value;
+        musicSource.volume = i_musicSlider.value;
     }
-    public void UpdateSoundVolume()
+    public void UpdateSoundVolume(Slider i_soundSlider)
     {
-        soundSource.volume = soundSlider.GetComponent<Slider>().value;
+        soundSource.volume = i_soundSlider.value;
     }
 }
