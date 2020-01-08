@@ -88,8 +88,9 @@ public class Player : MonoBehaviour
     #endregion PlayerData
     [Header("Show Map Transition Texts")]
     public DialogueManager dialogueManager;
+    public MakeSentence makeSentence;
     //public Canvas transitionTextCanvas;
-    //public bool display_text_trap;
+    public bool displayLevel0Text;
     //public bool display_text_ice;
     //public bool display_text_lava;
     //public bool startSentence;
@@ -242,6 +243,14 @@ public class Player : MonoBehaviour
         mapIndex = currentMapID;
         levelIndex = currentLevelID;
         livesLeft = m_playerData.lives;
+        //print(mapIndex + " " + levelIndex);
+        //text stuff
+        if(mapIndex == 0 && levelIndex == 1 && displayLevel0Text == true)
+        {
+            makeSentence.EnableLevel0_Sentence1();
+            //print("triggered");
+        }
+
         // Input
         // TODO Support multiple device
         #region Input
@@ -280,6 +289,7 @@ public class Player : MonoBehaviour
         #endregion
         if ((horizontal != 0 || vertical != 0) & !dialogueManager.displayingTexts /*cant move when displaying sentences*/)
         {
+            makeSentence.deactivate(); // removes texts when moved
             if (m_playerData.playerState == VII.PlayerState.IDLE && m_PlayerAnimationController.GetAnimationState() == VII.PlayerAnimationState.Idling)
             {
                 if (horizontal != 0)

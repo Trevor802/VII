@@ -39,6 +39,11 @@ public class Checkpoint : Tile
                 player.completeLava = true;
                 player.summonGreatOne = true;
             }
+            //Text stuff
+            if (player.mapIndex == 0 && player.levelIndex == 0)
+            {
+                player.displayLevel0Text = true;
+            }
             player.checkLeastLives = true;
             // Reset respawn position and respawn player
             activated = true;
