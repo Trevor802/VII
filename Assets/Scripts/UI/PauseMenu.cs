@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using VII;
 
 public class PauseMenu : MonoBehaviour
@@ -10,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     public Slider musicSlider;
     public Slider soundSlider;
     public GameObject layerToHide;
+    public EventSystem eventSystem;
+    public GameObject defaultButton;
     private AudioManager ins_audioManager;
     private bool menuDisplayed;
 
@@ -44,7 +47,17 @@ public class PauseMenu : MonoBehaviour
         {
             ToggleMenu();
         }
-        
+
+        if (eventSystem.currentSelectedGameObject == null && Input.GetAxis("Vertical") != 0)
+        {
+            if (defaultButton.activeSelf)
+                eventSystem.SetSelectedGameObject(defaultButton);
+        }
+        else if ((Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
+            && eventSystem.currentSelectedGameObject != null)
+        {
+            eventSystem.SetSelectedGameObject(null);
+        }
     }
 
     public void ToggleMenu()
