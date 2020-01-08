@@ -40,6 +40,11 @@ public class PauseMenu : MonoBehaviour
         {
             ToggleMenu();
         }
+        else if(Input.GetButtonDown("Cancel") && menuDisplayed)
+        {
+            ToggleMenu();
+        }
+        
     }
 
     public void ToggleMenu()
