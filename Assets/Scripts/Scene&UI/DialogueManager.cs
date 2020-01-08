@@ -19,6 +19,8 @@ public class DialogueManager : MonoBehaviour
     private bool inputAvail = false;
     public Player player;
     public Canvas transitionTextsCanvas;
+    public Animator textAnimator;
+    public Animator continueAnimator;
     public bool displayingTexts;
 
     private bool display_text_trap;
@@ -29,7 +31,11 @@ public class DialogueManager : MonoBehaviour
     {
         //animator.SetBool("IsOpen", true);
         if (transitionTextsCanvas)
+        {
             transitionTextsCanvas.enabled = true;
+            textAnimator.SetBool("Active", true);
+            continueAnimator.SetBool("Active", true);
+        }
         textBox.gameObject.SetActive(true);
         NextSentence();
         inputAvail = true;
@@ -172,20 +178,22 @@ public class DialogueManager : MonoBehaviour
         {
             if (transitionTextsCanvas)
             {
+                textAnimator.SetBool("Active", false);
+                continueAnimator.SetBool("Active", false);
                 displayingTexts = false;
                 display_text_trap = false;
                 display_text_ice = false;
                 display_text_lava = false;
-                transitionTextsCanvas.enabled = false;
+                //transitionTextsCanvas.enabled = false;
             }
         }
     }
-
+    
     public void EnableTrapText()
     {
         display_text_trap = true;
     }
-
+    
     public void EnableIceText()
     {
         display_text_ice = true;
