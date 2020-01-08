@@ -52,6 +52,10 @@ MonoBehaviour:
     inspectorListHeight: 83
     persistentCalls:
       calls: []
+  OnPlayerExitEvent:
+    inspectorListHeight: 83
+    persistentCalls:
+      calls: []
   activated: 0
   floorAnimator: {fileID: 3855695304243778539}
   baseAnimator: {fileID: 524232701983295517}
