@@ -273,10 +273,10 @@ public class Player : MonoBehaviour
             enterWinScene = true;
         }
 
-            // Input
-            // TODO Support multiple device
-            #region Input
-            if (Input.GetKeyDown(KeyCode.R))
+        // Input
+        // TODO Support multiple device
+        #region Input
+        if (Input.GetKeyDown(KeyCode.R))
         {
             VII.SceneManager.instance.SetStartMapID(currentMapID);
             VII.SceneManager.instance.SetStartLevelID(currentLevelID);
@@ -285,6 +285,13 @@ public class Player : MonoBehaviour
             VII.SceneManager.instance.SetStartStartFogIndex(CameraManager.Instance.fog_index);
             UIManager.UIInstance.ClearUI();
             VII.SceneManager.instance.LoadScene(VII.SceneType.GameScene);
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (PlayerState == VII.PlayerState.ENDING)
+            {
+                VII.SceneManager.instance.LoadScene(VII.SceneType.MainScene);
+            }
         }
         int horizontal = 0;
         int vertical = 0;
