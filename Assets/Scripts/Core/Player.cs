@@ -249,19 +249,19 @@ public class Player : MonoBehaviour
         }
         int horizontal = 0;
         int vertical = 0;
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) || Input.GetAxis("ControllerHor") < 0)
+        if (Input.GetAxis("Horizontal") < 0)
         {
             horizontal = -1;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) || Input.GetAxis("ControllerHor") > 0)
+        if (Input.GetAxis("Horizontal") > 0)
         {
             horizontal = 1;
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetAxis("ControllerVer") > 0)
+        if (Input.GetAxis("Vertical") > 0)
         {
             vertical = 1;
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) || Input.GetAxis("ControllerVer") < 0)
+        if (Input.GetAxis("Vertical") < 0)
         {
             vertical = -1;
         }
