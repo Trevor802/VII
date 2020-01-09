@@ -93,7 +93,6 @@ public class Player : MonoBehaviour
     public bool displayLevel0Text;
     public bool diedInLevel1;
     public bool winCountDown;
-    public bool enterWinScene;
 
     public GameObject restartUI;
     public GameObject saveUI;
@@ -268,10 +267,6 @@ public class Player : MonoBehaviour
         if(winDelay >= 3.0f)
         {
             makeSentence.deactivate();
-        }
-        if(winDelay >= 4.0f)
-        {
-            enterWinScene = true;
         }
 
         // Input

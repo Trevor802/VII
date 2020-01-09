@@ -16,6 +16,8 @@ public class Checkpoint : Tile
     private readonly int m_hashFallTrigger = Animator.StringToHash("Fall");
     private readonly int m_hashPressTrigger = Animator.StringToHash("Press");
 
+    private float m_timeWin;
+
     protected override void OnPlayerEnter(Player player)
     {
         base.OnPlayerEnter(player);
@@ -62,8 +64,7 @@ public class Checkpoint : Tile
             if (!gameEnd)
                 VII.SceneDataManager.Instance.GetCurrentMapData().GetMapObject().SetActive(true);
             bool willFall = (VII.SceneDataManager.Instance.GetCurrentLevelData().GetLevelID() ==
-                VII.SceneDataManager.Instance.GetCurrentMapData().GetLevelData().Count - 1) &&
-                !gameEnd;
+                VII.SceneDataManager.Instance.GetCurrentMapData().GetLevelData().Count - 1);
             if (willFall)
             {
                 AudioManager.instance.PlaySingle(AudioManager.instance.respawn);
@@ -99,12 +100,20 @@ public class Checkpoint : Tile
             OnPlayerExitEvent.Invoke();
     }
 
-    public void Win(Player player)
+    public void Win()
     {
-        if(player.enterWinScene == true)
+        StartCoroutine(Winning());
+    }
+
+    public IEnumerator Winning()
+    {
+        while (m_timeWin < 1.0f)
         {
-            UIManager.UIInstance.gameObject.SetActive(false);
-            VII.SceneManager.instance.LoadScene(VII.SceneType.WinScene);
+            Player.Instance.transform.position += new Vector3(0, -Time.fixedDeltaTime * Player.Instance.fallingSpeed, 0);
+            m_timeWin += Time.fixedDeltaTime;
+            yield return null;
         }
+        UIManager.UIInstance.gameObject.SetActive(false);
+        VII.SceneManager.instance.LoadScene(VII.SceneType.WinScene);
     }
 }
