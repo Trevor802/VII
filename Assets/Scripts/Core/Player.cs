@@ -277,27 +277,30 @@ public class Player : MonoBehaviour
         // Input
         // TODO Support multiple device
         #region Input
-        if (Input.GetButtonDown("Reset"))
-        {
-            VII.SceneManager.instance.SetStartMapID(currentMapID);
-            VII.SceneManager.instance.SetStartLevelID(currentLevelID);
-            VII.SceneManager.instance.SetStartStartLevelIndex(CameraManager.Instance.level_index);
-            VII.SceneManager.instance.SetStartStartPPIndex(CameraManager.Instance.pp_index);
-            VII.SceneManager.instance.SetStartStartFogIndex(CameraManager.Instance.fog_index);
-            UIManager.UIInstance.ClearUI();
-            VII.SceneManager.instance.LoadScene(VII.SceneType.GameScene);
-        }
-        if (Input.GetButtonDown("Submit"))
-        {
-            if (PlayerState == VII.PlayerState.ENDING)
-            {
-                VII.SceneManager.instance.LoadScene(VII.SceneType.MainScene);
-            }
-        }
         int horizontal = 0;
         int vertical = 0;
-        if(Time.timeScale != 0)
+        if (Time.timeScale != 0)
         {
+            if (Input.GetButtonDown("Reset"))
+            {
+                Debug.Log("Reset");
+                VII.SceneManager.instance.SetStartMapID(currentMapID);
+                VII.SceneManager.instance.SetStartLevelID(currentLevelID);
+                VII.SceneManager.instance.SetStartStartLevelIndex(CameraManager.Instance.level_index);
+                VII.SceneManager.instance.SetStartStartPPIndex(CameraManager.Instance.pp_index);
+                VII.SceneManager.instance.SetStartStartFogIndex(CameraManager.Instance.fog_index);
+                UIManager.UIInstance.ClearUI();
+                VII.SceneManager.instance.LoadScene(VII.SceneType.GameScene);
+            }
+            if (Input.GetButtonDown("Submit"))
+            {
+                if (PlayerState == VII.PlayerState.ENDING)
+                {
+                    VII.SceneManager.instance.LoadScene(VII.SceneType.MainScene);
+                }
+            }
+            
+
             if (Input.GetAxis("Horizontal") < 0)
             {
                 horizontal = -1;

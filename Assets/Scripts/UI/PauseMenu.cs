@@ -43,6 +43,10 @@ public class PauseMenu : MonoBehaviour
         {
             ToggleMenu();
         }
+        else if(Input.GetButtonDown("MainMenu"))
+        {
+            ToMainMenu();
+        }
         else if(Input.GetButtonDown("Cancel") && menuDisplayed)
         {
             ToggleMenu();
@@ -80,7 +84,6 @@ public class PauseMenu : MonoBehaviour
 
     public void ToMainMenu()
     {
-        Time.timeScale = 1f;
         SceneManager.instance.LoadScene(SceneType.MainScene);
     }
 

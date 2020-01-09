@@ -13,6 +13,7 @@ public class MenuButtonManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1f;
         if (SaveSystem.LoadPlayer() != null)
         {
             StartButton.SetActive(false);
