@@ -109,8 +109,8 @@ public class Checkpoint : Tile
     {
         while (m_timeWin < 1.0f)
         {
-            Player.Instance.transform.position += new Vector3(0, -Time.fixedDeltaTime * Player.Instance.fallingSpeed, 0);
-            m_timeWin += Time.fixedDeltaTime;
+            Player.Instance.transform.position += new Vector3(0, -Time.deltaTime * Player.Instance.fallingSpeed, 0);
+            m_timeWin += Time.deltaTime;
             yield return null;
         }
         UIManager.UIInstance.gameObject.SetActive(false);

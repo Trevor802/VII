@@ -500,7 +500,7 @@ public class Player : MonoBehaviour
             while (Vector3.Distance(transform.position, m_destination) > float.Epsilon)
             {
                 transform.position = Vector3.MoveTowards(transform.position,
-                    m_destination, Time.fixedDeltaTime * fallingSpeed);
+                    m_destination, Time.deltaTime * fallingSpeed);
                 yield return null;
             }
         }
