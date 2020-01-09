@@ -72,7 +72,7 @@ namespace VII
                     UnityEngine.SceneManagement.SceneManager.LoadScene("RestartScene");
                     break;
                 case SceneType.WinScene:
-                    UnityEngine.SceneManagement.SceneManager.LoadScene("WinScene");
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("FinalStageScene");
                     break;
                 default:
                     break;

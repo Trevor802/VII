@@ -122,11 +122,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: nodeCircle
       objectReference: {fileID: 0}
-    - target: {fileID: 638596971856518763, guid: 0a505cbed5946480ba12163ab6dfa771,
-        type: 3}
-      propertyPath: m_Root
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8139490813957214202, guid: 0a505cbed5946480ba12163ab6dfa771,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -135,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 8139490813957214202, guid: 0a505cbed5946480ba12163ab6dfa771,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6
+      value: 0.145
       objectReference: {fileID: 0}
     - target: {fileID: 8139490813957214202, guid: 0a505cbed5946480ba12163ab6dfa771,
         type: 3}
@@ -197,6 +192,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.107489996
       objectReference: {fileID: 0}
+    - target: {fileID: 638596971856518763, guid: 0a505cbed5946480ba12163ab6dfa771,
+        type: 3}
+      propertyPath: m_Root
+      value: 
+      objectReference: {fileID: 8986190573955239025}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a505cbed5946480ba12163ab6dfa771, type: 3}
 --- !u!4 &747598359111617743 stripped
