@@ -277,7 +277,7 @@ public class Player : MonoBehaviour
         // Input
         // TODO Support multiple device
         #region Input
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetButtonDown("Reset"))
         {
             VII.SceneManager.instance.SetStartMapID(currentMapID);
             VII.SceneManager.instance.SetStartLevelID(currentLevelID);
@@ -287,7 +287,7 @@ public class Player : MonoBehaviour
             UIManager.UIInstance.ClearUI();
             VII.SceneManager.instance.LoadScene(VII.SceneType.GameScene);
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Submit"))
         {
             if (PlayerState == VII.PlayerState.ENDING)
             {
