@@ -8,18 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MenuScene.unity
     guid: 6690cca42406e55478e95195c718bc11
-  - enabled: 0
-    path: Assets/Scenes/GameScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Scenes/All_Levels(Draft 1).unity
     guid: 77f5908124df619498b7b1e7cf557ace
-  - enabled: 0
-    path: Assets/Scenes/RestartScene.unity
-    guid: ab11d9cc41326f74383f3fe0b84124ce
-  - enabled: 0
-    path: Assets/Scenes/WinScene.unity
-    guid: c655575908230934daaf6d44a9de2908
   - enabled: 1
     path: Assets/Scenes/FinalStageScene.unity
     guid: b0c27e231e68092479d13cf078393aa2
