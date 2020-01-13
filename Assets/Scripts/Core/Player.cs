@@ -155,6 +155,7 @@ public class Player : MonoBehaviour
         tilePlayerInside = currentRespawnPoint;
         VII.VIIEvents.PlayerRespawnEnd.Invoke(this);
         m_playerData.playerState = VII.PlayerState.IDLE;
+        VII.SceneDataManager.Instance.GetCurrentLevelData().GetRespawnPoint().SetBaseAnimator(true);
         UIManager.UIInstance.UpdateUI();
         m_PlayerAnimationController.InitStepUI();
     }
@@ -490,7 +491,7 @@ public class Player : MonoBehaviour
         m_destination = currentRespawnPoint.transform.position
             + VII.GameData.PLAYER_RESPAWN_POSITION_OFFSET;
         if (tilePlayerInside.GetComponent<Checkpoint>() && !costLife)
-            yield return tilePlayerInside.GetComponent<Checkpoint>().WaitUntilAnimation(Checkpoint.hashIdleTag);
+            yield return tilePlayerInside.GetComponent<Checkpoint>().WaitUntilAnimation(Checkpoint.hashActivatedTag);
         if (i_bSmoothMove)
         {
             if (m_PlayerAnimationController.GetAnimationState() != VII.PlayerAnimationState.Respawning)

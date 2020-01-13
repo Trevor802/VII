@@ -11,10 +11,11 @@ public class Checkpoint : Tile
     public Animator floorAnimator;
     public Animator baseAnimator;
 
-    public static readonly int hashIdleTag = Animator.StringToHash("Idle");
+    public static readonly int hashActivatedTag = Animator.StringToHash("Activated");
 
     private readonly int m_hashFallTrigger = Animator.StringToHash("Fall");
     private readonly int m_hashPressTrigger = Animator.StringToHash("Press");
+    private readonly int m_hashOpenBool = Animator.StringToHash("Open");
 
     private float m_timeWin;
 
@@ -55,10 +56,12 @@ public class Checkpoint : Tile
             player.checkLeastLives = true;
             // Reset respawn position and respawn player
             activated = true;
+            VII.SceneDataManager.Instance.GetCurrentLevelData().GetRespawnPoint().SetBaseAnimator(false);
+            GetPreviousCheckpoint()?.baseAnimator.SetBool(m_hashOpenBool, false);
             VII.VIIEvents.LevelFinish.Invoke(gameObject, player);
             player.PlayerData.Inventory.RemoveItem(requiredItem);
             player.SetRespawnPoint(1);
-            baseAnimator.SetTrigger(m_hashPressTrigger);
+            baseAnimator.SetBool(m_hashOpenBool, true);
             bool gameEnd = VII.SceneDataManager.Instance.GetCurrentMapData().GetMapID() >=
                 VII.SceneDataManager.Instance.GetMapData().Count - 1;
             if (!gameEnd)
@@ -70,16 +73,12 @@ public class Checkpoint : Tile
                 AudioManager.instance.PlaySingle(AudioManager.instance.respawn);
                 floorAnimator.SetTrigger(m_hashFallTrigger);
             }
-            else
-            {
-                floorAnimator.SetTrigger(m_hashPressTrigger);
-            }
             if (!gameEnd)
                 player.Respawn(false, willFall);
             else
             {
                 player.PlayerData.playerState = VII.PlayerState.ENDING;
-                StartCoroutine(WaitUntilAnimation(hashIdleTag));
+                StartCoroutine(WaitUntilAnimation(hashActivatedTag));
             }
                 
         }
@@ -87,10 +86,18 @@ public class Checkpoint : Tile
 
     public IEnumerator WaitUntilAnimation(int i_hashAnimationTag)
     {
-        yield return new WaitWhile(() => floorAnimator.GetCurrentAnimatorStateInfo(0).tagHash == i_hashAnimationTag);
-        while(floorAnimator.GetCurrentAnimatorStateInfo(0).tagHash != i_hashAnimationTag)
+        yield return new WaitWhile(() => baseAnimator.GetCurrentAnimatorStateInfo(0).tagHash == i_hashAnimationTag);
+        while(baseAnimator.GetCurrentAnimatorStateInfo(0).tagHash != i_hashAnimationTag)
             yield return null;
         OnPlayerEnterEvent.Invoke();
+    }
+
+    private Checkpoint GetPreviousCheckpoint()
+    {
+        int levelID = VII.SceneDataManager.Instance.GetCurrentLevelData().GetLevelID();
+        if (levelID > 0)
+            return VII.SceneDataManager.Instance.GetCurrentMapData().GetLevelData()[levelID - 1].GetCheckpoint();
+        return null;
     }
 
     protected override void OnPlayerExit(Player player)
@@ -98,6 +105,12 @@ public class Checkpoint : Tile
         base.OnPlayerExit(player);
         if (activated)
             OnPlayerExitEvent.Invoke();
+    }
+
+    protected override void OnPlayerRespawnEnd(Player player)
+    {
+        base.OnPlayerRespawnEnd(player);
+        GetPreviousCheckpoint()?.floorAnimator.SetTrigger(m_hashPressTrigger);
     }
 
     public void Win()
