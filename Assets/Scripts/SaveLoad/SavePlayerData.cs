@@ -18,7 +18,6 @@ public class SavePlayerData
     public bool saveListInit;
     public bool savePlayedLevel17;
     public List<int> saveLeastLives;
-    //public string playerName;
 
     public SavePlayerData(Player player)
     {
@@ -31,12 +30,6 @@ public class SavePlayerData
         saveSoundVolume = AudioManager.instance.GetSoundVolume();
         saveListInit = SteamAchievements.listInit;
         savePlayedLevel17 = player.playedLevel17;
-        saveLeastLives = SteamAchievements.leastLives;
-        /*position[0] = player.PlayerData.respawnPosition.x;
-        position[1] = player.PlayerData.respawnPosition.y;
-        position[2] = player.PlayerData.respawnPosition.z;
-        savelives = player.GetLives();*/
-        
-        
+        saveLeastLives = SteamAchievements.leastLives;   
     }
 }

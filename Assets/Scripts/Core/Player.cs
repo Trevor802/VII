@@ -635,7 +635,6 @@ public class Player : MonoBehaviour
         }
         mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
         bestLifeCost = mapData[currentMapID].GetLevelData()[currentLevelID].GetBestLivesCost();
-        //m_playerData.lives = data.savelives;
         Respawn(false);
     }
 
