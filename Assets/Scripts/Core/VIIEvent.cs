@@ -12,6 +12,7 @@ namespace VII
         public static TargetTriggerEvent LevelFinish = new TargetTriggerEvent();
         public static PlayerEvent PlayerRespawnStart = new PlayerEvent();
         public static PlayerEvent PlayerRespawnEnd = new PlayerEvent();
+        public static LanguageEvent LanguageSwitch = new LanguageEvent();
     }
 
     [System.Serializable]
@@ -20,4 +21,6 @@ namespace VII
     public class VectorEvent : UnityEvent<Vector3> { }
     [System.Serializable]
     public class TargetTriggerEvent : UnityEvent<GameObject, Player> { }
+    [System.Serializable]
+    public class LanguageEvent : UnityEvent<VII.Language> { }
 }
