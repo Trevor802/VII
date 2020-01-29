@@ -24,6 +24,12 @@ public class MakeSentence : MonoBehaviour
     public Text text;
     public Animator animator;
     public bool displayingText;
+    public LocalizationManager localization;
+
+    void Start()
+    {
+        localization = GameObject.Find("LocalizationManager").GetComponent<LocalizationManager>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -38,7 +44,15 @@ public class MakeSentence : MonoBehaviour
         if(displayLevel0_Sentence1 == true && !displayedLevel0_Sentence1)
         {
             animator.SetBool("Active", true);
-            text.text = "You look much better now!";
+            if((int)localization.Language == 0)
+            {
+                text.text = "You look much better now!";
+            }
+            else if((int)localization.Language == 1)
+            {
+                text.text = "您看起来恢复了一些";
+            }
+            
             displayedLevel0_Sentence1 = true;
             displayingText = true;
         }
@@ -46,7 +60,15 @@ public class MakeSentence : MonoBehaviour
         if(displayLevel1_Sentence1 == true && !displayedLevel1_Sentence1)
         {
             animator.SetBool("Active", true);
-            text.text = "Be careful of their feeble flesh...";
+            if ((int)localization.Language == 0)
+            {
+                text.text = "Be careful of their feeble flesh...";
+            }
+            else if ((int)localization.Language == 1)
+            {
+                text.text = "他们的身体总不是很牢靠...";
+            }
+            
             displayedLevel1_Sentence1 = true;
             displayingText = true;
         }
@@ -54,7 +76,15 @@ public class MakeSentence : MonoBehaviour
         if (displayLevel1_Sentence2 == true && !displayedLevel1_Sentence2)
         {
             animator.SetBool("Active", true);
-            text.text = "...Yet their sacrifice is destined";
+            if ((int)localization.Language == 0)
+            {
+                text.text = "...Yet their sacrifice is destined";
+            }
+            else if ((int)localization.Language == 1)
+            {
+                text.text = "...但我相信您并不会介意一些牺牲";
+            }
+            
             displayedLevel1_Sentence2 = true;
             displayingText = true;
         }
@@ -62,7 +92,15 @@ public class MakeSentence : MonoBehaviour
         if (displayLevel7_Sentence1 == true && !displayedLevel7_Sentence1)
         {
             animator.SetBool("Active", true);
-            text.text = "Ah, a nice resting place for their exhausted bodies.";
+            if ((int)localization.Language == 0)
+            {
+                text.text = "Ah, a nice resting place for their exhausted bodies.";
+            }
+            else if ((int)localization.Language == 1)
+            {
+                text.text = "噢, 看来他不得不永远停留此处";
+            }
+            
             displayedLevel7_Sentence1 = true;
             displayingText = true;
         }
@@ -70,7 +108,15 @@ public class MakeSentence : MonoBehaviour
         if(displayFinalLevel_Sentence1 == true && !displayedFinalLevel_Sentence1)
         {
             animator.SetBool("Active", true);
-            text.text = "When the Pieces are back together.";
+            if ((int)localization.Language == 0)
+            {
+                text.text = "When the Pieces are back together.";
+            }
+            else if ((int)localization.Language == 1)
+            {
+                text.text = "一切都已准备就绪...";
+            }
+            
             displayedLevel7_Sentence1 = true;
             displayingText = true;
         }
@@ -80,7 +126,15 @@ public class MakeSentence : MonoBehaviour
     public void DisplayLastSentence()
     {
         animator.SetBool("Active", true);
-        text.text = "What sleeps is aroused,\nOnce more.";
+        if ((int)localization.Language == 0)
+        {
+            text.text = "What sleeps is aroused,\nOnce more.";
+        }
+        else if ((int)localization.Language == 1)
+        {
+            text.text = "...您的力量已经完全恢复\n欢迎您的莅临";
+        }
+        
         displayingText = true;
         m_bAutoDisable = false;
     }

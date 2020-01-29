@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4214,6 +4214,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
         type: 3}
+      propertyPath: sentences_cn.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
+        type: 3}
       propertyPath: textBox
       value: 
       objectReference: {fileID: 2097379496}
@@ -4237,6 +4242,36 @@ PrefabInstance:
       propertyPath: sentences.Array.data[2]
       value: Driven by curiosity, we headed North, into the deep unknown.
       objectReference: {fileID: 0}
+    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
+        type: 3}
+      propertyPath: localization
+      value: 
+      objectReference: {fileID: 8592229576671317030}
+    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
+        type: 3}
+      propertyPath: sentences_cn.Array.data[0]
+      value: "\u4E0D\u77E5\u4F55\u65F6\u8D77\uFF0C\u4E16\u754C\u4E0A\u5F00\u59CB\u6D41\u4F20\u8FD9\u6837\u7684\u8BF4\u6CD5"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
+        type: 3}
+      propertyPath: sentences_cn.Array.data[1]
+      value: "\u6781\u5317\u7684\u51BB\u539F\u4E4B\u4E0B\u57CB\u85CF\u7740\u4E0D\u53EF\u540D\u72B6\u7684\u5947\u5999\u529B\u91CF"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
+        type: 3}
+      propertyPath: sentences_cn.Array.data[2]
+      value: "\u51FA\u4E8E\u597D\u5947\uFF0C\u6211\u4EEC\u4E00\u8DEF\u5411\u5317\uFF0C\u5C42\u5C42\u6DF1\u5165"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
+        type: 3}
+      propertyPath: sentences_cn.Array.data[3]
+      value: "\u5411\u90A3\u672A\u77E5\u7684\u795E\u79D8\u4E4B\u5730\u8FDB\u53D1"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750543233345892934, guid: 6c22a6b21e20a154ea704bc7ed3db007,
+        type: 3}
+      propertyPath: continueText
+      value: 
+      objectReference: {fileID: 283081234}
     - target: {fileID: 6425399052359096056, guid: 6c22a6b21e20a154ea704bc7ed3db007,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4363,3 +4398,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 410ae445a97ce394ca15c9ae00e39c14, type: 3}
+--- !u!114 &8592229576671317030 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8592229576123154601, guid: 410ae445a97ce394ca15c9ae00e39c14,
+    type: 3}
+  m_PrefabInstance: {fileID: 8592229576671317029}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03f8ecba402eafe4188cb4a94432ade2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

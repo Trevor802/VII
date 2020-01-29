@@ -8,11 +8,15 @@ using VII;
 public class DialogueManager : MonoBehaviour
 {
     public Text textBox;
+    public LocalizationManager localization;
     //public Animator animator;
     public List<string> sentences;
+    public List<string> sentences_cn;
     public List<string> sentences_transition_trap;
+    public List<string> sentences_transition_trap_cn;
     //public List<string> sentences_transition_ice;
     public List<string> sentences_transition_lava;
+    public List<string> sentences_transition_lava_cn;
     public float CharPopupDuration = 0.02f;
     public SceneType sceneToLoadAfterDialogue;
     private int sentenceIndex = 0;
@@ -21,6 +25,7 @@ public class DialogueManager : MonoBehaviour
     public Canvas transitionTextsCanvas;
     public Animator textAnimator;
     public Animator continueAnimator;
+    public Text continueText;
     public bool displayingTexts;
 
     private bool display_text_trap;
@@ -42,93 +47,190 @@ public class DialogueManager : MonoBehaviour
         displayingTexts = true;
     }
 
+    void Start()
+    {
+        localization = GameObject.Find("LocalizationManager").GetComponent<LocalizationManager>();
+    }
+
     void Update()
     {
         if ((Input.GetKeyDown("space") || Input.GetButtonDown("Submit")) && inputAvail)
         {
             NextSentence();
         }
+
+        if((int)localization.Language == 0)
+        {
+            continueText.text = "Press Space to Continue...";
+        }
+        else if((int)localization.Language == 1)
+        {
+            continueText.text = "按下空格继续...";
+        }
     }
 
     public void NextSentence()
     {
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 0)
+        if((int)localization.Language == 0)
         {
-            if (sentenceIndex >= sentences.Count)
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 0)
             {
-                EndSentence();
-                return;
-            }
-        }
-        else
-        {
-            if (transitionTextsCanvas)
-            {
-                if (display_text_trap == true)
+                if (sentenceIndex >= sentences.Count)
                 {
-                    if (sentenceIndex >= sentences_transition_trap.Count)
-                    {
-                        EndSentence();
-                        return;
-                    }
-                }
-                /*
-                else if (display_text_ice == true)
-                {
-                    if (sentenceIndex >= sentences_transition_ice.Count)
-                    {
-                        EndSentence();
-                        return;
-                    }
-                }
-                */
-                else if (display_text_lava == true)
-                {
-                    if (sentenceIndex >= sentences_transition_lava.Count)
-                    {
-                        EndSentence();
-                        return;
-                    }
+                    EndSentence();
+                    return;
                 }
             }
-        }
-        StopAllCoroutines();
-        textBox.text = "";
-        // Uncomment the code block to display all sentences in one page
-        /*
-        for (int i = 0; i < sentenceIndex; i++)
-        {
-            textBox.text += sentences[i];
-        }
-        */
-        string j = "";
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 0)
-        {
-            j = sentences[sentenceIndex];
-        }
-        else
-        {
-            if (transitionTextsCanvas)
+            else
             {
-                if (display_text_trap == true)
+                if (transitionTextsCanvas)
                 {
-                    j = sentences_transition_trap[sentenceIndex];
-                }
-                /*
-                else if (display_text_ice == true)
-                {
-                    j = sentences_transition_ice[sentenceIndex];
-                }
-                */
-                else if (display_text_lava == true)
-                {
-                    j = sentences_transition_lava[sentenceIndex];
+                    if (display_text_trap == true)
+                    {
+                        if (sentenceIndex >= sentences_transition_trap.Count)
+                        {
+                            EndSentence();
+                            return;
+                        }
+                    }
+                    /*
+                    else if (display_text_ice == true)
+                    {
+                        if (sentenceIndex >= sentences_transition_ice.Count)
+                        {
+                            EndSentence();
+                            return;
+                        }
+                    }
+                    */
+                    else if (display_text_lava == true)
+                    {
+                        if (sentenceIndex >= sentences_transition_lava.Count)
+                        {
+                            EndSentence();
+                            return;
+                        }
+                    }
                 }
             }
-        }
+            StopAllCoroutines();
+            textBox.text = "";
+            // Uncomment the code block to display all sentences in one page
+            /*
+            for (int i = 0; i < sentenceIndex; i++)
+            {
+                textBox.text += sentences[i];
+            }
+            */
+            string j = "";
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                j = sentences[sentenceIndex];
+            }
+            else
+            {
+                if (transitionTextsCanvas)
+                {
+                    if (display_text_trap == true)
+                    {
+                        j = sentences_transition_trap[sentenceIndex];
+                    }
+                    /*
+                    else if (display_text_ice == true)
+                    {
+                        j = sentences_transition_ice[sentenceIndex];
+                    }
+                    */
+                    else if (display_text_lava == true)
+                    {
+                        j = sentences_transition_lava[sentenceIndex];
+                    }
+                }
+            }
 
-        sentenceIndex++;
-        StartCoroutine(DisplaySentence(j));
+            sentenceIndex++;
+            StartCoroutine(DisplaySentence(j));
+        }
+        else if((int)localization.Language == 1)
+        {
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                if (sentenceIndex >= sentences_cn.Count)
+                {
+                    EndSentence();
+                    return;
+                }
+            }
+            else
+            {
+                if (transitionTextsCanvas)
+                {
+                    if (display_text_trap == true)
+                    {
+                        if (sentenceIndex >= sentences_transition_trap_cn.Count)
+                        {
+                            EndSentence();
+                            return;
+                        }
+                    }
+                    /*
+                    else if (display_text_ice == true)
+                    {
+                        if (sentenceIndex >= sentences_transition_ice.Count)
+                        {
+                            EndSentence();
+                            return;
+                        }
+                    }
+                    */
+                    else if (display_text_lava == true)
+                    {
+                        if (sentenceIndex >= sentences_transition_lava_cn.Count)
+                        {
+                            EndSentence();
+                            return;
+                        }
+                    }
+                }
+            }
+            StopAllCoroutines();
+            textBox.text = "";
+            // Uncomment the code block to display all sentences in one page
+            /*
+            for (int i = 0; i < sentenceIndex; i++)
+            {
+                textBox.text += sentences[i];
+            }
+            */
+            string j = "";
+            if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                j = sentences_cn[sentenceIndex];
+            }
+            else
+            {
+                if (transitionTextsCanvas)
+                {
+                    if (display_text_trap == true)
+                    {
+                        j = sentences_transition_trap_cn[sentenceIndex];
+                    }
+                    /*
+                    else if (display_text_ice == true)
+                    {
+                        j = sentences_transition_ice[sentenceIndex];
+                    }
+                    */
+                    else if (display_text_lava == true)
+                    {
+                        j = sentences_transition_lava_cn[sentenceIndex];
+                    }
+                }
+            }
+
+            sentenceIndex++;
+            StartCoroutine(DisplaySentence(j));
+        }
 
     }
 

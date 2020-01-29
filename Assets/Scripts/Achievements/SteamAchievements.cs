@@ -38,7 +38,7 @@ public class SteamAchievements : MonoBehaviour
             unlockAchievement("achievement_00");
             print("unlocked");
         }
-
+        /*
         //lock all achievements
         if (Input.GetKeyDown(KeyCode.F2))
         {
@@ -49,7 +49,7 @@ public class SteamAchievements : MonoBehaviour
             lockAchievement("achievement_04");
             print("locked");
         }
-
+        */
         if (player)
         {
             if (player.mapIndex == 0 && player.levelIndex == 0)
