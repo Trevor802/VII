@@ -85,6 +85,7 @@ public class PauseMenu : MonoBehaviour
     public void ToMainMenu()
     {
         SceneManager.instance.LoadScene(SceneType.MainScene);
+        Time.timeScale = 1f;
     }
 
     public void UpdateMusicVolume()

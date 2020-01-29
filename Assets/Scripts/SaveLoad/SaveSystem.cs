@@ -20,8 +20,10 @@ public static class SaveSystem{
     public static SavePlayerData LoadPlayer()
     {
         string path = Application.persistentDataPath + "/player.save";
+        //Debug.Log(path);
         if(File.Exists(path))
         {
+            //Debug.Log("Load success");
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
 
