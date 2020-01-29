@@ -44,7 +44,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
         soundSource.clip = clip;
-        soundSource.Play();
+        soundSource.PlayOneShot(clip);
     }
 
     // Change the background music
