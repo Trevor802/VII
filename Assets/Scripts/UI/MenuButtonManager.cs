@@ -17,10 +17,10 @@ public class MenuButtonManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        localization = GameObject.FindGameObjectWithTag("Localization").GetComponent<LocalizationManager>();
         Time.timeScale = 1f;
         if (SaveSystem.LoadPlayer() != null)
         {
+            //Debug.Log("!!!");
             StartButton.SetActive(false);
             RestartButton.SetActive(true);
             SeperateLine.SetActive(true);
@@ -29,6 +29,7 @@ public class MenuButtonManager : MonoBehaviour
 
             eventSystem.firstSelectedGameObject = ContinueButton;
         }
+        
     }
 
     public void OnClickRestart()
@@ -59,6 +60,7 @@ public class MenuButtonManager : MonoBehaviour
 
     private void Update()
     {
+        //Debug.Log(Time.timeScale);
         //Debug.Log(eventSystem.currentSelectedGameObject);
         //Debug.Log(Input.GetAxis("Horizontal"));
         if (eventSystem.currentSelectedGameObject == null && Input.GetAxis("Horizontal") != 0)
