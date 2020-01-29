@@ -1115,9 +1115,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe2a7355e5753d41ae737a4c36ff448, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  localization: {fileID: 8592229576671317030}
   StartButton: {fileID: 442620742}
   RestartButton: {fileID: 976573471}
   ContinueButton: {fileID: 31218143}
+  CreditButton: {fileID: 1061488791}
+  QuitButton: {fileID: 467748744}
   SeperateLine: {fileID: 1260162266}
   eventSystem: {fileID: 1271389380}
 --- !u!1 &436115641

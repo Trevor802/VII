@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MenuButtonManager : MonoBehaviour
 {
+    public LocalizationManager localization;
     public GameObject StartButton;
     public GameObject RestartButton;
     public GameObject ContinueButton;
+    public GameObject CreditButton;
+    public GameObject QuitButton;
     public GameObject SeperateLine;
     public EventSystem eventSystem;
     // Start is called before the first frame update
     void Start()
     {
+        localization = GameObject.FindGameObjectWithTag("Localization").GetComponent<LocalizationManager>();
         Time.timeScale = 1f;
         if (SaveSystem.LoadPlayer() != null)
         {
@@ -68,5 +73,31 @@ public class MenuButtonManager : MonoBehaviour
         {
             eventSystem.SetSelectedGameObject(null);
         }
+        //Localization
+        if (localization)
+        {
+            if ((int)localization.Language == 0)
+            {
+                StartButton.GetComponentInChildren<Text>().text = "START";
+                RestartButton.GetComponentInChildren<Text>().text = "RESTART";
+                CreditButton.GetComponentInChildren<Text>().text = "CREDIT";
+                ContinueButton.GetComponentInChildren<Text>().text = "CONTINUE";
+                QuitButton.GetComponentInChildren<Text>().text = "QUIT";
+            }
+            else if ((int)localization.Language == 1)
+            {
+                StartButton.GetComponentInChildren<Text>().text = "开始游戏";
+                RestartButton.GetComponentInChildren<Text>().text = "重新开始";
+                CreditButton.GetComponentInChildren<Text>().text = "制作团队";
+                ContinueButton.GetComponentInChildren<Text>().text = "继续游戏";
+                QuitButton.GetComponentInChildren<Text>().text = "退出游戏";
+            }
+        }
+        else
+        {
+            localization = GameObject.Find("LocalizationManager").GetComponent<LocalizationManager>();
+        }
+        
+        
     }
 }

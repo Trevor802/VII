@@ -10,6 +10,7 @@ TagManager:
   - Level
   - Tile
   - Collectible
+  - Localization
   layers:
   - Default
   - TransparentFX
