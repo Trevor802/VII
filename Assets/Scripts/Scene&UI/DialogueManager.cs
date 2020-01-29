@@ -59,11 +59,11 @@ public class DialogueManager : MonoBehaviour
             NextSentence();
         }
 
-        if((int)localization.Language == 0)
+        if((int)localization.Language == 0 && continueText)
         {
             continueText.text = "Press Space to Continue...";
         }
-        else if((int)localization.Language == 1)
+        else if((int)localization.Language == 1 && continueText)
         {
             continueText.text = "按下空格继续...";
         }
