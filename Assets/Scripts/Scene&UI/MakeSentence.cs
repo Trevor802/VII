@@ -26,6 +26,8 @@ public class MakeSentence : MonoBehaviour
     public bool displayingText;
     public LocalizationManager localization;
 
+    
+
     void Start()
     {
         localization = GameObject.Find("LocalizationManager").GetComponent<LocalizationManager>();
@@ -33,6 +35,7 @@ public class MakeSentence : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //print(deactivateSentence + " " + displayingText);
         if(deactivateSentence == true && displayingText == true && m_bAutoDisable)
         {
