@@ -23,6 +23,7 @@ public class LanguageButton : MonoBehaviour
         if (!Enum.IsDefined(typeof(VII.Language), language))
             language = VII.Language.EN;
         LocalizationManager.Instance.SwitchLanguage(language);
+        PlayerPrefs.SetInt("saveLocal", (int)language);
     }
 
     private void UpdateUI(VII.Language i_language)

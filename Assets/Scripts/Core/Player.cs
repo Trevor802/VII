@@ -158,7 +158,6 @@ public class Player : MonoBehaviour
         VII.SceneDataManager.Instance.GetCurrentLevelData().GetRespawnPoint().SetBaseAnimator(true);
         UIManager.UIInstance.UpdateUI();
         m_PlayerAnimationController.InitStepUI();
-        SavePlayer();
     }
 
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
@@ -537,7 +536,7 @@ public class Player : MonoBehaviour
         // Broadcast with Event System
         VII.VIIEvents.PlayerRespawnEnd.Invoke(this);
         if (!costLife)
-            SavePlayer();
+            SavePlayer();          
     }
 
     private void DropItems(bool dropTombstone = true)
@@ -612,6 +611,7 @@ public class Player : MonoBehaviour
     public void LoadPlayer()
     {
         SavePlayerData data = SaveSystem.LoadPlayer();
+        //SaveLocal localData = SaveSystem.LoadLocal();
         currentMapID = data.saveMapId;
         currentLevelID = data.saveLevelId;
         currentRespawnPoint = mapData[currentMapID].GetLevelData()[currentLevelID].GetRespawnPoint();
@@ -637,6 +637,7 @@ public class Player : MonoBehaviour
         mapData[currentMapID].GetLevelData()[currentLevelID].SetTilesEnabledState(true);
         bestLifeCost = mapData[currentMapID].GetLevelData()[currentLevelID].GetBestLivesCost();
         Respawn(false);
+        //Debug.Log(data.saveLocal);
     }
 
     // Getters/Setters

@@ -29,11 +29,7 @@ public class LocalizationManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(transform.gameObject);
-        if (SaveSystem.LoadPlayer() != null)
-        {
-            SavePlayerData data = SaveSystem.LoadPlayer();
-            Instance.SwitchLanguage((VII.Language)data.saveLocal);
-        }
+        Instance.SwitchLanguage((VII.Language)PlayerPrefs.GetInt("saveLocal"));
     }
     #endregion
 

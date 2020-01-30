@@ -17,6 +17,7 @@ public static class SaveSystem{
         stream.Close();
     }
 
+
     public static SavePlayerData LoadPlayer()
     {
         string path = Application.persistentDataPath + "/player.save";
@@ -37,7 +38,8 @@ public static class SaveSystem{
             return null;
         }
     }
-    
+
+
     public static void DeleteSave()
     {
         string path = Application.persistentDataPath + "/player.save";
