@@ -18,6 +18,7 @@ public class SavePlayerData
     public bool saveListInit;
     public bool savePlayedLevel17;
     public List<int> saveLeastLives;
+    public int saveLocal;
 
     public SavePlayerData(Player player)
     {
@@ -30,6 +31,7 @@ public class SavePlayerData
         saveSoundVolume = AudioManager.instance.GetSoundVolume();
         saveListInit = SteamAchievements.listInit;
         savePlayedLevel17 = player.playedLevel17;
-        saveLeastLives = SteamAchievements.leastLives;   
+        saveLeastLives = SteamAchievements.leastLives;
+        saveLocal =(int)GameObject.Find("LocalizationManager").GetComponent<LocalizationManager>().Language;
     }
 }

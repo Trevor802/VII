@@ -24,11 +24,16 @@ public class LocalizationManager : MonoBehaviour
         {
             Instance = this;
         }
-        else if (Instance != this)
+        if (Instance != this)
         {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(transform.gameObject);
+        if (SaveSystem.LoadPlayer() != null)
+        {
+            SavePlayerData data = SaveSystem.LoadPlayer();
+            Instance.SwitchLanguage((VII.Language)data.saveLocal);
+        }
     }
     #endregion
 
@@ -39,6 +44,7 @@ public class LocalizationManager : MonoBehaviour
     }
 
     private VII.Language m_language;
+
 
     // getters
     public VII.Language Language { get { return m_language; } }
