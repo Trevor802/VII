@@ -24,6 +24,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource musicSource;
     public AudioSource soundSource;
 
+    public List<AudioClip> BGMList;
+
     [Header("Audio Clips")]
     public AudioClip footStep;
     public AudioClip death;
@@ -35,6 +37,13 @@ public class AudioManager : MonoBehaviour
     public AudioClip collect;
     public AudioClip spikeDeath;
     public AudioClip trapDeath;
+
+    private int BGM_increment = 0;
+
+    private void Start()
+    {
+        PlayMusic(BGMList[0]);
+    }
 
     // Play sound one time
     public void PlaySingle(AudioClip clip)
@@ -50,12 +59,14 @@ public class AudioManager : MonoBehaviour
     // Change the background music
     public void PlayMusic(AudioClip clip)
     {
+        //Debug.Log("??");
         if (clip == null)
         {
             return;
         }
-        musicSource.clip = clip;
-        musicSource.Play();
+        SwitchBGM();
+
+        
     }
 
     public void UpdateMusicVolume(Slider i_musicSlider)
@@ -71,4 +82,16 @@ public class AudioManager : MonoBehaviour
 
     public float GetMusicVolume() { return musicSource.volume; }
     public float GetSoundVolume() { return soundSource.volume; }
+
+    private void SwitchBGM()
+    {
+        if(!musicSource.isPlaying)
+        {
+            musicSource.clip = BGMList[BGM_increment % BGMList.Count];
+            musicSource.Play();
+            BGM_increment++;
+            //Debug.Log(musicSource.clip.length);
+            Invoke("SwitchBGM", musicSource.clip.length);
+        }
+    }
 }

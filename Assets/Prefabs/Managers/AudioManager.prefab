@@ -47,6 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 895900401474862242}
   soundSource: {fileID: 2619611026658199106}
+  BGMList:
+  - {fileID: 8300000, guid: 2c1bda81cbbba5340a407e3ef7568977, type: 3}
+  - {fileID: 8300000, guid: 9fce41b32346882469d656adacace970, type: 3}
   footStep: {fileID: 8300000, guid: 48b7be1e7a84b4d668f331392ef0bee5, type: 3}
   death: {fileID: 8300000, guid: bba4ca248864b41ebbf8d10f533b44f2, type: 3}
   respawn: {fileID: 8300000, guid: 5f46d8c125b094307ae57079f5f0567f, type: 3}
@@ -71,7 +74,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -164,7 +167,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
