@@ -15,6 +15,7 @@ public class Lava : Tile
     private int ice_layer = 9;
     private int default_layer = 0;
     private float m_maxCastDistance = 1f;
+    private GameObject currentFloor;
 
     private void Update()
     {
@@ -46,7 +47,6 @@ public class Lava : Tile
     protected override void OnPlayerEnter(Player player)
     {
         base.OnPlayerEnter(player);
-        Debug.Log("Player steps on Lava");
         player.Respawn();
     }
 
@@ -75,8 +75,8 @@ public class Lava : Tile
         groundHitResult = Physics.Raycast(ground_detector.transform.position, i_dir, out groundHit, m_maxCastDistance);
         if(groundHitResult)
         {
-            AudioManager.instance.PlaySingle(AudioManager.instance.lavaSpread);
             //Debug.Log(hit.transform.gameObject.layer);
+            //Debug.Log("From "+ this.name +": " +groundHit.transform.gameObject.name);
             GameObject hit_tile = groundHit.transform.gameObject;
             //Is the abut tile ice? - turn it into normal floor tile
             if (hit_tile.layer == ice_layer)
@@ -91,15 +91,22 @@ public class Lava : Tile
             else if(hit_tile.layer == 12)
             {
                 Floor hit_floor = hit_tile.GetComponent<Floor>();
-                if(hit_floor && hit_floor.GetFloorState() == Floor.FloorState.DOWN && hit_floor.GetLavaFlowState())
+                //Debug.Log(!hit_tile.GetComponent<Lava>());
+                if(hit_floor 
+                    && hit_floor.GetFloorState() == Floor.FloorState.DOWN 
+                    && hit_floor.GetLavaFlowState() 
+                    && !hit_tile.GetComponent<Lava>())
                 {
                     //Debug.Log(hit_floor.name + ": Set floor state to allow lava");
                     //if(!hit_floor.GetLavaFlowState())
                     //{
                     //    hit_floor.SetLavaFlowState();
                     //}
-
+                    currentFloor = hit_tile;
+                    hit_floor.GetComponent<BoxCollider>().enabled = false;
                     GameObject lava_instance = Instantiate(lava_tile, groundHit.transform.parent) as GameObject;
+                    AudioManager.instance.PlaySingle(AudioManager.instance.lavaSpread);
+                    Debug.Log("???");
                     lava_instance.transform.position = groundHit.transform.position;
                     lava_instance.transform.rotation = groundHit.transform.rotation;
                     //Debug.Log(i_dir);
@@ -148,5 +155,11 @@ public class Lava : Tile
     public void ChangeSpreadDirection(float i_eulerAngleY)
     {
         lava_block.transform.eulerAngles = new Vector3(0, i_eulerAngleY, 0);
+    }
+
+    private void OnDestroy()
+    {
+        if (currentFloor)
+            currentFloor.GetComponent<BoxCollider>().enabled = true;
     }
 }

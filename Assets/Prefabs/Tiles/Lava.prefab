@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3950854036360126292}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GroundDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7430444870236450209}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5975170046126372266}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 981800397242448624}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: WallDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 7883152431963655666}
   - component: {fileID: 7883152431963655669}
   - component: {fileID: 7397644019002077313}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Lava
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -203,11 +203,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LavaSpread (1)
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 92966f1daa2324a54ba8db36355ee137,
+    - target: {fileID: -927199367670048503, guid: 92966f1daa2324a54ba8db36355ee137,
         type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: fb94df04e0b844d02bf448e0aeae1e19, type: 2}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 92966f1daa2324a54ba8db36355ee137,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -263,6 +263,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 92966f1daa2324a54ba8db36355ee137,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fb94df04e0b844d02bf448e0aeae1e19, type: 2}
     - target: {fileID: 7561110372842451503, guid: 92966f1daa2324a54ba8db36355ee137,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -313,11 +318,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LavaSpread
       objectReference: {fileID: 0}
-    - target: {fileID: -6057140222963153312, guid: 92966f1daa2324a54ba8db36355ee137,
+    - target: {fileID: -927199367670048503, guid: 92966f1daa2324a54ba8db36355ee137,
         type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: fb94df04e0b844d02bf448e0aeae1e19, type: 2}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 92966f1daa2324a54ba8db36355ee137,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -373,6 +378,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: 92966f1daa2324a54ba8db36355ee137,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fb94df04e0b844d02bf448e0aeae1e19, type: 2}
     - target: {fileID: 7561110372842451503, guid: 92966f1daa2324a54ba8db36355ee137,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -422,6 +432,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Block_Base5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638386372246495472, guid: c5896ef4f05c57a43b6391a2ed2ce6f5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4736361272944431843, guid: c5896ef4f05c57a43b6391a2ed2ce6f5,
         type: 3}
@@ -513,10 +528,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2877232867953018221, guid: c5896ef4f05c57a43b6391a2ed2ce6f5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 3525918367000181639, guid: c5896ef4f05c57a43b6391a2ed2ce6f5,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525918367000181639, guid: c5896ef4f05c57a43b6391a2ed2ce6f5,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5896ef4f05c57a43b6391a2ed2ce6f5, type: 3}
