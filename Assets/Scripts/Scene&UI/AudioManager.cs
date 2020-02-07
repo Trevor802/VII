@@ -87,12 +87,12 @@ public class AudioManager : MonoBehaviour
     {
         if(!musicSource.isPlaying)
         {
-            Debug.Log(BGM_increment % BGMList.Count);
+            //Debug.Log(BGM_increment % BGMList.Count);
             musicSource.clip = BGMList[BGM_increment % BGMList.Count];
             musicSource.Play();
             BGM_increment++;
             //Debug.Log(musicSource.clip.length);
-            Invoke("SwitchBGM", musicSource.clip.length);
+            Invoke("SwitchBGM", musicSource.clip.length + 1);
         }
     }
 }
