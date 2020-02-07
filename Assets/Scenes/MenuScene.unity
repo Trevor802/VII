@@ -6124,6 +6124,36 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7186880167174722459, guid: b51397dda2b58fc4b8dc9a1ba2619e3e,
+        type: 3}
+      propertyPath: BGMList.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7186880167174722459, guid: b51397dda2b58fc4b8dc9a1ba2619e3e,
+        type: 3}
+      propertyPath: BGMList.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2531748a5b595f34e8a276431cc0ebdc, type: 3}
+    - target: {fileID: 7186880167174722459, guid: b51397dda2b58fc4b8dc9a1ba2619e3e,
+        type: 3}
+      propertyPath: BGMList.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 08093204b9492a64cabb6c4d0deb100b, type: 3}
+    - target: {fileID: 7186880167174722459, guid: b51397dda2b58fc4b8dc9a1ba2619e3e,
+        type: 3}
+      propertyPath: BGMList.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 62a3f404da5dbbb4f948d0dfb1b27a8a, type: 3}
+    - target: {fileID: 7186880167174722459, guid: b51397dda2b58fc4b8dc9a1ba2619e3e,
+        type: 3}
+      propertyPath: BGMList.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: b72d88cbe79cb5c4e9eb3b00fa41e5fb, type: 3}
+    - target: {fileID: 7186880167174722459, guid: b51397dda2b58fc4b8dc9a1ba2619e3e,
+        type: 3}
+      propertyPath: BGMList.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4ae30b48089077743b973048bfb58ff4, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b51397dda2b58fc4b8dc9a1ba2619e3e, type: 3}
 --- !u!1001 &2266721795703694948
