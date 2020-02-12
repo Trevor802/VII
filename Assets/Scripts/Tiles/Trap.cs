@@ -19,11 +19,11 @@ public class Trap : Tile
         if (!m_close)
         {
             m_close = true;
-            if (player.mapIndex == 2 && player.mapIndex == 0)
+            if (player.mapIndex == 2 && player.levelIndex == 0)
             {
                 player.DiedInTrapInLevel5 = true;
             }
-            if (player.mapIndex == 3 && player.mapIndex == 0)
+            if (player.mapIndex == 3 && player.levelIndex == 0)
             {
                 player.DiedInTrapInLevel7 = true;
             }

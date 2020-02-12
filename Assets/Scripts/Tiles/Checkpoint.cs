@@ -25,7 +25,7 @@ public class Checkpoint : Tile
         if (player.PlayerData.Inventory.ContainItem(requiredItem) && !activated)
         {
             //Achievement Data
-            if (player.mapIndex == 0 && player.levelIndex == 8)
+            if (player.mapIndex == 3 && player.levelIndex == 1)
             {
                 player.FinishLevel7 = true;
             }
@@ -37,7 +37,7 @@ public class Checkpoint : Tile
             {
                 player.completeIce = true;
             }
-            if (player.mapIndex == 12 && player.levelIndex == 0)
+            if (player.mapIndex == 13 && player.levelIndex == 0)
             {
                 player.completeLava = true;
                 player.summonGreatOne = true;

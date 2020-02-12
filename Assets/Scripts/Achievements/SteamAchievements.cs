@@ -21,9 +21,23 @@ public class SteamAchievements : MonoBehaviour
         }
         if (!listInit)
         {
-            leastLives = new List<int> {1, 2, 1, 1, 1, 3, 1, 2, 5, 4, //Dungeon Levels
-                                    1, 2, 1, 1, 1, 1, 2, 3, 2, //Ice Levels
-                                    2, 1, 1, 3, 1, 3, 3}; //Lava Levels
+            leastLives = new List<int> 
+            { 
+                1, 1, 1, //Map0
+                2, 2, 3, //Map1 +3
+                2, 2, //Map2 +6
+                5, 3, //Map3 +8
+                1, 2, 1, //Map4 +10
+                1, //Map5 +13
+                1, 1, //Map6 +14
+                2, //Map7 +16
+                3, 2, //Map8 +17
+                1, //Map9 +19
+                1, //Map10 +20
+                2, 1, //Map11 +21
+                3, //Map12 +23
+                3 //Map13 +24
+            }; 
 
             listInit = true;
         }
@@ -50,6 +64,8 @@ public class SteamAchievements : MonoBehaviour
             print("locked");
         }
         */
+        print(player.DiedInLevel5 + ", " + player.DiedInTrapInLevel5);
+        print(player.mapIndex + ", " + player.levelIndex);
         if (player)
         {
             if (player.mapIndex == 0 && player.levelIndex == 0)
@@ -121,16 +137,93 @@ public class SteamAchievements : MonoBehaviour
                 }
                 else if (player.mapIndex == 1)
                 {
-                    if (player.livesLeft == leastLives[player.levelIndex + 9])
+                    if (player.livesLeft == leastLives[player.levelIndex + 3])
                     {
-                        leastLives[player.levelIndex + 9] = 0;
+                        leastLives[player.levelIndex + 3] = 0;
                     }
                 }
                 else if (player.mapIndex == 2)
                 {
+                    if (player.livesLeft == leastLives[player.levelIndex + 6])
+                    {
+                        leastLives[player.levelIndex + 6] = 0;
+                    }
+                }
+                else if (player.mapIndex == 3)
+                {
+                    if (player.livesLeft == leastLives[player.levelIndex + 8])
+                    {
+                        leastLives[player.levelIndex + 8] = 0;
+                    }
+                }
+                else if (player.mapIndex == 4)
+                {
+                    if (player.livesLeft == leastLives[player.levelIndex + 10])
+                    {
+                        leastLives[player.levelIndex + 10] = 0;
+                    }
+                }
+                else if (player.mapIndex == 5)
+                {
+                    if (player.livesLeft == leastLives[player.levelIndex + 13])
+                    {
+                        leastLives[player.levelIndex + 13] = 0;
+                    }
+                }
+                else if (player.mapIndex == 6)
+                {
+                    if (player.livesLeft == leastLives[player.levelIndex + 14])
+                    {
+                        leastLives[player.levelIndex + 14] = 0;
+                    }
+                }
+                else if (player.mapIndex == 7)
+                {
+                    if (player.livesLeft == leastLives[player.levelIndex + 16])
+                    {
+                        leastLives[player.levelIndex + 16] = 0;
+                    }
+                }
+                else if (player.mapIndex == 8)
+                {
                     if (player.livesLeft == leastLives[player.levelIndex + 17])
                     {
                         leastLives[player.levelIndex + 17] = 0;
+                    }
+                }
+                else if (player.mapIndex == 9)
+                {
+                    if (player.livesLeft == leastLives[player.levelIndex + 19])
+                    {
+                        leastLives[player.levelIndex + 19] = 0;
+                    }
+                }
+                else if (player.mapIndex == 10)
+                {
+                    if (player.livesLeft == leastLives[player.levelIndex + 20])
+                    {
+                        leastLives[player.levelIndex + 20] = 0;
+                    }
+                }
+                else if (player.mapIndex == 11)
+                {
+                    if (player.livesLeft == leastLives[player.levelIndex + 21])
+                    {
+                        leastLives[player.levelIndex + 21] = 0;
+                    }
+                }
+                else if (player.mapIndex == 12)
+                {
+                    if (player.livesLeft == leastLives[player.levelIndex + 23])
+                    {
+                        leastLives[player.levelIndex + 23] = 0;
+                    }
+                }
+                else if (player.mapIndex == 13)
+                {
+                    if (player.livesLeft == leastLives[player.levelIndex + 24])
+                    {
+                        leastLives[player.levelIndex + 24] = 0;
                     }
                 }
 
@@ -145,7 +238,7 @@ public class SteamAchievements : MonoBehaviour
                     i++;
                 }
 
-                if (j == 26) //if completes all 26 levels with least lives spent
+                if (j == 25) //if completes all 26 levels with least lives spent
                 {
                     unlockAchievement("achievement_09");
                 }
@@ -153,7 +246,7 @@ public class SteamAchievements : MonoBehaviour
 
             if (!player.playedLevel17 && player.mapIndex == 9 && player.levelIndex == 0) //TODO: needs to be modified
             {
-                if (leastLives[4 + 17] == 0)
+                if (leastLives[18] == 0)
                 {
                     unlockAchievement("achievement_10");
                 }

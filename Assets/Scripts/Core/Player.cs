@@ -246,6 +246,7 @@ public class Player : MonoBehaviour
         mapIndex = currentMapID;
         levelIndex = currentLevelID;
         livesLeft = m_playerData.lives;
+        
         //print(mapIndex + " " + levelIndex);
         //text stuff
         if(mapIndex == 0 && levelIndex == 1 && displayLevel0Text == true)
