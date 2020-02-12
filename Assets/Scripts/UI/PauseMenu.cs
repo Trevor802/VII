@@ -37,6 +37,11 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        speedSlider.value = PlayerPrefs.GetInt("playerSpeed");
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -102,5 +107,6 @@ public class PauseMenu : MonoBehaviour
     public void UpdatePlayerSpeed()
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().UpdateSpeed(1 - speedSlider.value * 0.25f);
+        PlayerPrefs.SetInt("playerSpeed", (int)speedSlider.value);
     }
 }

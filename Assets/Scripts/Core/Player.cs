@@ -118,6 +118,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        UpdateSpeed(1 - PlayerPrefs.GetInt("playerSpeed") * 0.25f);
         Pools = GameObject.Find("Pools").GetComponent<ObjectPooler>();
         mapData = VII.SceneDataManager.Instance.GetMapData();
         if (VII.SceneManager.instance.GetSave())
@@ -612,6 +613,7 @@ public class Player : MonoBehaviour
 
     public void UpdateSpeed(float i_moveTime)
     {
+        //Debug.Log(i_moveTime);
         m_inverseMoveTime = 1 / i_moveTime;
     }
 
