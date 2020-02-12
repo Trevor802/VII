@@ -603,6 +603,12 @@ public class Player : MonoBehaviour
         Debug.Log("Use controller");
         //Debug.Log(playerInput.Player.Move.interactions);
     }
+
+    public void UpdateSpeed(float i_moveTime)
+    {
+        m_inverseMoveTime = 1 / i_moveTime;
+    }
+
     public void SavePlayer()
     {
         SaveSystem.SavePlayer(this);
