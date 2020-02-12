@@ -12,6 +12,7 @@ namespace VII
         public static TargetTriggerEvent LevelFinish = new TargetTriggerEvent();
         public static PlayerEvent PlayerRespawnStart = new PlayerEvent();
         public static PlayerEvent PlayerRespawnEnd = new PlayerEvent();
+        public static PlayerEvent PlayerRegisterEnd = new PlayerEvent();
         public static LanguageEvent LanguageSwitch = new LanguageEvent();
     }
 

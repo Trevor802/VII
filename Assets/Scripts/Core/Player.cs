@@ -158,6 +158,7 @@ public class Player : MonoBehaviour
         VII.SceneDataManager.Instance.GetCurrentLevelData().GetRespawnPoint().SetBaseAnimator(true);
         UIManager.UIInstance.UpdateUI();
         m_PlayerAnimationController.InitStepUI();
+        VII.VIIEvents.PlayerRegisterEnd.Invoke(this);
     }
 
     public bool Move(Vector3 i_dir, bool i_costStep = true, bool i_smoothMove = true)
