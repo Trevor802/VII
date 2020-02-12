@@ -25,7 +25,7 @@ public class Checkpoint : Tile
         if (player.PlayerData.Inventory.ContainItem(requiredItem) && !activated)
         {
             //Achievement Data
-            if (player.mapIndex == 3 && player.levelIndex == 1)
+            if (player.mapIndex == 3 && player.levelIndex == 0)
             {
                 player.FinishLevel7 = true;
             }

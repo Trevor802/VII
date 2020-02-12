@@ -64,8 +64,8 @@ public class SteamAchievements : MonoBehaviour
             print("locked");
         }
         */
-        print(player.DiedInLevel5 + ", " + player.DiedInTrapInLevel5);
-        print(player.mapIndex + ", " + player.levelIndex);
+        //print(player.DiedInLevel5 + ", " + player.DiedInTrapInLevel5);
+        //print(player.mapIndex + ", " + player.levelIndex);
         if (player)
         {
             if (player.mapIndex == 0 && player.levelIndex == 0)
