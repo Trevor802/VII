@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenu;
     public Slider musicSlider;
     public Slider soundSlider;
+    public Slider speedSlider;
     public GameObject layerToHide;
     public EventSystem eventSystem;
     public GameObject defaultButton;
@@ -96,5 +97,10 @@ public class PauseMenu : MonoBehaviour
     public void UpdateSoundVolume()
     {
         ins_audioManager.UpdateSoundVolume(soundSlider);
+    }
+
+    public void UpdatePlayerSpeed()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().UpdateSpeed(1 - speedSlider.value * 0.25f);
     }
 }
