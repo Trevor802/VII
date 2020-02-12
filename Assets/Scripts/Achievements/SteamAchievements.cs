@@ -52,7 +52,7 @@ public class SteamAchievements : MonoBehaviour
             unlockAchievement("achievement_00");
             print("unlocked");
         }
-        /*
+        
         //lock all achievements
         if (Input.GetKeyDown(KeyCode.F2))
         {
@@ -61,9 +61,15 @@ public class SteamAchievements : MonoBehaviour
             lockAchievement("achievement_02");
             lockAchievement("achievement_03");
             lockAchievement("achievement_04");
+            lockAchievement("achievement_05");
+            lockAchievement("achievement_06");
+            lockAchievement("achievement_07");
+            lockAchievement("achievement_08");
+            lockAchievement("achievement_09");
+            lockAchievement("achievement_10");
             print("locked");
         }
-        */
+        
         //print(player.DiedInLevel5 + ", " + player.DiedInTrapInLevel5);
         //print(player.mapIndex + ", " + player.levelIndex);
         if (player)
