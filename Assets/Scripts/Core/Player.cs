@@ -255,12 +255,17 @@ public class Player : MonoBehaviour
             //print("triggered");
         }
         //print(m_playerData.steps);
+        /*
         if (mapIndex == 0 && levelIndex == 1 && m_playerData.steps == 1)
         {
             makeSentence.EnableLevel1_Sentence1();
             //print("triggered");
         }
-
+        */
+        if(m_playerData.steps == 0)
+        {
+            makeSentence.EnableLevel1_Sentence1();
+        }
         if(winCountDown == true)
         {
             winDelay += Time.deltaTime;

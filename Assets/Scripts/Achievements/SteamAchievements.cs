@@ -52,7 +52,7 @@ public class SteamAchievements : MonoBehaviour
             unlockAchievement("achievement_00");
             print("unlocked");
         }
-        
+        /*
         //lock all achievements
         if (Input.GetKeyDown(KeyCode.F2))
         {
@@ -69,7 +69,7 @@ public class SteamAchievements : MonoBehaviour
             lockAchievement("achievement_10");
             print("locked");
         }
-
+        */
         //print(player.DiedInLevel5 + ", " + player.DiedInTrapInLevel5);
         //print(player.mapIndex + ", " + player.levelIndex);
         //print(leastLives[0]);

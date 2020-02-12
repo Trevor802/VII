@@ -18,6 +18,7 @@ public class SavePlayerData
     public bool saveListInit;
     public bool savePlayedLevel17;
     public List<int> saveLeastLives;
+    public bool saveDisplayLevel1_Sentence1;
     //public int saveLocal;
 
     public SavePlayerData(Player player)
@@ -32,6 +33,7 @@ public class SavePlayerData
         saveListInit = SteamAchievements.listInit;
         savePlayedLevel17 = player.playedLevel17;
         saveLeastLives = SteamAchievements.leastLives;
+        saveDisplayLevel1_Sentence1 = MakeSentence.displayLevel1_Sentence1;
         //saveLocal =(int)GameObject.Find("LocalizationManager").GetComponent<LocalizationManager>().Language;
     }
 }

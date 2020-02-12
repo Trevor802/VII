@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class MakeSentence : MonoBehaviour
 {
     private bool displayLevel0_Sentence1;
-    private bool displayLevel1_Sentence1;
+    public static bool displayLevel1_Sentence1;
     private bool displayLevel1_Sentence2;
     private bool displayLevel7_Sentence1;
     private bool displayFinalLevel_Sentence1;
@@ -26,11 +26,15 @@ public class MakeSentence : MonoBehaviour
     public bool displayingText;
     public LocalizationManager localization;
 
-    
 
     void Start()
     {
         localization = GameObject.Find("LocalizationManager").GetComponent<LocalizationManager>();
+        SavePlayerData saveForMakeSentence = SaveSystem.LoadPlayer();
+        if (saveForMakeSentence != null)
+        {
+            displayedLevel1_Sentence1 = saveForMakeSentence.saveDisplayLevel1_Sentence1;
+        }
     }
     // Update is called once per frame
     void Update()

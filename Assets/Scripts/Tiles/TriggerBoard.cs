@@ -93,7 +93,7 @@ public class TriggerBoard : Tile
 
     protected override void OnPlayerExit(Player player)
     {
-        if(player.mapIndex == 3 && player.levelIndex == 0)
+        if(player.mapIndex == 1 && player.levelIndex == 1)
         {
             player.makeSentence.EnableLevel7_Sentence1();
         }
