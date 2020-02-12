@@ -69,9 +69,11 @@ public class SteamAchievements : MonoBehaviour
             lockAchievement("achievement_10");
             print("locked");
         }
-        
+
         //print(player.DiedInLevel5 + ", " + player.DiedInTrapInLevel5);
         //print(player.mapIndex + ", " + player.levelIndex);
+        //print(leastLives[0]);
+        //print(player.HasKeyInLevel8 + ", " + Level8TriggerBoard.TriggerBoardDown);
         if (player)
         {
             if (player.mapIndex == 0 && player.levelIndex == 0)

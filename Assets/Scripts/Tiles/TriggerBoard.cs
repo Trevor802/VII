@@ -28,7 +28,7 @@ public class TriggerBoard : Tile
             playerInside = false;
             playerOutTemp = false;
 
-            if (Level8TriggerBoard)
+            if (Level8TriggerBoard && !m_TombstoneOn)
             {
                 Level8TriggerBoard.TriggerBoardDown = false;
             }
@@ -38,7 +38,7 @@ public class TriggerBoard : Tile
             playerInside = true;
             playerInTemp = false;
 
-            if (Level8TriggerBoard)
+            if (Level8TriggerBoard && !m_TombstoneOn)
             {
                 Level8TriggerBoard.TriggerBoardDown = true;
             }
