@@ -7,6 +7,7 @@ namespace VII
 {
     public class Console : MonoBehaviour
     {
+#if DEBUG
         public Text OutputText;
 
         private void Awake()
@@ -31,6 +32,7 @@ namespace VII
         {
             OutputText.text = i_str;
         }
+
+#endif
     }
 }
-

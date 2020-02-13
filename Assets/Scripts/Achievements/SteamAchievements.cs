@@ -45,31 +45,30 @@ public class SteamAchievements : MonoBehaviour
 
     }
 
+    public void UnlockTestAchievement()
+    {
+        Debug.Log("unlocked");
+        unlockAchievement("achievement_00");
+    }
+
+    public void LockAllAchievements()
+    {
+        lockAchievement("achievement_00");
+        lockAchievement("achievement_01");
+        lockAchievement("achievement_02");
+        lockAchievement("achievement_03");
+        lockAchievement("achievement_04");
+        lockAchievement("achievement_05");
+        lockAchievement("achievement_06");
+        lockAchievement("achievement_07");
+        lockAchievement("achievement_08");
+        lockAchievement("achievement_09");
+        lockAchievement("achievement_10");
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            unlockAchievement("achievement_00");
-            print("unlocked");
-        }
-        /*
-        //lock all achievements
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            lockAchievement("achievement_00");
-            lockAchievement("achievement_01");
-            lockAchievement("achievement_02");
-            lockAchievement("achievement_03");
-            lockAchievement("achievement_04");
-            lockAchievement("achievement_05");
-            lockAchievement("achievement_06");
-            lockAchievement("achievement_07");
-            lockAchievement("achievement_08");
-            lockAchievement("achievement_09");
-            lockAchievement("achievement_10");
-            print("locked");
-        }
-        */
+        // Locking all achievements is moved to DebugTool.cs
         //print(player.DiedInLevel5 + ", " + player.DiedInTrapInLevel5);
         //print(player.mapIndex + ", " + player.levelIndex);
         //print(leastLives[0]);
